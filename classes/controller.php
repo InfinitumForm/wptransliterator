@@ -79,7 +79,14 @@ final class Transliteration_Controller extends Transliteration
             if (Transliteration_Utilities::is_admin()) {
                 return 'cyr_to_lat';
             }
+			
+			// Force Latin for non-Cyrillic locales to avoid accidental Cyrillic on e.g. DE/EN.
+			if (!Transliteration_Utilities::is_cyrillic_locale()) {
+				Transliteration_Utilities::setcookie('lat');
+				return 'cyr_to_lat';
+			}
 
+			// CONTINUE:
             // Settings mode
             $mode = get_rstr_option('transliteration-mode', 'cyr_to_lat');
 
@@ -196,6 +203,10 @@ final class Transliteration_Controller extends Transliteration
         if ($mode == 'auto') {
             $mode = $this->mode();
         }
+		
+		if ($mode === 'lat_to_cyr' && !Transliteration_Utilities::is_cyrillic_locale()) {
+			return $content;
+		}
 
         if (!$mode) {
             return $content;

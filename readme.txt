@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 5.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.3.7
+Stable tag: 2.3.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,14 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 9. Automated test
 
 == Changelog ==
+
+= 2.3.8 =
+* Fixed critical issue with Polylang integration where non-Cyrillic languages (e.g., DE, EN) were incorrectly transliterated to Cyrillic on first visit.
+* Added robust detection logic with safe fallback to Latin for unresolved or unknown localeaas.
+* Improved `is_cyrillic_locale()` to include lazy caching and reliable Polylang language detection through `pll_language_defined` and `wp` hooks.
+* Added safety-net inside transliteration process to prevent accidental `lat_to_cyr` mode when language is not confirmed as Cyrillic.
+* Restricted Polylang “first-visit” language list strictly to Cyrillic-script languages.
+* Ensured consistent behavior in phantom mode and early-page rendering phases.
 
 = 2.3.7 =
 * Added Croatian Cyrillic alphabet support
@@ -256,6 +264,15 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Added support for multilingual content and automatic language detection
 
 == Upgrade Notice ==
+
+= 2.3.8 =
+* Fixed critical issue with Polylang integration where non-Cyrillic languages (e.g., DE, EN) were incorrectly transliterated to Cyrillic on first visit.
+* Added robust detection logic with safe fallback to Latin for unresolved or unknown locales.
+* Improved `is_cyrillic_locale()` to include lazy caching and reliable Polylang language detection through `pll_language_defined` and `wp` hooks.
+* Added safety-net inside transliteration process to prevent accidental `lat_to_cyr` mode when language is not confirmed as Cyrillic.
+* Restricted Polylang “first-visit” language list strictly to Cyrillic-script languages.
+* Ensured consistent behavior in phantom mode and early-page rendering phases.
+
 
 = 2.3.7 =
 * Added Croatian Cyrillic alphabet support

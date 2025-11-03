@@ -7,6 +7,9 @@ if (!defined('WPINC')) {
 class Transliteration_Utilities
 {
     use Transliteration__Cache;
+	
+	/** @var array|null Request-scope language cache: ['slug'=>string,'locale'=>string,'ready'=>bool] */
+	protected static $lang_cache = null;
 
     /*
      * Registered languages
@@ -44,7 +47,7 @@ class Transliteration_Utilities
         return apply_filters('rstr_plugin_default_options', [
             'site-script'               => 'cyr',
             'transliteration-mode'      => 'cyr_to_lat',
-            'mode'                      => 'advanced',
+            'mode'                      => class_exists('DOMDocument', false) ? 'phantom' : 'advanced',
             'avoid-admin'               => 'no',
             'allow-admin-tools'         => 'yes',
             'allow-cyrillic-usernames'  => 'no',
@@ -76,6 +79,66 @@ class Transliteration_Utilities
             'disable-theme-support'       => 'no',
         ]);
     }
+	
+	/**
+	 * Determine if current language is Cyrillic-script.
+	 * Safe default: if language is not ready/resolved => return false (Latin).
+	 *
+	 * @param string|null $slug
+	 * @param string|null $locale
+	 * @return bool
+	 */
+	public static function is_cyrillic_locale(?string $slug = null, ?string $locale = null): bool
+	{
+		static $cache = [];
+
+		// Prefer pre-resolved info
+		$info = self::current_language_info();
+		if ($slug === null)   { $slug = $info['slug'] ?: null; }
+		if ($locale === null) { $locale = $info['locale'] ?: null; }
+
+		$k = ($slug ?: '_') . '|' . ($locale ?: '_');
+		if (array_key_exists($k, $cache)) {
+			return $cache[$k];
+		}
+
+		// Tight Cyrillic lists
+		$cyr_slugs_default = [
+			'sr','sr_RS','sr_ME','sr_BA','sr-cyrl','sr_Cyrl',
+			'ru','uk','bg','mk','kk','tg','ky','mn','ba','be','sah','tt','uz_Cyrl',
+			// 'cnr' only if your site really uses Cyrillic for it
+		];
+		$cyr_locales_default = [
+			'sr_RS','sr_ME','sr_BA',
+			'ru_RU','uk_UA','bg_BG','mk_MK',
+			'kk_KZ','tg_TJ','ky_KG','mn_MN','ba_RU','be_BY','sah_RU','tt_RU','uz_UZ_Cyrl'
+		];
+
+		$cyr_slugs   = apply_filters('rstr_cyrillic_slugs', $cyr_slugs_default, $slug, $locale);
+		$cyr_locales = apply_filters('rstr_cyrillic_locales', $cyr_locales_default, $slug, $locale);
+
+		// Optional narrowing to registered set
+		$restrict_to_registered = apply_filters('rstr_cyrillic_restrict_to_registered', true, $slug, $locale);
+		if ($restrict_to_registered && method_exists(__CLASS__, 'registered_languages')) {
+			// Expect keys to include locales; if you also store slugs, adjust accordingly.
+			$registered = array_map('strval', array_keys((array) self::registered_languages()));
+			if (!empty($registered)) {
+				$cyr_slugs   = array_values(array_intersect($cyr_slugs, $registered));
+				$cyr_locales = array_values(array_intersect($cyr_locales, $registered));
+			}
+		}
+
+		// SAFE DEFAULT: if not ready to decide, choose Latin (false).
+		if (!$info['ready']) {
+			$cache[$k] = false;
+			return false;
+		}
+
+		$is_cyr = in_array((string)$slug, $cyr_slugs, true) || in_array((string)$locale, $cyr_locales, true);
+		$cache[$k] = $is_cyr;
+		return $is_cyr;
+	}
+
 
     /*
      * Skip transliteration
@@ -147,7 +210,7 @@ class Transliteration_Utilities
 
         // Map available modes to their descriptions
         $modes = [
-            'phantom'     => __('Phantom Mode (ultra fast DOM-based transliteration, experimental)', 'serbian-transliteration'),
+            'phantom'     => __('Phantom Mode (ultra fast DOM-based transliteration)', 'serbian-transliteration'),
             'light'       => __('Light mode (basic parts of the site)', 'serbian-transliteration'),
             'standard'    => __('Standard mode (content, themes, plugins, translations, menu)', 'serbian-transliteration'),
             'advanced'    => __('Advanced mode (content, widgets, themes, plugins, translations, menu, permalinks, media)', 'serbian-transliteration'),
@@ -188,7 +251,7 @@ class Transliteration_Utilities
             }
 
             if (empty($get_locale)) {
-                $get_locale = function_exists('pll_current_language') ? pll_current_language('locale') : get_locale();
+                $get_locale = self::is_pll() ? pll_current_language('locale') : get_locale();
 
                 if (is_user_logged_in() && empty($get_locale)) {
                     $get_locale = get_user_locale(wp_get_current_user());
@@ -696,12 +759,28 @@ class Transliteration_Utilities
     {
         return self::cached_static('already_cyrillic', fn (): bool => in_array(self::get_locale(), apply_filters('rstr_already_cyrillic', ['sr_RS', 'mk_MK', 'bg_BG', 'ru_RU', 'uk', 'kk', 'el', 'ar', 'hy', 'sr', 'mk', 'bg', 'ru', 'bel', 'sah', 'bs', 'kir', 'mn', 'ba', 'uz', 'ka', 'tg', 'cnr', 'bs_BA'])) !== (1 === 2));
     }
+	
+	/*
+     * Check is Polylang
+     * @return        boolean
+     * @author        Ivijan-Stefan Stipic
+     */
+    public static function is_pll()
+    {
+		static $is_pll = NULL;
+		
+		if($is_pll === NULL) {
+			$is_pll = function_exists('pll_current_language');
+		}
+		
+		return $is_pll;
+	}
 
     /*
      * Check is cyrillic letters
      * @return        boolean
      * @author        Ivijan-Stefan Stipic
-    */
+     */
     public static function is_cyr($string)
     {
         if (!is_string($string) || is_numeric($string)) {
@@ -1480,5 +1559,67 @@ class Transliteration_Utilities
 
 		echo '</table>';
 	}
+	
+	/**
+	 * Hook to capture language when Polylang announces it. Runs very early.
+	 * @param string $slug
+	 */
+	public static function on_pll_language_defined($slug) : void
+	{
+		// Try to read precise locale from Polylang if available
+		$locale = self::is_pll() ? pll_current_language('locale') : null;
+		if (!$locale) {
+			$locale = self::get_locale();
+		}
+		self::$lang_cache = [
+			'slug'   => (string) $slug,
+			'locale' => (string) $locale,
+			'ready'  => true,
+		];
+	}
 
+	/**
+	 * Fallback detector executed on 'wp' if language was not captured earlier.
+	 * Guarantees we attempt a late resolve once the query is parsed.
+	 */
+	public static function late_language_resolve() : void
+	{
+		if (self::$lang_cache && !empty(self::$lang_cache['ready'])) {
+			return; // already resolved
+		}
+		$slug = self::is_pll() ? pll_current_language('slug') : null;
+		$locale = self::is_pll() ? pll_current_language('locale') : null;
+		if (!$locale) {
+			$locale = self::get_locale();
+		}
+		self::$lang_cache = [
+			'slug'   => (string) ($slug ?: ''),
+			'locale' => (string) ($locale ?: ''),
+			'ready'  => (bool) $slug || (bool) $locale,
+		];
+	}
+
+	/**
+	 * Returns the best-known current language tuple.
+	 * If not ready, returns ['slug'=>'','locale'=>'','ready'=>false].
+	 *
+	 * @return array{slug:string,locale:string,ready:bool}
+	 */
+	public static function current_language_info() : array
+	{
+		if (!self::$lang_cache) {
+			// Very early call (before hooks). Populate with whatever we can guess.
+			$slug = self::is_pll() ? pll_current_language('slug') : null;
+			$locale = self::is_pll() ? pll_current_language('locale') : null;
+			if (!$locale) {
+				$locale = self::get_locale();
+			}
+			self::$lang_cache = [
+				'slug'   => (string) ($slug ?: ''),
+				'locale' => (string) ($locale ?: ''),
+				'ready'  => (bool) $slug || (bool) $locale,
+			];
+		}
+		return self::$lang_cache;
+	}
 }

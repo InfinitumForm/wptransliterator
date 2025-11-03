@@ -35,9 +35,7 @@ class Transliteration_Plugin_Polylang extends Transliteration
 
         if (!$languages) {
             $languages = apply_filters('rstr_plugin_polylang_languages', [
-                'uk', 'kk', 'el', 'ar', 'hy', 'sr', 'mk',
-                'bg', 'ru', 'bel', 'sah', 'bs', 'kir',
-                'mn', 'ba', 'uz', 'ka', 'tg', 'cnr',
+                'sr','mk','bg','ru','uk','kk','tg','ky','mn','ba','be','sah','tt','uz_Cyrl','cnr'
             ], $url, $slug);
         }
 
