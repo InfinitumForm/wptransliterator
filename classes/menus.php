@@ -157,66 +157,91 @@ final class Transliteration_Menus extends Transliteration
      * @param object $menu_item The menu item object.
      */
     public function menu_setup($item)
-    {
+	{
 
-        if (!current_theme_supports('menus')) {
-            return $item;
-        }
+		if (!current_theme_supports('menus')) {
+			return $item;
+		}
 
-        global $pagenow;
+		global $pagenow;
 
-        if ($pagenow != 'nav-menus.php' && ! defined('DOING_AJAX') && isset($item->url) && strstr($item->url, '#transliteration') != '') {
+		if ($pagenow != 'nav-menus.php' && ! defined('DOING_AJAX') && isset($item->url) && strstr($item->url, '#transliteration') != '') {
 
-            $get_script = (isset($_COOKIE['rstr_script']) && in_array($_COOKIE['rstr_script'], apply_filters('rstr/allowed_script', ['cyr', 'lat']), true) ? $_COOKIE['rstr_script'] : 'none');
+			// Mark transliteration menu items so we can detect them later
+			if (!isset($item->classes) || !is_array($item->classes)) {
+				$item->classes = [];
+			}
 
-            $options = (object) [
-                'active' => $get_script,
-                'cyr'    => add_query_arg(get_rstr_option('url-selector', 'rstr'), 'cyr'),
-                'lat'    => add_query_arg(get_rstr_option('url-selector', 'rstr'), 'lat'),
-            ];
+			if (!in_array('menu-item-transliteration', $item->classes, true)) {
+				$item->classes[] = 'menu-item-transliteration';
+			}
 
-            $item_url      = substr($item->url ?? '', 0, strpos($item->url ?? '', '#', 1)) . '#';
-            $item_redirect = str_replace($item_url, '', $item->url);
+			$get_script = (isset($_COOKIE['rstr_script']) && in_array($_COOKIE['rstr_script'], apply_filters('rstr/allowed_script', ['cyr', 'lat']), true) ? $_COOKIE['rstr_script'] : 'none');
 
-            if ($item_redirect == '%current-page%') {
-                $item_redirect = ($_SERVER['REQUEST_URI'] ?? '');
-            }
+			$options = (object) [
+				'active' => $get_script,
+				'cyr'    => add_query_arg(get_rstr_option('url-selector', 'rstr'), 'cyr'),
+				'lat'    => add_query_arg(get_rstr_option('url-selector', 'rstr'), 'lat'),
+			];
 
-            if ($item_url === '#transliteration-latcyr#') {
-                $item_redirect = explode('|', ($item_redirect ?? ''));
+			$item_url      = substr($item->url ?? '', 0, strpos($item->url ?? '', '#', 1)) . '#';
+			$item_redirect = str_replace($item_url, '', $item->url);
 
-                if (count($item_redirect) != 2) {
-                    $item_redirect    = array_map('trim', $item_redirect);
-                    $item_redirect[1] = $item_redirect[0];
-                }
+			if ($item_redirect == '%current-page%') {
+				$item_redirect = ($_SERVER['REQUEST_URI'] ?? '');
+			}
 
-                $item->url = $options->active == 'cyr' ? $options->lat : $options->cyr;
+			if ($item_url === '#transliteration-latcyr#') {
+				$item_redirect = explode('|', ($item_redirect ?? ''));
 
-                $item->title = $this->transliteration_setup_title($item->title, $options) ;
-            } elseif ($item_url === '#transliteration-lat#') {
-                if ($options->active == 'cyr') {
-                    $item->url = $options->lat;
-                    return $item;
-                }
-            } elseif ($item_url === '#transliteration-cyr#') {
-                if ($options->active == 'lat') {
-                    $item->url = $options->cyr;
-                    return $item;
-                }
-            }
+				if (count($item_redirect) != 2) {
+					$item_redirect    = array_map('trim', $item_redirect);
+					$item_redirect[1] = $item_redirect[0];
+				}
 
-            $item->url = esc_url($item->url);
-        }
-        return $item;
-    }
+				$item->url   = $options->active == 'cyr' ? $options->lat : $options->cyr;
+				$item->title = $this->transliteration_setup_title($item->title, $options);
+			} elseif ($item_url === '#transliteration-lat#') {
+				if ($options->active == 'cyr') {
+					$item->url = $options->lat;
+					return $item;
+				}
+			} elseif ($item_url === '#transliteration-cyr#') {
+				if ($options->active == 'lat') {
+					$item->url = $options->cyr;
+					return $item;
+				}
+			}
+
+			$item->url = esc_url($item->url);
+		}
+
+		return $item;
+	}
 
     public function menu_objects(array $sorted_menu_items): array
-    {
-        foreach ($sorted_menu_items as $menu => $item) {
-            if (strstr($item->url, '#transliteration') != '') {
-                unset($sorted_menu_items[ $menu ]);
-            }
-        }
-        return $sorted_menu_items;
-    }
+	{
+		$hide_trans_items = ! Transliteration_Utilities::is_cyrillic_locale();
+
+		foreach ($sorted_menu_items as $index => $item) {
+			$item_url = isset($item->url) ? (string) $item->url : '';
+
+			$has_hash = ($item_url !== '' && strpos($item_url, '#transliteration') !== false);
+			$has_class = (
+				isset($item->classes)
+				&& is_array($item->classes)
+				&& in_array('menu-item-transliteration', $item->classes, true)
+			);
+
+			$is_trans_item = $has_hash || $has_class;
+
+			if ($is_trans_item && $hide_trans_items) {
+				unset($sorted_menu_items[$index]);
+			}
+		}
+
+		return $sorted_menu_items;
+	}
+
+
 }

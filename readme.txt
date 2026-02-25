@@ -2,9 +2,9 @@
 Contributors: ivijanstefan, creativform, tihi
 Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 5.4
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.3.8
+Stable tag: 2.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,25 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 9. Automated test
 
 == Changelog ==
+
+= 2.4.1 =
+* Fixed problem with transition codes
+* Fixed issue with shortcodes conflicts
+* Fixed a problem with the transfer algorithm
+* Improved UX
+* Removed ads
+
+= 2.4.0 =
+* Fixed language detection with PLL plugin
+* Fixed problem with stuck loops
+* Fixed navigation issue
+* Fixed gettext problems
+
+= 2.3.10 =
+* Bugfix for the "_load_textdomain_just_in_time was called incorrectly"
+
+= 2.3.9 =
+* Quick fix for memory leak issues from the previous version.
 
 = 2.3.8 =
 * Fixed critical issue with Polylang integration where non-Cyrillic languages (e.g., DE, EN) were incorrectly transliterated to Cyrillic on first visit.
@@ -265,23 +284,18 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Upgrade Notice ==
 
-= 2.3.8 =
-* Fixed critical issue with Polylang integration where non-Cyrillic languages (e.g., DE, EN) were incorrectly transliterated to Cyrillic on first visit.
-* Added robust detection logic with safe fallback to Latin for unresolved or unknown locales.
-* Improved `is_cyrillic_locale()` to include lazy caching and reliable Polylang language detection through `pll_language_defined` and `wp` hooks.
-* Added safety-net inside transliteration process to prevent accidental `lat_to_cyr` mode when language is not confirmed as Cyrillic.
-* Restricted Polylang “first-visit” language list strictly to Cyrillic-script languages.
-* Ensured consistent behavior in phantom mode and early-page rendering phases.
+= 2.4.1 =
+* Fixed problem with transition codes
+* Fixed issue with shortcodes conflicts
+* Fixed a problem with the transfer algorithm
+* Improved UX
+* Removed ads
 
-
-= 2.3.7 =
-* Added Croatian Cyrillic alphabet support
-* Improved translations and documentations
-
-= 2.3.6 =
-* Bugfix on _load_textdomain_just_in_time
-* Improved Script Selector in the Blocks
-* BUgfix on the UTF-8 encoding
+= 2.4.0 =
+* Fixed language detection with PLL plugin
+* Fixed problem with stuck loops
+* Fixed navigation issue
+* Fixed gettext problems
 
 == Frequently Asked Questions ==
 

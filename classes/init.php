@@ -52,8 +52,7 @@ final class Transliteration_Init extends Transliteration
 
 	public function hook_init(): void
 	{
-		$this->add_action('init', 'load_textdomain');
-		$this->add_filter('load_textdomain_mofile', 'load_textdomain_mofile', 10, 2);
+		// Void for now
 	}
 
     /**
@@ -131,45 +130,6 @@ final class Transliteration_Init extends Transliteration
                 exit;
             }
         }
-    }
-
-    /*
-     * Do translations
-     */
-    public function load_textdomain(): void
-    {
-        if (is_textdomain_loaded('serbian-transliteration')) {
-            return;
-        }
-
-        if (!function_exists('is_user_logged_in')) {
-            include_once ABSPATH . '/wp-includes/pluggable.php';
-        }
-
-        $locale = apply_filters(
-            'rstr_plugin_locale',
-            (is_user_logged_in() ? get_user_locale() : get_locale()),
-            'serbian-transliteration'
-        );
-        $mofile = sprintf('%s-%s.mo', 'serbian-transliteration', $locale);
-
-        // Only check the plugin's own languages directory
-        $domain_path = RSTR_ROOT . '/languages';
-        if (file_exists(path_join($domain_path, $mofile))) {
-            load_textdomain('serbian-transliteration', path_join($domain_path, $mofile));
-        }
-    }
-
-    /*
-     * Do translations only inside plugin
-     */
-    public function load_textdomain_mofile($mofile, $domain)
-    {
-        if ($domain === 'serbian-transliteration') {
-            return RSTR_ROOT . '/languages/' . basename($mofile);
-        }
-
-        return $mofile;
     }
 
     /*

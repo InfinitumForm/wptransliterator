@@ -1,3 +1,15 @@
+= 2.4.0 =
+* Fixed language detection with PLL plugin
+* Fixed problem with stuck loops
+* Fixed navigation issue
+* Fixed gettext problems
+
+= 2.3.10 =
+* Bugfix for the "_load_textdomain_just_in_time was called incorrectly"
+
+= 2.3.9 =
+* Quick fix for memory leak issues from the previous version.
+
 = 2.3.8 =
 * Fixed critical issue with Polylang integration where non-Cyrillic languages (e.g., DE, EN) were incorrectly transliterated to Cyrillic on first visit.
 * Added robust detection logic with safe fallback to Latin for unresolved or unknown locales.
