@@ -58,8 +58,11 @@ final class Transliteration_Mode extends Transliteration
      */
     public function filters()
     {
+		if(empty($this->mode)) {
+			return [];
+		}
+		
         return self::cached_static('filters', function () {
-
             if (get_rstr_option('transliteration-mode', 'light') == 'none') {
                 $filters = [];
                 $filters = apply_filters('transliteration_mode_filters', $filters);

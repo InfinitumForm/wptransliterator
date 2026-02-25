@@ -75,6 +75,10 @@ final class Transliteration_Controller extends Transliteration
             if (Transliteration_Utilities::is_sitemap()) {
                 return $mode;
             }
+			
+			if (!Transliteration_Utilities::is_admin() && !Transliteration_Utilities::is_cyrillic_locale()) {
+				return null;
+			}
 
             if (Transliteration_Utilities::is_admin()) {
                 return 'cyr_to_lat';
@@ -262,7 +266,7 @@ final class Transliteration_Controller extends Transliteration
         // Check if the exclusion list is not empty
         if (!empty($exclude_list)) {
             foreach ($exclude_list as $key => $word) {
-                $placeholder                        = '@=[0-' . $key . ']=@';
+                $placeholder                        = self::make_placeholder(0, $key);
                 $content                            = str_replace($word, $placeholder, $content);
                 $exclude_placeholders[$placeholder] = $word;
             }
@@ -271,7 +275,7 @@ final class Transliteration_Controller extends Transliteration
         // Extract <script> contents and replace them with placeholders
         $script_placeholders = [];
         $content             = preg_replace_callback('/<script\b[^>]*>(.*?)<\/script>/is', function ($matches) use (&$script_placeholders): string {
-            $placeholder                       = '@=[1-' . count($script_placeholders) . ']=@';
+            $placeholder                       = self::make_placeholder(1, count($script_placeholders));
             $script_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -279,7 +283,7 @@ final class Transliteration_Controller extends Transliteration
         // Extract <style> contents and replace them with placeholders
         $style_placeholders = [];
         $content            = preg_replace_callback('/<style\b[^>]*>(.*?)<\/style>/is', function ($matches) use (&$style_placeholders): string {
-            $placeholder                      = '@=[2-' . count($style_placeholders) . ']=@';
+            $placeholder                      = self::make_placeholder(2, count($style_placeholders));
             $style_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -287,7 +291,7 @@ final class Transliteration_Controller extends Transliteration
         // Extract <head> contents and replace them with placeholders
         $head_placeholders = [];
         $content           = preg_replace_callback('/<head\b[^>]*>(.*?)<\/head>/is', function ($matches) use (&$head_placeholders): string {
-            $placeholder                     = '@=[3-' . count($head_placeholders) . ']=@';
+            $placeholder                     = self::make_placeholder(3, count($head_placeholders));
             $head_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -295,7 +299,7 @@ final class Transliteration_Controller extends Transliteration
         // Handle percentage format specifiers by replacing them with placeholders
         $formatSpecifiers = [];
         $content          = preg_replace_callback('/(\b\d+(?:\.\d+)?&#37;)/', function ($matches) use (&$formatSpecifiers): string {
-            $placeholder                    = '@=[4-' . count($formatSpecifiers) . ']=@';
+            $placeholder                    = self::make_placeholder(4, count($formatSpecifiers));
             $formatSpecifiers[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -423,7 +427,7 @@ final class Transliteration_Controller extends Transliteration
         $exclude_placeholders = [];
         if (!empty($exclude_list)) {
             foreach ($exclude_list as $key => $word) {
-                $placeholder                        = '@=[0-' . $key . ']=@';
+                $placeholder                        = self::make_placeholder(0, $key);
                 $content                            = str_replace($word, $placeholder, $content);
                 $exclude_placeholders[$placeholder] = $word;
             }
@@ -432,7 +436,7 @@ final class Transliteration_Controller extends Transliteration
         // Extract shortcode contents and replace them with placeholders
         $shortcode_placeholders = [];
         $content                = preg_replace_callback('/\[([\w+_-]+)\s?([^\]]*)\](.*?)\[\/\1\]/is', function ($matches) use (&$shortcode_placeholders): string {
-            $placeholder                          = '@=[1-' . count($shortcode_placeholders) . ']=@';
+            $placeholder                          = self::make_placeholder(1, count($shortcode_placeholders));
             $shortcode_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -440,7 +444,7 @@ final class Transliteration_Controller extends Transliteration
         // Extract self-closing shortcode contents and replace them with placeholders
         $self_closing_shortcode_placeholders = [];
         $content                             = preg_replace_callback('/\[(\w+)([^\]]*)\]/is', function ($matches) use (&$self_closing_shortcode_placeholders): string {
-            $placeholder                                       = '@=[2-' . count($self_closing_shortcode_placeholders) . ']=@';
+            $placeholder                                       = self::make_placeholder(2, count($self_closing_shortcode_placeholders));
             $self_closing_shortcode_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -448,7 +452,7 @@ final class Transliteration_Controller extends Transliteration
         // Extract <script> contents and replace them with placeholders
         $script_placeholders = [];
         $content             = preg_replace_callback('/<script\b[^>]*>(.*?)<\/script>/is', function ($matches) use (&$script_placeholders): string {
-            $placeholder                       = '@=[3-' . count($script_placeholders) . ']=@';
+            $placeholder                       = self::make_placeholder(3, count($script_placeholders));
             $script_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -456,7 +460,7 @@ final class Transliteration_Controller extends Transliteration
         // Extract <style> contents and replace them with placeholders
         $style_placeholders = [];
         $content            = preg_replace_callback('/<style\b[^>]*>(.*?)<\/style>/is', function ($matches) use (&$style_placeholders): string {
-            $placeholder                      = '@=[4-' . count($style_placeholders) . ']=@';
+            $placeholder                      = self::make_placeholder(4, count($style_placeholders));
             $style_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -464,7 +468,7 @@ final class Transliteration_Controller extends Transliteration
         // Extract <head> contents and replace them with placeholders
         $head_placeholders = [];
         $content           = preg_replace_callback('/<head\b[^>]*>(.*?)<\/head>/is', function ($matches) use (&$head_placeholders): string {
-            $placeholder                     = '@=[5-' . count($head_placeholders) . ']=@';
+            $placeholder                     = self::make_placeholder(5, count($head_placeholders));
             $head_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -472,13 +476,13 @@ final class Transliteration_Controller extends Transliteration
         // Extract special shortcode contents and replace them with placeholders
         $special_shortcodes = [];
         $content            = preg_replace_callback('/\{\{([\w+_-]+)\s?([^\}]*)\}\}(.*?)\{\{\/\1\}\}/is', function ($matches) use (&$special_shortcodes): string {
-            $placeholder                      = '@=[6-' . count($special_shortcodes) . ']=@';
+            $placeholder                      = self::make_placeholder(6, count($special_shortcodes));
             $special_shortcodes[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
 
         $content = preg_replace_callback('/\{([\w+_-]+)\s?([^\}]*)\}(.*?)\{\/\1\}/is', function ($matches) use (&$special_shortcodes): string {
-            $placeholder                      = '@=[7-' . count($special_shortcodes) . ']=@';
+            $placeholder                      = self::make_placeholder(7, count($special_shortcodes));
             $special_shortcodes[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -491,7 +495,7 @@ final class Transliteration_Controller extends Transliteration
             : '/(\b\d+(?:\.\d+)?&#37;|%\d*\$?[ds]|&[^;]+;|https?:\/\/[^\s]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|rstr_skip|cyr_to_lat|lat_to_cyr)/'
         );
         $content = preg_replace_callback($regex, function ($matches) use (&$formatSpecifiers): string {
-            $placeholder                    = '@=[8-' . count($formatSpecifiers) . ']=@';
+            $placeholder                    = '@@::8-' . count($formatSpecifiers) . '@@';
             $formatSpecifiers[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -585,6 +589,10 @@ final class Transliteration_Controller extends Transliteration
      */
     public function transliteration_tags_callback($buffer)
 	{
+		if (!Transliteration_Utilities::is_cyrillic_locale()) {
+			return $buffer;
+		}
+	
 		if (Transliteration_Utilities::can_transliterate($buffer) || Transliteration_Utilities::is_editor()) {
 			return $buffer;
 		}
@@ -823,4 +831,18 @@ final class Transliteration_Controller extends Transliteration
 
         return $word;
     }
+	
+	/**
+	 * Generate a placeholder token that:
+	 * - does not contain letters (so it can't be transliterated)
+	 * - does not contain [] or {} (so it can't be captured by shortcode/tag regex)
+	 *
+	 * @param int $group
+	 * @param int $index
+	 * @return string
+	 */
+	private static function make_placeholder(int $group, int $index): string
+	{
+		return '@@::' . $group . '-' . $index . '@@';
+	}
 }

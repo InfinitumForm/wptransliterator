@@ -12,7 +12,7 @@ class Transliteration_Filters extends Transliteration
         $this->add_filter('rstr/init/exclude/lat', 'exclude_lat_words');
         $this->add_filter('rstr/init/exclude/cyr', 'exclude_cyr_words');
 
-        $this->add_action('transliteration-settings-after-sidebar', 'after_settings_sidebar', 5, 2);
+		// $this->add_action('transliteration-settings-after-sidebar', 'after_settings_sidebar', 5, 2);
     }
 
     /*

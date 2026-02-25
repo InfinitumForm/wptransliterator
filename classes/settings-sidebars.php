@@ -7,8 +7,8 @@ class Transliteration_Settings_Sidebars
     public function donations(): void
     {
         ?>
-		<?php printf('<p>%s</p>', __('When you find a tool that fits your needs perfectly, and it\'s free, it’s something special. That’s exactly what my plugin is – free, but crafted with love and dedication. To ensure the continued development and improvement of the Transliterator plugin, I have established a foundation to support its future growth.', 'serbian-transliteration')); ?>
-		<?php printf('<p>%s</p>', __('Your support for this project is not just an investment in the tool you use, but also a contribution to the community that relies on it. If you’d like to support the development and enable new features, you can do so through donations:', 'serbian-transliteration')); /*?>
+		<?php printf('<p>%s</p>', __('Transliterator is free to use and actively maintained. Ongoing updates, performance improvements, and new features require continuous time and resources.', 'serbian-transliteration')); ?>
+		<?php printf('<p>%s</p>', __('If the plugin adds value to your work, you are welcome to support its further development with a voluntary contribution.', 'serbian-transliteration')); /*?>
 		<p><a href="https://www.buymeacoffee.com/ivijanstefan" target="_blank"><img src="https://img.buymeacoffee.com/button-api/?text=<?php esc_attr_e('Buy me a coffee', 'serbian-transliteration'); ?>&emoji=&slug=ivijanstefan&button_colour=FFDD00&font_colour=000000&font_family=Bree&outline_colour=000000&coffee_colour=ffffff" /></a></p>
 		*/ ?>
 		<hr>
@@ -23,8 +23,7 @@ class Transliteration_Settings_Sidebars
 			<?php /* printf('<li><b>%s</b>: %s</li>', esc_html__('PayPal', 'serbian-transliteration'), 'creativform@gmail.com');*/ ?>
 		</ul>
 		<hr>
-		<?php printf('<p>%s</p>', __('Every donation, no matter the amount, directly supports the ongoing work on the plugin and allows me to continue innovating. Thank you for supporting this project and being part of a community that believes in its importance.', 'serbian-transliteration')); ?>
-		<?php printf('<p>%s<br><a href="https://www.linkedin.com/in/ivijanstefanstipic/" target="_blank">Ivijan-Stefan Stipić</a></p>', __('With love,', 'serbian-transliteration'));
+		<?php printf('<p>%s</p>', __('Thank you for your support.', 'serbian-transliteration'));
     }
 
     public function contributors(): void

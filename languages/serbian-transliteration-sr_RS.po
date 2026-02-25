@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Serbian Transliteration\n"
-"POT-Creation-Date: 2025-07-25 08:07+0200\n"
-"PO-Revision-Date: 2025-07-25 08:07+0200\n"
+"POT-Creation-Date: 2026-02-25 09:37+0100\n"
+"PO-Revision-Date: 2026-02-25 09:41+0100\n"
 "Last-Translator: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: serbian-transliteration.php\n"
@@ -98,14 +98,14 @@ msgstr "Пресловљавање"
 #: classes/menus.php:49 classes/menus.php:51 classes/settings-fields.php:498
 #: classes/settings-fields.php:574 classes/settings.php:128
 #: classes/settings.php:203 classes/settings/page-functions.php:164
-#: classes/shortcodes.php:36 classes/utilities.php:1122 functions.php:438
+#: classes/shortcodes.php:36 classes/utilities.php:1262 functions.php:438
 msgid "Latin"
 msgstr "Латиница"
 
 #: classes/menus.php:50 classes/menus.php:51 classes/settings-fields.php:497
 #: classes/settings-fields.php:575 classes/settings.php:129
 #: classes/settings.php:204 classes/settings/page-functions.php:159
-#: classes/shortcodes.php:35 classes/utilities.php:1123 functions.php:437
+#: classes/shortcodes.php:35 classes/utilities.php:1263 functions.php:437
 msgid "Cyrillic"
 msgstr "Ћирилица"
 
@@ -497,7 +497,7 @@ msgstr "Бирач УРЛ-а параметра"
 msgid "RSS transliteration"
 msgstr "Пресловљавање \"RSS\" документа"
 
-#: classes/settings-fields.php:353 classes/utilities.php:1428
+#: classes/settings-fields.php:353 classes/utilities.php:1568
 msgid "Exclusion"
 msgstr "Искључење"
 
@@ -519,8 +519,8 @@ msgid "Theme Support"
 msgstr "Подршка за теме"
 
 #: classes/settings-fields.php:418
-msgid "Light Up Our Day!"
-msgstr "Осветлите наш дан!"
+msgid "Support the Project"
+msgstr "Подржите пројекат"
 
 #: classes/settings-fields.php:429
 msgid "Contributors & Developers"
@@ -613,11 +613,11 @@ msgstr ""
 "Подешавање типа претраге је углавном експериментално и треба да тестирате "
 "сваку варијанту како бисте постигли најбољи резултат који вам је потребан."
 
-#: classes/settings-fields.php:502 classes/utilities.php:38
+#: classes/settings-fields.php:502 classes/utilities.php:40
 msgid "Arabic"
 msgstr "Арапски"
 
-#: classes/settings-fields.php:504 classes/utilities.php:37
+#: classes/settings-fields.php:504 classes/utilities.php:39
 msgid "Armenian"
 msgstr "Арменијски"
 
@@ -988,48 +988,31 @@ msgstr "Овај режим нема филтере."
 
 #: classes/settings-sidebars.php:10
 msgid ""
-"When you find a tool that fits your needs perfectly, and it's free, it’s "
-"something special. That’s exactly what my plugin is – free, but crafted with "
-"love and dedication. To ensure the continued development and improvement of "
-"the Transliterator plugin, I have established a foundation to support its "
-"future growth."
+"Transliterator is free to use and actively maintained. Ongoing updates, "
+"performance improvements, and new features require continuous time and "
+"resources."
 msgstr ""
-"Када пронађете алат који вам савршено одговара, и уз то је бесплатан, то је "
-"нешто посебно. Управо такав је и мој додатак – бесплатан, али створен с "
-"љубављу и посвећеношћу. Да бисмо осигурали наставак развоја овог пројекта и "
-"унапређење Transliterator додатка, основао сам фондацију за његов даљи "
-"развој."
+"Транслитератор је бесплатан за коришћење и активно се одржава. Континуирана "
+"ажурирања, побољшања перформанси и нове функционалности захтевају време и "
+"ресурсе."
 
 #: classes/settings-sidebars.php:11
 msgid ""
-"Your support for this project is not just an investment in the tool you use, "
-"but also a contribution to the community that relies on it. If you’d like to "
-"support the development and enable new features, you can do so through "
-"donations:"
+"If the plugin adds value to your work, you are welcome to support its "
+"further development with a voluntary contribution."
 msgstr ""
-"Ваша подршка овом пројекту није само инвестиција у алат који користите, већ "
-"и допринос заједници која зависи од њега. Ако желите да подржите развој и "
-"омогућите нове функционалности, можете то учинити путем донација:"
+"Ако додатак доприноси вашем раду, можете подржати његов даљи развој "
+"добровољним прилогом."
 
-#: classes/settings-sidebars.php:16 classes/settings/page-credits.php:54
+#: classes/settings-sidebars.php:18 classes/settings/page-credits.php:54
 msgid "Banca Intesa a.d. Beograd"
 msgstr "Банка Интеса а.д. Београд"
 
-#: classes/settings-sidebars.php:20
-msgid ""
-"Every donation, no matter the amount, directly supports the ongoing work on "
-"the plugin and allows me to continue innovating. Thank you for supporting "
-"this project and being part of a community that believes in its importance."
-msgstr ""
-"Свака донација, без обзира на износ, директно помаже у даљем раду на додатку "
-"и омогућава ми да наставим са иновацијама. Хвала вам што подржавате овај "
-"пројекат и што сте део заједнице која верује у његов значај."
+#: classes/settings-sidebars.php:26
+msgid "Thank you for your support."
+msgstr "Хвала вам на подршци."
 
-#: classes/settings-sidebars.php:21
-msgid "With love,"
-msgstr "С љубављу,"
-
-#: classes/settings-sidebars.php:38
+#: classes/settings-sidebars.php:43
 #, php-format
 msgid ""
 "If you want to support our work and effort, if you have new ideas or want to "
@@ -1038,11 +1021,11 @@ msgstr ""
 "Ако желите да подржите наш рад и труд, ако имате нове идеје или желите да "
 "побољшате постојећи код, %s."
 
-#: classes/settings-sidebars.php:38
+#: classes/settings-sidebars.php:43
 msgid "join our team"
 msgstr "придружите се нашем тиму"
 
-#: classes/settings.php:64
+#: classes/settings.php:64 serbian-transliteration.php:187
 msgid "Settings saved."
 msgstr "Подешавања су сачувана."
 
@@ -1219,11 +1202,10 @@ msgid ""
 msgstr "Истражите препоручене алате и ресурсе који употпуњују наш додатак."
 
 #: classes/settings/page-credits.php:50
-msgid "Donations"
-msgstr "Донације"
+msgid "Support"
+msgstr "Подршка"
 
 #: classes/settings/page-credits.php:51
-#, no-php-format
 msgid ""
 "This plugin is 100% free. If you want to buy us one coffee, beer or in "
 "general help the development of this plugin through a monetary donation, you "
@@ -1826,89 +1808,89 @@ msgstr ""
 "Дошло је до проблема у комуникацији. Освежите страницу и покушајте поново. "
 "Ако ово не реши проблем, обратите се аутору додатка."
 
-#: classes/utilities.php:20
+#: classes/utilities.php:22
 msgid "Serbian"
 msgstr "Српски"
 
-#: classes/utilities.php:21
+#: classes/utilities.php:23
 msgid "Bosnian"
 msgstr "Босански"
 
-#: classes/utilities.php:22
+#: classes/utilities.php:24
 msgid "Montenegrin"
 msgstr "Црногорски"
 
-#: classes/utilities.php:23
+#: classes/utilities.php:25
 msgid "Croatian"
 msgstr "Хрватски"
 
-#: classes/utilities.php:24
+#: classes/utilities.php:26
 msgid "Russian"
 msgstr "Руски"
 
-#: classes/utilities.php:25
+#: classes/utilities.php:27
 msgid "Belarusian"
 msgstr "Белоруски"
 
-#: classes/utilities.php:26
+#: classes/utilities.php:28
 msgid "Bulgarian"
 msgstr "Бугарски"
 
-#: classes/utilities.php:27
+#: classes/utilities.php:29
 msgid "Macedoanian"
 msgstr "Македноски"
 
-#: classes/utilities.php:28
+#: classes/utilities.php:30
 msgid "Ukrainian"
 msgstr "Украјински"
 
-#: classes/utilities.php:29
+#: classes/utilities.php:31
 msgid "Kazakh"
 msgstr "Казахстански"
 
-#: classes/utilities.php:30
+#: classes/utilities.php:32
 msgid "Tajik"
 msgstr "Таџик"
 
-#: classes/utilities.php:31
+#: classes/utilities.php:33
 msgid "Kyrgyz"
 msgstr "Киргиски"
 
-#: classes/utilities.php:32
+#: classes/utilities.php:34
 msgid "Mongolian"
 msgstr "Монголски"
 
-#: classes/utilities.php:33
+#: classes/utilities.php:35
 msgid "Bashkir"
 msgstr "Башкир"
 
-#: classes/utilities.php:34
+#: classes/utilities.php:36
 msgid "Uzbek"
 msgstr "Узбек"
 
-#: classes/utilities.php:35
+#: classes/utilities.php:37
 msgid "Georgian"
 msgstr "Грузијски"
 
-#: classes/utilities.php:36
+#: classes/utilities.php:38
 msgid "Greek"
 msgstr "Грчки"
 
-#: classes/utilities.php:150
+#: classes/utilities.php:233
 msgid "Phantom Mode (ultra fast DOM-based transliteration, experimental)"
 msgstr ""
 "Фантомски режим (ултра брза транслитерација заснована на ДОМ-у, "
 "експериментално)"
 
-#: classes/utilities.php:151
+#: classes/utilities.php:234
 msgid "Light mode (basic parts of the site)"
 msgstr "Лаган режим (основни делови сајта)"
 
-#: classes/utilities.php:152
+#: classes/utilities.php:235
 msgid "Standard mode (content, themes, plugins, translations, menu)"
 msgstr "Стандардни режим (садржај, теме, додаци, преводи, мени)"
 
-#: classes/utilities.php:153
+#: classes/utilities.php:236
 msgid ""
 "Advanced mode (content, widgets, themes, plugins, translations, menu, "
 "permalinks, media)"
@@ -1916,11 +1898,11 @@ msgstr ""
 "Напредни режим (садржај, виџети, теме, додаци, преводи, мени, трајне везе, "
 "медији)"
 
-#: classes/utilities.php:154
+#: classes/utilities.php:237
 msgid "Forced transliteration (everything)"
 msgstr "Присилно пресловљавање (све)"
 
-#: classes/utilities.php:155
+#: classes/utilities.php:238
 msgid ""
 "Only WooCommerce (It bypasses all other transliterations and focuses only on "
 "WooCommerce)"
@@ -1928,124 +1910,124 @@ msgstr ""
 "Само WooCommerce (заобилази све остале транслитерације и фокусира се само на "
 "WooCommerce)"
 
-#: classes/utilities.php:156
+#: classes/utilities.php:239
 msgid "Dev Mode (Only for developers and testers)"
 msgstr "Програмерски мод (само за програмере)"
 
-#: classes/utilities.php:916
+#: classes/utilities.php:1056
 #, php-format
 msgid "Failed to delete plugin translation: %s"
 msgstr "Брисање превода додатка није успело: %s"
 
-#: classes/utilities.php:1097
+#: classes/utilities.php:1237
 msgid " degrees "
 msgstr " степени "
 
-#: classes/utilities.php:1098
+#: classes/utilities.php:1238
 msgid " divided by "
 msgstr " подељено са "
 
-#: classes/utilities.php:1099
+#: classes/utilities.php:1239
 msgid " times "
 msgstr " пута "
 
-#: classes/utilities.php:1100
+#: classes/utilities.php:1240
 msgid " plus-minus "
 msgstr " плус-минус "
 
-#: classes/utilities.php:1101
+#: classes/utilities.php:1241
 msgid " square root "
 msgstr " квадратни корен "
 
-#: classes/utilities.php:1102
+#: classes/utilities.php:1242
 msgid " infinity "
 msgstr " бесконачност "
 
-#: classes/utilities.php:1103
+#: classes/utilities.php:1243
 msgid " almost equal to "
 msgstr " скоро једнако са "
 
-#: classes/utilities.php:1104
+#: classes/utilities.php:1244
 msgid " not equal to "
 msgstr " није једнако са "
 
-#: classes/utilities.php:1105
+#: classes/utilities.php:1245
 msgid " identical to "
 msgstr " индентично са "
 
-#: classes/utilities.php:1106
+#: classes/utilities.php:1246
 msgid " less than or equal to "
 msgstr " мање или једнако "
 
-#: classes/utilities.php:1107
+#: classes/utilities.php:1247
 msgid " greater than or equal to "
 msgstr " веће или једнако са "
 
-#: classes/utilities.php:1108
+#: classes/utilities.php:1248
 msgid " left "
 msgstr " лево "
 
-#: classes/utilities.php:1109
+#: classes/utilities.php:1249
 msgid " right "
 msgstr " десно "
 
-#: classes/utilities.php:1110
+#: classes/utilities.php:1250
 msgid " up "
 msgstr " горе "
 
-#: classes/utilities.php:1111
+#: classes/utilities.php:1251
 msgid " down "
 msgstr " доле "
 
-#: classes/utilities.php:1112
+#: classes/utilities.php:1252
 msgid " left and right "
 msgstr " лево и десно "
 
-#: classes/utilities.php:1113
+#: classes/utilities.php:1253
 msgid " up and down "
 msgstr " горе и доле "
 
-#: classes/utilities.php:1114
+#: classes/utilities.php:1254
 msgid " care of "
 msgstr " брига о "
 
-#: classes/utilities.php:1115
+#: classes/utilities.php:1255
 msgid " estimated "
 msgstr " процењено "
 
-#: classes/utilities.php:1116
+#: classes/utilities.php:1256
 msgid " ohm "
 msgstr " ом "
 
-#: classes/utilities.php:1117
+#: classes/utilities.php:1257
 msgid " female "
 msgstr " женско "
 
-#: classes/utilities.php:1118
+#: classes/utilities.php:1258
 msgid " male "
 msgstr " мушко "
 
-#: classes/utilities.php:1119
+#: classes/utilities.php:1259
 msgid " Copyright "
 msgstr " Ауторско право "
 
-#: classes/utilities.php:1120
+#: classes/utilities.php:1260
 msgid " Registered "
 msgstr " Регистровано "
 
-#: classes/utilities.php:1121
+#: classes/utilities.php:1261
 msgid " Trademark "
 msgstr " Заштитни знак "
 
-#: classes/utilities.php:1450
+#: classes/utilities.php:1590
 msgid "Option name"
 msgstr "Назив опције"
 
-#: classes/utilities.php:1451 classes/utilities.php:1465
+#: classes/utilities.php:1591 classes/utilities.php:1605
 msgid "Value"
 msgstr "Вредност"
 
-#: classes/utilities.php:1464
+#: classes/utilities.php:1604
 msgid "Key"
 msgstr "Кључ"
 
@@ -2096,6 +2078,61 @@ msgstr ""
 "Одаберите једно од приказа: \"%1$s\", \"%2$s\", \"%3$s\", \"%4$s\", \"%5$s\" "
 "или \"%6$s\""
 
+#: serbian-transliteration.php:155 serbian-transliteration.php:156
+msgid "Transliterator"
+msgstr "Пресловљавање"
+
+#: serbian-transliteration.php:171
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Немате довољна овлашћења да приступите овој страници."
+
+#: serbian-transliteration.php:194
+msgid "Security check failed. Please try again."
+msgstr "Безбедносна провера није успела. Покушајте поново."
+
+#: serbian-transliteration.php:223
+msgid "Transliterator - Network Settings"
+msgstr "Транслитерација - Мрежна подешавања"
+
+#: serbian-transliteration.php:230
+msgid "Select sites where the plugin should run when it is network-activated."
+msgstr ""
+"Изаберите сајтове на којима ће се додатак покретати када је мрежно активиран."
+
+#: serbian-transliteration.php:235
+msgid "Enable"
+msgstr "Одобри"
+
+#: serbian-transliteration.php:236
+msgid "Site"
+msgstr "Сајт"
+
+#: serbian-transliteration.php:237
+msgid "Domain"
+msgstr "Домен"
+
+#: serbian-transliteration.php:238
+msgid "Path"
+msgstr "Путања"
+
+#: serbian-transliteration.php:253
+#, php-format
+msgid "Site #%d"
+msgstr "Сајт #%d"
+
+#: serbian-transliteration.php:260
+#, php-format
+msgid "Enable Transliterator on site ID %d"
+msgstr "Омогући Transliterator на ID сајта %d"
+
+#: serbian-transliteration.php:279
+msgid "No sites found."
+msgstr "Није пронађен ниједан сајт."
+
+#: serbian-transliteration.php:288
+msgid "Save changes"
+msgstr "Сачувај промене"
+
 #. Plugin Name of the plugin/theme
 msgid "Transliterator – Multilingual and Multi-script Text Conversion"
 msgstr "Транслитератор – Вишејезичка и вишеписмена конверзија текста"
@@ -2120,8 +2157,48 @@ msgstr "Ивијан-Стефан Стипић"
 msgid "https://profiles.wordpress.org/ivijanstefan/"
 msgstr "https://profiles.wordpress.org/ivijanstefan/"
 
-#~ msgid "Transliterator"
-#~ msgstr "Пресловљавање"
+#~ msgid "Light Up Our Day!"
+#~ msgstr "Осветлите наш дан!"
+
+#~ msgid ""
+#~ "When you find a tool that fits your needs perfectly, and it's free, it’s "
+#~ "something special. That’s exactly what my plugin is – free, but crafted "
+#~ "with love and dedication. To ensure the continued development and "
+#~ "improvement of the Transliterator plugin, I have established a foundation "
+#~ "to support its future growth."
+#~ msgstr ""
+#~ "Када пронађете алат који вам савршено одговара, и уз то је бесплатан, то "
+#~ "је нешто посебно. Управо такав је и мој додатак – бесплатан, али створен "
+#~ "с љубављу и посвећеношћу. Да бисмо осигурали наставак развоја овог "
+#~ "пројекта и унапређење Transliterator додатка, основао сам фондацију за "
+#~ "његов даљи развој."
+
+#~ msgid ""
+#~ "Your support for this project is not just an investment in the tool you "
+#~ "use, but also a contribution to the community that relies on it. If you’d "
+#~ "like to support the development and enable new features, you can do so "
+#~ "through donations:"
+#~ msgstr ""
+#~ "Ваша подршка овом пројекту није само инвестиција у алат који користите, "
+#~ "већ и допринос заједници која зависи од њега. Ако желите да подржите "
+#~ "развој и омогућите нове функционалности, можете то учинити путем донација:"
+
+#~ msgid ""
+#~ "Every donation, no matter the amount, directly supports the ongoing work "
+#~ "on the plugin and allows me to continue innovating. Thank you for "
+#~ "supporting this project and being part of a community that believes in "
+#~ "its importance."
+#~ msgstr ""
+#~ "Свака донација, без обзира на износ, директно помаже у даљем раду на "
+#~ "додатку и омогућава ми да наставим са иновацијама. Хвала вам што "
+#~ "подржавате овај пројекат и што сте део заједнице која верује у његов "
+#~ "значај."
+
+#~ msgid "With love,"
+#~ msgstr "С љубављу,"
+
+#~ msgid "Donations"
+#~ msgstr "Донације"
 
 #~ msgid "Support my work by buying me a coffee!"
 #~ msgstr "Подржите мој рад шољицом кафе!"
@@ -2179,9 +2256,6 @@ msgstr "https://profiles.wordpress.org/ivijanstefan/"
 #~ "Свака донација, без обзира на величину, помаже ми да наставим са радом и "
 #~ "чини ме срећнијим него што кофеин то може. Хвала вам што сте део моје "
 #~ "WordPress породице!"
-
-#~ msgid "Disable transliteration inside wp-admin"
-#~ msgstr "Онемогућите пресловљавање унутар wp-admin"
 
 #~ msgid "Enable alternet links"
 #~ msgstr "Омогући алтернативне везе"

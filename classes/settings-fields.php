@@ -297,7 +297,7 @@ class Transliteration_Settings_Fields
             'transliteration_search_settings'
         );
 
-        if (Transliteration_Utilities::get_locale() == 'sr_RS') {
+        if (Transliteration_Utilities::get_locale('sr_RS')) {
             add_settings_field(
                 'fix-diacritics', // ID
                 __('Fix Diacritics', 'serbian-transliteration'), // Title
@@ -415,9 +415,9 @@ class Transliteration_Settings_Fields
         if ($tab != 'debug') {
             add_meta_box(
                 'donations',
-                '🌟 ' . __('Light Up Our Day!', 'serbian-transliteration') . ' 🌟',
+                '<span class="dashicons dashicons-heart"></span> <span> ' . __('Support the Project', 'serbian-transliteration'),
                 [$sidebars, 'donations'],
-                'transliteration-settings',
+                ['transliteration-settings', 'transliteration-tools'],
                 'side',
                 'default'
             );
@@ -426,7 +426,7 @@ class Transliteration_Settings_Fields
         if ($tab != 'documentation') {
             add_meta_box(
                 'contributors',
-                '<span class="dashicons dashicons-superhero-alt"></span> <span>' . __('Contributors & Developers', 'serbian-transliteration') . '</span>',
+                '<span class="dashicons dashicons-superhero-alt"></span> <span> ' . __('Contributors & Developers', 'serbian-transliteration') . '</span>',
                 [$sidebars, 'contributors'],
                 ['transliteration-settings', 'transliteration-credits'],
                 'side',

@@ -47,7 +47,7 @@ $special_thanks = [
 		newWindow.focus();
 	}
 };</script>
-<h3><span class="dashicons dashicons-heart"></span> <?php esc_html_e('Donations', 'serbian-transliteration'); ?></h3>
+<h3><span class="dashicons dashicons-heart"></span> <?php esc_html_e('Support', 'serbian-transliteration'); ?></h3>
 <?php printf('<p>%s</p>', esc_html__('This plugin is 100% free. If you want to buy us one coffee, beer or in general help the development of this plugin through a monetary donation, you can do it in the following ways:', 'serbian-transliteration')); ?>
 <ul>
 	<?php /*printf('<li><b>%s</b>: %s</li>', esc_html__('PayPal', 'serbian-transliteration'), 'creativform@gmail.com');*/ ?>

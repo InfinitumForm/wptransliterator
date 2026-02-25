@@ -4,9 +4,9 @@
  * Plugin Name:       Transliterator – Multilingual and Multi-script Text Conversion
  * Plugin URI:        https://wordpress.org/plugins/serbian-transliteration/
  * Description:       All-in-one Cyrillic to Latin transliteration plugin for WordPress. Supports Slavic, Arabic, Greek, and Central Asian scripts.
- * Version:           2.3.7
+ * Version:           2.4.1
  * Requires at least: 5.4
- * Tested up to:      6.8
+ * Tested up to:      6.9
  * Requires PHP:      7.4
  * Author:            Ivijan-Stefan Stipić
  * Author URI:        https://profiles.wordpress.org/ivijanstefan/
@@ -85,6 +85,213 @@ if (! defined('RSTR_DATABASE_VERSION')) {
 if (! defined('RSTR_FILE')) {
     define('RSTR_FILE', __FILE__);
 }
+
+if (is_admin()) {
+    // Needed for is_plugin_active_for_network
+    include_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
+/**
+ * Check if current blog_id is allow-listed when plugin is network-activated.
+ */
+if(!function_exists('rstr_is_allowed_site')) : function rstr_is_allowed_site($blog_id) {
+    $allowed = (array) get_site_option('rstr_allowed_sites', array());
+    $allowed = array_map('intval', $allowed);
+    return in_array((int) $blog_id, $allowed, true);
+} endif;
+
+/**
+ * Decide whether to boot heavy plugin logic on this site.
+ * Rules:
+ * - Single-site WP: always boot.
+ * - Multisite, plugin not network active: boot (site-level activation).
+ * - Multisite, plugin network active: boot only if current site is in allow-list.
+ */
+if(!function_exists('rstr_should_boot')) : function rstr_should_boot() {
+    if (!is_multisite()) {
+        return true;
+    }
+
+    $basename = plugin_basename(__FILE__);
+    $is_network_active = function_exists('is_plugin_active_for_network') && is_plugin_active_for_network($basename);
+
+    if (!$is_network_active) {
+        // Site-only activation path
+        return true;
+    }
+
+    // Network active path -> allow-list check
+    return rstr_is_allowed_site(get_current_blog_id());
+} endif;
+
+/**
+ * Ensure network allow-list option exists on network activation.
+ */
+register_activation_hook(__FILE__, function ($network_wide) {
+    if (is_multisite() && $network_wide) {
+        if (false === get_site_option('rstr_allowed_sites', false)) {
+            add_site_option('rstr_allowed_sites', array());
+        }
+    }
+});
+
+/**
+ * Network settings menu and screen for selecting allowed sites.
+ * Text Domain: serbian-transliteration
+ */
+
+// Register Network Admin submenu
+if (!function_exists('rstr_register_network_settings_menu')) :
+/**
+ * Register network submenu under Settings.
+ */
+function rstr_register_network_settings_menu() {
+    if (!is_multisite()) {
+        return;
+    }
+
+    add_submenu_page(
+        'settings.php',
+        __('Transliterator', 'serbian-transliteration'),
+        __('Transliterator', 'serbian-transliteration'),
+        'manage_network_options',
+        'rstr-network',
+        'rstr_render_network_settings'
+    );
+}
+add_action('network_admin_menu', 'rstr_register_network_settings_menu');
+endif;
+
+if (!function_exists('rstr_render_network_settings')) :
+/**
+ * Render the network settings screen with allow-list of sites.
+ */
+function rstr_render_network_settings() {
+    if (!current_user_can('manage_network_options')) {
+        wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'serbian-transliteration'));
+    }
+
+    // Handle POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- We verify nonce explicitly below.
+        if (isset($_POST['rstr_network_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['rstr_network_nonce'])), 'rstr_network_save')) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing
+            $raw_sites = isset($_POST['rstr_sites']) ? (array) wp_unslash($_POST['rstr_sites']) : array();
+            $site_ids  = array_map('absint', $raw_sites);
+
+            update_site_option('rstr_allowed_sites', $site_ids);
+
+            add_settings_error(
+                'rstr_messages',
+                'rstr_saved',
+                esc_html__('Settings saved.', 'serbian-transliteration'),
+                'updated'
+            );
+        } else {
+            add_settings_error(
+                'rstr_messages',
+                'rstr_nonce',
+                esc_html__('Security check failed. Please try again.', 'serbian-transliteration'),
+                'error'
+            );
+        }
+    }
+
+    // Read current value
+    $enabled_sites = array_map('intval', (array) get_site_option('rstr_allowed_sites', array()));
+
+    // Fetch sites with pagination for large networks
+    $sites  = array();
+    $paged  = 1;
+    $number = 100;
+
+    do {
+        $batch = get_sites(array(
+            'number' => $number,
+            'paged'  => $paged,
+            'fields' => 'all',
+        ));
+        if (empty($batch)) {
+            break;
+        }
+        $sites = array_merge($sites, $batch);
+        $paged++;
+    } while (count($batch) === $number);
+
+    ?>
+    <div class="wrap">
+        <h1><?php echo esc_html__('Transliterator - Network Settings', 'serbian-transliteration'); ?></h1>
+
+        <?php settings_errors('rstr_messages'); ?>
+
+        <form method="post" action="<?php echo esc_url(network_admin_url('settings.php?page=rstr-network')); ?>">
+            <?php wp_nonce_field('rstr_network_save', 'rstr_network_nonce'); ?>
+
+            <p><?php echo esc_html__('Select sites where the plugin should run when it is network-activated.', 'serbian-transliteration'); ?></p>
+
+            <table class="widefat fixed striped">
+                <thead>
+                    <tr>
+                        <th style="width:60px;"><?php echo esc_html__('Enable', 'serbian-transliteration'); ?></th>
+                        <th><?php echo esc_html__('Site', 'serbian-transliteration'); ?></th>
+                        <th><?php echo esc_html__('Domain', 'serbian-transliteration'); ?></th>
+                        <th><?php echo esc_html__('Path', 'serbian-transliteration'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                if (!empty($sites)) :
+                    foreach ($sites as $site) :
+                        $blog_id = isset($site->blog_id) ? (int) $site->blog_id : 0;
+                        if ($blog_id <= 0) {
+                            continue;
+                        }
+                        $checked = in_array($blog_id, $enabled_sites, true);
+
+                        // get_blog_details can return false on rare cases; guard it.
+                        $details = get_blog_details($blog_id);
+                        $blogname = $details && !empty($details->blogname) ? $details->blogname : sprintf(__('Site #%d', 'serbian-transliteration'), $blog_id);
+                        $domain   = $details && !empty($details->domain) ? $details->domain : '';
+                        $path     = $details && !empty($details->path) ? $details->path : '';
+                        ?>
+                        <tr>
+                            <td>
+                                <label class="screen-reader-text" for="rstr_site_<?php echo esc_attr($blog_id); ?>">
+                                    <?php echo esc_html(sprintf(__('Enable Transliterator on site ID %d', 'serbian-transliteration'), $blog_id)); ?>
+                                </label>
+                                <input
+                                    id="rstr_site_<?php echo esc_attr($blog_id); ?>"
+                                    type="checkbox"
+                                    name="rstr_sites[]"
+                                    value="<?php echo esc_attr($blog_id); ?>"
+                                    <?php checked($checked); ?>
+                                />
+                            </td>
+                            <td><?php echo esc_html($blogname) . ' ' . esc_html(sprintf('(ID: %d)', $blog_id)); ?></td>
+                            <td><?php echo esc_html($domain); ?></td>
+                            <td><?php echo esc_html($path); ?></td>
+                        </tr>
+                        <?php
+                    endforeach;
+                else :
+                    ?>
+                    <tr>
+                        <td colspan="4"><?php echo esc_html__('No sites found.', 'serbian-transliteration'); ?></td>
+                    </tr>
+                    <?php
+                endif;
+                ?>
+                </tbody>
+            </table>
+
+            <p>
+                <input type="submit" class="button button-primary" value="<?php echo esc_attr__('Save changes', 'serbian-transliteration'); ?>" />
+            </p>
+        </form>
+    </div>
+    <?php
+}
+endif;
 
 // Required constants
 if (!defined('COOKIEHASH') || !defined('COOKIEPATH') || !defined('COOKIE_DOMAIN')) {
@@ -189,9 +396,15 @@ if ($transliteration_requirements->passes()) :
 
     // Redirect after activation
     add_action('admin_init', ['Transliteration_Init', 'register_redirection'], 10, 2);
+	
+	// Support for the Polylang
+	add_action('pll_language_defined', ['Transliteration_Utilities','on_pll_language_defined'], 1);
+	add_action('wp', ['Transliteration_Utilities','late_language_resolve'], 1);
 
     // Run the plugin
-    Transliteration::run_the_plugin();
+    if (rstr_should_boot()) {
+		Transliteration::run_the_plugin();
+	}
 
     // Plugin Functions
     include_once __DIR__ . '/functions.php';
