@@ -53,6 +53,12 @@ class Transliteration
      */
     public static function run_the_plugin(): void
     {
+	    // PHP8.4 autoloader fix
+		if (!class_exists('Transliteration_Init', false)) {
+			require_once plugin_dir_path(__FILE__) . 'init.php';
+		}
+		
+		// Run the plugin
         new Transliteration_Init();
     }
 

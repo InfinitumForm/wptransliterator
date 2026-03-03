@@ -1,3 +1,16 @@
+= 2.4.3 =
+* Fixing issue with PHP 8.4 + FPM + OPcache
+
+= 2.4.2 =
+* Fixed PHP 8.4 compatibility issue in autoloader (private method visibility).
+
+= 2.4.1 =
+* Fixed problem with transition codes
+* Fixed issue with shortcodes conflicts
+* Fixed a problem with the transfer algorithm
+* Improved UX
+* Removed ads
+
 = 2.4.0 =
 * Fixed language detection with PLL plugin
 * Fixed problem with stuck loops

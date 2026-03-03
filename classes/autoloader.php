@@ -50,7 +50,7 @@ if (!class_exists('Transliterator_Autoloader', false)) : final class Translitera
      *
      * @param string $class_name The name of the class to load.
      */
-    private static function autoload(string $class_name): void
+    public static function autoload(string $class_name): void
     {
         // Prevent autoloading this class
         if ($class_name === self::class) {
