@@ -8,7 +8,7 @@
                 text: RSTR_TOOL.label.Latin,
                 icon: false,
                 onclick: function() {
-                    var _this = this, content = editor.getContent({ format: 'text' });
+                    var _this = this, content = editor.getContent({ format: 'html' });
 					_this.disabled(true);
 					
 					if (ajaxRequest) {
@@ -29,7 +29,7 @@
                 text: RSTR_TOOL.label.Cyrillic,
                 icon: false,
                 onclick: function() {
-                    var _this = this, content = editor.getContent({ format: 'text' });
+                    var _this = this, content = editor.getContent({ format: 'html' });
 					_this.disabled(true);
 					
 					if (ajaxRequest) {
