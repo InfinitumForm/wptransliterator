@@ -434,9 +434,20 @@ if (!function_exists('script_selector')) :
             'display_type' => 'inline',
             'echo'         => false,
             'separator'    => ' | ',
-            'cyr_caption'  => '{lat_to_cyr}' . __('Cyrillic', 'serbian-transliteration') . '{/lat_to_cyr}',
-            'lat_caption'  => '{cyr_to_lat}' . __('Latin', 'serbian-transliteration') . '{/cyr_to_lat}',
+            'cyr_caption'  => __('Cyrillic', 'serbian-transliteration'),
+			'lat_caption'  => __('Latin', 'serbian-transliteration'),
         ]);
+		
+		/*
+		 * Ensure captions are always rendered in correct scripts without using inline tags,
+		 * to avoid conflicts with menu/title filters from other plugins.
+		 */
+		if (function_exists('lat_to_cyr')) {
+			$args->cyr_caption = lat_to_cyr((string) $args->cyr_caption, false, false);
+		}
+		if (function_exists('cyr_to_lat')) {
+			$args->lat_caption = cyr_to_lat((string) $args->lat_caption, false);
+		}
 
         $options = (object) [
             'active' => function_exists('rstr_get_script') ? rstr_get_script() : get_script(),

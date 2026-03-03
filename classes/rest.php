@@ -8,11 +8,7 @@ class Transliteration_Rest extends Transliteration
 {
     public function __construct()
     {
-        $this->add_action('plugins_loaded', 'register_rest_transliteration');
-    }
-
-    public function register_rest_transliteration(): void
-    {
+        // Register immediately; no need for plugins_loaded.
         $this->add_action('rest_pre_echo_response', 'rest_response');
     }
 

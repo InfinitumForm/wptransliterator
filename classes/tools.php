@@ -20,30 +20,39 @@ class Transliteration_Tools extends Transliteration
      * AJAX Transliterator
      */
     public function transliteration_letters(): void
-    {
-        if (!isset($_REQUEST['nonce']) || wp_verify_nonce(sanitize_text_field($_REQUEST['nonce']), 'rstr-transliteration-letters') === false) {
-            echo __('An error occurred while converting. Please refresh the page and try again.', 'serbian-transliteration');
-            exit;
-        }
+	{
+		$nonce = isset($_REQUEST['nonce']) ? sanitize_text_field(wp_unslash($_REQUEST['nonce'])) : '';
+		if ($nonce === '' || wp_verify_nonce($nonce, 'rstr-transliteration-letters') === false) {
+			wp_send_json_error([
+				'message' => __('An error occurred while converting. Please refresh the page and try again.', 'serbian-transliteration'),
+			], 403);
+		}
 
-        $value = sanitize_textarea_field($_REQUEST['value']);
-        if (empty($value)) {
-            echo __('The field is empty.', 'serbian-transliteration');
-            exit;
-        }
+		$raw_value = isset($_REQUEST['value']) ? (string) wp_unslash($_REQUEST['value']) : '';
+		if ($raw_value === '') {
+			wp_send_json_error([
+				'message' => __('The field is empty.', 'serbian-transliteration'),
+			], 400);
+		}
 
-        $mode                      = sanitize_text_field($_REQUEST['mode']);
-        $transliterationController = Transliteration_Controller::get();
+		// Keep safe HTML only (post-like content).
+		$value = wp_kses_post($raw_value);
 
-        if ($mode === 'lat_to_cyr') {
-            $result = $transliterationController->lat_to_cyr($value, false, true);
-        } else {
-            $result = $transliterationController->cyr_to_lat($value);
-        }
+		$mode = isset($_REQUEST['mode']) ? sanitize_text_field(wp_unslash($_REQUEST['mode'])) : 'cyr_to_lat';
+		if (!in_array($mode, ['cyr_to_lat', 'lat_to_cyr'], true)) {
+			$mode = 'cyr_to_lat';
+		}
 
-        echo esc_html(html_entity_decode($result, ENT_QUOTES, 'UTF-8'));
-        exit;
-    }
+		$controller = Transliteration_Controller::get();
+
+		$result = ($mode === 'lat_to_cyr')
+			? $controller->lat_to_cyr($value, true, true)
+			: $controller->cyr_to_lat($value, true);
+
+		// Return HTML (safe). Do NOT esc_html().
+		echo wp_kses_post($result);
+		exit;
+	}
 
     /*
      * AJAX update permalinks cyr to lat

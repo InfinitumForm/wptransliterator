@@ -65,6 +65,11 @@ class Transliteration_Mode_Admin
         if (in_array($pagenow, ['options-general.php', 'options.php'], true) && empty($_GET['page'])) {
             unset($filters['option_blogname'], $filters['option_blogdescription']);
         }
+		
+		// Performance + JS stability: do not process script translations on Menus screen.
+		if (isset($pagenow) && $pagenow === 'nav-menus.php') {
+			unset($filters['load_script_translations'], $filters['pre_load_script_translations']);
+		}
 
         return $filters;
     }

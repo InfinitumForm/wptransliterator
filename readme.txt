@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 5.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.4.3
+Stable tag: 2.4.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,13 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 9. Automated test
 
 == Changelog ==
+
+= 2.4.4 =
+* Fixed nested plugins_loaded issue
+* Refactored REST init
+* Versioned APCu class map
+* Secured and sanitized AJAX HTML input/output
+* Purge autoloader cache on update
 
 = 2.4.3 =
 * Fixing issue with PHP 8.4 + FPM + OPcache
@@ -289,6 +296,13 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Added support for multilingual content and automatic language detection
 
 == Upgrade Notice ==
+
+= 2.4.4 =
+* Fixed nested plugins_loaded issue
+* Refactored REST init
+* Versioned APCu class map
+* Secured and sanitized AJAX HTML input/output
+* Purge autoloader cache on update
 
 = 2.4.3 =
 * Fixing issue with PHP 8.4 + FPM + OPcache
