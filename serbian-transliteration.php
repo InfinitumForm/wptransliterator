@@ -208,7 +208,7 @@ function rstr_render_network_settings() {
     do {
         $batch = get_sites(array(
             'number' => $number,
-            'paged'  => $paged,
+            'offset' => ($paged - 1) * $number,
             'fields' => 'all',
         ));
         if (empty($batch)) {
