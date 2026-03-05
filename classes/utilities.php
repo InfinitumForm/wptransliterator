@@ -43,32 +43,36 @@ class Transliteration_Utilities
 
     public static function plugin_default_options()
     {
+		$default_mode = class_exists('DOMDocument', false) ? 'phantom' : 'advanced';
+		$cache_support = self::has_cache_plugin() ? 'yes' : 'no';
+		$language_scheme = (
+			in_array(
+				self::get_locale(),
+				array_keys(self::registered_languages())
+			) ? self::get_locale() : 'auto'
+		);
+		
         return apply_filters('rstr_plugin_default_options', [
-            'site-script'               => 'cyr',
-            'transliteration-mode'      => 'cyr_to_lat',
-            'mode'                      => 'advanced',
-            'avoid-admin'               => 'no',
-            'allow-admin-tools'         => 'yes',
-            'allow-cyrillic-usernames'  => 'no',
-            'media-transliteration'     => 'yes',
-            'media-delimiter'           => '-',
-            'permalink-transliteration' => 'yes',
-            'cache-support'             => self::has_cache_plugin() ? 'yes' : 'no',
-            'exclude-latin-words'       => 'WordPress',
-            'exclude-cyrillic-words'    => 'ћирилица, кириллица, кірыліца, кирилица, кирилиця, კირილიცა, κυριλλικό, كيريلية, կիրիլիցա, кирилл, кириллӣ',
-            'enable-search'             => 'yes',
-            'search-mode'               => 'auto',
-            'enable-alternate-links'    => 'no',
-            'first-visit-mode'          => 'lat',
-            'enable-rss'                => 'yes',
-            'fix-diacritics'            => 'yes',
-            'url-selector'              => 'rstr',
-            'language-scheme'           => (
-                in_array(
-                    self::get_locale(),
-                    array_keys(self::registered_languages())
-                ) ? self::get_locale() : 'auto'
-            ),
+            'site-script'                 => 'cyr',
+            'transliteration-mode'        => 'cyr_to_lat',
+            'mode'                        => $default_mode,
+            'avoid-admin'                 => 'no',
+            'allow-admin-tools'           => 'yes',
+            'allow-cyrillic-usernames'    => 'no',
+            'media-transliteration'       => 'yes',
+            'media-delimiter'             => '-',
+            'permalink-transliteration'   => 'yes',
+            'cache-support'               => $cache_support,
+            'exclude-latin-words'         => 'WordPress',
+            'exclude-cyrillic-words'      => 'ћирилица, кириллица, кірыліца, кирилица, кирилиця, კირილიცა, κυριλλικό, كيريلية, կիրիլիցա, кирилл, кириллӣ',
+            'enable-search'               => 'yes',
+            'search-mode'                 => 'auto',
+            'enable-alternate-links'      => 'no',
+            'first-visit-mode'            => 'lat',
+            'enable-rss'                  => 'yes',
+            'fix-diacritics'              => 'yes',
+            'url-selector'                => 'rstr',
+            'language-scheme'             => $language_scheme,
             'enable-body-class'           => 'yes',
             'force-widgets'               => 'no',
             'force-email-transliteration' => 'no',

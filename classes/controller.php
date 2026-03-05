@@ -716,70 +716,141 @@ final class Transliteration_Controller extends Transliteration
         return $result ?: $content;
     }
 
-    /*
-     * Transliterate HTML
-     */
-    public function transliterate_html($html)
-    {		
-        if (!class_exists('DOMDocument', false) || empty($html) || !is_string($html) || is_numeric($html)) {
-            return $html;
-        }
+    /**
+	 * Transliterate full HTML output using DOM, while protecting fragile blocks
+	 * (script/style/svg/template/meta/link/noscript) from DOMDocument rewriting.
+	 *
+	 * Key fix:
+	 * - Use COMMENT placeholders (valid inside <head>), not text tokens,
+	 *   otherwise DOMDocument moves them into <body><p>...
+	 *
+	 * @param string $html
+	 * @return string
+	 */
+	public function transliterate_html($html)
+	{
+		if (empty($html) || !is_string($html) || !class_exists('DOMDocument', false)) {
+			return $html;
+		}
 
-        $dom = new DOMDocument('1.0', 'UTF-8');
+		if (strlen($html) < 10) {
+			return $html;
+		}
 
-        libxml_use_internal_errors(true);
-        $html = '<?xml encoding="UTF-8">' . $html; // UTF-8 deklaracija OBAVEZNA!
-		
-		// $html = htmlspecialchars($html, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-		
-        $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+		// ---------------------------------------------------------------------
+		// 1) Protect fragile blocks with COMMENT placeholders
+		// ---------------------------------------------------------------------
+		$placeholders = [];
+
+		// Digits + symbols only (no letters needed). Comment is safe in <head>.
+		$tokenPrefix = '<!--~' . (string) time() . (string) random_int(100000, 999999) . '~';
+		$tokenSuffix = '~-->';
+
+		$protectPatterns = apply_filters('transliteration_dom_protect_blocks', [
+			'~<script\b[^>]*>.*?</script>~is',
+			'~<style\b[^>]*>.*?</style>~is',
+			'~<noscript\b[^>]*>.*?</noscript>~is',
+			'~<svg\b[^>]*>.*?</svg>~is',
+			'~<template\b[^>]*>.*?</template>~is',
+
+			// Protect head-only tags too (DOMDocument may reorder them).
+			'~<link\b[^>]*>~is',
+			'~<meta\b[^>]*>~is',
+		]);
+
+		foreach ($protectPatterns as $pattern) {
+			if (!is_string($pattern) || $pattern === '') {
+				continue;
+			}
+
+			$html = preg_replace_callback($pattern, function ($m) use (&$placeholders, $tokenPrefix, $tokenSuffix) {
+				$key = $tokenPrefix . (string) count($placeholders) . $tokenSuffix;
+				$placeholders[$key] = $m[0];
+				return $key;
+			}, $html);
+		}
+
+		// ---------------------------------------------------------------------
+		// 2) DOM parse and transliterate TEXT nodes only
+		// ---------------------------------------------------------------------
+		$dom = new DOMDocument('1.0', 'UTF-8');
+
+		$prev = libxml_use_internal_errors(true);
+
+		// Keep full document structure if present; DOMDocument will handle it.
+		// Avoid LIBXML_HTML_NOIMPLIED because it can produce weird fragments on full docs.
+		$wrapped = '<?xml encoding="UTF-8">' . $html;
+		$dom->loadHTML($wrapped, LIBXML_HTML_NODEFDTD);
 		$dom->encoding = 'UTF-8';
-        libxml_clear_errors();
 
-        $xpath = new DOMXPath($dom);
+		libxml_clear_errors();
+		libxml_use_internal_errors($prev);
 
-        // Izbegavamo tagove gde ne želimo transliteraciju
-        $skipTags = apply_filters('transliteration_html_avoid_tags', [
-            'script',
-            'style',
-            'textarea',
-            'input',
-            'select',
-            'code',
-            'pre',
-            'img',
-            'svg',
-            'image',
-            'head',
-            'meta',
-        ], 'dom');
+		$xpath = new DOMXPath($dom);
 
-        // Atributi na koje se primenjuje transliteracija
-        $attributesToTransliterate = $this->private__html_atributes('dom', true);
+		$skipTags = apply_filters('transliteration_html_avoid_tags', [
+			'script',
+			'style',
+			'noscript',
+			'textarea',
+			'input',
+			'select',
+			'option',
+			'code',
+			'pre',
+			'svg',
+			'template',
+			'head',
+			'meta',
+			'link',
+		], 'dom');
 
-        // Transliteracija teksta unutar tagova, osim onih koji su na listi za izbegavanje
-        foreach ($xpath->query('//text()') as $textNode) {
-            if (!in_array($textNode->parentNode->nodeName, $skipTags)) {
-				// Normalize hidden characters
-				$textNode->nodeValue = preg_replace('/^[\x{FEFF}\x{200B}\x{00A0}]+/u', '', $textNode->nodeValue);
+		$ancestorGuards = [];
 
-				// Apply transliteration
-				$textNode->nodeValue = $this->transliterate($textNode->nodeValue);
-            }
-        }
+		foreach ($skipTags as $tag) {
+			if (is_string($tag) && $tag !== '') {
+				$ancestorGuards[] = 'not(ancestor::' . strtolower($tag) . ')';
+			}
+		}
 
-        // Transliteracija određenih atributa
-        foreach ($xpath->query('//*[@' . implode(' or @', $attributesToTransliterate) . ']') as $node) {
-            foreach ($attributesToTransliterate as $attr) {
-                if ($node->hasAttribute($attr)) {
-                    $node->setAttribute($attr, $this->transliterate($node->getAttribute($attr)));
-                }
-            }
-        }
+		// Skip user-defined zones.
+		$ancestorGuards[] = 'not(ancestor::*[@data-rstr-skip])';
+		$ancestorGuards[] = 'not(ancestor::*[contains(concat(" ", normalize-space(@class), " "), " rstr-skip ")])';
 
-        // Vraćamo HTML sa pravilnim enkodingom
-        return $dom->saveHTML();
-    }
+		// Skip editable zones (builders/editors).
+		$ancestorGuards[] = 'not(ancestor::*[@contenteditable="true"])';
+
+		$textQuery = '//text()';
+		if (!empty($ancestorGuards)) {
+			$textQuery = '//text()[' . implode(' and ', $ancestorGuards) . ']';
+		}
+
+		$nodes = $xpath->query($textQuery);
+		if ($nodes instanceof DOMNodeList && $nodes->length > 0) {
+			foreach ($nodes as $textNode) {
+				$value = (string) $textNode->nodeValue;
+
+				if (trim($value) === '') {
+					continue;
+				}
+
+				$value = preg_replace('/^[\x{FEFF}\x{200B}\x{00A0}]+/u', '', $value);
+
+				$textNode->nodeValue = $this->transliterate($value);
+			}
+		}
+
+		// ---------------------------------------------------------------------
+		// 3) Serialize back and restore protected blocks
+		// ---------------------------------------------------------------------
+		$out = (string) $dom->saveHTML();
+
+		if (!empty($placeholders)) {
+			$out = strtr($out, $placeholders);
+		}
+
+		return $out;
+	}
 
     /*
      * PRIVATE: Allowed HTML attributes for transliteration
