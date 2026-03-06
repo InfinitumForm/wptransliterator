@@ -95,6 +95,7 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Versioned APCu class map
 * Secured and sanitized AJAX HTML input/output
 * Purge autoloader cache on update
+* UX update
 
 = 2.4.3 =
 * Fixing issue with PHP 8.4 + FPM + OPcache
@@ -114,186 +115,6 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Fixed problem with stuck loops
 * Fixed navigation issue
 * Fixed gettext problems
-
-= 2.3.10 =
-* Bugfix for the "_load_textdomain_just_in_time was called incorrectly"
-
-= 2.3.9 =
-* Quick fix for memory leak issues from the previous version.
-
-= 2.3.8 =
-* Fixed critical issue with Polylang integration where non-Cyrillic languages (e.g., DE, EN) were incorrectly transliterated to Cyrillic on first visit.
-* Added robust detection logic with safe fallback to Latin for unresolved or unknown localeaas.
-* Improved `is_cyrillic_locale()` to include lazy caching and reliable Polylang language detection through `pll_language_defined` and `wp` hooks.
-* Added safety-net inside transliteration process to prevent accidental `lat_to_cyr` mode when language is not confirmed as Cyrillic.
-* Restricted Polylang “first-visit” language list strictly to Cyrillic-script languages.
-* Ensured consistent behavior in phantom mode and early-page rendering phases.
-
-= 2.3.7 =
-* Added Croatian Cyrillic alphabet support
-* Improved translations and documentations
-
-= 2.3.6 =
-* Bugfix on _load_textdomain_just_in_time
-* Improved Script Selector in the Blocks
-* BUgfix on the UTF-8 encoding
-
-= 2.3.5 =
-* Fixed bugs on requests
-* Critical errors fixed
-* Fixed encoding for BOM and UTF-8
-
-= 2.3.4 =
-* Added new transliteration maps
-* Improved and optimized transliterations
-* Optimized code
-* Fixed GUI bugs
-
-= 2.3.3 =
-* Fixed domain was triggered too early
-* Fixed admin transliteration
-* Improved debugging
-* Added transliteration for js-composer
-* Improved plugin speed
-* Improved PHP code
-* Improved transliterations
-
-= 2.3.2 =
-* Fixed Wp Admin transliteration
-* Improved WooCommerce transliteration
-* Code Optimizations
-
-= 2.3.1 =
-* Fixed UI
-* Fixed translations
-
-= 2.3.0 =
-* Brought codebase to PSR-12 coding standard
-* Refactored features and functionalities for faster execution and better maintainability
-* Prepared and tested plugin compatibility for WordPress version 6.8
-* Removed all PHP 5.6 specific syntax to support minimum PHP 7.4
-* Modularized core logic for better structure and scalability
-* Optimized loading time by reducing unnecessary function calls
-* Improved type declarations and error handling for critical functions
-
-= 2.2.3 =
-* Fixing bugs regarding Tag transitions
-
-= 2.2.2 =
-* Fixed problem with l10n.php algo
-* Removed PHP errors
-
-= 2.2.1 =
-* Fixed PHP errors from the previous version
-* Improved UTF-8 encoding
-* Optimized transliteration scripts
-* Added support for the special HTML attributes
-
-= 2.2.0 =
-* NEW: Phantom Mode - ultra fast DOM-based transliteration (experimental)
-* Fixed forced transliteration
-* Improved site optimization
-
-= 2.1.8 =
-* Added support and integration for Polylang plugin
-* Improved and optimized permalink algorithm
-* Optimized plugin loading
-* Added new filters for developers
-
-= 2.1.7 =
-* Optimized main plugin control model
-* Added navigation caching
-* Fixed a bug with the repeating notification
-
-= 2.1.6 =
-* Fixed autoloader to keep algorithms inside the plugin
-* Optimized transliterator for pages and posts
-
-= 2.1.5 =
-* Fixed permalink problems for the new posts
-* Fixed performances for the post updates
-
-= 2.1.4 =
-* Fixed SEO module for the Google index
-
-= 2.1.3 =
-* Fixed sitemap redirection issues
-* Added new attributes for transliteration
-* Removed unnecessary and obsolete code
-* Optimization of PHP algorithms
-
-= 2.1.2 =
-* Fixed PHP fatal errors
-* Improved transliteration of cached content
-* Added security protocols
-* Improved PHP code
-
-= 2.1.1 =
-* Fixing filters for the Contact Form 7
-
-= 2.1.0 =
-* Added new autoloader for better performances
-* Added new caching functionality
-* Added prevention of redirection on AJAX calls
-* Improved PHP code
-* Fixed bugs from the previous version
-* Improved block editor script
-
-= 2.0.9 =
-* Fixed bugs for the WordPress version 6.7
-* Fixed translations
-
-= 2.0.8 =
-* Support for the WordPress version 6.7
-
-= 2.0.7 =
-* Fixed infinity redirection loop
-* Fixed transliteration bugs into permalinks
-* Fixed 404 error on certain cyrillic pages
-
-= 2.0.6 =
-* Added new filterings for the posts
-* Removed expencive functions
-* Added new filters and sanitizations
-
-= 2.0.5 =
-* Fixed problem with disabled transliteration
-* Fixed problem with tag transliteration
-* Fixed redirections
-
-= 2.0.4 =
-* Changed transliteration operations
-* Optimized object transliteration
-* Improved code for PHP8.3
-
-= 2.0.3 =
-* Improved cookie control
-
-= 2.0.2 =
-* Fixing bugs for the PHP version 8.3 and above
-* Fixing Cookie problems
-* Fixing problem with double inclusions
-* Fixing problems with WP filters
-* Improved site speed
-
-= 2.0.1 =
-* Bug fix
-* Adding stricter permalink transliteration
-* Improved debugging
-
-= 2.0.0 =
-* Complete redesign and refactoring of the PHP code
-* Full support for WordPress 6.6 and higher
-* Compatibility with PHP 8.x versions
-* Fixed issues with Cyrillic transliteration
-* Enhanced optimization and better content control
-* Added support for visual editors
-* Bug fixes and improved system stability
-* Ready for future extensions and new functionalities
-* Added admin tools for easier content transliteration management
-* Improved user interface with better accessibility options
-* Streamlined settings page for more intuitive navigation
-* Added support for multilingual content and automatic language detection
 
 == Upgrade Notice ==
 
@@ -303,25 +124,7 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Versioned APCu class map
 * Secured and sanitized AJAX HTML input/output
 * Purge autoloader cache on update
-
-= 2.4.3 =
-* Fixing issue with PHP 8.4 + FPM + OPcache
-
-= 2.4.2 =
-* Fixed PHP 8.4 compatibility issue in autoloader (private method visibility).
-
-= 2.4.1 =
-* Fixed problem with transition codes
-* Fixed issue with shortcodes conflicts
-* Fixed a problem with the transfer algorithm
-* Improved UX
-* Removed ads
-
-= 2.4.0 =
-* Fixed language detection with PLL plugin
-* Fixed problem with stuck loops
-* Fixed navigation issue
-* Fixed gettext problems
+* UX update
 
 == Frequently Asked Questions ==
 

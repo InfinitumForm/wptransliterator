@@ -4,6 +4,7 @@
 * Versioned APCu class map
 * Secured and sanitized AJAX HTML input/output
 * Purge autoloader cache on update
+* UX update
 
 = 2.4.3 =
 * Fixing issue with PHP 8.4 + FPM + OPcache

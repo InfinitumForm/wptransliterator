@@ -120,9 +120,11 @@ $activations = get_option(RSTR_NAME . '-activation');
 	<tfoot><?php do_action('rstr/settings/debug/table/tfoot'); ?></tfoot>
 </table>
 <br><br>
-<div class="accordion-container">
+<?php /* div class="accordion-container">
 	<button class="accordion-link" type="button"><?php esc_html_e('Plugin settings', 'serbian-transliteration'); ?></button>
 	<div class="accordion-panel" style="padding:0;">
 		<?php Transliteration_Utilities::debug_render_all_settings_fields('html'); ?>
 	</div>
-</div>
+</div */ ?>
+<h3><?php esc_html_e('Plugin settings', 'serbian-transliteration'); ?></h3>
+<?php Transliteration_Utilities::debug_render_all_settings_fields('html');

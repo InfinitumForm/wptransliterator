@@ -224,17 +224,18 @@ class Transliteration_Utilities
      * Retrieve plugin modes with descriptions.
      * Modes include predefined options with support for WooCommerce and developer-specific settings.
      *
-     * @param  string|null $mode Optional specific mode key to retrieve.
+     * @param  string|null $mode    Optional specific mode key to retrieve.
+	 * @param  mixed       $default Optional default mode.
      * @return array|string      Modes array with labels or specific mode description.
      */
-    public static function plugin_mode($mode = null)
+    public static function plugin_mode($mode = null, $default=[])
     {
         // Get available modes
         $available_modes = self::available_modes();
 
         // Map available modes to their descriptions
         $modes = [
-            'phantom'     => __('Phantom Mode (ultra fast DOM-based transliteration, experimental)', 'serbian-transliteration'),
+            'phantom'     => __('Phantom Mode (ultra fast DOM-based transliteration)', 'serbian-transliteration'),
             'light'       => __('Light mode (basic parts of the site)', 'serbian-transliteration'),
             'standard'    => __('Standard mode (content, themes, plugins, translations, menu)', 'serbian-transliteration'),
             'advanced'    => __('Advanced mode (content, widgets, themes, plugins, translations, menu, permalinks, media)', 'serbian-transliteration'),
@@ -251,10 +252,14 @@ class Transliteration_Utilities
 
         // Return specific mode description if $mode is provided
         if ($mode) {
-            return $filtered_modes[$mode] ?? [];
+            return $filtered_modes[$mode] ?? $default;
         }
 
-        return $filtered_modes;
+		if ($mode === null) {
+			return $filtered_modes;
+		}
+		
+		return $default;
     }
 
     /*
@@ -1621,12 +1626,12 @@ class Transliteration_Utilities
 				foreach ($val as $i => $prop) {
 					echo '<tr>';
 					echo '<td style="border:1px solid #efefef;padding:8px;">' . esc_html($i) . '</td>';
-					echo '<td style="border:1px solid #efefef;padding:8px;">' . esc_html($prop) . '</td>';
+					echo '<td style="border:1px solid #efefef;padding:8px;">' . esc_html( self::__debug_translate_values($prop) ) . '</td>';
 					echo '</tr>';
 				}
 				echo '</table>';
-			} else {
-				echo esc_html($val);
+			} else {				
+				echo esc_html( self::__debug_translate_values($val) );
 			}
 
 			echo '</td>';
@@ -1634,6 +1639,44 @@ class Transliteration_Utilities
 		}
 
 		echo '</table>';
+	}
+	
+	private static function __debug_translate_values($val = '') {
+		switch ($val) {
+			case 'yes':
+				return __('Yes');
+				break;
+
+			case 'no':
+				return __('No');
+				break;
+
+			case 'auto':
+				return __('Automatic', 'serbian-transliteration');
+				break;
+				
+			case 'cyr_to_lat':
+				return __('Cyrillic to Latin', 'serbian-transliteration');
+				break;
+				
+			case 'lat_to_cyr':
+				return __('Latin to Cyrillic', 'serbian-transliteration');
+				break;
+			
+			case 'lat':
+				return __('Latin', 'serbian-transliteration');
+				break;
+				
+			case 'cyr':
+				return __('Cyrillic', 'serbian-transliteration');
+				break;
+				
+			case 'none':
+				return __('Disabled', 'serbian-transliteration');
+				break;
+		}
+		
+		return self::plugin_mode((string) $val, $val);
 	}
 	
 	/**

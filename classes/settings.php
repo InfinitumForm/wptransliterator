@@ -729,17 +729,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	</ul>
 <?php else: ?>
 	<p style="color:#cc0000"><?php echo esc_html__('Transliterator plugin options are not yet available. Please update plugin settings!', 'serbian-transliteration'); ?></p>
-<?php endif; ?>
-
-<h3><b><?php echo esc_html__('Recommendations:', 'serbian-transliteration'); ?></b></h3>
-<p><?php echo esc_html__('Explore these recommended tools and resources that complement our plugin.', 'serbian-transliteration'); ?></p>
-<div class="postbox transliteration-affiliate">
-	<a href="https://freelanceposlovi.com/poslovi" target="_blank">
-		<img src="<?php echo esc_url(RSTR_ASSETS . '/img/' . (Transliteration_Utilities::get_locale('sr_RS') ? 'logo-freelance-poslovi-sr_RS.jpg' : 'logo-freelance-poslovi.jpg')); ?>" alt="<?php esc_attr_e('Freelance Jobs - Find or post freelance jobs', 'serbian-transliteration'); ?>">
-	</a>
-</div>
-		<?php add_action('admin_footer', function (): void { ?>
-<style>/* <![CDATA[ */#transliterator_dashboard_widget .transliteration-affiliate img{display: block;width: 100%;max-width: 100%;height: auto;margin: 0 auto}/* ]]> */</style>
-		<?php });
+<?php endif;
     }
 }
