@@ -17,29 +17,38 @@ class Transliteration_Utilities
      * @author    Ivijan-Stefan Stipic
      */
     public static function registered_languages()
-    {
-        return apply_filters('rstr_registered_languages', [
-            'sr_RS' => __('Serbian', 'serbian-transliteration'),
-            'bs_BA' => __('Bosnian', 'serbian-transliteration'),
-            'cnr'   => __('Montenegrin', 'serbian-transliteration'),
-			'hr' 	=> __('Croatian', 'serbian-transliteration'),
-            'ru_RU' => __('Russian', 'serbian-transliteration'),
-            'bel'   => __('Belarusian', 'serbian-transliteration'),
-            'bg_BG' => __('Bulgarian', 'serbian-transliteration'),
-            'mk_MK' => __('Macedoanian', 'serbian-transliteration'),
-            'uk'    => __('Ukrainian', 'serbian-transliteration'),
-            'kk'    => __('Kazakh', 'serbian-transliteration'),
-            'tg'    => __('Tajik', 'serbian-transliteration'),
-            'kir'   => __('Kyrgyz', 'serbian-transliteration'),
-            'mn'    => __('Mongolian', 'serbian-transliteration'),
-            'ba'    => __('Bashkir', 'serbian-transliteration'),
-            'uz_UZ' => __('Uzbek', 'serbian-transliteration'),
-            'ka_GE' => __('Georgian', 'serbian-transliteration'),
-            'el'    => __('Greek', 'serbian-transliteration'),
-            'hy'    => __('Armenian', 'serbian-transliteration'),
-            'ar'    => __('Arabic', 'serbian-transliteration'),
-        ]);
-    }
+	{
+		return apply_filters('rstr_registered_languages', [
+			'sr_RS' => self::translate_label('Serbian'),
+			'bs_BA' => self::translate_label('Bosnian'),
+			'cnr'   => self::translate_label('Montenegrin'),
+			'hr'    => self::translate_label('Croatian'),
+			'ru_RU' => self::translate_label('Russian'),
+			'bel'   => self::translate_label('Belarusian'),
+			'bg_BG' => self::translate_label('Bulgarian'),
+			'mk_MK' => self::translate_label('Macedonian'),
+			'uk'    => self::translate_label('Ukrainian'),
+			'kk'    => self::translate_label('Kazakh'),
+			'tg'    => self::translate_label('Tajik'),
+			'kir'   => self::translate_label('Kyrgyz'),
+			'mn'    => self::translate_label('Mongolian'),
+			'ba'    => self::translate_label('Bashkir'),
+			'uz_UZ' => self::translate_label('Uzbek'),
+			'ka_GE' => self::translate_label('Georgian'),
+			'el'    => self::translate_label('Greek'),
+			'hy'    => self::translate_label('Armenian'),
+			'ar'    => self::translate_label('Arabic'),
+		]);
+	}
+	
+	public static function translate_label(string $text): string
+	{
+		if (function_exists('did_action') && did_action('init')) {
+			return __($text, 'serbian-transliteration');
+		}
+
+		return $text;
+	}
 
     public static function plugin_default_options()
     {
@@ -63,7 +72,7 @@ class Transliteration_Utilities
             'media-delimiter'             => '-',
             'permalink-transliteration'   => 'yes',
             'cache-support'               => $cache_support,
-            'exclude-latin-words'         => 'WordPress',
+            'exclude-latin-words'         => 'WordPress, latinica, latin',
             'exclude-cyrillic-words'      => 'ћирилица, кириллица, кірыліца, кирилица, кирилиця, კირილიცა, κυριλλικό, كيريلية, կիրիլիցա, кирилл, кириллӣ',
             'enable-search'               => 'yes',
             'search-mode'                 => 'auto',
@@ -80,6 +89,7 @@ class Transliteration_Utilities
             'force-rest-api'              => 'yes',
             'disable-by-language'         => ['en_US' => 'yes'],
             'disable-theme-support'       => 'no',
+			'js-dynamic-transliteration'  => 'no'
         ]);
     }
 	
@@ -1802,6 +1812,5 @@ class Transliteration_Utilities
 
 		return self::$lang_cache;
 	}
-
-
+	
 }

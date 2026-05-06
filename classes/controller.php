@@ -187,30 +187,29 @@ final class Transliteration_Controller extends Transliteration
      * Transliteration
      */
     public function transliterate($content, $mode = 'auto', $sanitize_html = true)
-    {
+	{
+		if ($this->disable_transliteration() && !Transliteration_Utilities::is_admin()) {
+			return $content;
+		}
 
-        if ($this->disable_transliteration() && !Transliteration_Utilities::is_admin()) {
-            return $content;
-        }
+		if (null === $mode || false === $mode) {
+			return $content;
+		}
 
-        if (null === $mode || false === $mode) {
-            return $content;
-        }
+		if ($mode === 'auto') {
+			$mode = $this->mode();
+		}
 
-        if ($mode == 'auto') {
-            $mode = $this->mode();
-        }
+		if (!$mode) {
+			return $content;
+		}
 
-        if (!$mode) {
-            return $content;
-        }
+		if (method_exists($this, $mode)) {
+			return $this->{$mode}($content, (bool) $sanitize_html);
+		}
 
-        if (method_exists($this, $mode)) {
-            return $this->$mode($content);
-        }
-
-        return $content;
-    }
+		return $content;
+	}
 
     /*
      * Transliteration with no HTML
@@ -244,116 +243,90 @@ final class Transliteration_Controller extends Transliteration
      * Cyrillic to Latin
      */
     public function cyr_to_lat($content, bool $sanitize_html = true, bool $force = false)
-    {
-        $class_map = Transliteration_Map::get()->map();
+	{
+		$class_map = Transliteration_Map::get()->map();
 
-        // If the content should not be transliterated or the user is an editor, return the original content
-        if (!$force) {
+		if (!$force) {
 			if (!$class_map || Transliteration_Utilities::can_transliterate($content) || Transliteration_Utilities::is_editor()) {
 				return $content;
 			}
 		}
 
-        /*// Don't transliterate if we already have transliteration
-        if (!Transliteration_Utilities::is_lat($content)) {
-            return $content;
-        }*/
+		$exclude_placeholders = [];
+		$content = $this->protect_cyr_excluded_words((string) $content, $exclude_placeholders);
 
-        // Retrieve the list of Cyrillic words to exclude from transliteration
-        $exclude_list         = $this->cyr_exclude_list();
-        $exclude_placeholders = [];
+		$script_placeholders = [];
+		$content = preg_replace_callback('/<script\b[^>]*>.*?<\/script>/is', function ($matches) use (&$script_placeholders): string {
+			$placeholder = self::make_placeholder(1, count($script_placeholders));
+			$script_placeholders[$placeholder] = $matches[0];
 
-        // Check if the exclusion list is not empty
-        if (!empty($exclude_list)) {
-            foreach ($exclude_list as $key => $word) {
-                $placeholder                        = self::make_placeholder(0, $key);
-                $content                            = str_replace($word, $placeholder, $content);
-                $exclude_placeholders[$placeholder] = $word;
-            }
-        }
+			return $placeholder;
+		}, $content);
 
-        // Extract <script> contents and replace them with placeholders
-        $script_placeholders = [];
-        $content             = preg_replace_callback('/<script\b[^>]*>(.*?)<\/script>/is', function ($matches) use (&$script_placeholders): string {
-            $placeholder                       = self::make_placeholder(1, count($script_placeholders));
-            $script_placeholders[$placeholder] = $matches[0];
-            return $placeholder;
-        }, $content);
+		$style_placeholders = [];
+		$content = preg_replace_callback('/<style\b[^>]*>.*?<\/style>/is', function ($matches) use (&$style_placeholders): string {
+			$placeholder = self::make_placeholder(2, count($style_placeholders));
+			$style_placeholders[$placeholder] = $matches[0];
 
-        // Extract <style> contents and replace them with placeholders
-        $style_placeholders = [];
-        $content            = preg_replace_callback('/<style\b[^>]*>(.*?)<\/style>/is', function ($matches) use (&$style_placeholders): string {
-            $placeholder                      = self::make_placeholder(2, count($style_placeholders));
-            $style_placeholders[$placeholder] = $matches[0];
-            return $placeholder;
-        }, $content);
+			return $placeholder;
+		}, $content);
 
-        // Extract <head> contents and replace them with placeholders
-        $head_placeholders = [];
-        $content           = preg_replace_callback('/<head\b[^>]*>(.*?)<\/head>/is', function ($matches) use (&$head_placeholders): string {
-            $placeholder                     = self::make_placeholder(3, count($head_placeholders));
-            $head_placeholders[$placeholder] = $matches[0];
-            return $placeholder;
-        }, $content);
+		$head_placeholders = [];
+		$content = preg_replace_callback('/<head\b[^>]*>.*?<\/head>/is', function ($matches) use (&$head_placeholders): string {
+			$placeholder = self::make_placeholder(3, count($head_placeholders));
+			$head_placeholders[$placeholder] = $matches[0];
 
-        // Handle percentage format specifiers by replacing them with placeholders
-        $formatSpecifiers = [];
-        $content          = preg_replace_callback('/(\b\d+(?:\.\d+)?&#37;)/', function ($matches) use (&$formatSpecifiers): string {
-            $placeholder                    = self::make_placeholder(4, count($formatSpecifiers));
-            $formatSpecifiers[$placeholder] = $matches[0];
-            return $placeholder;
-        }, $content);
+			return $placeholder;
+		}, $content);
 
-        // Perform the transliteration using the class map
-        if ($class_map && class_exists($class_map)) {
-            $content = $class_map::transliterate($content, 'cyr_to_lat');
-            $content = Transliteration_Sanitization::get()->lat($content, $sanitize_html);
-        }
+		$format_specifiers = [];
+		$content = preg_replace_callback('/(\b\d+(?:\.\d+)?&#37;)/', function ($matches) use (&$format_specifiers): string {
+			$placeholder = self::make_placeholder(4, count($format_specifiers));
+			$format_specifiers[$placeholder] = $matches[0];
 
-        // Restore <head> contents back to their original form
-        if ($head_placeholders !== []) {
-            $content = strtr($content, $head_placeholders);
-            unset($head_placeholders);
-        }
+			return $placeholder;
+		}, $content);
 
-        // Restore percentage format specifiers back to their original form
-        if ($formatSpecifiers !== []) {
-            $content = strtr($content, $formatSpecifiers);
-            unset($formatSpecifiers);
-        }
+		if ($class_map && class_exists($class_map)) {
+			$content = $class_map::transliterate($content, 'cyr_to_lat');
+			$content = Transliteration_Sanitization::get()->lat($content, $sanitize_html);
+		}
 
-        // Sanitize HTML attributes and transliterate their values
-        if ($sanitize_html) {
-            $html_attributes_match = $this->private__html_atributes('cyr_to_lat');
-            if ($html_attributes_match) {
-                $content = preg_replace_callback('/\b(' . $html_attributes_match . ')=("|\')(.*?)\2/i', function ($matches) use ($class_map, $sanitize_html): string {
-                    $transliteratedValue = $class_map::transliterate($matches[3], 'cyr_to_lat');
-                    $transliteratedValue = Transliteration_Sanitization::get()->lat($transliteratedValue, $sanitize_html);
-                    return $matches[1] . '=' . $matches[2] . esc_attr($transliteratedValue) . $matches[2];
-                }, $content);
-            }
-        }
+		if ($format_specifiers !== []) {
+			$content = strtr($content, $format_specifiers);
+		}
 
-        // Restore excluded words back to their original form
-        if ($exclude_placeholders !== []) {
-            $content = strtr($content, $exclude_placeholders);
-            unset($exclude_placeholders);
-        }
+		if ($sanitize_html) {
+			$html_attributes_match = $this->private__html_atributes('cyr_to_lat');
 
-        // Restore <script> contents back to their original form
-        if ($script_placeholders !== []) {
-            $content = strtr($content, $script_placeholders);
-            unset($script_placeholders);
-        }
+			if ($html_attributes_match) {
+				$content = preg_replace_callback('/\b(' . $html_attributes_match . ')=("|\')(.*?)\2/i', function ($matches) use ($class_map, $sanitize_html): string {
+					$transliterated_value = $class_map::transliterate($matches[3], 'cyr_to_lat');
+					$transliterated_value = Transliteration_Sanitization::get()->lat($transliterated_value, $sanitize_html);
 
-        // Restore <style> contents back to their original form
-        if ($style_placeholders !== []) {
-            $content = strtr($content, $style_placeholders);
-            unset($style_placeholders);
-        }
+					return $matches[1] . '=' . $matches[2] . esc_attr($transliterated_value) . $matches[2];
+				}, $content);
+			}
+		}
 
-        return $content;
-    }
+		if ($exclude_placeholders !== []) {
+			$content = strtr($content, $exclude_placeholders);
+		}
+
+		if ($script_placeholders !== []) {
+			$content = strtr($content, $script_placeholders);
+		}
+
+		if ($style_placeholders !== []) {
+			$content = strtr($content, $style_placeholders);
+		}
+
+		if ($head_placeholders !== []) {
+			$content = strtr($content, $head_placeholders);
+		}
+
+		return $content;
+	}
 
     /*
      * Translate from cyr to lat
@@ -584,15 +557,23 @@ final class Transliteration_Controller extends Transliteration
         $this->ob_start('transliteration_tags_callback');
     }
 
-    /*
-     * Transliteration tags buffer callback
-     */
-    public function transliteration_tags_callback($buffer)
+    /**
+	 * Output buffer callback for inline transliteration tags.
+	 *
+	 * @param mixed $buffer Buffered HTML output.
+	 *
+	 * @return mixed
+	 */
+	public function transliteration_tags_callback($buffer)
 	{
+		if (!is_string($buffer) || $buffer === '') {
+			return $buffer;
+		}
+
 		if (!Transliteration_Utilities::is_cyrillic_locale()) {
 			return $buffer;
 		}
-	
+
 		if (Transliteration_Utilities::can_transliterate($buffer) || Transliteration_Utilities::is_editor()) {
 			return $buffer;
 		}
@@ -605,48 +586,30 @@ final class Transliteration_Controller extends Transliteration
 			);
 		}
 
-		$tags = ['cyr_to_lat', 'lat_to_cyr', 'rstr_skip'];
-		foreach ($tags as $tag) {
-			// Match only simple tag pairs, no recursion
-			preg_match_all('/\{' . $tag . '\}(.*?)\{\/' . $tag . '\}/s', $buffer, $matches, PREG_SET_ORDER);
+		$callback = function (array $matches): string {
+			$tag = $matches[1] ?? '';
+			$content = $matches[2] ?? '';
 
-			if (!empty($matches)) {
-				foreach ($matches as $entry) {
-					$original_text = $entry[1];
+			switch ($tag) {
+				case 'cyr_to_lat':
+					return $this->cyr_to_lat($content, true, true);
 
-					if ($tag === 'rstr_skip') {
-						$mode = ($this->mode() === 'cyr_to_lat') ? 'lat_to_cyr' : 'cyr_to_lat';
-						switch ($tag) {
-							case 'cyr_to_lat':
-								$transliterated_text = $this->cyr_to_lat($original_text, true, true);
-								break;
+				case 'lat_to_cyr':
+					return $this->lat_to_cyr($content, true);
 
-							case 'lat_to_cyr':
-								$transliterated_text = $this->lat_to_cyr($original_text, true);
-								break;
-						}
-					} else {
-						switch ($tag) {
-							case 'cyr_to_lat':
-								$transliterated_text = $this->cyr_to_lat($original_text, true, true);
-								break;
+				case 'rstr_skip':
+					return $content;
 
-							case 'lat_to_cyr':
-								$transliterated_text = $this->lat_to_cyr($original_text, true);
-								break;
-
-							default:
-								$transliterated_text = $original_text;
-								break;
-						}
-					}
-
-					$buffer = str_replace($entry[0], $transliterated_text, $buffer);
-				}
+				default:
+					return $matches[0];
 			}
-		}
+		};
 
-		return $buffer;
+		return preg_replace_callback(
+			'~\{(cyr_to_lat|lat_to_cyr|rstr_skip)\}(.*?)\{/\1\}~is',
+			$callback,
+			$buffer
+		);
 	}
 
     /*
@@ -718,14 +681,11 @@ final class Transliteration_Controller extends Transliteration
 
     /**
 	 * Transliterate full HTML output using DOM, while protecting fragile blocks
-	 * (script/style/svg/template/meta/link/noscript) from DOMDocument rewriting.
+	 * and inline transliteration tags from DOMDocument rewriting.
 	 *
-	 * Key fix:
-	 * - Use COMMENT placeholders (valid inside <head>), not text tokens,
-	 *   otherwise DOMDocument moves them into <body><p>...
+	 * @param mixed $html Input HTML.
 	 *
-	 * @param string $html
-	 * @return string
+	 * @return mixed
 	 */
 	public function transliterate_html($html)
 	{
@@ -737,23 +697,25 @@ final class Transliteration_Controller extends Transliteration
 			return $html;
 		}
 
-		// ---------------------------------------------------------------------
-		// 1) Protect fragile blocks with COMMENT placeholders
-		// ---------------------------------------------------------------------
 		$placeholders = [];
 
-		// Digits + symbols only (no letters needed). Comment is safe in <head>.
 		$tokenPrefix = '<!--~' . (string) time() . (string) random_int(100000, 999999) . '~';
 		$tokenSuffix = '~-->';
 
 		$protectPatterns = apply_filters('transliteration_dom_protect_blocks', [
+			// Protect inline transliteration tags before global DOM transliteration.
+			'~\{cyr_to_lat\}.*?\{/cyr_to_lat\}~is',
+			'~\{lat_to_cyr\}.*?\{/lat_to_cyr\}~is',
+			'~\{rstr_skip\}.*?\{/rstr_skip\}~is',
+
+			// Protect fragile HTML blocks.
 			'~<script\b[^>]*>.*?</script>~is',
 			'~<style\b[^>]*>.*?</style>~is',
 			'~<noscript\b[^>]*>.*?</noscript>~is',
 			'~<svg\b[^>]*>.*?</svg>~is',
 			'~<template\b[^>]*>.*?</template>~is',
 
-			// Protect head-only tags too (DOMDocument may reorder them).
+			// Protect head-only tags.
 			'~<link\b[^>]*>~is',
 			'~<meta\b[^>]*>~is',
 		]);
@@ -763,28 +725,31 @@ final class Transliteration_Controller extends Transliteration
 				continue;
 			}
 
-			$html = preg_replace_callback($pattern, function ($m) use (&$placeholders, $tokenPrefix, $tokenSuffix) {
+			$html = preg_replace_callback($pattern, static function ($matches) use (&$placeholders, $tokenPrefix, $tokenSuffix): string {
 				$key = $tokenPrefix . (string) count($placeholders) . $tokenSuffix;
-				$placeholders[$key] = $m[0];
+				$placeholders[$key] = $matches[0];
+
 				return $key;
 			}, $html);
 		}
 
-		// ---------------------------------------------------------------------
-		// 2) DOM parse and transliterate TEXT nodes only
-		// ---------------------------------------------------------------------
 		$dom = new DOMDocument('1.0', 'UTF-8');
 
-		$prev = libxml_use_internal_errors(true);
+		$previous = libxml_use_internal_errors(true);
 
-		// Keep full document structure if present; DOMDocument will handle it.
-		// Avoid LIBXML_HTML_NOIMPLIED because it can produce weird fragments on full docs.
 		$wrapped = '<?xml encoding="UTF-8">' . $html;
-		$dom->loadHTML($wrapped, LIBXML_HTML_NODEFDTD);
+
+		if (!$dom->loadHTML($wrapped, LIBXML_HTML_NODEFDTD)) {
+			libxml_clear_errors();
+			libxml_use_internal_errors($previous);
+
+			return strtr($html, $placeholders);
+		}
+
 		$dom->encoding = 'UTF-8';
 
 		libxml_clear_errors();
-		libxml_use_internal_errors($prev);
+		libxml_use_internal_errors($previous);
 
 		$xpath = new DOMXPath($dom);
 
@@ -813,19 +778,18 @@ final class Transliteration_Controller extends Transliteration
 			}
 		}
 
-		// Skip user-defined zones.
 		$ancestorGuards[] = 'not(ancestor::*[@data-rstr-skip])';
 		$ancestorGuards[] = 'not(ancestor::*[contains(concat(" ", normalize-space(@class), " "), " rstr-skip ")])';
-
-		// Skip editable zones (builders/editors).
 		$ancestorGuards[] = 'not(ancestor::*[@contenteditable="true"])';
 
 		$textQuery = '//text()';
-		if (!empty($ancestorGuards)) {
+
+		if ($ancestorGuards !== []) {
 			$textQuery = '//text()[' . implode(' and ', $ancestorGuards) . ']';
 		}
 
 		$nodes = $xpath->query($textQuery);
+
 		if ($nodes instanceof DOMNodeList && $nodes->length > 0) {
 			foreach ($nodes as $textNode) {
 				$value = (string) $textNode->nodeValue;
@@ -834,22 +798,17 @@ final class Transliteration_Controller extends Transliteration
 					continue;
 				}
 
-				$value = preg_replace('/^[\x{FEFF}\x{200B}\x{00A0}]+/u', '', $value);
-
-				$textNode->nodeValue = $this->transliterate($value);
+				$textNode->nodeValue = $this->transliterate($value, 'auto', false);
 			}
 		}
 
-		// ---------------------------------------------------------------------
-		// 3) Serialize back and restore protected blocks
-		// ---------------------------------------------------------------------
-		$out = (string) $dom->saveHTML();
+		$output = (string) $dom->saveHTML();
 
-		if (!empty($placeholders)) {
-			$out = strtr($out, $placeholders);
+		if ($placeholders !== []) {
+			$output = strtr($output, $placeholders);
 		}
 
-		return $out;
+		return $output;
 	}
 
     /*
@@ -915,5 +874,52 @@ final class Transliteration_Controller extends Transliteration
 	private static function make_placeholder(int $group, int $index): string
 	{
 		return '@@::' . $group . '-' . $index . '@@';
+	}
+	
+	/**
+	 * Protect excluded Cyrillic words before transliteration.
+	 *
+	 * This method uses Unicode-aware boundaries instead of simple str_replace(),
+	 * because Phantom mode works with DOM text nodes and simple replacement can
+	 * produce partially transliterated words.
+	 *
+	 * @param string $content Input content.
+	 * @param array<string, string> $placeholders Placeholder storage.
+	 *
+	 * @return string
+	 */
+	private function protect_cyr_excluded_words(string $content, array &$placeholders): string
+	{
+		$exclude_list = $this->cyr_exclude_list();
+
+		if (empty($exclude_list)) {
+			return $content;
+		}
+
+		$exclude_list = array_values(array_unique(array_filter(array_map(static function ($word): string {
+			return is_string($word) ? trim($word) : '';
+		}, $exclude_list))));
+
+		if ($exclude_list === []) {
+			return $content;
+		}
+
+		usort($exclude_list, static function (string $a, string $b): int {
+			return mb_strlen($b, 'UTF-8') <=> mb_strlen($a, 'UTF-8');
+		});
+
+		foreach ($exclude_list as $index => $word) {
+			$placeholder = self::make_placeholder(9, $index);
+
+			$pattern = '/(?<![\p{L}\p{N}_])' . preg_quote($word, '/') . '(?![\p{L}\p{N}_])/u';
+
+			$content = preg_replace_callback($pattern, static function () use ($placeholder): string {
+				return $placeholder;
+			}, $content);
+
+			$placeholders[$placeholder] = $word;
+		}
+
+		return $content;
 	}
 }

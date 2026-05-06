@@ -212,6 +212,14 @@ class Transliteration_Settings_Fields
             RSTR_NAME,
             'transliteration_special_settings'
         );
+		
+		add_settings_field(
+            'js-dynamic-transliteration', // ID
+            __('JavaScript Dynamic Transliteration', 'serbian-transliteration') . ' (' . __('EXPERIMENTAL', 'serbian-transliteration') . ')', // Title
+            [$this, 'js_dynamic_transliteration_callback'], // Callback
+            RSTR_NAME,
+            'transliteration_special_settings'
+        );
 
 
 
@@ -712,6 +720,26 @@ class Transliteration_Settings_Fields
         );
         printf('<p class="description">%1$s</p>', sprintf(__('Separate words, phrases, names and expressions with the sign %s or put it in a new row. HTML is not allowed.', 'serbian-transliteration'), '<code>|</code>'));
     }
+	
+	public function js_dynamic_transliteration_callback(): void
+	{
+		$inputs = [];
+
+        foreach ([
+            'yes' => __('Yes', 'serbian-transliteration'),
+            'no'  => __('No', 'serbian-transliteration'),
+        ] as $key => $label) {
+            $inputs[] = sprintf(
+                '<label for="js-dynamic-transliteration-%1$s"><input type="radio" id="js-dynamic-transliteration-%1$s" name="%3$s[js-dynamic-transliteration]" value="%1$s"%4$s%5$s> <span>%2$s</span></label>',
+                esc_attr($key),
+                esc_html($label),
+                RSTR_NAME,
+                (isset($this->options['js-dynamic-transliteration']) && $this->options['js-dynamic-transliteration'] == $key ? ' checked' : (!isset($this->options['js-dynamic-transliteration']) && $key === 'no' ? ' checked' : '')),
+                ''
+            );
+        }
+        printf('%1$s<p class="description">%2$s</p>', implode(' ', $inputs), __('JavaScript Dynamic Transliteration ensures that all dynamically loaded content is properly transliterated in real time. It processes AJAX, builder-generated, and frontend-rendered elements while preserving HTML structure, URLs, and excluded words. <b>This option is only needed if some content is not transliterated correctly.</b>', 'serbian-transliteration'));
+	}
 
     public function cache_support_callback(): void
     {

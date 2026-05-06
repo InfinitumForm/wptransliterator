@@ -7,13 +7,28 @@ if (!defined('WPINC')) {
 final class Transliteration_Init extends Transliteration
 {
     public function __construct()
-    {
-        $this->set_admin_cookie_based_on_url();
+	{
+		$this->set_admin_cookie_based_on_url();
 
-        // Only register hooks here - do NOT instantiate heavy classes in constructor.
-        $this->add_action('plugins_loaded', 'hook_init', 1);
-        $this->add_action('template_redirect', 'set_transliteration');
-    }
+		// Register plugin textdomain at init or later.
+		$this->add_action('init', 'load_textdomain', 0);
+
+		// Boot translated classes only after WordPress i18n is ready.
+		$this->add_action('init', 'hook_init', 1);
+
+		$this->add_action('template_redirect', 'set_transliteration');
+	}
+	
+	public function load_textdomain(): void
+	{
+		if (function_exists('load_plugin_textdomain')) {
+			load_plugin_textdomain(
+				'serbian-transliteration',
+				false,
+				dirname(RSTR_BASENAME) . '/languages'
+			);
+		}
+	}
 
     public function hook_init(): void
     {

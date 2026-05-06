@@ -1,0 +1,1623 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Transliterator\n"
+"POT-Creation-Date: 2026-05-05 23:24+0200\n"
+"PO-Revision-Date: 2026-05-05 23:50+0200\n"
+"Last-Translator: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
+"Language-Team: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
+"Language: ka_GE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: serbian-transliteration.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: classes/blocks.php:19
+msgctxt "Block Editor: Script selector"
+msgid "Latin"
+msgstr "ლათინური"
+
+#: classes/blocks.php:22
+msgctxt "Block Editor: Script selector"
+msgid "Cyrillic"
+msgstr "კირилიცა"
+
+#: classes/blocks.php:43
+msgctxt "Block Editor: Script selector"
+msgid "Choose your display type:"
+msgstr "აირჩიეთ ჩვენების ტიპი:"
+
+#: classes/blocks.php:45
+msgctxt "Block Editor: Script selector"
+msgid "Script Selector"
+msgstr "დამწერლობის ამრჩევი"
+
+#: classes/blocks.php:47
+msgctxt "Block Editor: Script selector"
+msgid "Inline"
+msgstr "ჩაშენებული"
+
+#: classes/blocks.php:48
+msgctxt "Block Editor: Script selector"
+msgid "Select"
+msgstr "არჩევა"
+
+#: classes/blocks.php:49
+msgctxt "Block Editor: Script selector"
+msgid "List"
+msgstr "სია"
+
+#: classes/blocks.php:50
+msgctxt "Block Editor: Script selector"
+msgid "List items"
+msgstr "სიის ელემენტები"
+
+#: classes/blocks.php:53
+msgctxt "Block Editor: Script selector"
+msgid "Separator:"
+msgstr "გამყოფი:"
+
+#: classes/blocks.php:54
+msgctxt "Block Editor: Script selector"
+msgid "Cyrillic caption:"
+msgstr "კირილიცის წარწერა:"
+
+#: classes/blocks.php:55
+msgctxt "Block Editor: Script selector"
+msgid "Latin Caption:"
+msgstr "ლათინურის წარწერა:"
+
+#: classes/debug.php:341
+msgid "undefined"
+msgstr "განუსაზღვრელი"
+
+#: classes/filters.php:129
+msgid "Freelance Jobs - Find or post freelance jobs"
+msgstr "ფრილანს ვაკანსიები — იპოვეთ ან გამოაქვეყნეთ ფრილანს ვაკანსიები"
+
+#: classes/filters.php:134
+msgid "Contra Team - A complete hosting solution in one place"
+msgstr "Contra Team — ჰოსტინგის სრული გადაწყვეტა ერთ ადგილას"
+
+#: classes/menus.php:34 classes/settings.php:52 classes/settings.php:98 classes/settings.php:318 classes/settings.php:394 classes/settings.php:432 classes/settings.php:470 classes/settings.php:517 classes/settings.php:548 classes/settings.php:586 classes/settings.php:616
+msgid "Transliteration"
+msgstr "ტრანსლიტერაცია"
+
+#: classes/menus.php:49 classes/menus.php:51 classes/settings-fields.php:506 classes/settings-fields.php:582 classes/settings.php:128 classes/settings.php:203 classes/settings/page-functions.php:164 classes/shortcodes.php:36 classes/utilities.php:1292 classes/utilities.php:1677 functions.php:445
+msgid "Latin"
+msgstr "ლათინური"
+
+#: classes/menus.php:50 classes/menus.php:51 classes/settings-fields.php:505 classes/settings-fields.php:583 classes/settings.php:129 classes/settings.php:204 classes/settings/page-functions.php:159 classes/shortcodes.php:35 classes/utilities.php:1293 classes/utilities.php:1681 functions.php:441
+msgid "Cyrillic"
+msgstr "კირилიცა"
+
+#: classes/menus.php:87
+msgid "Help"
+msgstr "დახმარება"
+
+#: classes/menus.php:90
+msgid "To insert language script selector just add a relative link after the link's keyword, example :"
+msgstr "დამწერლობის ამრჩევის ჩასასმელად უბრალოდ დაამატეთ ფარდობითი ბმული ბმულის საკვანძო სიტყვის შემდეგ, მაგალითად:"
+
+#: classes/menus.php:91
+msgid "You can also use"
+msgstr "ასევე შეგიძლიათ გამოიყენოთ"
+
+#: classes/menus.php:91
+msgid "for change to Latin or use"
+msgstr "ლათინურზე გადასასვლელად ან გამოიყენეთ"
+
+#: classes/menus.php:91
+msgid "for change to Cyrillic"
+msgstr "კირილიცაზე გადასასვლელად"
+
+#: classes/menus.php:97
+msgid "Add to Menu"
+msgstr "მენიუში დამატება"
+
+#: classes/menus.php:118
+#, php-format
+msgid "The name of this navigation is written by always putting the Latin name first, then the Cyrillic one second, separated by the sign %s"
+msgstr "ამ ნავიგაციის სახელწოდება ყოველთვის ასე იწერება: ჯერ ლათინური სახელი, შემდეგ კირილიცა, და ისინი გამოყოფილია ნიშნით %s"
+
+#: classes/menus.php:119
+msgid "Example: Latinica | Ћирилица"
+msgstr "მაგალითი: ლათინური | კირილიცა"
+
+#: classes/menus.php:120
+msgid "Note that the white space around them will be cleared."
+msgstr "გაითვალისწინეთ, რომ მათ გარშემო არსებული ცარიელი ადგილები წაიშლება."
+
+#: classes/notifications.php:158
+#, php-format
+msgid "You have been using <b> %1$s </b> plugin for a while. We hope you liked it!"
+msgstr "თქვენ უკვე გარკვეული დროა იყენებთ <b> %1$s </b> პლაგინს. იმედია მოგეწონათ!"
+
+#: classes/notifications.php:158
+msgid "Please give us a quick rating, it works as a boost for us to keep working on the plugin!"
+msgstr "გთხოვთ, სწრაფად შეგვაფასეთ, ეს ჩვენთვის დიდი მხარდაჭერა იქნება და დაგვეხმარება პლაგინზე მუშაობის გაგრძელებაში!"
+
+#: classes/notifications.php:158
+msgid "Rate Now!"
+msgstr "შეაფასეთ ახლავე!"
+
+#: classes/notifications.php:158
+msgid "I've already done that!"
+msgstr "ეს უკვე გავაკეთე!"
+
+#: classes/notifications.php:177
+#, php-format
+msgid "Hey there! It's been a while since you've been using the <b> %1$s </b> plugin"
+msgstr "გამარჯობა! უკვე გარკვეული დროა იყენებთ <b> %1$s </b> პლაგინს"
+
+#: classes/notifications.php:182
+#, php-format
+msgid "I'm glad to hear you're enjoying the plugin. I've put a lot of time and effort into ensuring that your website runs smoothly. If you're feeling generous, how about %s for my hard work? 😊"
+msgstr "მიხარია, რომ ეს პლაგინი მოგწონთ. ბევრი დრო და ძალისხმევა ჩავდე, რომ თქვენი საიტი სტაბილურად მუშაობდეს. თუ სურვილი გაქვთ მადლობა გადამიხადოთ, რას იტყვით %s-ზე ჩემი შრომისთვის? 😊"
+
+#: classes/notifications.php:183
+msgid "treating me to a coffee"
+msgstr "ყავით გამასპინძლებაზე"
+
+#: classes/notifications.php:186 classes/notifications.php:213
+#, php-format
+msgid "Or simply %s forever."
+msgstr "ან უბრალოდ %s სამუდამოდ."
+
+#: classes/notifications.php:187 classes/notifications.php:214
+msgid "hide this message"
+msgstr "ამ შეტყობინების დამალვა"
+
+#: classes/notifications.php:200
+#, php-format
+msgid "Hey there! It's been a while since you've been using the <b>%1$s</b> plugin"
+msgstr "გამარჯობა! უკვე გარკვეული დროა იყენებთ <b>%1$s</b> პლაგინს"
+
+#: classes/notifications.php:204
+msgid "I'm really happy to see this plugin being useful for your website. If you ever feel like giving back, here's one way to do it."
+msgstr "ძალიან მიხარია, რომ ეს პლაგინი თქვენს საიტს ადგება. თუ ოდესმე მოგინდებათ მხარდაჭერის გამოხატვა, აი ამის ერთ-ერთი გზა."
+
+#: classes/notifications.php:206
+msgid "Bank account (Banca Intesa a.d. Beograd):"
+msgstr "საბანკო ანგარიში (Banca Intesa a.d. Beograd):"
+
+#: classes/notifications.php:210
+msgid "Every little bit helps, and I truly appreciate it! ❤️"
+msgstr "ყოველი მცირე დახმარებაც მნიშვნელოვანია და ამას გულწრფელად ვაფასებ! ❤️"
+
+#: classes/notifications.php:228
+#, php-format
+msgid "Find Work or %1$s in Serbia, Bosnia, Croatia, and Beyond!"
+msgstr "იპოვეთ სამუშაო ან %1$s სერბეთში, ბოსნიაში, ხორვატიასა და მის ფარგლებს გარეთ!"
+
+#: classes/notifications.php:228
+#, php-format
+msgid "Visit %2$s to connect with skilled professionals across the region. Whether you need a project completed or are looking for work, our platform is your gateway to successful collaboration."
+msgstr "ეწვიეთ %2$s-ს, რათა დაუკავშირდეთ კვალიფიციურ სპეციალისტებს მთელ რეგიონში. გჭირდებათ თუ არა პროექტის შემსრულებელი ან თავად ეძებთ სამუშაოს, ჩვენი პლატფორმა წარმატებული თანამშრომლობის გზაა."
+
+#: classes/notifications.php:229
+msgid "Hire Top Freelancers"
+msgstr "დაიქირავეთ საუკეთესო ფრილანსერები"
+
+#: classes/notifications.php:230
+msgid "Freelance Jobs"
+msgstr "ფრილანს ვაკანსიები"
+
+#: classes/notifications.php:231
+msgid "Join us today!"
+msgstr "შემოგვიერთდით დღესვე!"
+
+#: classes/requirements.php:47
+msgid "This plugin uses cookies and should be listed in your Privacy Policy page to prevent privacy issues."
+msgstr "ეს პლაგინი იყენებს cookie ფაილებს და კონფიდენციალურობის პრობლემების თავიდან ასაცილებლად ის უნდა იყოს მითითებული თქვენი კონფიდენციალურობის პოლიტიკის გვერდზე."
+
+#: classes/requirements.php:51
+msgid "Suggested text:"
+msgstr "რეკომენდებული ტექსტი:"
+
+#: classes/requirements.php:54
+#, php-format
+msgid "This website uses the %1$s plugin to transliterate content."
+msgstr "ეს ვებსაიტი შინაარსის ტრანსლიტერაციისთვის იყენებს %1$s პლაგინს."
+
+#: classes/requirements.php:59
+msgid "This is a simple and easy add-on with which this website translates content from Cyrillic to Latin and vice versa. This transliteration plugin also supports special shortcodes and functions that use cookies to specify the language script."
+msgstr "ეს არის მარტივი და მოსახერხებელი დანამატი, რომლის დახმარებითაც ეს ვებსაიტი შინაარსს კირილიციდან ლათინურზე და პირიქით გარდაქმნის. ეს ტრანსლიტერაციის პლაგინი ასევე მხარს უჭერს სპეციალურ შორტკოდებსა და ფუნქციებს, რომლებიც ენის დამწერლობის დასადგენად cookie-ებს იყენებენ."
+
+#: classes/requirements.php:62
+#, php-format
+msgid "These cookies do not affect your privacy because they are not intended for tracking and analytics. These cookies can have only two values: \"%1$s\" or \"%2$s\"."
+msgstr "ეს cookie-ები თქვენს კონფიდენციალურობაზე გავლენას არ ახდენს, რადგან ისინი თვალთვალისა და ანალიტიკისთვის არ არის განკუთვნილი. ამ cookie-ებს მხოლოდ ორი მნიშვნელობა შეიძლება ჰქონდეს: \\\"%1$s\\\" ან \\\"%2$s\\\"."
+
+#: classes/requirements.php:97
+#, php-format
+msgid "Important upgrade notice for the version %s:"
+msgstr "მნიშვნელოვანი განახლების შეტყობინება ვერსიისთვის %s:"
+
+#: classes/requirements.php:112
+msgid "NOTE: Before doing the update, it would be a good idea to backup your WordPress installations and settings."
+msgstr "შენიშვნა: განახლებამდე კარგი იდეაა WordPress-ის ინსტალაციებისა და პარამეტრების სარეზერვო ასლის შექმნა."
+
+#: classes/requirements.php:151
+#, php-format
+msgid "The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your host and ask them to upgrade."
+msgstr "%1$s ვერ იმუშავებს PHP %2$s-ზე ძველ PHP ვერსიებზე. გთხოვთ დაუკავშირდეთ თქვენს ჰოსტინგ-პროვაიდერს და სთხოვოთ განახლება."
+
+#: classes/requirements.php:160
+msgid "Transliteration plugin requires attention:"
+msgstr "ტრანსლიტერაციის პლაგინი ყურადღებას საჭიროებს:"
+
+#: classes/requirements.php:162
+#, php-format
+msgid "Your plugin works under Only WooCoomerce mode and you need to %s because WooCommerce is no longer active."
+msgstr "თქვენი პლაგინი მუშაობს Only WooCoomerce რეჟიმში და საჭიროა %s, რადგან WooCommerce აღარ არის აქტიური."
+
+#: classes/requirements.php:163
+msgid "update your settings"
+msgstr "განაახლეთ პარამეტრები"
+
+#: classes/requirements.php:174
+msgid "Transliteration plugin requires a Multibyte String PHP extension (mbstring)."
+msgstr "ტრანსლიტერაციის პლაგინს სჭირდება PHP-ის Multibyte String გაფართოება (mbstring)."
+
+#: classes/requirements.php:176
+#, php-format
+msgid "Without %s you will not be able to use this plugin."
+msgstr "%s-ის გარეშე ამ პლაგინის გამოყენებას ვერ შეძლებთ."
+
+#: classes/requirements.php:177
+msgid "Multibyte String Installation"
+msgstr "Multibyte String-ის დაყენება"
+
+#: classes/requirements.php:177
+msgid "this PHP extension"
+msgstr "ეს PHP გაფართოება"
+
+#: classes/requirements.php:200
+#, php-format
+msgid "The %1$s cannot run on WordPress versions older than %2$s. Please update your WordPress installation."
+msgstr "%1$s ვერ იმუშავებს %2$s-ზე ძველ WordPress ვერსიებზე. გთხოვთ განაახლოთ თქვენი WordPress ინსტალაცია."
+
+#: classes/settings-fields.php:77
+msgid "Global Settings"
+msgstr "გლობალური პარამეტრები"
+
+#: classes/settings-fields.php:84
+msgid "My site is"
+msgstr "ჩემი საიტი არის"
+
+#: classes/settings-fields.php:92
+msgid "Transliteration Mode"
+msgstr "ტრანსლიტერაციის რეჟიმი"
+
+#: classes/settings-fields.php:100
+msgid "First visit mode"
+msgstr "პირველი ვიზიტის რეჟიმი"
+
+#: classes/settings-fields.php:108
+msgid "Language scheme"
+msgstr "ენის სქემა"
+
+#: classes/settings-fields.php:116
+msgid "Plugin Mode"
+msgstr "პლაგინის რეჟიმი"
+
+#: classes/settings-fields.php:124
+msgid "Force transliteration permalinks to latin"
+msgstr "მუდმივი ბმულების ლათინურად იძულებითი ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:135
+msgid "Filters"
+msgstr "ფილტრები"
+
+#: classes/settings-fields.php:142
+msgid "Transliteration Filters"
+msgstr "ტრანსლიტერაციის ფილტრები"
+
+#: classes/settings-fields.php:150
+msgid "Exclude Latin words that you do not want to be transliterated to the Cyrillic."
+msgstr "გამორიცხეთ ლათინური სიტყვები, რომლებიც არ გსურთ კირილიცაზე ტრანსლიტერირდეს."
+
+#: classes/settings-fields.php:158
+msgid "Exclude Cyrillic words that you do not want to be transliterated to the Latin."
+msgstr "გამორიცხეთ კირილიცის სიტყვები, რომლებიც არ გსურთ ლათინურზე ტრანსლიტერირდეს."
+
+#: classes/settings-fields.php:171
+msgid "Special Settings"
+msgstr "სპეციალური პარამეტრები"
+
+#: classes/settings-fields.php:178
+msgid "Enable cache support"
+msgstr "ქეშის მხარდაჭერის ჩართვა"
+
+#: classes/settings-fields.php:186
+msgid "Force widget transliteration"
+msgstr "ვიჯეტების იძულებითი ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:194
+msgid "Force e-mail transliteration"
+msgstr "ელფოსტის იძულებითი ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:202
+msgid "Force transliteration for WordPress REST API"
+msgstr "WordPress REST API-სთვის იძულებითი ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:210
+msgid "Force transliteration for AJAX calls"
+msgstr "AJAX გამოძახებებისთვის იძულებითი ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:210 classes/settings-fields.php:218
+msgid "EXPERIMENTAL"
+msgstr "ექსპერიმენტული"
+
+#: classes/settings-fields.php:218
+msgid "JavaScript Dynamic Transliteration"
+msgstr "JavaScript-ის დინამიკური ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:231
+msgid "WP Admin"
+msgstr "WP Admin"
+
+#: classes/settings-fields.php:238
+msgid "WP-Admin transliteration"
+msgstr "WP-Admin-ის ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:246
+msgid "Allow Cyrillic Usernames"
+msgstr "კირილიცის მომხმარებლის სახელების დაშვება"
+
+#: classes/settings-fields.php:254
+msgid "Allow Admin Tools"
+msgstr "ადმინისტრატორის ხელსაწყოების დაშვება"
+
+#: classes/settings-fields.php:267
+msgid "Media Settings"
+msgstr "მედიის პარამეტრები"
+
+#: classes/settings-fields.php:274
+msgid "Transliterate filenames to latin"
+msgstr "ფაილების სახელების ლათინურად ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:282
+msgid "Filename delimiter"
+msgstr "ფაილის სახელის გამყოფი"
+
+#: classes/settings-fields.php:295
+msgid "WordPress Search"
+msgstr "WordPress ძებნა"
+
+#: classes/settings-fields.php:302
+msgid "Enable search transliteration"
+msgstr "ძიების ტრანსლიტერაციის ჩართვა"
+
+#: classes/settings-fields.php:311
+msgid "Fix Diacritics"
+msgstr "დიაკრიტიკის გასწორება"
+
+#: classes/settings-fields.php:320
+msgid "Search Mode"
+msgstr "ძიების რეჟიმი"
+
+#: classes/settings-fields.php:333
+msgid "SEO Settings"
+msgstr "SEO პარამეტრები"
+
+#: classes/settings-fields.php:340
+msgid "Parameter URL selector"
+msgstr "URL პარამეტრის ამრჩევი"
+
+#: classes/settings-fields.php:348
+msgid "RSS transliteration"
+msgstr "RSS-ის ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:361 classes/utilities.php:1598
+msgid "Exclusion"
+msgstr "გამონაკლისი"
+
+#: classes/settings-fields.php:371
+#, php-format
+msgid "Language: %s"
+msgstr "ენა: %s"
+
+#: classes/settings-fields.php:394
+msgid "Misc."
+msgstr "სხვადასხვა"
+
+#: classes/settings-fields.php:401
+msgid "Enable body class"
+msgstr "body კლასის ჩართვა"
+
+#: classes/settings-fields.php:409
+msgid "Theme Support"
+msgstr "თემის მხარდაჭერა"
+
+#: classes/settings-fields.php:426
+msgid "Support the Project"
+msgstr "მხარი დაუჭირეთ პროექტს"
+
+#: classes/settings-fields.php:437
+msgid "Contributors & Developers"
+msgstr "წვლილის შემტანები და დეველოპერები"
+
+#: classes/settings-fields.php:451
+msgid "This setting determines the mode of operation for the Transliteration plugin."
+msgstr "ეს პარამეტრი განსაზღვრავს ტრანსლიტერაციის პლაგინის მუშაობის რეჟიმს."
+
+#: classes/settings-fields.php:452
+msgid "Carefully choose the option that is best for your site and the plugin will automatically set everything you need for optimal performance."
+msgstr "ფრთხილად აირჩიეთ თქვენი საიტისთვის საუკეთესო ვარიანტი და პლაგინი ოპტიმალური მუშაობისთვის საჭიროს ავტომატურად დააყენებს."
+
+#: classes/settings-fields.php:457
+msgid "This section contains filters for exclusions, allowing you to specify content that should be excluded from transliteration, and also includes a filter to disable certain WordPress filters related to transliteration."
+msgstr "ეს განყოფილება შეიცავს გამონაკლისების ფილტრებს, რომლებიც საშუალებას გაძლევთ მიუთითოთ შინაარსი, რომელიც ტრანსლიტერაციიდან უნდა გამოირიცხოს, და ასევე მოიცავს ფილტრს WordPress-ის გარკვეული ტრანსლიტერაციასთან დაკავშირებული ფილტრების გამოსართავად."
+
+#: classes/settings-fields.php:462
+msgid "These are special settings that can enhance transliteration and are used only if you need them."
+msgstr "ეს არის სპეციალური პარამეტრები, რომლებსაც შეუძლიათ ტრანსლიტერაციის გაუმჯობესება და გამოიყენება მხოლოდ საჭიროების შემთხვევაში."
+
+#: classes/settings-fields.php:467
+msgid "These settings apply to the administrative part."
+msgstr "ეს პარამეტრები ადმინისტრაციულ ნაწილს ეხება."
+
+#: classes/settings-fields.php:472
+msgid "Upload, view and control media and files."
+msgstr "მედიისა და ფაილების ატვირთვა, ნახვა და მართვა."
+
+#: classes/settings-fields.php:477
+msgid "Our plugin also has special SEO options that are very important for your project."
+msgstr "ჩვენს პლაგინს ასევე აქვს სპეციალური SEO პარამეტრები, რომლებიც თქვენი პროექტისთვის ძალიან მნიშვნელოვანია."
+
+#: classes/settings-fields.php:482
+msgid "Within this configuration section, you have the opportunity to customize your experience by selecting the particular languages for which you wish to turn off the transliteration function. This feature is designed to give you greater control and adaptability over how the system handles transliteration, allowing you to disable it for specific languages based on your individual needs or preferences."
+msgstr "ამ კონფიგურაციის განყოფილებაში შეგიძლიათ მორგოთ მუშაობა იმ კონკრეტული ენების არჩევით, რომლებზეც ტრანსლიტერაციის ფუნქციის გამორთვა გსურთ. ეს შესაძლებლობა გაძლევთ მეტ კონტროლსა და მოქნილობას იმაზე, თუ როგორ ამუშავებს სისტემა ტრანსლიტერაციას, და საშუალებას გაძლევთ გამორთოთ ის ცალკეული ენებისთვის თქვენი საჭიროებებისა და სურვილების შესაბამისად."
+
+#: classes/settings-fields.php:487
+msgid "Various interesting settings that can be used in the development of your project."
+msgstr "სხვადასხვა საინტერესო პარამეტრი, რომლებიც თქვენი პროექტის განვითარებაში შეიძლება გამოიყენოთ."
+
+#: classes/settings-fields.php:495
+msgid "This setting determines the search mode within the WordPress core depending on the type of language located in the database."
+msgstr "ეს პარამეტრი განსაზღვრავს WordPress-ის ბირთვში ძიების რეჟიმს მონაცემთა ბაზაში არსებული ენის ტიპის მიხედვით."
+
+#: classes/settings-fields.php:496
+msgid "The search type setting is mostly experimental and you need to test each variant so you can get the best result you need."
+msgstr "ძიების ტიპის ეს პარამეტრი უმეტესად ექსპერიმენტულია და საუკეთესო შედეგის მისაღებად თითოეული ვარიანტი უნდა დატესტოთ."
+
+#: classes/settings-fields.php:510
+msgid "Arabic"
+msgstr "არაბული"
+
+#: classes/settings-fields.php:512
+msgid "Armenian"
+msgstr "სომხური"
+
+#: classes/settings-fields.php:528
+msgid "Define whether your primary alphabet on the site is Latin or Cyrillic. If the primary alphabet is Cyrillic then choose Cyrillic. If it is Latin, then choose Latin. This option is crucial for the plugin to work properly."
+msgstr "განსაზღვრეთ, თქვენს საიტზე ძირითადი ანბანი ლათინურია თუ კირილიცა. თუ ძირითადი ანბანი კირილიცაა, აირჩიეთ კირილიცა. თუ ლათინურია, აირჩიეთ ლათინური. ეს პარამეტრი პლაგინის სწორად მუშაობისთვის კრიტიკულად მნიშვნელოვანია."
+
+#: classes/settings-fields.php:530
+msgid "Define whether your primary alphabet on the site."
+msgstr "განსაზღვრეთ, რომელი არის თქვენი საიტის ძირითადი ანბანი."
+
+#: classes/settings-fields.php:543
+msgid "Transliteration disabled"
+msgstr "ტრანსლიტერაცია გამორთულია"
+
+#: classes/settings-fields.php:544 classes/settings.php:692 classes/settings/page-shortcodes.php:8 classes/settings/page-tags.php:5 classes/utilities.php:1669
+msgid "Cyrillic to Latin"
+msgstr "კირილიციდან ლათინურზე"
+
+#: classes/settings-fields.php:545 classes/settings.php:693 classes/settings/page-shortcodes.php:14 classes/settings/page-tags.php:8 classes/utilities.php:1673
+msgid "Latin to Cyrillic"
+msgstr "ლათინურიდან კირილიცაზე"
+
+#: classes/settings-fields.php:551
+msgid "Arabic to Latin"
+msgstr "არაბულიდან ლათინურზე"
+
+#: classes/settings-fields.php:552
+msgid "Latin to Arabic"
+msgstr "ლათინურიდან არაბულზე"
+
+#: classes/settings-fields.php:554
+msgid "Armenian to Latin"
+msgstr "სომხურიდან ლათინურზე"
+
+#: classes/settings-fields.php:555
+msgid "Latin to Armenian"
+msgstr "ლათინურიდან სომხურზე"
+
+#: classes/settings-fields.php:573
+msgid "This option determines the global transliteration of your web site. If you do not want to transliterate the entire website and use this plugin for other purposes, disable this option. This option does not affect to the functionality of short codes and tags."
+msgstr "ეს პარამეტრი განსაზღვრავს თქვენი ვებსაიტის გლობალურ ტრანსლიტერაციას. თუ არ გსურთ მთელი საიტის ტრანსლიტერაცია და ამ პლაგინს სხვა მიზნებისთვის იყენებთ, გამორთეთ ეს პარამეტრი. ეს პარამეტრი არ ახდენს გავლენას შორტკოდებისა და ტეგების ფუნქციონირებაზე."
+
+#: classes/settings-fields.php:593
+msgid "This option determines the type of language script that the visitors sees when they first time come to your site."
+msgstr "ეს პარამეტრი განსაზღვრავს, რომელ დამწერლობას ნახავენ ვიზიტორები თქვენი საიტის პირველად მონახულებისას."
+
+#: classes/settings-fields.php:602
+msgid "Automatical"
+msgstr "ავტომატურად"
+
+#: classes/settings-fields.php:623
+msgid "This option defines the language script. Automatic script detection is the best way but if you are using a WordPress installation in a language that does not match the scripts supported by this plugin, then choose on which script you want the transliteration to be performed."
+msgstr "ეს პარამეტრი განსაზღვრავს ენის დამწერლობას. დამწერლობის ავტომატური ამოცნობა საუკეთესო გზაა, მაგრამ თუ WordPress-ის ინსტალაციას იყენებთ ისეთ ენაზე, რომელიც ამ პლაგინის მიერ მხარდაჭერილ დამწერლობებს არ ემთხვევა, აირჩიეთ, რომელ დამწერლობაზე უნდა შესრულდეს ტრანსლიტერაცია."
+
+#: classes/settings-fields.php:649
+msgid "This option configures the operating mode of the entire plugin and affects all aspects of the site related to transliteration. Each mode has its own set of filters, which are activated based on your specific needs. It's important to take the time to review and customize these settings according to your preferences."
+msgstr "ეს პარამეტრი არეგულირებს მთელი პლაგინის მუშაობის რეჟიმს და გავლენას ახდენს საიტის ყველა იმ ასპექტზე, რომელიც ტრანსლიტერაციას უკავშირდება. თითოეულ რეჟიმს თავისი ფილტრების ნაკრები აქვს, რომლებიც თქვენს საჭიროებებზე დაყრდნობით აქტიურდება. მნიშვნელოვანია, რომ ამ პარამეტრების გადახედვასა და მორგებას თქვენი სურვილების შესაბამისად დრო დაუთმოთ."
+
+#: classes/settings-fields.php:651
+msgid "Forced transliteration can sometimes cause problems if Latin is translated into Cyrillic in pages and posts. To this combination must be approached experimentally."
+msgstr "იძულებითი ტრანსლიტერაცია ზოგჯერ პრობლემებს იწვევს, თუ გვერდებსა და ჩანაწერებში ლათინური კირილიცაზე გადაიქცევა. ამ კომბინაციას ექსპერიმენტულად უნდა მიუდგეთ."
+
+#: classes/settings-fields.php:663
+msgid "Exclude filters you don't need (optional)"
+msgstr "გამორიცხეთ არასაჭირო ფილტრები (არასავალდებულო)"
+
+#: classes/settings-fields.php:669
+msgid "Select the transliteration filters you want to exclude."
+msgstr "აირჩიეთ ტრანსლიტერაციის ფილტრები, რომელთა გამორიცხვაც გსურთ."
+
+#: classes/settings-fields.php:670
+msgid "The filters you select here will not be transliterated (these filters do not work on forced transliteration)."
+msgstr "აქ არჩეული ფილტრები არ ტრანსლიტერირდება (ეს ფილტრები იძულებითი ტრანსლიტერაციისას არ მუშაობს)."
+
+#: classes/settings-fields.php:683
+msgid "TIPS & TRICKS:"
+msgstr "რჩევები და ხრიკები:"
+
+#: classes/settings-fields.php:684
+msgid "You can find details about some of the listed filters in this article:"
+msgstr "ზოგიერთი ჩამოთვლილი ფილტრის შესახებ დეტალებს ამ სტატიაში ნახავთ:"
+
+#: classes/settings-fields.php:692
+#, php-format
+msgid "Since you are already a WooCommerce user, you also can see the following documentation: %s"
+msgstr "რადგან უკვე WooCommerce-ის მომხმარებელი ხართ, ასევე შეგიძლიათ გაეცნოთ შემდეგ დოკუმენტაციას: %s"
+
+#: classes/settings-fields.php:711 classes/settings-fields.php:721
+#, php-format
+msgid "Separate words, phrases, names and expressions with the sign %s or put it in a new row. HTML is not allowed."
+msgstr "სიტყვები, ფრაზები, სახელები და გამოთქმები გამოყავით ნიშნით %s ან ჩასვით ახალ სტრიქონზე. HTML დაშვებული არ არის."
+
+#: classes/settings-fields.php:729 classes/settings-fields.php:749 classes/settings-fields.php:769 classes/settings-fields.php:789 classes/settings-fields.php:808 classes/settings-fields.php:827 classes/settings-fields.php:849 classes/settings-fields.php:869 classes/settings-fields.php:888 classes/settings-fields.php:910 classes/settings-fields.php:932 classes/settings-fields.php:978 classes/settings-fields.php:997 classes/settings-fields.php:1059
+#: classes/settings-fields.php:1098 classes/settings.php:696 classes/settings.php:700 classes/settings.php:704 classes/settings.php:708 classes/utilities.php:1657
+msgid "Yes"
+msgstr "დიახ"
+
+#: classes/settings-fields.php:730 classes/settings-fields.php:750 classes/settings-fields.php:770 classes/settings-fields.php:790 classes/settings-fields.php:809 classes/settings-fields.php:828 classes/settings-fields.php:850 classes/settings-fields.php:870 classes/settings-fields.php:889 classes/settings-fields.php:911 classes/settings-fields.php:933 classes/settings-fields.php:979 classes/settings-fields.php:998 classes/settings-fields.php:1060
+#: classes/settings-fields.php:1099 classes/settings.php:697 classes/settings.php:701 classes/settings.php:705 classes/settings.php:709 classes/utilities.php:1661
+msgid "No"
+msgstr "არა"
+
+#: classes/settings-fields.php:741
+msgid "JavaScript Dynamic Transliteration ensures that all dynamically loaded content is properly transliterated in real time. It processes AJAX, builder-generated, and frontend-rendered elements while preserving HTML structure, URLs, and excluded words. <b>This option is only needed if some content is not transliterated correctly.</b>"
+msgstr "JavaScript-ის დინამიკური ტრანსლიტერაცია უზრუნველყოფს, რომ დინამიკურად ჩატვირთული მთელი შინაარსი რეალურ დროში სწორად ტრანსლიტერირდეს. ის ამუშავებს AJAX-ს, ბილდერით გენერირებულ და ფრონტენდზე გამოჩენილ ელემენტებს, HTML სტრუქტურის, URL-ებისა და გამორიცხული სიტყვების შენარჩუნებით. <b>ეს პარამეტრი საჭიროა მხოლოდ იმ შემთხვევაში, თუ შინაარსის ნაწილი სწორად არ ტრანსლიტერირდება.</b>"
+
+#: classes/settings-fields.php:761
+msgid "If you have a problem caching your pages, our plugin solves this problem by clearing the cache when changing the language script."
+msgstr "თუ გვერდების ქეშირებასთან დაკავშირებით პრობლემა გაქვთ, ჩვენი პლაგინი მას ენის დამწერლობის შეცვლისას ქეშის გაწმენდით აგვარებს."
+
+#: classes/settings-fields.php:781
+msgid "This option forces the widget to transliterate. There may be some unusual behaviour in the rare cases."
+msgstr "ეს პარამეტრი აიძულებს ვიჯეტს ტრანსლიტერაცია გამოიყენოს. იშვიათ შემთხვევებში შესაძლოა უჩვეულო ქცევა გამოჩნდეს."
+
+#: classes/settings-fields.php:800
+msgid "Enable this feature if you want to force transliteration of email content."
+msgstr "ჩართეთ ეს ფუნქცია, თუ ელფოსტის შინაარსის იძულებითი ტრანსლიტერაცია გსურთ."
+
+#: classes/settings-fields.php:819
+msgid "Enable this feature if you want to force transliteration of WordPress REST API calls. The WordPress REST API is also used in many AJAX calls, WooCommerce, and page builders. It is recommended to be enabled by default."
+msgstr "ჩართეთ ეს ფუნქცია, თუ WordPress REST API გამოძახებების იძულებითი ტრანსლიტერაცია გსურთ. WordPress REST API გამოიყენება ბევრ AJAX გამოძახებაში, WooCommerce-ში და გვერდის ბილდერებში. რეკომენდებულია ნაგულისხმევად ჩართული იყოს."
+
+#: classes/settings-fields.php:838
+#, php-format
+msgid "Enable this feature if you want to force transliteration of AJAX calls. If you want to avoid transliteration of specific individual AJAX calls, you must add a new POST or GET parameter to your AJAX call: %s"
+msgstr "ჩართეთ ეს ფუნქცია, თუ AJAX გამოძახებების იძულებითი ტრანსლიტერაცია გსურთ. თუ კონკრეტული AJAX გამოძახებების ტრანსლიტერაციის თავიდან აცილება გსურთ, თქვენს AJAX გამოძახებაში ახალი POST ან GET პარამეტრი უნდა დაამატოთ: %s"
+
+#: classes/settings-fields.php:861
+msgid "Enable if you want the WP-Admin area to be transliterated."
+msgstr "ჩართეთ, თუ გსურთ, რომ WP-Admin ზონა ტრანსლიტერირდეს."
+
+#: classes/settings-fields.php:880
+msgid "Allows to create users with usernames containing Cyrillic characters."
+msgstr "შესაძლებელს ხდის ისეთი მომხმარებლების შექმნას, რომელთა სახელებიც კირილიცის სიმბოლოებს შეიცავს."
+
+#: classes/settings-fields.php:899
+msgid "This feature enables you to easily transliterate titles and content directly within the WordPress editor. This functionality is available for various content types, including categories, pages, posts, and custom post types, ensuring a seamless experience when managing multilingual content on your site. With just a few clicks, you can switch between scripts, making your content accessible to a broader audience."
+msgstr "ეს ფუნქცია გაძლევთ საშუალებას სათაურები და შინაარსი მარტივად ტრანსლიტერირდეს უშუალოდ WordPress-ის რედაქტორში. ეს შესაძლებლობა ხელმისაწვდომია სხვადასხვა ტიპის შინაარსისთვის, მათ შორის კატეგორიებისთვის, გვერდებისთვის, ჩანაწერებისთვის და მორგებული ჩანაწერების ტიპებისთვის, რაც თქვენს საიტზე მრავალენოვანი შინაარსის მართვას ამარტივებს. რამდენიმე დაწკაპებით შეგიძლიათ დამწერლობებს შორის გადართვა და თქვენი შინაარსი უფრო ფართო აუდიტორიისთვის ხელმისაწვდომი გახადოთ."
+
+#: classes/settings-fields.php:921
+msgid "Enable if you want to force cyrillic permalinks to latin."
+msgstr "ჩართეთ, თუ კირილიცის მუდმივი ბმულების ლათინურად იძულებით გადაყვანა გსურთ."
+
+#: classes/settings-fields.php:943
+msgid "Enable if you want to convert cyrillic filenames to latin."
+msgstr "ჩართეთ, თუ კირილიცის ფაილის სახელების ლათინურად გარდაქმნა გსურთ."
+
+#: classes/settings-fields.php:954
+msgid "hyphen (default)"
+msgstr "დეფისი (ნაგულისხმევი)"
+
+#: classes/settings-fields.php:955
+msgid "underscore"
+msgstr "ქვედატირე"
+
+#: classes/settings-fields.php:956
+msgid "dot"
+msgstr "წერტილი"
+
+#: classes/settings-fields.php:957
+msgid "tilde"
+msgstr "ტილდა"
+
+#: classes/settings-fields.php:958
+msgid "vartical bar"
+msgstr "ვერტიკალური ხაზი"
+
+#: classes/settings-fields.php:959
+msgid "asterisk"
+msgstr "ვარსკვლავი"
+
+#: classes/settings-fields.php:970
+msgid "Filename delimiter, example:"
+msgstr "ფაილის სახელის გამყოფი, მაგალითი:"
+
+#: classes/settings-fields.php:970
+msgid "my-upload-file.jpg"
+msgstr "my-upload-file.jpg"
+
+#: classes/settings-fields.php:989
+msgid "Approve if you want transliteration for the search field."
+msgstr "ჩართეთ, თუ ძიების ველისთვის ტრანსლიტერაცია გსურთ."
+
+#: classes/settings-fields.php:1008
+msgid "Try to fix the diacritics in the search field."
+msgstr "ეცადეთ გამოასწოროთ დიაკრიტიკა ძიების ველში."
+
+#: classes/settings-fields.php:1016
+msgid "Automatical (recommended)"
+msgstr "ავტომატურად (რეკომენდებულია)"
+
+#: classes/settings-fields.php:1017
+msgid "Based on the plugin mode"
+msgstr "პლაგინის რეჟიმის მიხედვით"
+
+#: classes/settings-fields.php:1027
+msgid "The search has two working modes. Choose the one that works best with your search."
+msgstr "ძიებას ორი სამუშაო რეჟიმი აქვს. აირჩიეთ ის, რომელიც თქვენს ძიებას საუკეთესოდ შეესაბამება."
+
+#: classes/settings-fields.php:1035
+msgid "(safe)"
+msgstr "(უსაფრთხო)"
+
+#: classes/settings-fields.php:1036
+msgid "(standard)"
+msgstr "(სტანდარტული)"
+
+#: classes/settings-fields.php:1037 classes/settings-fields.php:1038 classes/settings-fields.php:1039 classes/settings-fields.php:1040 classes/settings-fields.php:1041
+msgid "(optional)"
+msgstr "(არასავალდებულო)"
+
+#: classes/settings-fields.php:1051
+msgid "This option dictates which URL parameter will be used to change the language."
+msgstr "ეს პარამეტრი განსაზღვრავს, რომელი URL პარამეტრი იქნება გამოყენებული ენის შესაცვლელად."
+
+#: classes/settings-fields.php:1071
+msgid "This option transliterate the RSS feed."
+msgstr "ეს პარამეტრი RSS არხს ტრანსლიტერაციას უკეთებს."
+
+#: classes/settings-fields.php:1077
+msgid "Transliterate"
+msgstr "ტრანსლიტერაცია"
+
+#: classes/settings-fields.php:1078
+msgid "Omit the transliteration"
+msgstr "ტრანსლიტერაციის გამოტოვება"
+
+#: classes/settings-fields.php:1109
+msgid "This option adds CSS classes to your body HTML tag. These CSS classes vary depending on the language script."
+msgstr "ეს პარამეტრი თქვენს HTML body ტეგს CSS კლასებს ამატებს. ეს CSS კლასები ენის დამწერლობაზეა დამოკიდებული."
+
+#: classes/settings-fields.php:1117
+msgid "Enable Theme Support"
+msgstr "თემის მხარდაჭერის ჩართვა"
+
+#: classes/settings-fields.php:1118
+msgid "Disable Theme Support"
+msgstr "თემის მხარდაჭერის გამორთვა"
+
+#: classes/settings-fields.php:1128
+msgid "If you don't require transliteration support for your theme, you can disable it for your current theme here."
+msgstr "თუ თქვენს თემას ტრანსლიტერაციის მხარდაჭერა არ სჭირდება, აქ შეგიძლიათ გამორთოთ ის მიმდინარე თემისთვის."
+
+#: classes/settings-fields.php:1179
+msgid "This mode has no filters."
+msgstr "ამ რეჟიმს ფილტრები არ აქვს."
+
+#: classes/settings-sidebars.php:10
+msgid "Transliterator is free to use and actively maintained. Ongoing updates, performance improvements, and new features require continuous time and resources."
+msgstr "Transliterator უფასოა და აქტიურად ვითარდება. მუდმივი განახლებები, წარმადობის გაუმჯობესება და ახალი ფუნქციები მუდმივ დროსა და რესურსებს მოითხოვს."
+
+#: classes/settings-sidebars.php:11
+msgid "If the plugin adds value to your work, you are welcome to support its further development with a voluntary contribution."
+msgstr "თუ პლაგინი თქვენს საქმეს ღირებულებას მატებს, შეგიძლიათ მისი შემდგომი განვითარება ნებაყოფლობითი მხარდაჭერით დააფინანსოთ."
+
+#: classes/settings-sidebars.php:18 classes/settings/page-credits.php:56
+msgid "Banca Intesa a.d. Beograd"
+msgstr "Banca Intesa a.d. Beograd"
+
+#: classes/settings-sidebars.php:26
+msgid "Thank you for your support."
+msgstr "გმადლობთ მხარდაჭერისთვის."
+
+#: classes/settings-sidebars.php:43
+#, php-format
+msgid "If you want to support our work and effort, if you have new ideas or want to improve the existing code, %s."
+msgstr "თუ გსურთ ჩვენი მუშაობისა და ძალისხმევის მხარდაჭერა, თუ გაქვთ ახალი იდეები ან არსებული კოდის გაუმჯობესება გსურთ, %s."
+
+#: classes/settings-sidebars.php:43
+msgid "join our team"
+msgstr "შემოუერთდით ჩვენს გუნდს"
+
+#: classes/settings.php:64 serbian-transliteration.php:187
+msgid "Settings saved."
+msgstr "პარამეტრები შენახულია."
+
+#: classes/settings.php:77 classes/settings.php:714
+msgid "Settings"
+msgstr "პარამეტრები"
+
+#: classes/settings.php:86 classes/settings.php:237
+msgid "Shortcodes"
+msgstr "შორტკოდები"
+
+#: classes/settings.php:87 classes/settings.php:238
+msgid "PHP Functions"
+msgstr "PHP ფუნქციები"
+
+#: classes/settings.php:88
+msgid "5 stars?"
+msgstr "5 ვარსკვლავი?"
+
+#: classes/settings.php:97
+msgid "Transliteration Settings"
+msgstr "ტრანსლიტერაციის პარამეტრები"
+
+#: classes/settings.php:130 classes/settings.php:205
+msgid "To Latin"
+msgstr "ლათინურზე"
+
+#: classes/settings.php:131 classes/settings.php:206
+msgid "To Cyrillic"
+msgstr "კირილიცაზე"
+
+#: classes/settings.php:132 classes/settings.php:207
+msgid "Transliterate:"
+msgstr "ტრანსლიტერაცია:"
+
+#: classes/settings.php:133 classes/settings.php:175 classes/settings.php:208
+msgid "Loading..."
+msgstr "იტვირთება..."
+
+#: classes/settings.php:173 classes/settings/page-permalinks.php:37
+msgid "Please wait! Do not close the window or leave the page until this operation is completed!"
+msgstr "გთხოვთ მოიცადოთ! არ დახუროთ ფანჯარა და არ დატოვოთ გვერდი, სანამ ეს ოპერაცია არ დასრულდება!"
+
+#: classes/settings.php:174
+msgid "DONE!!!"
+msgstr "დასრულებულია!!!"
+
+#: classes/settings.php:220
+msgid "PLEASE UPDATE PLUGIN SETTINGS"
+msgstr "გთხოვთ განაახლოთ პლაგინის პარამეტრები"
+
+#: classes/settings.php:221
+msgid "Carefully review the transliteration plugin settings and adjust how it fits your WordPress installation. It is important that every time you change the settings, you test the parts of the site that are affected by this plugin."
+msgstr "ყურადღებით გადაამოწმეთ ტრანსლიტერაციის პლაგინის პარამეტრები და მოარგეთ ისინი თქვენი WordPress ინსტალაციას. მნიშვნელოვანია, რომ პარამეტრების ყოველი ცვლილების შემდეგ შეამოწმოთ საიტის ის ნაწილები, რომლებზეც ეს პლაგინი მოქმედებს."
+
+#: classes/settings.php:239
+msgid "Tags"
+msgstr "ტეგები"
+
+#: classes/settings.php:245
+msgid "Transliteration Tool"
+msgstr "ტრანსლიტერაციის ხელსაწყო"
+
+#: classes/settings.php:246
+msgid "Permalink Tool"
+msgstr "მუდმივი ბმულების ხელსაწყო"
+
+#: classes/settings.php:267
+msgid "General Settings"
+msgstr "ზოგადი პარამეტრები"
+
+#: classes/settings.php:271 classes/settings.php:715
+msgid "Documentation"
+msgstr "დოკუმენტაცია"
+
+#: classes/settings.php:275 classes/settings.php:716
+msgid "Tools"
+msgstr "ხელსაწყოები"
+
+#: classes/settings.php:279 classes/settings.php:717
+msgid "Debug"
+msgstr "გამართვა"
+
+#: classes/settings.php:283 classes/settings.php:616 classes/settings.php:718 classes/settings/page-credits.php:60
+msgid "Credits"
+msgstr "კრედიტები"
+
+#: classes/settings.php:339 classes/settings.php:348
+msgid "Save Changes"
+msgstr "ცვლილებების შენახვა"
+
+#: classes/settings.php:394
+msgid "Available shortcodes"
+msgstr "ხელმისაწვდომი შორტკოდები"
+
+#: classes/settings.php:432
+msgid "Available PHP Functions"
+msgstr "ხელმისაწვდომი PHP ფუნქციები"
+
+#: classes/settings.php:470
+msgid "Available Tags"
+msgstr "ხელმისაწვდომი ტეგები"
+
+#: classes/settings.php:517
+msgid "Converter for transliterating Cyrillic into Latin and vice versa"
+msgstr "კონვერტერი კირილიცის ლათინურად და პირიქით ტრანსლიტერაციისთვის"
+
+#: classes/settings.php:548
+msgid "Permalink Transliteration Tool"
+msgstr "მუდმივი ბმულების ტრანსლიტერაციის ხელსაწყო"
+
+#: classes/settings.php:586
+msgid "Debug information"
+msgstr "გამართვის ინფორმაცია"
+
+#: classes/settings.php:671
+msgid "WordPress Transliterator"
+msgstr "WordPress ტრანსლიტერატორი"
+
+#: classes/settings.php:712
+msgid "Quick Access:"
+msgstr "სწრაფი წვდომა:"
+
+#: classes/settings.php:719
+msgid "Rate us"
+msgstr "შეგვაფასეთ"
+
+#: classes/settings.php:723
+msgid "Current Settings:"
+msgstr "მიმდინარე პარამეტრები:"
+
+#: classes/settings.php:725
+msgid "Transliteration Mode:"
+msgstr "ტრანსლიტერაციის რეჟიმი:"
+
+#: classes/settings.php:726
+msgid "Cache Support:"
+msgstr "ქეშის მხარდაჭერა:"
+
+#: classes/settings.php:727
+msgid "Media Transliteration:"
+msgstr "მედიის ტრანსლიტერაცია:"
+
+#: classes/settings.php:728
+msgid "Permalink Transliteration:"
+msgstr "მუდმივი ბმულების ტრანსლიტერაცია:"
+
+#: classes/settings.php:731
+msgid "Transliterator plugin options are not yet available. Please update plugin settings!"
+msgstr "Transliterator პლაგინის პარამეტრები ჯერ ხელმისაწვდომი არ არის. გთხოვთ განაახლოთ პლაგინის პარამეტრები!"
+
+#: classes/settings/page-credits.php:52
+msgid "Support"
+msgstr "მხარდაჭერა"
+
+#: classes/settings/page-credits.php:53
+msgid "This plugin is 100% free. If you want to buy us one coffee, beer or in general help the development of this plugin through a monetary donation, you can do it in the following ways:"
+msgstr "ეს პლაგინი 100%-ით უფასოა. თუ გსურთ ყავით, ლუდით გაგვიმასპინძლდეთ ან ზოგადად ფულადი შემოწირულობით დაეხმაროთ ამ პლაგინის განვითარებას, ამის გაკეთება შემდეგი გზებით შეგიძლიათ:"
+
+#: classes/settings/page-credits.php:56
+msgid "From Serbia"
+msgstr "სერბეთიდან"
+
+#: classes/settings/page-credits.php:61
+msgid "This is a light weight, simple and easy plugin with which you can transliterate your WordPress installation from Cyrillic to Latin and vice versa in a few clicks. This transliteration plugin also supports special shortcodes that you can use to partially transliterate parts of the content."
+msgstr "ეს არის მსუბუქი, მარტივი და მოსახერხებელი პლაგინი, რომლის დახმარებითაც რამდენიმე დაწკაპებით შეგიძლიათ თქვენი WordPress ინსტალაცია კირილიციდან ლათინურზე და პირიქით ტრანსლიტერირდეს. ეს ტრანსლიტერაციის პლაგინი ასევე მხარს უჭერს სპეციალურ შორტკოდებს, რომლებსაც შინაარსის ნაწილობრივი ტრანსლიტერაციისთვის გამოიყენებთ."
+
+#: classes/settings/page-credits.php:81
+msgid "Sponsors of this plugin:"
+msgstr "ამ პლაგინის სპონსორები:"
+
+#: classes/settings/page-credits.php:85
+#, php-format
+msgid "If you want to help develop this plugin and be one of the sponsors, please contact us at: %s"
+msgstr "თუ გსურთ ამ პლაგინის განვითარებაში დახმარება და ერთ-ერთი სპონსორი გახდეთ, დაგვიკავშირდით აქ: %s"
+
+#: classes/settings/page-credits.php:111
+msgid "Special thanks to the contributors in the development of this plugin:"
+msgstr "განსაკუთრებული მადლობა ამ პლაგინის განვითარებაში ჩართულ ადამიანებს:"
+
+#: classes/settings/page-credits.php:117
+msgid "Copyright"
+msgstr "საავტორო უფლებები"
+
+#: classes/settings/page-credits.php:121
+#, php-format
+msgid "Copyright &copy; 2020 - %1$d %2$s by %3$s. All Right Reserved."
+msgstr "საავტორო უფლებები &copy; 2020 - %1$d %2$s, %3$s-ის მიერ. ყველა უფლება დაცულია."
+
+#: classes/settings/page-credits.php:123
+msgid "Transliterator – WordPress Transliteration"
+msgstr "Transliterator – WordPress-ის ტრანსლიტერაცია"
+
+#: classes/settings/page-credits.php:128
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
+msgstr "ეს პროგრამა თავისუფალი პროგრამული უზრუნველყოფაა; შეგიძლიათ გაავრცელოთ და/ან შეცვალოთ იგი Free Software Foundation-ის მიერ გამოქვეყნებული GNU General Public License-ის პირობების თანახმად; ლიცენზიის ან მეორე ვერსიის, ან (თქვენი სურვილით) ნებისმიერი უფრო ახალი ვერსიის მიხედვით."
+
+#: classes/settings/page-credits.php:129
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+msgstr "ეს პროგრამა ვრცელდება იმ იმედით, რომ სასარგებლო იქნება, მაგრამ ყოველგვარი გარანტიის გარეშე; მათ შორის სავაჭრო ვარგისიანობის ან კონკრეტული მიზნისთვის ვარგისიანობის ნაგულისხმევი გარანტიის გარეშეც."
+
+#: classes/settings/page-credits.php:130
+msgid "See the GNU General Public License for more details."
+msgstr "დამატებითი ინფორმაციისთვის იხილეთ GNU General Public License."
+
+#: classes/settings/page-credits.php:131
+msgid "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA."
+msgstr "ამ პროგრამასთან ერთად GNU General Public License-ის ასლიც უნდა მიგეღოთ; თუ არა, მისწერეთ Free Software Foundation, Inc.-ს, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA."
+
+#: classes/settings/page-debug.php:13
+msgid "Plugin ID"
+msgstr "პლაგინის ID"
+
+#: classes/settings/page-debug.php:17
+msgid "Plugin version"
+msgstr "პლაგინის ვერსია"
+
+#: classes/settings/page-debug.php:21
+msgid "WordPress version"
+msgstr "WordPress-ის ვერსია"
+
+#: classes/settings/page-debug.php:25
+msgid "Last plugin update"
+msgstr "პლაგინის ბოლო განახლება"
+
+#: classes/settings/page-debug.php:29
+msgid "PHP version"
+msgstr "PHP-ის ვერსია"
+
+#: classes/settings/page-debug.php:33
+msgid "PHP version ID"
+msgstr "PHP ვერსიის ID"
+
+#: classes/settings/page-debug.php:37
+msgid "PHP architecture"
+msgstr "PHP არქიტექტურა"
+
+#: classes/settings/page-debug.php:38 classes/settings/page-debug.php:106
+#, php-format
+msgid "%d bit"
+msgstr "%d ბიტი"
+
+#: classes/settings/page-debug.php:41
+msgid "WordPress debug"
+msgstr "WordPress გამართვა"
+
+#: classes/settings/page-debug.php:42 classes/settings/page-debug.php:46 classes/settings/page-debug.php:51
+msgid "On"
+msgstr "ჩართულია"
+
+#: classes/settings/page-debug.php:42 classes/settings/page-debug.php:46 classes/settings/page-debug.php:51
+msgid "Off"
+msgstr "გამორთულია"
+
+#: classes/settings/page-debug.php:45
+msgid "WordPress multisite"
+msgstr "WordPress multisite"
+
+#: classes/settings/page-debug.php:50
+msgid "WooCommerce active"
+msgstr "WooCommerce აქტიურია"
+
+#: classes/settings/page-debug.php:55
+msgid "WooCommerce version"
+msgstr "WooCommerce-ის ვერსია"
+
+#: classes/settings/page-debug.php:61
+msgid "Site title"
+msgstr "საიტის სათაური"
+
+#: classes/settings/page-debug.php:69
+msgid "Tagline"
+msgstr "სლოგანი"
+
+#: classes/settings/page-debug.php:77
+msgid "WordPress address (URL)"
+msgstr "WordPress მისამართი (URL)"
+
+#: classes/settings/page-debug.php:81
+msgid "Admin email"
+msgstr "ადმინისტრატორის ელფოსტა"
+
+#: classes/settings/page-debug.php:85
+msgid "Encoding for pages and feeds"
+msgstr "გვერდებისა და არხების კოდირება"
+
+#: classes/settings/page-debug.php:89
+msgid "Content-Type"
+msgstr "Content-Type"
+
+#: classes/settings/page-debug.php:93
+msgid "Site Language"
+msgstr "საიტის ენა"
+
+#: classes/settings/page-debug.php:97
+msgid "Server time"
+msgstr "სერვერის დრო"
+
+#: classes/settings/page-debug.php:101
+msgid "WordPress directory path"
+msgstr "WordPress დირექტორიის გზა"
+
+#: classes/settings/page-debug.php:105
+msgid "Operting system"
+msgstr "ოპერაციული სისტემა"
+
+#: classes/settings/page-debug.php:109
+msgid "User agent"
+msgstr "მომხმარებლის აგენტი"
+
+#: classes/settings/page-debug.php:113
+msgid "Plugin directory path"
+msgstr "პლაგინის დირექტორიის გზა"
+
+#: classes/settings/page-debug.php:129
+msgid "Plugin settings"
+msgstr "პლაგინის პარამეტრები"
+
+#: classes/settings/page-functions.php:4
+msgid "These are available PHP functions that you can use in your themes and plugins."
+msgstr "ეს არის ხელმისაწვდომი PHP ფუნქციები, რომლებიც შეგიძლიათ თქვენს თემებსა და პლაგინებში გამოიყენოთ."
+
+#: classes/settings/page-functions.php:21
+msgid "Determines whether the site is already in Cyrillic."
+msgstr "განსაზღვრავს, არის თუ არა საიტი უკვე კირილიცაზე."
+
+#: classes/settings/page-functions.php:103
+msgid "This function provides information on whether the currently active language is excluded from transliteration."
+msgstr "ეს ფუნქცია გვაწვდის ინფორმაციას, გამორიცხულია თუ არა ამჟამად აქტიური ენა ტრანსლიტერაციიდან."
+
+#: classes/settings/page-functions.php:107
+msgid "Transliteration of some text or content into the desired script."
+msgstr "გარკვეული ტექსტის ან შინაარსის სასურველ დამწერლობაზე ტრანსლიტერაცია."
+
+#: classes/settings/page-functions.php:109
+msgid "The <b><i>$type</i></b> parameter has two values: <code>cyr_to_lat</code> (Cyrillic to Latin) and <code>lat_to_cyr</code> (Latin to Cyrillic)"
+msgstr "პარამეტრს <b><i>$type</i></b> ორი მნიშვნელობა აქვს: <code>cyr_to_lat</code> (კირილიციდან ლათინურზე) და <code>lat_to_cyr</code> (ლათინურიდან კირილიცაზე)"
+
+#: classes/settings/page-functions.php:112
+msgid "Transliteration from Cyrillic to Latin."
+msgstr "ტრანსლიტერაცია კირილიციდან ლათინურზე."
+
+#: classes/settings/page-functions.php:116
+msgid "Transliteration from Latin to Cyrillic."
+msgstr "ტრანსლიტერაცია ლათინურიდან კირილიცაზე."
+
+#: classes/settings/page-functions.php:120
+msgid "Transliterates Cyrillic characters to Latin, converting them to their basic ASCII equivalents by removing diacritics."
+msgstr "კირილიცის სიმბოლოებს ლათინურად ტრანსლიტერირებს და დიაკრიტიკის მოცილებით მათ საბაზისო ASCII ეკვივალენტებად გარდაქმნის."
+
+#: classes/settings/page-functions.php:124
+msgid "Get active script."
+msgstr "აქტიური დამწერლობის მიღება."
+
+#: classes/settings/page-functions.php:128
+msgid "This function displays a selector for the transliteration script."
+msgstr "ეს ფუნქცია ტრანსლიტერაციის დამწერლობის ამრჩევს აჩვენებს."
+
+#: classes/settings/page-functions.php:130
+msgid "Parameters"
+msgstr "პარამეტრები"
+
+#: classes/settings/page-functions.php:131
+msgid "This attribute contains an associative set of parameters for this function:"
+msgstr "ეს ატრიბუტი ამ ფუნქციის პარამეტრების ასოციაციურ ნაკრებს შეიცავს:"
+
+#: classes/settings/page-functions.php:137
+#, php-format
+msgid "(string) The type of selector that will be displayed on the site. It can be: %1$s, %2$s, %3$s, %4$s, %5$s or %6$s. Default: %1$s"
+msgstr "(string) ამრჩევის ტიპი, რომელიც საიტზე გამოჩნდება. ის შეიძლება იყოს: %1$s, %2$s, %3$s, %4$s, %5$s ან %6$s. ნაგულისხმევად: %1$s"
+
+#: classes/settings/page-functions.php:149
+#, php-format
+msgid "(bool) determines whether it will be displayed through an echo or as a string. Default: %s"
+msgstr "(bool) განსაზღვრავს, გამოიტანს თუ არა მნიშვნელობას echo-ს საშუალებით, თუ სტრიქონის სახით. ნაგულისხმევად: %s"
+
+#: classes/settings/page-functions.php:154 classes/settings/page-shortcodes.php:52
+#, php-format
+msgid "(string) Separator to be used when the selector type is %s. Default: %s"
+msgstr "(string) გამყოფი, რომელიც გამოიყენება, როცა ამრჩევის ტიპია %s. ნაგულისხმევად: %s"
+
+#: classes/settings/page-functions.php:159
+#, php-format
+msgid "(string) Text for Cyrillic link. Default: %s"
+msgstr "(string) ტექსტი კირილიცის ბმულისთვის. ნაგულისხმევად: %s"
+
+#: classes/settings/page-functions.php:164
+#, php-format
+msgid "(string) Text for Latin link. Default: %s"
+msgstr "(string) ტექსტი ლათინურის ბმულისთვის. ნაგულისხმევად: %s"
+
+#: classes/settings/page-permalinks.php:2
+msgid "This tool enables you to convert all existing Cyrillic permalinks in your database to Latin characters."
+msgstr "ეს ხელსაწყო საშუალებას გაძლევთ თქვენს მონაცემთა ბაზაში არსებული ყველა კირილიცის მუდმივი ბმული ლათინურ სიმბოლოებად გადააქციოთ."
+
+#: classes/settings/page-permalinks.php:4
+msgid "Warning:"
+msgstr "გაფრთხილება:"
+
+#: classes/settings/page-permalinks.php:7
+msgid "This option is dangerous and can create unexpected problems. Once you run this script, all permalinks in your database will be modified and this can affect on the SEO causing a 404 error."
+msgstr "ეს პარამეტრი სახიფათოა და შეიძლება მოულოდნელი პრობლემები გამოიწვიოს. ამ სკრიპტის გაშვების შემდეგ თქვენს მონაცემთა ბაზაში არსებული ყველა მუდმივი ბმული შეიცვლება, რამაც შეიძლება SEO-ზე იმოქმედოს და 404 შეცდომა გამოიწვიოს."
+
+#: classes/settings/page-permalinks.php:10
+msgid "Before proceeding, consult with your SEO specialist, as you will likely need to resubmit your sitemap and adjust other settings to update the permalinks in search engines."
+msgstr "გაგრძელებამდე გაიარეთ კონსულტაცია თქვენს SEO სპეციალისტთან, რადგან სავარაუდოდ მოგიწევთ საიტის რუკის ხელახლა გაგზავნა და სხვა პარამეტრების კორექტირება, რათა საძიებო სისტემებში მუდმივი ბმულები განახლდეს."
+
+#: classes/settings/page-permalinks.php:12
+msgid "For advanced users, this function can also be executed via WP-CLI using the command"
+msgstr "გამოცდილი მომხმარებლებისთვის ეს ფუნქცია ასევე შეიძლება შესრულდეს WP-CLI-ის მეშვეობით შემდეგი ბრძანებით"
+
+#: classes/settings/page-permalinks.php:14
+#, php-format
+msgid "Important: Make sure to %s before running this script."
+msgstr "მნიშვნელოვანია: ამ სკრიპტის გაშვებამდე აუცილებლად %s."
+
+#: classes/settings/page-permalinks.php:14
+msgid "back up your database"
+msgstr "შექმენით თქვენი მონაცემთა ბაზის სარეზერვო ასლი"
+
+#: classes/settings/page-permalinks.php:26
+#, php-format
+msgid "This tool will affect on the following post types: %s"
+msgstr "ეს ხელსაწყო შემდეგ ჩანაწერების ტიპებზე იმოქმედებს: %s"
+
+#: classes/settings/page-permalinks.php:40
+msgid "Let's do magic"
+msgstr "მოდი, ცოტა ჯადოქრობა გავაკეთოთ"
+
+#: classes/settings/page-permalinks.php:43
+msgid "Are you sure you want this?"
+msgstr "დარწმუნებული ხართ, რომ ეს გსურთ?"
+
+#: classes/settings/page-permalinks.php:47
+msgid "Disclaimer"
+msgstr "უარის განცხადება"
+
+#: classes/settings/page-permalinks.php:48
+msgid "While this tool is designed to operate safely, there is always a small risk of unpredictable issues."
+msgstr "მიუხედავად იმისა, რომ ეს ხელსაწყო უსაფრთხოდ მუშაობისთვისაა შექმნილი, ყოველთვის არსებობს მცირე რისკი непредсказуемых проблем."
+
+#: classes/settings/page-permalinks.php:49
+msgid "Note: We do not guarantee that this tool will function correctly on your server. By using it, you assume all risks and responsibilities for any potential issues."
+msgstr "შენიშვნა: ჩვენ არ ვიძლევით გარანტიას, რომ ეს ხელსაწყო თქვენს სერვერზე სწორად იმუშავებს. მისი გამოყენებით ყველა შესაძლო პრობლემის რისკსა და პასუხისმგებლობას თქვენ იღებთ."
+
+#: classes/settings/page-permalinks.php:50
+msgid "Backup your database before using this tool."
+msgstr "ამ ხელსაწყოს გამოყენებამდე შექმენით მონაცემთა ბაზის სარეზერვო ასლი."
+
+#: classes/settings/page-shortcodes.php:4
+msgid "These are available shortcodes that you can use in your content, visual editors, themes and plugins."
+msgstr "ეს ხელმისაწვდომი შორტკოდებია, რომლებიც შეგიძლიათ შინაარსში, ვიზუალურ რედაქტორებში, თემებსა და პლაგინებში გამოიყენოთ."
+
+#: classes/settings/page-shortcodes.php:5 classes/settings/page-tags.php:11
+msgid "Skip transliteration"
+msgstr "ტრანსლიტერაციის გამოტოვება"
+
+#: classes/settings/page-shortcodes.php:6 classes/settings/page-tags.php:12
+msgid "Keep this original"
+msgstr "ორიგინალის შენარჩუნება"
+
+#: classes/settings/page-shortcodes.php:11 classes/settings/page-shortcodes.php:18
+msgid "(optional) correct HTML code."
+msgstr "(არასავალდებულო) სწორი HTML კოდი."
+
+#: classes/settings/page-shortcodes.php:16 classes/settings/page-shortcodes.php:33 classes/settings/page-shortcodes.php:49
+msgid "Optional shortcode parameters"
+msgstr "შორტკოდის არასავალდებულო პარამეტრები"
+
+#: classes/settings/page-shortcodes.php:19
+msgid "(optional) correct diacritics."
+msgstr "(არასავალდებულო) დიაკრიტიკის გასწორება."
+
+#: classes/settings/page-shortcodes.php:22
+msgid "Add an image depending on the language script"
+msgstr "სურათის დამატება ენის დამწერლობის მიხედვით"
+
+#: classes/settings/page-shortcodes.php:23
+msgid "With this shortcode you can manipulate images and display images in Latin or Cyrillic depending on the setup."
+msgstr "ამ შორტკოდით შეგიძლიათ სურათების მართვა და მათი ლათინურად ან კირილიცაზე ჩვენება პარამეტრების მიხედვით."
+
+#: classes/settings/page-shortcodes.php:25
+msgid "Example"
+msgstr "მაგალითი"
+
+#: classes/settings/page-shortcodes.php:27
+msgid "Main shortcode parameters"
+msgstr "შორტკოდის ძირითადი პარამეტრები"
+
+#: classes/settings/page-shortcodes.php:29
+msgid "URL (src) as shown in the Latin language"
+msgstr "URL (src), როგორც ლათინურზე ჩანს"
+
+#: classes/settings/page-shortcodes.php:30
+msgid "URL (src) as shown in the Cyrillic language"
+msgstr "URL (src), როგორც კირილიცაზე ჩანს"
+
+#: classes/settings/page-shortcodes.php:31
+msgid "(optional) URL (src) to the default image if Latin and Cyrillic are unavailable"
+msgstr "(არასავალდებულო) ნაგულისხმევი სურათის URL (src), თუ ლათინური და კირილიცა მიუწვდომელია"
+
+#: classes/settings/page-shortcodes.php:35
+msgid "(optional) title (alt) description of the image for Cyrillic"
+msgstr "(არასავალდებულო) სურათის title (alt) აღწერა კირილიცისთვის"
+
+#: classes/settings/page-shortcodes.php:36
+msgid "(optional) caption description of the image for Cyrillic"
+msgstr "(არასავალდებულო) სურათის წარწერის აღწერა კირილიცისთვის"
+
+#: classes/settings/page-shortcodes.php:37
+msgid "(optional) title (alt) description of the image for Latin"
+msgstr "(არასავალდებულო) სურათის title (alt) აღწერა ლათინურისთვის"
+
+#: classes/settings/page-shortcodes.php:38
+msgid "(optional) caption description of the image for Latin"
+msgstr "(არასავალდებულო) სურათის წარწერის აღწერა ლათინურისთვის"
+
+#: classes/settings/page-shortcodes.php:39
+msgid "(optional) title (alt) description of the image if Latin and Cyrillic are unavailable"
+msgstr "(არასავალდებულო) სურათის title (alt) აღწერა, თუ ლათინური და კირილიცა მიუწვდომელია"
+
+#: classes/settings/page-shortcodes.php:40
+msgid "(optional) caption description of the imag if Latin and Cyrillic are unavailable"
+msgstr "(არასავალდებულო) სურათის წარწერის აღწერა, თუ ლათინური და კირილიცა მიუწვდომელია"
+
+#: classes/settings/page-shortcodes.php:42
+msgid "Shortcode return"
+msgstr "შორტკოდის დაბრუნებული მნიშვნელობა"
+
+#: classes/settings/page-shortcodes.php:43
+msgid "HTML image corresponding to the parameters set in this shortcode."
+msgstr "HTML სურათი, რომელიც ამ შორტკოდში მითითებულ პარამეტრებს შეესაბამება."
+
+#: classes/settings/page-shortcodes.php:46
+msgid "Language script menu"
+msgstr "ენის დამწერლობის მენიუ"
+
+#: classes/settings/page-shortcodes.php:47
+msgid "This shortcode displays a selector for the transliteration script."
+msgstr "ეს შორტკოდი ტრანსლიტერაციის დამწერლობის ამრჩევს აჩვენებს."
+
+#: classes/settings/page-shortcodes.php:51
+#, php-format
+msgid "(string) The type of selector that will be displayed on the site. It can be: \"%1$s\", \"%2$s\", \"%3$s\" or \"%4$s\""
+msgstr "(string) ამრჩევის ტიპი, რომელიც საიტზე გამოჩნდება. ის შეიძლება იყოს: \\\"%1$s\\\", \\\"%2$s\\\", \\\"%3$s\\\" ან \\\"%4$s\\\""
+
+#: classes/settings/page-shortcodes.php:53
+msgid "(string) Text for Cyrillic link. Default: Cyrillic"
+msgstr "(string) ტექსტი კირილიცის ბმულისთვის. ნაგულისხმევად: კირილიცა"
+
+#: classes/settings/page-shortcodes.php:54
+msgid "(string) Text for Latin link. Default: Latin"
+msgstr "(string) ტექსტი ლათინურის ბმულისთვის. ნაგულისხმევად: ლათინური"
+
+#: classes/settings/page-shortcodes.php:57
+msgid "This shortcodes work independently of the plugin settings and can be used anywhere within WordPress pages, posts, taxonomies and widgets (if they support it)."
+msgstr "ეს შორტკოდები პლაგინის პარამეტრებისგან დამოუკიდებლად მუშაობს და მათი გამოყენება WordPress-ის გვერდებში, ჩანაწერებში, ტაქსონომიებსა და ვიჯეტებში შეიძლება (თუ მხარდაჭერილია)."
+
+#: classes/settings/page-tags.php:4
+msgid "These tags have a special purpose and work separately from short codes and can be used in fields where short codes cannot be used."
+msgstr "ამ ტეგებს განსაკუთრებული დანიშნულება აქვს, შორტკოდებისგან ცალკე მუშაობს და შეიძლება იმ ველებში გამოიყენოთ, სადაც შორტკოდები ვერ გამოიყენება."
+
+#: classes/settings/page-tags.php:4
+msgid "These tags have no additional settings and can be applied in plugins, themes, widgets and within other short codes."
+msgstr "ამ ტეგებს დამატებითი პარამეტრები არ აქვს და მათი გამოყენება პლაგინებში, თემებში, ვიჯეტებსა და სხვა შორტკოდების შიგნით შეიძლება."
+
+#: classes/settings/page-transliteration.php:4
+msgid "Copy the desired text into one field and press the desired key to convert the text."
+msgstr "სასურველი ტექსტი ერთ ველში ჩასვით და სასურველ ღილაკს დააჭირეთ ტექსტის გადასაყვანად."
+
+#: classes/settings/page-transliteration.php:8
+msgid "Convert to Latin"
+msgstr "ლათინურზე გადაყვანა"
+
+#: classes/settings/page-transliteration.php:9
+msgid "Convert to Cyrillic"
+msgstr "კირილიცაზე გადაყვანა"
+
+#: classes/settings/page-transliteration.php:13
+msgid "Reset"
+msgstr "გასუფთავება"
+
+#: classes/shortcodes.php:57 classes/shortcodes.php:87 classes/shortcodes.php:119
+#, php-format
+msgid "The %1$s shortcode has been deprecated as of version %2$s. Please update your content and use the new %3$s shortcode."
+msgstr "შორტკოდი %1$s ვერსია %2$s-დან მოძველებულია. გთხოვთ განაახლოთ შინაარსი და გამოიყენოთ ახალი შორტკოდი %3$s."
+
+#: classes/shortcodes.php:153
+msgid "Transliteration shortcode does not have adequate parameters and translation is not possible. Please check the documentation."
+msgstr "ტრანსლიტერაციის შორტკოდს საკმარისი პარამეტრები არ აქვს და თარგმნა შეუძლებელია. გთხოვთ გადაამოწმოთ დოკუმენტაცია."
+
+#: classes/tools.php:27
+msgid "An error occurred while converting. Please refresh the page and try again."
+msgstr "გარდაქმნის დროს შეცდომა მოხდა. გთხოვთ განაახლოთ გვერდი და თავიდან სცადოთ."
+
+#: classes/tools.php:34
+msgid "The field is empty."
+msgstr "ველი ცარიელია."
+
+#: classes/tools.php:67
+msgid "There was a communication problem. Please refresh the page and try again. If this does not solve the problem, contact the author of the plugin."
+msgstr "კომუნიკაციის პრობლემა მოხდა. გთხოვთ განაახლოთ გვერდი და თავიდან სცადოთ. თუ ეს პრობლემას არ მოაგვარებს, დაუკავშირდით პლაგინის ავტორს."
+
+#: classes/utilities.php:248
+msgid "Phantom Mode (ultra fast DOM-based transliteration)"
+msgstr "Phantom Mode (DOM-ზე დაფუძნებული ულტრასწრაფი ტრანსლიტერაცია)"
+
+#: classes/utilities.php:249
+msgid "Light mode (basic parts of the site)"
+msgstr "მსუბუქი რეჟიმი (საიტის ძირითადი ნაწილები)"
+
+#: classes/utilities.php:250
+msgid "Standard mode (content, themes, plugins, translations, menu)"
+msgstr "სტანდარტული რეჟიმი (შინაარსი, თემები, პლაგინები, თარგმანები, მენიუ)"
+
+#: classes/utilities.php:251
+msgid "Advanced mode (content, widgets, themes, plugins, translations, menu, permalinks, media)"
+msgstr "გაფართოებული რეჟიმი (შინაარსი, ვიჯეტები, თემები, პლაგინები, თარგმანები, მენიუ, მუდმივი ბმულები, მედია)"
+
+#: classes/utilities.php:252
+msgid "Forced transliteration (everything)"
+msgstr "იძულებითი ტრანსლიტერაცია (ყველაფერი)"
+
+#: classes/utilities.php:253
+msgid "Only WooCommerce (It bypasses all other transliterations and focuses only on WooCommerce)"
+msgstr "მხოლოდ WooCommerce (ის უვლის ყველა სხვა ტრანსლიტერაციას გვერდს და მხოლოდ WooCommerce-ზეა ორიენტირებული)"
+
+#: classes/utilities.php:254
+msgid "Dev Mode (Only for developers and testers)"
+msgstr "დეველოპერის რეჟიმი (მხოლოდ დეველოპერებისა და ტესტერებისთვის)"
+
+#: classes/utilities.php:1267
+msgid " degrees "
+msgstr " გრადუსი "
+
+#: classes/utilities.php:1268
+msgid " divided by "
+msgstr " გაყოფილი "
+
+#: classes/utilities.php:1269
+msgid " times "
+msgstr " გამრავლებული "
+
+#: classes/utilities.php:1270
+msgid " plus-minus "
+msgstr " პლუს-მინუს "
+
+#: classes/utilities.php:1271
+msgid " square root "
+msgstr " კვადრატული ფესვი "
+
+#: classes/utilities.php:1272
+msgid " infinity "
+msgstr " უსასრულობა "
+
+#: classes/utilities.php:1273
+msgid " almost equal to "
+msgstr " თითქმის ტოლია "
+
+#: classes/utilities.php:1274
+msgid " not equal to "
+msgstr " არ უდრის "
+
+#: classes/utilities.php:1275
+msgid " identical to "
+msgstr " იდენტურია "
+
+#: classes/utilities.php:1276
+msgid " less than or equal to "
+msgstr " ნაკლებია ან ტოლია "
+
+#: classes/utilities.php:1277
+msgid " greater than or equal to "
+msgstr " მეტია ან ტოლია "
+
+#: classes/utilities.php:1278
+msgid " left "
+msgstr " მარცხნივ "
+
+#: classes/utilities.php:1279
+msgid " right "
+msgstr " მარჯვნივ "
+
+#: classes/utilities.php:1280
+msgid " up "
+msgstr " ზემოთ "
+
+#: classes/utilities.php:1281
+msgid " down "
+msgstr " ქვემოთ "
+
+#: classes/utilities.php:1282
+msgid " left and right "
+msgstr " მარცხნივ და მარჯვნივ "
+
+#: classes/utilities.php:1283
+msgid " up and down "
+msgstr " ზემოთ და ქვემოთ "
+
+#: classes/utilities.php:1284
+msgid " care of "
+msgstr " ვის სახელზე "
+
+#: classes/utilities.php:1285
+msgid " estimated "
+msgstr " დაახლოებით "
+
+#: classes/utilities.php:1286
+msgid " ohm "
+msgstr " ომი "
+
+#: classes/utilities.php:1287
+msgid " female "
+msgstr " მდედრობითი "
+
+#: classes/utilities.php:1288
+msgid " male "
+msgstr " მამრობითი "
+
+#: classes/utilities.php:1289
+msgid " Copyright "
+msgstr " საავტორო უფლებები "
+
+#: classes/utilities.php:1290
+msgid " Registered "
+msgstr " რეგისტრირებული "
+
+#: classes/utilities.php:1291
+msgid " Trademark "
+msgstr " სავაჭრო ნიშანი "
+
+#: classes/utilities.php:1620
+msgid "Option name"
+msgstr "პარამეტრის სახელი"
+
+#: classes/utilities.php:1621 classes/utilities.php:1635
+msgid "Value"
+msgstr "მნიშვნელობა"
+
+#: classes/utilities.php:1634
+msgid "Key"
+msgstr "გასაღები"
+
+#: classes/utilities.php:1665
+msgid "Automatic"
+msgstr "ავტომატური"
+
+#: classes/utilities.php:1685
+msgid "Disabled"
+msgstr "გამორთულია"
+
+#: classes/wp-cli.php:60
+msgid "Please wait! Do not close the terminal or terminate the script until this operation is completed!"
+msgstr "გთხოვთ მოიცადოთ! არ დახუროთ ტერმინალი და არ შეწყვიტოთ სკრიპტი, სანამ ეს ოპერაცია არ დასრულდება!"
+
+#: classes/wp-cli.php:62
+msgid "Progress:"
+msgstr "მიმდინარეობა:"
+
+#: classes/wp-cli.php:111
+#, php-format
+msgid "Updated page ID %1$d, (%2$s) at URL: %3$s"
+msgstr "განახლდა გვერდი ID %1$d, (%2$s) მისამართზე: %3$s"
+
+#: classes/wp-cli.php:126
+#, php-format
+msgid "%d permalink was successfully transliterated."
+msgid_plural "%d permalinks were successfully transliterated."
+msgstr[0] "%d მუდმივი ბმული წარმატებით ტრანსლიტერირდა."
+
+#: classes/wp-cli.php:128
+msgid "No changes to the permalink have been made."
+msgstr "მუდმივ ბმულში ცვლილებები არ განხორციელებულა."
+
+#: functions.php:485
+#, php-format
+msgid "Choose one of the display types: \"%1$s\", \"%2$s\", \"%3$s\", \"%4$s\", \"%5$s\" or \"%6$s\""
+msgstr "აირჩიეთ ჩვენების ერთ-ერთი ტიპი: \\\"%1$s\\\", \\\"%2$s\\\", \\\"%3$s\\\", \\\"%4$s\\\", \\\"%5$s\\\" ან \\\"%6$s\\\""
+
+#: serbian-transliteration.php:155 serbian-transliteration.php:156
+msgid "Transliterator"
+msgstr "Transliterator"
+
+#: serbian-transliteration.php:171
+msgid "You do not have sufficient permissions to access this page."
+msgstr "ამ გვერდზე წვდომისთვის საკმარისი უფლებები არ გაქვთ."
+
+#: serbian-transliteration.php:194
+msgid "Security check failed. Please try again."
+msgstr "უსაფრთხოების შემოწმება ვერ შესრულდა. გთხოვთ თავიდან სცადოთ."
+
+#: serbian-transliteration.php:223
+msgid "Transliterator - Network Settings"
+msgstr "Transliterator - ქსელის პარამეტრები"
+
+#: serbian-transliteration.php:230
+msgid "Select sites where the plugin should run when it is network-activated."
+msgstr "აირჩიეთ საიტები, სადაც პლაგინი უნდა მუშაობდეს, როცა ქსელურადაა გააქტიურებული."
+
+#: serbian-transliteration.php:235
+msgid "Enable"
+msgstr "ჩართვა"
+
+#: serbian-transliteration.php:236
+msgid "Site"
+msgstr "საიტი"
+
+#: serbian-transliteration.php:237
+msgid "Domain"
+msgstr "დომენი"
+
+#: serbian-transliteration.php:238
+msgid "Path"
+msgstr "გზა"
+
+#: serbian-transliteration.php:253
+#, php-format
+msgid "Site #%d"
+msgstr "საიტი №%d"
+
+#: serbian-transliteration.php:260
+#, php-format
+msgid "Enable Transliterator on site ID %d"
+msgstr "Transliterator-ის ჩართვა საიტზე ID %d"
+
+#: serbian-transliteration.php:279
+msgid "No sites found."
+msgstr "საიტები ვერ მოიძებნა."
+
+#: serbian-transliteration.php:288
+msgid "Save changes"
+msgstr "ცვლილებების შენახვა"
+
+#. Plugin Name of the plugin/theme
+msgid "Transliterator – Multilingual and Multi-script Text Conversion"
+msgstr "Transliterator — მრავალენოვანი და მრავალდამწერლობიანი ტექსტის გარდაქმნა"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/serbian-transliteration/"
+msgstr "https://wordpress.org/plugins/serbian-transliteration/"
+
+#. Description of the plugin/theme
+msgid "All-in-one Cyrillic to Latin transliteration plugin for WordPress. Supports Slavic, Arabic, Greek, and Central Asian scripts."
+msgstr "WordPress-ისთვის კირილიციდან ლათინურზე ტრანსლიტერაციის უნივერსალური პლაგინი. მხარს უჭერს სლავურ, არაბულ, ბერძნულ და ცენტრალურაზიურ დამწერლობებს."
+
+#. Author of the plugin/theme
+msgid "Ivijan-Stefan Stipić"
+msgstr "Ivijan-Stefan Stipić"
+
+#. Author URI of the plugin/theme
+msgid "https://profiles.wordpress.org/ivijanstefan/"
+msgstr "https://profiles.wordpress.org/ivijanstefan/"

@@ -1,3 +1,10 @@
+= 2.5.0 =
+* Added JavaScript dynamic transliteration for AJAX and frontend content
+* Fixed Latin to Cyrillic and Cyrillic to Latin inconsistencies
+* Improved handling of excluded words
+* Fixed edge cases with dynamic content rendering
+* Minor UX improvements
+
 = 2.4.4 =
 * Fixed nested plugins_loaded issue
 * Refactored REST init

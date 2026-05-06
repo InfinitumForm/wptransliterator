@@ -1,0 +1,1627 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Transliterator\n"
+"POT-Creation-Date: 2026-05-05 23:24+0200\n"
+"PO-Revision-Date: 2026-05-05 23:50+0200\n"
+"Last-Translator: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
+"Language-Team: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
+"Language: bel\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: serbian-transliteration.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: classes/blocks.php:19
+msgctxt "Block Editor: Script selector"
+msgid "Latin"
+msgstr "Лацініца"
+
+#: classes/blocks.php:22
+msgctxt "Block Editor: Script selector"
+msgid "Cyrillic"
+msgstr "Кірыліца"
+
+#: classes/blocks.php:43
+msgctxt "Block Editor: Script selector"
+msgid "Choose your display type:"
+msgstr "Выберыце тып адлюстравання:"
+
+#: classes/blocks.php:45
+msgctxt "Block Editor: Script selector"
+msgid "Script Selector"
+msgstr "Пераключальнік пісьма"
+
+#: classes/blocks.php:47
+msgctxt "Block Editor: Script selector"
+msgid "Inline"
+msgstr "Убудаваны"
+
+#: classes/blocks.php:48
+msgctxt "Block Editor: Script selector"
+msgid "Select"
+msgstr "Выбар"
+
+#: classes/blocks.php:49
+msgctxt "Block Editor: Script selector"
+msgid "List"
+msgstr "Спіс"
+
+#: classes/blocks.php:50
+msgctxt "Block Editor: Script selector"
+msgid "List items"
+msgstr "Элементы спісу"
+
+#: classes/blocks.php:53
+msgctxt "Block Editor: Script selector"
+msgid "Separator:"
+msgstr "Раздзяляльнік:"
+
+#: classes/blocks.php:54
+msgctxt "Block Editor: Script selector"
+msgid "Cyrillic caption:"
+msgstr "Подпіс для кірыліцы:"
+
+#: classes/blocks.php:55
+msgctxt "Block Editor: Script selector"
+msgid "Latin Caption:"
+msgstr "Подпіс для лацініцы:"
+
+#: classes/debug.php:341
+msgid "undefined"
+msgstr "не вызначана"
+
+#: classes/filters.php:129
+msgid "Freelance Jobs - Find or post freelance jobs"
+msgstr "Фрыланс-вакансіі — знайдзіце працу або размясціце вакансіі для фрылансераў"
+
+#: classes/filters.php:134
+msgid "Contra Team - A complete hosting solution in one place"
+msgstr "Contra Team — поўнае рашэнне для хостынгу ў адным месцы"
+
+#: classes/menus.php:34 classes/settings.php:52 classes/settings.php:98 classes/settings.php:318 classes/settings.php:394 classes/settings.php:432 classes/settings.php:470 classes/settings.php:517 classes/settings.php:548 classes/settings.php:586 classes/settings.php:616
+msgid "Transliteration"
+msgstr "Транслітарацыя"
+
+#: classes/menus.php:49 classes/menus.php:51 classes/settings-fields.php:506 classes/settings-fields.php:582 classes/settings.php:128 classes/settings.php:203 classes/settings/page-functions.php:164 classes/shortcodes.php:36 classes/utilities.php:1292 classes/utilities.php:1677 functions.php:445
+msgid "Latin"
+msgstr "Лацініца"
+
+#: classes/menus.php:50 classes/menus.php:51 classes/settings-fields.php:505 classes/settings-fields.php:583 classes/settings.php:129 classes/settings.php:204 classes/settings/page-functions.php:159 classes/shortcodes.php:35 classes/utilities.php:1293 classes/utilities.php:1681 functions.php:441
+msgid "Cyrillic"
+msgstr "Кірыліца"
+
+#: classes/menus.php:87
+msgid "Help"
+msgstr "Даведка"
+
+#: classes/menus.php:90
+msgid "To insert language script selector just add a relative link after the link's keyword, example :"
+msgstr "Каб уставіць пераключальнік пісьма, проста дадайце адносную спасылку пасля ключавога слова спасылкі, напрыклад:"
+
+#: classes/menus.php:91
+msgid "You can also use"
+msgstr "Вы таксама можаце выкарыстоўваць"
+
+#: classes/menus.php:91
+msgid "for change to Latin or use"
+msgstr "для пераключэння на лацініцу або выкарыстоўвайце"
+
+#: classes/menus.php:91
+msgid "for change to Cyrillic"
+msgstr "для пераключэння на кірыліцу"
+
+#: classes/menus.php:97
+msgid "Add to Menu"
+msgstr "Дадаць у меню"
+
+#: classes/menus.php:118
+#, php-format
+msgid "The name of this navigation is written by always putting the Latin name first, then the Cyrillic one second, separated by the sign %s"
+msgstr "Назва гэтага пункта навігацыі заўсёды запісваецца так: спачатку лацінская назва, потым кірылічная, падзеленая знакам %s"
+
+#: classes/menus.php:119
+msgid "Example: Latinica | Ћирилица"
+msgstr "Прыклад: Лацініца | Кірыліца"
+
+#: classes/menus.php:120
+msgid "Note that the white space around them will be cleared."
+msgstr "Звярніце ўвагу, што прабелы вакол іх будуць выдалены."
+
+#: classes/notifications.php:158
+#, php-format
+msgid "You have been using <b> %1$s </b> plugin for a while. We hope you liked it!"
+msgstr "Вы ўжо некаторы час карыстаецеся плагінам <b> %1$s </b>. Спадзяёмся, ён вам спадабаўся!"
+
+#: classes/notifications.php:158
+msgid "Please give us a quick rating, it works as a boost for us to keep working on the plugin!"
+msgstr "Калі ласка, хутка ацаніце нас, гэта стане для нас выдатнай падтрымкай і дапаможа далей працаваць над плагінам!"
+
+#: classes/notifications.php:158
+msgid "Rate Now!"
+msgstr "Ацаніць зараз!"
+
+#: classes/notifications.php:158
+msgid "I've already done that!"
+msgstr "Я ўжо гэта зрабіў!"
+
+#: classes/notifications.php:177
+#, php-format
+msgid "Hey there! It's been a while since you've been using the <b> %1$s </b> plugin"
+msgstr "Прывітанне! Вы ўжо некаторы час карыстаецеся плагінам <b> %1$s </b>"
+
+#: classes/notifications.php:182
+#, php-format
+msgid "I'm glad to hear you're enjoying the plugin. I've put a lot of time and effort into ensuring that your website runs smoothly. If you're feeling generous, how about %s for my hard work? 😊"
+msgstr "Рады чуць, што вам падабаецца гэты плагін. Я ўклаў шмат часу і намаганняў, каб ваш сайт працаваў без збояў. Калі хочаце аддзячыць мне, як наконт %s за маю працу? 😊"
+
+#: classes/notifications.php:183
+msgid "treating me to a coffee"
+msgstr "пачаставаць мяне кавай"
+
+#: classes/notifications.php:186 classes/notifications.php:213
+#, php-format
+msgid "Or simply %s forever."
+msgstr "Або проста %s назаўсёды."
+
+#: classes/notifications.php:187 classes/notifications.php:214
+msgid "hide this message"
+msgstr "схаваць гэта паведамленне"
+
+#: classes/notifications.php:200
+#, php-format
+msgid "Hey there! It's been a while since you've been using the <b>%1$s</b> plugin"
+msgstr "Прывітанне! Вы ўжо некаторы час карыстаецеся плагінам <b>%1$s</b>"
+
+#: classes/notifications.php:204
+msgid "I'm really happy to see this plugin being useful for your website. If you ever feel like giving back, here's one way to do it."
+msgstr "Мне вельмі прыемна бачыць, што гэты плагін карысны для вашага сайта. Калі вы захочаце аддзячыць, вось адзін са спосабаў гэта зрабіць."
+
+#: classes/notifications.php:206
+msgid "Bank account (Banca Intesa a.d. Beograd):"
+msgstr "Банкаўскі рахунак (Banca Intesa a.d. Beograd):"
+
+#: classes/notifications.php:210
+msgid "Every little bit helps, and I truly appreciate it! ❤️"
+msgstr "Любая дапамога важная, і я шчыра гэта цаню! ❤️"
+
+#: classes/notifications.php:228
+#, php-format
+msgid "Find Work or %1$s in Serbia, Bosnia, Croatia, and Beyond!"
+msgstr "Знайдзіце працу або %1$s у Сербіі, Босніі, Харватыі і за іх межамі!"
+
+#: classes/notifications.php:228
+#, php-format
+msgid "Visit %2$s to connect with skilled professionals across the region. Whether you need a project completed or are looking for work, our platform is your gateway to successful collaboration."
+msgstr "Наведайце %2$s, каб звязацца з кваліфікаванымі спецыялістамі па ўсім рэгіёне. Незалежна ад таго, патрэбен вам выканаўца для праекта ці вы шукаеце працу, наша платформа стане вашым шляхам да паспяховага супрацоўніцтва."
+
+#: classes/notifications.php:229
+msgid "Hire Top Freelancers"
+msgstr "Найміце лепшых фрылансераў"
+
+#: classes/notifications.php:230
+msgid "Freelance Jobs"
+msgstr "Фрыланс-вакансіі"
+
+#: classes/notifications.php:231
+msgid "Join us today!"
+msgstr "Далучайцеся да нас ужо сёння!"
+
+#: classes/requirements.php:47
+msgid "This plugin uses cookies and should be listed in your Privacy Policy page to prevent privacy issues."
+msgstr "Гэты плагін выкарыстоўвае cookie-файлы і павінен быць пазначаны на старонцы вашай палітыкі прыватнасці, каб пазбегнуць праблем з прыватнасцю."
+
+#: classes/requirements.php:51
+msgid "Suggested text:"
+msgstr "Рэкамендаваны тэкст:"
+
+#: classes/requirements.php:54
+#, php-format
+msgid "This website uses the %1$s plugin to transliterate content."
+msgstr "Гэты сайт выкарыстоўвае плагін %1$s для транслітарацыі змесціва."
+
+#: classes/requirements.php:59
+msgid "This is a simple and easy add-on with which this website translates content from Cyrillic to Latin and vice versa. This transliteration plugin also supports special shortcodes and functions that use cookies to specify the language script."
+msgstr "Гэта простае і зручнае дадатак, з дапамогай якога гэты сайт перакладае змесціва з кірыліцы на лацініцу і наадварот. Гэты плагін транслітарацыі таксама падтрымлівае спецыяльныя шорткоды і функцыі, што выкарыстоўваюць cookie для вызначэння пісьма мовы."
+
+#: classes/requirements.php:62
+#, php-format
+msgid "These cookies do not affect your privacy because they are not intended for tracking and analytics. These cookies can have only two values: \"%1$s\" or \"%2$s\"."
+msgstr "Гэтыя cookie не ўплываюць на вашу прыватнасць, бо не прызначаныя для адсочвання і аналітыкі. Гэтыя cookie могуць мець толькі два значэнні: \\\"%1$s\\\" або \\\"%2$s\\\"."
+
+#: classes/requirements.php:97
+#, php-format
+msgid "Important upgrade notice for the version %s:"
+msgstr "Важнае паведамленне пра абнаўленне для версіі %s:"
+
+#: classes/requirements.php:112
+msgid "NOTE: Before doing the update, it would be a good idea to backup your WordPress installations and settings."
+msgstr "ЗАЎВАГА: Перад абнаўленнем рэкамендуецца зрабіць рэзервовую копію вашых усталёвак і налад WordPress."
+
+#: classes/requirements.php:151
+#, php-format
+msgid "The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your host and ask them to upgrade."
+msgstr "%1$s не можа працаваць на версіях PHP старэйшых за PHP %2$s. Звяжыцеся з вашым хостынг-правайдэрам і папрасіце абнавіць PHP."
+
+#: classes/requirements.php:160
+msgid "Transliteration plugin requires attention:"
+msgstr "Плагін транслітарацыі патрабуе ўвагі:"
+
+#: classes/requirements.php:162
+#, php-format
+msgid "Your plugin works under Only WooCoomerce mode and you need to %s because WooCommerce is no longer active."
+msgstr "Ваш плагін працуе ў рэжыме Only WooCoomerce, і вам трэба %s, бо WooCommerce больш не актыўны."
+
+#: classes/requirements.php:163
+msgid "update your settings"
+msgstr "абнавіць налады"
+
+#: classes/requirements.php:174
+msgid "Transliteration plugin requires a Multibyte String PHP extension (mbstring)."
+msgstr "Плагіну транслітарацыі патрабуецца PHP-пашырэнне Multibyte String (mbstring)."
+
+#: classes/requirements.php:176
+#, php-format
+msgid "Without %s you will not be able to use this plugin."
+msgstr "Без %s вы не зможаце выкарыстоўваць гэты плагін."
+
+#: classes/requirements.php:177
+msgid "Multibyte String Installation"
+msgstr "Усталяванне Multibyte String"
+
+#: classes/requirements.php:177
+msgid "this PHP extension"
+msgstr "гэта PHP-пашырэнне"
+
+#: classes/requirements.php:200
+#, php-format
+msgid "The %1$s cannot run on WordPress versions older than %2$s. Please update your WordPress installation."
+msgstr "%1$s не можа працаваць на версіях WordPress старэйшых за %2$s. Калі ласка, абнавіце вашу ўсталёўку WordPress."
+
+#: classes/settings-fields.php:77
+msgid "Global Settings"
+msgstr "Глабальныя налады"
+
+#: classes/settings-fields.php:84
+msgid "My site is"
+msgstr "Мой сайт"
+
+#: classes/settings-fields.php:92
+msgid "Transliteration Mode"
+msgstr "Рэжым транслітарацыі"
+
+#: classes/settings-fields.php:100
+msgid "First visit mode"
+msgstr "Рэжым першага наведвання"
+
+#: classes/settings-fields.php:108
+msgid "Language scheme"
+msgstr "Моўная схема"
+
+#: classes/settings-fields.php:116
+msgid "Plugin Mode"
+msgstr "Рэжым плагіна"
+
+#: classes/settings-fields.php:124
+msgid "Force transliteration permalinks to latin"
+msgstr "Прымусова транслітараваць пастаянныя спасылкі ў лацініцу"
+
+#: classes/settings-fields.php:135
+msgid "Filters"
+msgstr "Фільтры"
+
+#: classes/settings-fields.php:142
+msgid "Transliteration Filters"
+msgstr "Фільтры транслітарацыі"
+
+#: classes/settings-fields.php:150
+msgid "Exclude Latin words that you do not want to be transliterated to the Cyrillic."
+msgstr "Выключыце лацінскія словы, якія не трэба транслітараваць у кірыліцу."
+
+#: classes/settings-fields.php:158
+msgid "Exclude Cyrillic words that you do not want to be transliterated to the Latin."
+msgstr "Выключыце кірылічныя словы, якія не трэба транслітараваць у лацініцу."
+
+#: classes/settings-fields.php:171
+msgid "Special Settings"
+msgstr "Спецыяльныя налады"
+
+#: classes/settings-fields.php:178
+msgid "Enable cache support"
+msgstr "Уключыць падтрымку кэша"
+
+#: classes/settings-fields.php:186
+msgid "Force widget transliteration"
+msgstr "Прымусовая транслітарацыя віджэтаў"
+
+#: classes/settings-fields.php:194
+msgid "Force e-mail transliteration"
+msgstr "Прымусовая транслітарацыя электроннай пошты"
+
+#: classes/settings-fields.php:202
+msgid "Force transliteration for WordPress REST API"
+msgstr "Прымусовая транслітарацыя для WordPress REST API"
+
+#: classes/settings-fields.php:210
+msgid "Force transliteration for AJAX calls"
+msgstr "Прымусовая транслітарацыя для AJAX-запытаў"
+
+#: classes/settings-fields.php:210 classes/settings-fields.php:218
+msgid "EXPERIMENTAL"
+msgstr "ЭКСПЕРЫМЕНТАЛЬНА"
+
+#: classes/settings-fields.php:218
+msgid "JavaScript Dynamic Transliteration"
+msgstr "Дынамічная транслітарацыя JavaScript"
+
+#: classes/settings-fields.php:231
+msgid "WP Admin"
+msgstr "WP Admin"
+
+#: classes/settings-fields.php:238
+msgid "WP-Admin transliteration"
+msgstr "Транслітарацыя WP-Admin"
+
+#: classes/settings-fields.php:246
+msgid "Allow Cyrillic Usernames"
+msgstr "Дазволіць кірылічныя імёны карыстальнікаў"
+
+#: classes/settings-fields.php:254
+msgid "Allow Admin Tools"
+msgstr "Дазволіць інструменты адміністратара"
+
+#: classes/settings-fields.php:267
+msgid "Media Settings"
+msgstr "Налады медыя"
+
+#: classes/settings-fields.php:274
+msgid "Transliterate filenames to latin"
+msgstr "Транслітараваць імёны файлаў у лацініцу"
+
+#: classes/settings-fields.php:282
+msgid "Filename delimiter"
+msgstr "Раздзяляльнік імя файла"
+
+#: classes/settings-fields.php:295
+msgid "WordPress Search"
+msgstr "Пошук WordPress"
+
+#: classes/settings-fields.php:302
+msgid "Enable search transliteration"
+msgstr "Уключыць транслітарацыю пошуку"
+
+#: classes/settings-fields.php:311
+msgid "Fix Diacritics"
+msgstr "Выправіць дыякрытычныя знакі"
+
+#: classes/settings-fields.php:320
+msgid "Search Mode"
+msgstr "Рэжым пошуку"
+
+#: classes/settings-fields.php:333
+msgid "SEO Settings"
+msgstr "Налады SEO"
+
+#: classes/settings-fields.php:340
+msgid "Parameter URL selector"
+msgstr "Селектар параметра URL"
+
+#: classes/settings-fields.php:348
+msgid "RSS transliteration"
+msgstr "Транслітарацыя RSS"
+
+#: classes/settings-fields.php:361 classes/utilities.php:1598
+msgid "Exclusion"
+msgstr "Выключэнне"
+
+#: classes/settings-fields.php:371
+#, php-format
+msgid "Language: %s"
+msgstr "Мова: %s"
+
+#: classes/settings-fields.php:394
+msgid "Misc."
+msgstr "Рознае"
+
+#: classes/settings-fields.php:401
+msgid "Enable body class"
+msgstr "Уключыць клас body"
+
+#: classes/settings-fields.php:409
+msgid "Theme Support"
+msgstr "Падтрымка тэмы"
+
+#: classes/settings-fields.php:426
+msgid "Support the Project"
+msgstr "Падтрымайце праект"
+
+#: classes/settings-fields.php:437
+msgid "Contributors & Developers"
+msgstr "Удзельнікі і распрацоўшчыкі"
+
+#: classes/settings-fields.php:451
+msgid "This setting determines the mode of operation for the Transliteration plugin."
+msgstr "Гэты параметр вызначае рэжым працы плагіна транслітарацыі."
+
+#: classes/settings-fields.php:452
+msgid "Carefully choose the option that is best for your site and the plugin will automatically set everything you need for optimal performance."
+msgstr "Уважліва выберыце варыянт, які найлепш падыходзіць вашаму сайту, і плагін аўтаматычна наладзіць усё неабходнае для аптымальнай працы."
+
+#: classes/settings-fields.php:457
+msgid "This section contains filters for exclusions, allowing you to specify content that should be excluded from transliteration, and also includes a filter to disable certain WordPress filters related to transliteration."
+msgstr "Гэты раздзел утрымлівае фільтры выключэнняў, якія дазваляюць пазначыць змесціва, якое трэба выключыць з транслітарацыі, а таксама фільтр для адключэння некаторых фільтраў WordPress, звязаных з транслітарацыяй."
+
+#: classes/settings-fields.php:462
+msgid "These are special settings that can enhance transliteration and are used only if you need them."
+msgstr "Гэта спецыяльныя налады, якія могуць палепшыць транслітарацыю і выкарыстоўваюцца толькі пры неабходнасці."
+
+#: classes/settings-fields.php:467
+msgid "These settings apply to the administrative part."
+msgstr "Гэтыя налады прымяняюцца да адміністрацыйнай часткі."
+
+#: classes/settings-fields.php:472
+msgid "Upload, view and control media and files."
+msgstr "Загрузка, прагляд і кіраванне медыя і файламі."
+
+#: classes/settings-fields.php:477
+msgid "Our plugin also has special SEO options that are very important for your project."
+msgstr "Наш плагін таксама мае спецыяльныя SEO-налады, якія вельмі важныя для вашага праекта."
+
+#: classes/settings-fields.php:482
+msgid "Within this configuration section, you have the opportunity to customize your experience by selecting the particular languages for which you wish to turn off the transliteration function. This feature is designed to give you greater control and adaptability over how the system handles transliteration, allowing you to disable it for specific languages based on your individual needs or preferences."
+msgstr "У гэтым раздзеле канфігурацыі вы можаце наладзіць працу сістэмы, выбраўшы канкрэтныя мовы, для якіх хочаце адключыць функцыю транслітарацыі. Гэта магчымасць дае вам больш кантролю і гнуткасці над тым, як сістэма апрацоўвае транслітарацыю, дазваляючы адключаць яе для асобных моў у залежнасці ад вашых патрэб і пераваг."
+
+#: classes/settings-fields.php:487
+msgid "Various interesting settings that can be used in the development of your project."
+msgstr "Розныя цікавыя налады, якія можна выкарыстоўваць пры распрацоўцы вашага праекта."
+
+#: classes/settings-fields.php:495
+msgid "This setting determines the search mode within the WordPress core depending on the type of language located in the database."
+msgstr "Гэты параметр вызначае рэжым пошуку ў ядры WordPress у залежнасці ад тыпу мовы, якая знаходзіцца ў базе даных."
+
+#: classes/settings-fields.php:496
+msgid "The search type setting is mostly experimental and you need to test each variant so you can get the best result you need."
+msgstr "Налада тыпу пошуку ў асноўным эксперыментальная, і вам трэба пратэставаць кожны варыянт, каб атрымаць найлепшы вынік."
+
+#: classes/settings-fields.php:510
+msgid "Arabic"
+msgstr "Арабская"
+
+#: classes/settings-fields.php:512
+msgid "Armenian"
+msgstr "Армянская"
+
+#: classes/settings-fields.php:528
+msgid "Define whether your primary alphabet on the site is Latin or Cyrillic. If the primary alphabet is Cyrillic then choose Cyrillic. If it is Latin, then choose Latin. This option is crucial for the plugin to work properly."
+msgstr "Вызначце, якая асноўная пісьменнасць выкарыстоўваецца на вашым сайце: лацініца ці кірыліца. Калі асноўны алфавіт — кірыліца, выберыце кірыліцу. Калі лацініца — выберыце лацініцу. Гэты параметр крытычна важны для карэктнай працы плагіна."
+
+#: classes/settings-fields.php:530
+msgid "Define whether your primary alphabet on the site."
+msgstr "Вызначце, якая асноўная пісьменнасць выкарыстоўваецца на сайце."
+
+#: classes/settings-fields.php:543
+msgid "Transliteration disabled"
+msgstr "Транслітарацыя адключана"
+
+#: classes/settings-fields.php:544 classes/settings.php:692 classes/settings/page-shortcodes.php:8 classes/settings/page-tags.php:5 classes/utilities.php:1669
+msgid "Cyrillic to Latin"
+msgstr "Кірыліца ў лацініцу"
+
+#: classes/settings-fields.php:545 classes/settings.php:693 classes/settings/page-shortcodes.php:14 classes/settings/page-tags.php:8 classes/utilities.php:1673
+msgid "Latin to Cyrillic"
+msgstr "Лацініца ў кірыліцу"
+
+#: classes/settings-fields.php:551
+msgid "Arabic to Latin"
+msgstr "Арабская ў лацініцу"
+
+#: classes/settings-fields.php:552
+msgid "Latin to Arabic"
+msgstr "Лацініца ў арабскую"
+
+#: classes/settings-fields.php:554
+msgid "Armenian to Latin"
+msgstr "Армянская ў лацініцу"
+
+#: classes/settings-fields.php:555
+msgid "Latin to Armenian"
+msgstr "Лацініца ў армянскую"
+
+#: classes/settings-fields.php:573
+msgid "This option determines the global transliteration of your web site. If you do not want to transliterate the entire website and use this plugin for other purposes, disable this option. This option does not affect to the functionality of short codes and tags."
+msgstr "Гэты параметр вызначае глабальную транслітарацыю вашага сайта. Калі вы не хочаце транслітараваць увесь сайт і выкарыстоўваеце гэты плагін для іншых мэтаў, адключыце гэтую опцыю. Гэтая опцыя не ўплывае на працу шорткодаў і тэгаў."
+
+#: classes/settings-fields.php:593
+msgid "This option determines the type of language script that the visitors sees when they first time come to your site."
+msgstr "Гэты параметр вызначае, якую пісьменнасць убачаць наведвальнікі пры першым наведванні вашага сайта."
+
+#: classes/settings-fields.php:602
+msgid "Automatical"
+msgstr "Аўтаматычна"
+
+#: classes/settings-fields.php:623
+msgid "This option defines the language script. Automatic script detection is the best way but if you are using a WordPress installation in a language that does not match the scripts supported by this plugin, then choose on which script you want the transliteration to be performed."
+msgstr "Гэты параметр вызначае пісьменнасць мовы. Аўтаматычнае вызначэнне пісьменнасці — найлепшы варыянт, але калі вы выкарыстоўваеце ўсталёўку WordPress на мове, якая не супадае з пісьменнасцямі, што падтрымліваюцца гэтым плагінам, выберыце, для якой пісьменнасці павінна выконвацца транслітарацыя."
+
+#: classes/settings-fields.php:649
+msgid "This option configures the operating mode of the entire plugin and affects all aspects of the site related to transliteration. Each mode has its own set of filters, which are activated based on your specific needs. It's important to take the time to review and customize these settings according to your preferences."
+msgstr "Гэты параметр наладжвае рэжым працы ўсяго плагіна і ўплывае на ўсе аспекты сайта, звязаныя з транслітарацыяй. Кожны рэжым мае ўласны набор фільтраў, якія актывуюцца ў залежнасці ад вашых патрэб. Важна надаць час агляду і наладзе гэтых параметраў у адпаведнасці з вашымі перавагамі."
+
+#: classes/settings-fields.php:651
+msgid "Forced transliteration can sometimes cause problems if Latin is translated into Cyrillic in pages and posts. To this combination must be approached experimentally."
+msgstr "Прымусовая транслітарацыя часам можа выклікаць праблемы, калі лацініца на старонках і ў запісах перакладаецца ў кірыліцу. Да гэтай камбінацыі трэба падыходзіць эксперыментальна."
+
+#: classes/settings-fields.php:663
+msgid "Exclude filters you don't need (optional)"
+msgstr "Выключыце непатрэбныя фільтры (неабавязкова)"
+
+#: classes/settings-fields.php:669
+msgid "Select the transliteration filters you want to exclude."
+msgstr "Выберыце фільтры транслітарацыі, якія хочаце выключыць."
+
+#: classes/settings-fields.php:670
+msgid "The filters you select here will not be transliterated (these filters do not work on forced transliteration)."
+msgstr "Выбраныя тут фільтры не будуць транслітаравацца (гэтыя фільтры не працуюць пры прымусовай транслітарацыі)."
+
+#: classes/settings-fields.php:683
+msgid "TIPS & TRICKS:"
+msgstr "ПАРАДЫ І ХІТРАСЦІ:"
+
+#: classes/settings-fields.php:684
+msgid "You can find details about some of the listed filters in this article:"
+msgstr "Падрабязнасці пра некаторыя з пералічаных фільтраў вы можаце знайсці ў гэтым артыкуле:"
+
+#: classes/settings-fields.php:692
+#, php-format
+msgid "Since you are already a WooCommerce user, you also can see the following documentation: %s"
+msgstr "Паколькі вы ўжо карыстаецеся WooCommerce, вы таксама можаце азнаёміцца з наступнай дакументацыяй: %s"
+
+#: classes/settings-fields.php:711 classes/settings-fields.php:721
+#, php-format
+msgid "Separate words, phrases, names and expressions with the sign %s or put it in a new row. HTML is not allowed."
+msgstr "Раздзяляйце словы, фразы, імёны і выразы знакам %s або размяшчайце іх з новага радка. HTML не дазваляецца."
+
+#: classes/settings-fields.php:729 classes/settings-fields.php:749 classes/settings-fields.php:769 classes/settings-fields.php:789 classes/settings-fields.php:808 classes/settings-fields.php:827 classes/settings-fields.php:849 classes/settings-fields.php:869 classes/settings-fields.php:888 classes/settings-fields.php:910 classes/settings-fields.php:932 classes/settings-fields.php:978
+#: classes/settings-fields.php:997 classes/settings-fields.php:1059 classes/settings-fields.php:1098 classes/settings.php:696 classes/settings.php:700 classes/settings.php:704 classes/settings.php:708 classes/utilities.php:1657
+msgid "Yes"
+msgstr "Так"
+
+#: classes/settings-fields.php:730 classes/settings-fields.php:750 classes/settings-fields.php:770 classes/settings-fields.php:790 classes/settings-fields.php:809 classes/settings-fields.php:828 classes/settings-fields.php:850 classes/settings-fields.php:870 classes/settings-fields.php:889 classes/settings-fields.php:911 classes/settings-fields.php:933 classes/settings-fields.php:979
+#: classes/settings-fields.php:998 classes/settings-fields.php:1060 classes/settings-fields.php:1099 classes/settings.php:697 classes/settings.php:701 classes/settings.php:705 classes/settings.php:709 classes/utilities.php:1661
+msgid "No"
+msgstr "Не"
+
+#: classes/settings-fields.php:741
+msgid "JavaScript Dynamic Transliteration ensures that all dynamically loaded content is properly transliterated in real time. It processes AJAX, builder-generated, and frontend-rendered elements while preserving HTML structure, URLs, and excluded words. <b>This option is only needed if some content is not transliterated correctly.</b>"
+msgstr "Дынамічная транслітарацыя JavaScript гарантуе, што ўвесь дынамічна загружаны кантэнт будзе карэктна транслітаравацца ў рэжыме рэальнага часу. Яна апрацоўвае AJAX, элементы, створаныя канструктарамі, і элементы, адмаляваныя на фронтэндзе, захоўваючы структуру HTML, URL і выключаныя словы. <b>Гэты параметр патрэбны толькі тады, калі частка змесціва транслітаруецца некарэктна.</b>"
+
+#: classes/settings-fields.php:761
+msgid "If you have a problem caching your pages, our plugin solves this problem by clearing the cache when changing the language script."
+msgstr "Калі ў вас узнікаюць праблемы з кэшаваннем старонак, наш плагін вырашае іх, ачышчаючы кэш пры змене пісьменнасці мовы."
+
+#: classes/settings-fields.php:781
+msgid "This option forces the widget to transliterate. There may be some unusual behaviour in the rare cases."
+msgstr "Гэты параметр прымусова ўключае транслітарацыю віджэта. У рэдкіх выпадках магчыма незвычайнае паводзіны."
+
+#: classes/settings-fields.php:800
+msgid "Enable this feature if you want to force transliteration of email content."
+msgstr "Уключыце гэтую функцыю, калі хочаце прымусова транслітараваць змесціва электроннай пошты."
+
+#: classes/settings-fields.php:819
+msgid "Enable this feature if you want to force transliteration of WordPress REST API calls. The WordPress REST API is also used in many AJAX calls, WooCommerce, and page builders. It is recommended to be enabled by default."
+msgstr "Уключыце гэтую функцыю, калі хочаце прымусова транслітараваць выклікі WordPress REST API. WordPress REST API таксама выкарыстоўваецца ў многіх AJAX-запытах, WooCommerce і канструктарах старонак. Рэкамендуецца ўключыць яе па змаўчанні."
+
+#: classes/settings-fields.php:838
+#, php-format
+msgid "Enable this feature if you want to force transliteration of AJAX calls. If you want to avoid transliteration of specific individual AJAX calls, you must add a new POST or GET parameter to your AJAX call: %s"
+msgstr "Уключыце гэтую функцыю, калі хочаце прымусова транслітараваць AJAX-запыты. Калі вы хочаце пазбегнуць транслітарацыі асобных AJAX-запытаў, трэба дадаць новы параметр POST або GET у ваш AJAX-запыт: %s"
+
+#: classes/settings-fields.php:861
+msgid "Enable if you want the WP-Admin area to be transliterated."
+msgstr "Уключыце, калі хочаце, каб вобласць WP-Admin транслітаравалася."
+
+#: classes/settings-fields.php:880
+msgid "Allows to create users with usernames containing Cyrillic characters."
+msgstr "Дазваляе ствараць карыстальнікаў з імёнамі, якія змяшчаюць кірылічныя сімвалы."
+
+#: classes/settings-fields.php:899
+msgid ""
+"This feature enables you to easily transliterate titles and content directly within the WordPress editor. This functionality is available for various content types, including categories, pages, posts, and custom post types, ensuring a seamless experience when managing multilingual content on your site. With just a few clicks, you can switch between scripts, making your content accessible to a broader "
+"audience."
+msgstr "Гэта функцыя дазваляе лёгка транслітараваць загалоўкі і змесціва непасрэдна ў рэдактары WordPress. Яна даступная для розных тыпаў змесціва, уключаючы катэгорыі, старонкі, запісы і карыстальніцкія тыпы запісаў, забяспечваючы зручную працу з шматмоўным змесцівам на вашым сайце. Усяго некалькімі клікамі вы можаце пераключацца паміж пісьменнасцямі, робячы змесціва даступным для больш шырокай аўдыторыі."
+
+#: classes/settings-fields.php:921
+msgid "Enable if you want to force cyrillic permalinks to latin."
+msgstr "Уключыце, калі хочаце прымусова пераўтвараць кірылічныя пастаянныя спасылкі ў лацініцу."
+
+#: classes/settings-fields.php:943
+msgid "Enable if you want to convert cyrillic filenames to latin."
+msgstr "Уключыце, калі хочаце пераўтвараць кірылічныя імёны файлаў у лацініцу."
+
+#: classes/settings-fields.php:954
+msgid "hyphen (default)"
+msgstr "дэфіс (па змаўчанні)"
+
+#: classes/settings-fields.php:955
+msgid "underscore"
+msgstr "ніжняе падкрэсліванне"
+
+#: classes/settings-fields.php:956
+msgid "dot"
+msgstr "кропка"
+
+#: classes/settings-fields.php:957
+msgid "tilde"
+msgstr "тыльда"
+
+#: classes/settings-fields.php:958
+msgid "vartical bar"
+msgstr "вертыкальная рыса"
+
+#: classes/settings-fields.php:959
+msgid "asterisk"
+msgstr "зорачка"
+
+#: classes/settings-fields.php:970
+msgid "Filename delimiter, example:"
+msgstr "Раздзяляльнік імя файла, прыклад:"
+
+#: classes/settings-fields.php:970
+msgid "my-upload-file.jpg"
+msgstr "my-upload-file.jpg"
+
+#: classes/settings-fields.php:989
+msgid "Approve if you want transliteration for the search field."
+msgstr "Уключыце, калі хочаце транслітарацыю для поля пошуку."
+
+#: classes/settings-fields.php:1008
+msgid "Try to fix the diacritics in the search field."
+msgstr "Паспрабаваць выпраўляць дыякрытычныя знакі ў полі пошуку."
+
+#: classes/settings-fields.php:1016
+msgid "Automatical (recommended)"
+msgstr "Аўтаматычна (рэкамендуецца)"
+
+#: classes/settings-fields.php:1017
+msgid "Based on the plugin mode"
+msgstr "На аснове рэжыму плагіна"
+
+#: classes/settings-fields.php:1027
+msgid "The search has two working modes. Choose the one that works best with your search."
+msgstr "Пошук мае два рэжымы працы. Выберыце той, які найлепш падыходзіць для вашага пошуку."
+
+#: classes/settings-fields.php:1035
+msgid "(safe)"
+msgstr "(бяспечна)"
+
+#: classes/settings-fields.php:1036
+msgid "(standard)"
+msgstr "(стандартна)"
+
+#: classes/settings-fields.php:1037 classes/settings-fields.php:1038 classes/settings-fields.php:1039 classes/settings-fields.php:1040 classes/settings-fields.php:1041
+msgid "(optional)"
+msgstr "(неабавязкова)"
+
+#: classes/settings-fields.php:1051
+msgid "This option dictates which URL parameter will be used to change the language."
+msgstr "Гэты параметр вызначае, які параметр URL будзе выкарыстоўвацца для змены мовы."
+
+#: classes/settings-fields.php:1071
+msgid "This option transliterate the RSS feed."
+msgstr "Гэты параметр транслітаруе RSS-стужку."
+
+#: classes/settings-fields.php:1077
+msgid "Transliterate"
+msgstr "Транслітараваць"
+
+#: classes/settings-fields.php:1078
+msgid "Omit the transliteration"
+msgstr "Прапусціць транслітарацыю"
+
+#: classes/settings-fields.php:1109
+msgid "This option adds CSS classes to your body HTML tag. These CSS classes vary depending on the language script."
+msgstr "Гэты параметр дадае CSS-класы да вашага HTML-тэга body. Гэтыя CSS-класы залежаць ад пісьменнасці мовы."
+
+#: classes/settings-fields.php:1117
+msgid "Enable Theme Support"
+msgstr "Уключыць падтрымку тэмы"
+
+#: classes/settings-fields.php:1118
+msgid "Disable Theme Support"
+msgstr "Адключыць падтрымку тэмы"
+
+#: classes/settings-fields.php:1128
+msgid "If you don't require transliteration support for your theme, you can disable it for your current theme here."
+msgstr "Калі вашай тэме не патрэбна падтрымка транслітарацыі, вы можаце адключыць яе для бягучай тэмы тут."
+
+#: classes/settings-fields.php:1179
+msgid "This mode has no filters."
+msgstr "У гэтым рэжыме няма фільтраў."
+
+#: classes/settings-sidebars.php:10
+msgid "Transliterator is free to use and actively maintained. Ongoing updates, performance improvements, and new features require continuous time and resources."
+msgstr "Transliterator бясплатны ў выкарыстанні і актыўна падтрымліваецца. Пастаянныя абнаўленні, паляпшэнне прадукцыйнасці і новыя функцыі патрабуюць часу і рэсурсаў."
+
+#: classes/settings-sidebars.php:11
+msgid "If the plugin adds value to your work, you are welcome to support its further development with a voluntary contribution."
+msgstr "Калі плагін прыносіць карысць вашай працы, вы можаце падтрымаць яго далейшае развіццё добраахвотным унёскам."
+
+#: classes/settings-sidebars.php:18 classes/settings/page-credits.php:56
+msgid "Banca Intesa a.d. Beograd"
+msgstr "Banca Intesa a.d. Beograd"
+
+#: classes/settings-sidebars.php:26
+msgid "Thank you for your support."
+msgstr "Дзякуй за вашу падтрымку."
+
+#: classes/settings-sidebars.php:43
+#, php-format
+msgid "If you want to support our work and effort, if you have new ideas or want to improve the existing code, %s."
+msgstr "Калі вы хочаце падтрымаць нашу працу і намаганні, калі ў вас ёсць новыя ідэі або вы хочаце палепшыць існуючы код, %s."
+
+#: classes/settings-sidebars.php:43
+msgid "join our team"
+msgstr "далучайцеся да нашай каманды"
+
+#: classes/settings.php:64 serbian-transliteration.php:187
+msgid "Settings saved."
+msgstr "Налады захаваны."
+
+#: classes/settings.php:77 classes/settings.php:714
+msgid "Settings"
+msgstr "Налады"
+
+#: classes/settings.php:86 classes/settings.php:237
+msgid "Shortcodes"
+msgstr "Шорткоды"
+
+#: classes/settings.php:87 classes/settings.php:238
+msgid "PHP Functions"
+msgstr "PHP-функцыі"
+
+#: classes/settings.php:88
+msgid "5 stars?"
+msgstr "5 зорак?"
+
+#: classes/settings.php:97
+msgid "Transliteration Settings"
+msgstr "Налады транслітарацыі"
+
+#: classes/settings.php:130 classes/settings.php:205
+msgid "To Latin"
+msgstr "У лацініцу"
+
+#: classes/settings.php:131 classes/settings.php:206
+msgid "To Cyrillic"
+msgstr "У кірыліцу"
+
+#: classes/settings.php:132 classes/settings.php:207
+msgid "Transliterate:"
+msgstr "Транслітараваць:"
+
+#: classes/settings.php:133 classes/settings.php:175 classes/settings.php:208
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: classes/settings.php:173 classes/settings/page-permalinks.php:37
+msgid "Please wait! Do not close the window or leave the page until this operation is completed!"
+msgstr "Калі ласка, пачакайце! Не закрывайце акно і не пакідайце старонку, пакуль аперацыя не будзе завершана!"
+
+#: classes/settings.php:174
+msgid "DONE!!!"
+msgstr "ГОТОВА!!!"
+
+#: classes/settings.php:220
+msgid "PLEASE UPDATE PLUGIN SETTINGS"
+msgstr "КАЛІ ЛАСКА, АБНАВІЦЕ НАЛАДЫ ПЛАГІНА"
+
+#: classes/settings.php:221
+msgid "Carefully review the transliteration plugin settings and adjust how it fits your WordPress installation. It is important that every time you change the settings, you test the parts of the site that are affected by this plugin."
+msgstr "Уважліва праверце налады плагіна транслітарацыі і наладзьце іх у адпаведнасці з вашай усталёўкай WordPress. Важна, каб кожны раз пасля змены налад вы правяралі тыя часткі сайта, на якія ўплывае гэты плагін."
+
+#: classes/settings.php:239
+msgid "Tags"
+msgstr "Тэгі"
+
+#: classes/settings.php:245
+msgid "Transliteration Tool"
+msgstr "Інструмент транслітарацыі"
+
+#: classes/settings.php:246
+msgid "Permalink Tool"
+msgstr "Інструмент пастаянных спасылак"
+
+#: classes/settings.php:267
+msgid "General Settings"
+msgstr "Агульныя налады"
+
+#: classes/settings.php:271 classes/settings.php:715
+msgid "Documentation"
+msgstr "Дакументацыя"
+
+#: classes/settings.php:275 classes/settings.php:716
+msgid "Tools"
+msgstr "Інструменты"
+
+#: classes/settings.php:279 classes/settings.php:717
+msgid "Debug"
+msgstr "Адладка"
+
+#: classes/settings.php:283 classes/settings.php:616 classes/settings.php:718 classes/settings/page-credits.php:60
+msgid "Credits"
+msgstr "Падзякі"
+
+#: classes/settings.php:339 classes/settings.php:348
+msgid "Save Changes"
+msgstr "Захаваць змены"
+
+#: classes/settings.php:394
+msgid "Available shortcodes"
+msgstr "Даступныя шорткоды"
+
+#: classes/settings.php:432
+msgid "Available PHP Functions"
+msgstr "Даступныя PHP-функцыі"
+
+#: classes/settings.php:470
+msgid "Available Tags"
+msgstr "Даступныя тэгі"
+
+#: classes/settings.php:517
+msgid "Converter for transliterating Cyrillic into Latin and vice versa"
+msgstr "Канвертар для транслітарацыі кірыліцы ў лацініцу і наадварот"
+
+#: classes/settings.php:548
+msgid "Permalink Transliteration Tool"
+msgstr "Інструмент транслітарацыі пастаянных спасылак"
+
+#: classes/settings.php:586
+msgid "Debug information"
+msgstr "Адладкавая інфармацыя"
+
+#: classes/settings.php:671
+msgid "WordPress Transliterator"
+msgstr "Транслітаратар WordPress"
+
+#: classes/settings.php:712
+msgid "Quick Access:"
+msgstr "Хуткі доступ:"
+
+#: classes/settings.php:719
+msgid "Rate us"
+msgstr "Ацаніце нас"
+
+#: classes/settings.php:723
+msgid "Current Settings:"
+msgstr "Бягучыя налады:"
+
+#: classes/settings.php:725
+msgid "Transliteration Mode:"
+msgstr "Рэжым транслітарацыі:"
+
+#: classes/settings.php:726
+msgid "Cache Support:"
+msgstr "Падтрымка кэша:"
+
+#: classes/settings.php:727
+msgid "Media Transliteration:"
+msgstr "Транслітарацыя медыя:"
+
+#: classes/settings.php:728
+msgid "Permalink Transliteration:"
+msgstr "Транслітарацыя пастаянных спасылак:"
+
+#: classes/settings.php:731
+msgid "Transliterator plugin options are not yet available. Please update plugin settings!"
+msgstr "Параметры плагіна Transliterator пакуль недаступныя. Калі ласка, абнавіце налады плагіна!"
+
+#: classes/settings/page-credits.php:52
+msgid "Support"
+msgstr "Падтрымка"
+
+#: classes/settings/page-credits.php:53
+msgid "This plugin is 100% free. If you want to buy us one coffee, beer or in general help the development of this plugin through a monetary donation, you can do it in the following ways:"
+msgstr "Гэты плагін на 100% бясплатны. Калі вы хочаце пачаставаць нас кавай, півам або ўвогуле дапамагчы развіццю гэтага плагіна грашовым ахвяраваннем, вы можаце зрабіць гэта наступнымі спосабамі:"
+
+#: classes/settings/page-credits.php:56
+msgid "From Serbia"
+msgstr "З Сербіі"
+
+#: classes/settings/page-credits.php:61
+msgid "This is a light weight, simple and easy plugin with which you can transliterate your WordPress installation from Cyrillic to Latin and vice versa in a few clicks. This transliteration plugin also supports special shortcodes that you can use to partially transliterate parts of the content."
+msgstr "Гэта лёгкі, просты і зручны плагін, з дапамогай якога вы можаце ў некалькі клікаў транслітараваць вашу ўсталёўку WordPress з кірыліцы ў лацініцу і наадварот. Гэты плагін транслітарацыі таксама падтрымлівае спецыяльныя шорткоды, якія можна выкарыстоўваць для частковай транслітарацыі змесціва."
+
+#: classes/settings/page-credits.php:81
+msgid "Sponsors of this plugin:"
+msgstr "Спонсары гэтага плагіна:"
+
+#: classes/settings/page-credits.php:85
+#, php-format
+msgid "If you want to help develop this plugin and be one of the sponsors, please contact us at: %s"
+msgstr "Калі вы хочаце дапамагчы ў распрацоўцы гэтага плагіна і стаць адным са спонсараў, звяжыцеся з намі па адрасе: %s"
+
+#: classes/settings/page-credits.php:111
+msgid "Special thanks to the contributors in the development of this plugin:"
+msgstr "Асаблівая падзяка ўдзельнікам распрацоўкі гэтага плагіна:"
+
+#: classes/settings/page-credits.php:117
+msgid "Copyright"
+msgstr "Аўтарскія правы"
+
+#: classes/settings/page-credits.php:121
+#, php-format
+msgid "Copyright &copy; 2020 - %1$d %2$s by %3$s. All Right Reserved."
+msgstr "Аўтарскія правы &copy; 2020 - %1$d %2$s, %3$s. Усе правы абаронены."
+
+#: classes/settings/page-credits.php:123
+msgid "Transliterator – WordPress Transliteration"
+msgstr "Transliterator – транслітарацыя WordPress"
+
+#: classes/settings/page-credits.php:128
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
+msgstr "Гэта праграма з'яўляецца свабодным праграмным забеспячэннем; вы можаце распаўсюджваць яе і/або змяняць на ўмовах GNU General Public License, апублікаванай Free Software Foundation; альбо версіі 2 ліцэнзіі, альбо (на ваш выбар) любой пазнейшай версіі."
+
+#: classes/settings/page-credits.php:129
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+msgstr "Гэта праграма распаўсюджваецца ў надзеі, што яна будзе карыснай, але БЕЗ ЯКІХ-НЕБУДЗЬ ГАРАНТЫЙ; нават без неяўнай гарантыі КАМЕРЦЫЙНАЙ ПРЫДАТНАСЦІ або ПРЫДАТНАСЦІ ДЛЯ ПЭЎНАЙ МЭТЫ."
+
+#: classes/settings/page-credits.php:130
+msgid "See the GNU General Public License for more details."
+msgstr "Гл. GNU General Public License для атрымання больш падрабязнай інфармацыі."
+
+#: classes/settings/page-credits.php:131
+msgid "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA."
+msgstr "Вы павінны былі атрымаць копію GNU General Public License разам з гэтай праграмай; калі не, напішыце ў Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA."
+
+#: classes/settings/page-debug.php:13
+msgid "Plugin ID"
+msgstr "ID плагіна"
+
+#: classes/settings/page-debug.php:17
+msgid "Plugin version"
+msgstr "Версія плагіна"
+
+#: classes/settings/page-debug.php:21
+msgid "WordPress version"
+msgstr "Версія WordPress"
+
+#: classes/settings/page-debug.php:25
+msgid "Last plugin update"
+msgstr "Апошняе абнаўленне плагіна"
+
+#: classes/settings/page-debug.php:29
+msgid "PHP version"
+msgstr "Версія PHP"
+
+#: classes/settings/page-debug.php:33
+msgid "PHP version ID"
+msgstr "ID версіі PHP"
+
+#: classes/settings/page-debug.php:37
+msgid "PHP architecture"
+msgstr "Архітэктура PHP"
+
+#: classes/settings/page-debug.php:38 classes/settings/page-debug.php:106
+#, php-format
+msgid "%d bit"
+msgstr "%d біт"
+
+#: classes/settings/page-debug.php:41
+msgid "WordPress debug"
+msgstr "Адладка WordPress"
+
+#: classes/settings/page-debug.php:42 classes/settings/page-debug.php:46 classes/settings/page-debug.php:51
+msgid "On"
+msgstr "Укл."
+
+#: classes/settings/page-debug.php:42 classes/settings/page-debug.php:46 classes/settings/page-debug.php:51
+msgid "Off"
+msgstr "Выкл."
+
+#: classes/settings/page-debug.php:45
+msgid "WordPress multisite"
+msgstr "WordPress multisite"
+
+#: classes/settings/page-debug.php:50
+msgid "WooCommerce active"
+msgstr "WooCommerce актыўны"
+
+#: classes/settings/page-debug.php:55
+msgid "WooCommerce version"
+msgstr "Версія WooCommerce"
+
+#: classes/settings/page-debug.php:61
+msgid "Site title"
+msgstr "Назва сайта"
+
+#: classes/settings/page-debug.php:69
+msgid "Tagline"
+msgstr "Кароткае апісанне"
+
+#: classes/settings/page-debug.php:77
+msgid "WordPress address (URL)"
+msgstr "Адрас WordPress (URL)"
+
+#: classes/settings/page-debug.php:81
+msgid "Admin email"
+msgstr "Email адміністратара"
+
+#: classes/settings/page-debug.php:85
+msgid "Encoding for pages and feeds"
+msgstr "Кадаванне старонак і стужак"
+
+#: classes/settings/page-debug.php:89
+msgid "Content-Type"
+msgstr "Content-Type"
+
+#: classes/settings/page-debug.php:93
+msgid "Site Language"
+msgstr "Мова сайта"
+
+#: classes/settings/page-debug.php:97
+msgid "Server time"
+msgstr "Час сервера"
+
+#: classes/settings/page-debug.php:101
+msgid "WordPress directory path"
+msgstr "Шлях да каталога WordPress"
+
+#: classes/settings/page-debug.php:105
+msgid "Operting system"
+msgstr "Аперацыйная сістэма"
+
+#: classes/settings/page-debug.php:109
+msgid "User agent"
+msgstr "User agent"
+
+#: classes/settings/page-debug.php:113
+msgid "Plugin directory path"
+msgstr "Шлях да каталога плагіна"
+
+#: classes/settings/page-debug.php:129
+msgid "Plugin settings"
+msgstr "Налады плагіна"
+
+#: classes/settings/page-functions.php:4
+msgid "These are available PHP functions that you can use in your themes and plugins."
+msgstr "Гэта даступныя PHP-функцыі, якія можна выкарыстоўваць у вашых тэмах і плагінах."
+
+#: classes/settings/page-functions.php:21
+msgid "Determines whether the site is already in Cyrillic."
+msgstr "Вызначае, ці выкарыстоўвае сайт ужо кірыліцу."
+
+#: classes/settings/page-functions.php:103
+msgid "This function provides information on whether the currently active language is excluded from transliteration."
+msgstr "Гэта функцыя паведамляе, ці выключана бягучая актыўная мова з транслітарацыі."
+
+#: classes/settings/page-functions.php:107
+msgid "Transliteration of some text or content into the desired script."
+msgstr "Транслітарацыя пэўнага тэксту або змесціва ў патрэбную пісьменнасць."
+
+#: classes/settings/page-functions.php:109
+msgid "The <b><i>$type</i></b> parameter has two values: <code>cyr_to_lat</code> (Cyrillic to Latin) and <code>lat_to_cyr</code> (Latin to Cyrillic)"
+msgstr "Параметр <b><i>$type</i></b> мае два значэнні: <code>cyr_to_lat</code> (кірыліца ў лацініцу) і <code>lat_to_cyr</code> (лацініца ў кірыліцу)"
+
+#: classes/settings/page-functions.php:112
+msgid "Transliteration from Cyrillic to Latin."
+msgstr "Транслітарацыя з кірыліцы ў лацініцу."
+
+#: classes/settings/page-functions.php:116
+msgid "Transliteration from Latin to Cyrillic."
+msgstr "Транслітарацыя з лацініцы ў кірыліцу."
+
+#: classes/settings/page-functions.php:120
+msgid "Transliterates Cyrillic characters to Latin, converting them to their basic ASCII equivalents by removing diacritics."
+msgstr "Транслітаруе кірылічныя сімвалы ў лацініцу, пераўтвараючы іх у базавыя ASCII-адпаведнікі шляхам выдалення дыякрытыкі."
+
+#: classes/settings/page-functions.php:124
+msgid "Get active script."
+msgstr "Атрымаць актыўную пісьменнасць."
+
+#: classes/settings/page-functions.php:128
+msgid "This function displays a selector for the transliteration script."
+msgstr "Гэта функцыя адлюстроўвае пераключальнік пісьма для транслітарацыі."
+
+#: classes/settings/page-functions.php:130
+msgid "Parameters"
+msgstr "Параметры"
+
+#: classes/settings/page-functions.php:131
+msgid "This attribute contains an associative set of parameters for this function:"
+msgstr "Гэты атрыбут утрымлівае асацыятыўны набор параметраў для гэтай функцыі:"
+
+#: classes/settings/page-functions.php:137
+#, php-format
+msgid "(string) The type of selector that will be displayed on the site. It can be: %1$s, %2$s, %3$s, %4$s, %5$s or %6$s. Default: %1$s"
+msgstr "(string) Тып селектара, які будзе адлюстроўвацца на сайце. Ён можа быць: %1$s, %2$s, %3$s, %4$s, %5$s або %6$s. Па змаўчанні: %1$s"
+
+#: classes/settings/page-functions.php:149
+#, php-format
+msgid "(bool) determines whether it will be displayed through an echo or as a string. Default: %s"
+msgstr "(bool) вызначае, ці будзе значэнне выводзіцца праз echo або як радок. Па змаўчанні: %s"
+
+#: classes/settings/page-functions.php:154 classes/settings/page-shortcodes.php:52
+#, php-format
+msgid "(string) Separator to be used when the selector type is %s. Default: %s"
+msgstr "(string) Раздзяляльнік, які выкарыстоўваецца, калі тып селектара — %s. Па змаўчанні: %s"
+
+#: classes/settings/page-functions.php:159
+#, php-format
+msgid "(string) Text for Cyrillic link. Default: %s"
+msgstr "(string) Тэкст для спасылкі на кірыліцу. Па змаўчанні: %s"
+
+#: classes/settings/page-functions.php:164
+#, php-format
+msgid "(string) Text for Latin link. Default: %s"
+msgstr "(string) Тэкст для спасылкі на лацініцу. Па змаўчанні: %s"
+
+#: classes/settings/page-permalinks.php:2
+msgid "This tool enables you to convert all existing Cyrillic permalinks in your database to Latin characters."
+msgstr "Гэты інструмент дазваляе пераўтварыць усе існуючыя кірылічныя пастаянныя спасылкі ў вашай базе даных у лацінскія сімвалы."
+
+#: classes/settings/page-permalinks.php:4
+msgid "Warning:"
+msgstr "Папярэджанне:"
+
+#: classes/settings/page-permalinks.php:7
+msgid "This option is dangerous and can create unexpected problems. Once you run this script, all permalinks in your database will be modified and this can affect on the SEO causing a 404 error."
+msgstr "Гэты параметр небяспечны і можа выклікаць непрадбачаныя праблемы. Пасля запуску гэтага скрыпту ўсе пастаянныя спасылкі ў вашай базе даных будуць зменены, што можа паўплываць на SEO і выклікаць памылку 404."
+
+#: classes/settings/page-permalinks.php:10
+msgid "Before proceeding, consult with your SEO specialist, as you will likely need to resubmit your sitemap and adjust other settings to update the permalinks in search engines."
+msgstr "Перад працягам пракансультуйцеся са спецыялістам па SEO, бо вам, верагодна, спатрэбіцца паўторна адправіць sitemap і скарэктаваць іншыя налады, каб абнавіць пастаянныя спасылкі ў пошукавых сістэмах."
+
+#: classes/settings/page-permalinks.php:12
+msgid "For advanced users, this function can also be executed via WP-CLI using the command"
+msgstr "Для дасведчаных карыстальнікаў гэтую функцыю таксама можна выканаць праз WP-CLI з дапамогай каманды"
+
+#: classes/settings/page-permalinks.php:14
+#, php-format
+msgid "Important: Make sure to %s before running this script."
+msgstr "Важна: абавязкова %s перад запускам гэтага скрыпту."
+
+#: classes/settings/page-permalinks.php:14
+msgid "back up your database"
+msgstr "зрабіце рэзервовую копію базы даных"
+
+#: classes/settings/page-permalinks.php:26
+#, php-format
+msgid "This tool will affect on the following post types: %s"
+msgstr "Гэты інструмент паўплывае на наступныя тыпы запісаў: %s"
+
+#: classes/settings/page-permalinks.php:40
+msgid "Let's do magic"
+msgstr "Зробім магію"
+
+#: classes/settings/page-permalinks.php:43
+msgid "Are you sure you want this?"
+msgstr "Вы ўпэўнены, што хочаце гэтага?"
+
+#: classes/settings/page-permalinks.php:47
+msgid "Disclaimer"
+msgstr "Адмова ад адказнасці"
+
+#: classes/settings/page-permalinks.php:48
+msgid "While this tool is designed to operate safely, there is always a small risk of unpredictable issues."
+msgstr "Хоць гэты інструмент распрацаваны для бяспечнай працы, заўсёды існуе невялікі рызыка непрадказальных праблем."
+
+#: classes/settings/page-permalinks.php:49
+msgid "Note: We do not guarantee that this tool will function correctly on your server. By using it, you assume all risks and responsibilities for any potential issues."
+msgstr "Заўвага: мы не гарантуем, што гэты інструмент будзе карэктна працаваць на вашым серверы. Выкарыстоўваючы яго, вы бераце на сябе ўсе рызыкі і адказнасць за магчымыя праблемы."
+
+#: classes/settings/page-permalinks.php:50
+msgid "Backup your database before using this tool."
+msgstr "Зрабіце рэзервовую копію базы даных перад выкарыстаннем гэтага інструмента."
+
+#: classes/settings/page-shortcodes.php:4
+msgid "These are available shortcodes that you can use in your content, visual editors, themes and plugins."
+msgstr "Гэта даступныя шорткоды, якія можна выкарыстоўваць у змесціве, візуальных рэдактарах, тэмах і плагінах."
+
+#: classes/settings/page-shortcodes.php:5 classes/settings/page-tags.php:11
+msgid "Skip transliteration"
+msgstr "Прапусціць транслітарацыю"
+
+#: classes/settings/page-shortcodes.php:6 classes/settings/page-tags.php:12
+msgid "Keep this original"
+msgstr "Пакінуць гэта без зменаў"
+
+#: classes/settings/page-shortcodes.php:11 classes/settings/page-shortcodes.php:18
+msgid "(optional) correct HTML code."
+msgstr "(неабавязкова) карэктны HTML-код."
+
+#: classes/settings/page-shortcodes.php:16 classes/settings/page-shortcodes.php:33 classes/settings/page-shortcodes.php:49
+msgid "Optional shortcode parameters"
+msgstr "Неабавязковыя параметры шорткода"
+
+#: classes/settings/page-shortcodes.php:19
+msgid "(optional) correct diacritics."
+msgstr "(неабавязкова) выправіць дыякрытычныя знакі."
+
+#: classes/settings/page-shortcodes.php:22
+msgid "Add an image depending on the language script"
+msgstr "Дадаць выяву ў залежнасці ад пісьменнасці мовы"
+
+#: classes/settings/page-shortcodes.php:23
+msgid "With this shortcode you can manipulate images and display images in Latin or Cyrillic depending on the setup."
+msgstr "З дапамогай гэтага шорткода вы можаце кіраваць выявамі і адлюстроўваць іх лацініцай або кірыліцай у залежнасці ад налад."
+
+#: classes/settings/page-shortcodes.php:25
+msgid "Example"
+msgstr "Прыклад"
+
+#: classes/settings/page-shortcodes.php:27
+msgid "Main shortcode parameters"
+msgstr "Асноўныя параметры шорткода"
+
+#: classes/settings/page-shortcodes.php:29
+msgid "URL (src) as shown in the Latin language"
+msgstr "URL (src), які адлюстроўваецца лацініцай"
+
+#: classes/settings/page-shortcodes.php:30
+msgid "URL (src) as shown in the Cyrillic language"
+msgstr "URL (src), які адлюстроўваецца кірыліцай"
+
+#: classes/settings/page-shortcodes.php:31
+msgid "(optional) URL (src) to the default image if Latin and Cyrillic are unavailable"
+msgstr "(неабавязкова) URL (src) выявы па змаўчанні, калі лацініца і кірыліца недаступныя"
+
+#: classes/settings/page-shortcodes.php:35
+msgid "(optional) title (alt) description of the image for Cyrillic"
+msgstr "(неабавязкова) апісанне title (alt) выявы для кірыліцы"
+
+#: classes/settings/page-shortcodes.php:36
+msgid "(optional) caption description of the image for Cyrillic"
+msgstr "(неабавязкова) апісанне подпісу выявы для кірыліцы"
+
+#: classes/settings/page-shortcodes.php:37
+msgid "(optional) title (alt) description of the image for Latin"
+msgstr "(неабавязкова) апісанне title (alt) выявы для лацініцы"
+
+#: classes/settings/page-shortcodes.php:38
+msgid "(optional) caption description of the image for Latin"
+msgstr "(неабавязкова) апісанне подпісу выявы для лацініцы"
+
+#: classes/settings/page-shortcodes.php:39
+msgid "(optional) title (alt) description of the image if Latin and Cyrillic are unavailable"
+msgstr "(неабавязкова) апісанне title (alt) выявы, калі лацініца і кірыліца недаступныя"
+
+#: classes/settings/page-shortcodes.php:40
+msgid "(optional) caption description of the imag if Latin and Cyrillic are unavailable"
+msgstr "(неабавязкова) апісанне подпісу выявы, калі лацініца і кірыліца недаступныя"
+
+#: classes/settings/page-shortcodes.php:42
+msgid "Shortcode return"
+msgstr "Вяртанае значэнне шорткода"
+
+#: classes/settings/page-shortcodes.php:43
+msgid "HTML image corresponding to the parameters set in this shortcode."
+msgstr "HTML-выява, якая адпавядае параметрам, зададзеным у гэтым шорткодзе."
+
+#: classes/settings/page-shortcodes.php:46
+msgid "Language script menu"
+msgstr "Меню пісьменнасці мовы"
+
+#: classes/settings/page-shortcodes.php:47
+msgid "This shortcode displays a selector for the transliteration script."
+msgstr "Гэты шорткод адлюстроўвае пераключальнік пісьма для транслітарацыі."
+
+#: classes/settings/page-shortcodes.php:51
+#, php-format
+msgid "(string) The type of selector that will be displayed on the site. It can be: \"%1$s\", \"%2$s\", \"%3$s\" or \"%4$s\""
+msgstr "(string) Тып селектара, які будзе адлюстроўвацца на сайце. Ён можа быць: \\\"%1$s\\\", \\\"%2$s\\\", \\\"%3$s\\\" або \\\"%4$s\\\""
+
+#: classes/settings/page-shortcodes.php:53
+msgid "(string) Text for Cyrillic link. Default: Cyrillic"
+msgstr "(string) Тэкст для спасылкі на кірыліцу. Па змаўчанні: Кірыліца"
+
+#: classes/settings/page-shortcodes.php:54
+msgid "(string) Text for Latin link. Default: Latin"
+msgstr "(string) Тэкст для спасылкі на лацініцу. Па змаўчанні: Лацініца"
+
+#: classes/settings/page-shortcodes.php:57
+msgid "This shortcodes work independently of the plugin settings and can be used anywhere within WordPress pages, posts, taxonomies and widgets (if they support it)."
+msgstr "Гэтыя шорткоды працуюць незалежна ад налад плагіна і могуць выкарыстоўвацца дзе заўгодна на старонках, у запісах, таксаноміях і віджэтах WordPress (калі яны гэта падтрымліваюць)."
+
+#: classes/settings/page-tags.php:4
+msgid "These tags have a special purpose and work separately from short codes and can be used in fields where short codes cannot be used."
+msgstr "Гэтыя тэгі маюць спецыяльнае прызначэнне, працуюць асобна ад шорткодаў і могуць выкарыстоўвацца ў палях, дзе шорткоды выкарыстоўваць нельга."
+
+#: classes/settings/page-tags.php:4
+msgid "These tags have no additional settings and can be applied in plugins, themes, widgets and within other short codes."
+msgstr "Гэтыя тэгі не маюць дадатковых налад і могуць прымяняцца ў плагінах, тэмах, віджэтах і ўнутры іншых шорткодаў."
+
+#: classes/settings/page-transliteration.php:4
+msgid "Copy the desired text into one field and press the desired key to convert the text."
+msgstr "Скапіруйце патрэбны тэкст у адно поле і націсніце патрэбную кнопку, каб пераўтварыць тэкст."
+
+#: classes/settings/page-transliteration.php:8
+msgid "Convert to Latin"
+msgstr "Пераўтварыць у лацініцу"
+
+#: classes/settings/page-transliteration.php:9
+msgid "Convert to Cyrillic"
+msgstr "Пераўтварыць у кірыліцу"
+
+#: classes/settings/page-transliteration.php:13
+msgid "Reset"
+msgstr "Скінуць"
+
+#: classes/shortcodes.php:57 classes/shortcodes.php:87 classes/shortcodes.php:119
+#, php-format
+msgid "The %1$s shortcode has been deprecated as of version %2$s. Please update your content and use the new %3$s shortcode."
+msgstr "Шорткод %1$s састарэў, пачынаючы з версіі %2$s. Калі ласка, абнавіце змесціва і выкарыстоўвайце новы шорткод %3$s."
+
+#: classes/shortcodes.php:153
+msgid "Transliteration shortcode does not have adequate parameters and translation is not possible. Please check the documentation."
+msgstr "Шорткод транслітарацыі не мае дастатковых параметраў, і пераклад немагчымы. Калі ласка, праверце дакументацыю."
+
+#: classes/tools.php:27
+msgid "An error occurred while converting. Please refresh the page and try again."
+msgstr "Падчас пераўтварэння адбылася памылка. Калі ласка, абнавіце старонку і паспрабуйце яшчэ раз."
+
+#: classes/tools.php:34
+msgid "The field is empty."
+msgstr "Поле пустое."
+
+#: classes/tools.php:67
+msgid "There was a communication problem. Please refresh the page and try again. If this does not solve the problem, contact the author of the plugin."
+msgstr "Узнікла праблема са сувяззю. Калі ласка, абнавіце старонку і паспрабуйце зноў. Калі гэта не вырашыць праблему, звяжыцеся з аўтарам плагіна."
+
+#: classes/utilities.php:248
+msgid "Phantom Mode (ultra fast DOM-based transliteration)"
+msgstr "Phantom Mode (звышхуткая транслітарацыя на аснове DOM)"
+
+#: classes/utilities.php:249
+msgid "Light mode (basic parts of the site)"
+msgstr "Лёгкі рэжым (базавыя часткі сайта)"
+
+#: classes/utilities.php:250
+msgid "Standard mode (content, themes, plugins, translations, menu)"
+msgstr "Стандартны рэжым (змесціва, тэмы, плагіны, пераклады, меню)"
+
+#: classes/utilities.php:251
+msgid "Advanced mode (content, widgets, themes, plugins, translations, menu, permalinks, media)"
+msgstr "Пашыраны рэжым (змесціва, віджэты, тэмы, плагіны, пераклады, меню, пастаянныя спасылкі, медыя)"
+
+#: classes/utilities.php:252
+msgid "Forced transliteration (everything)"
+msgstr "Прымусовая транслітарацыя (усё)"
+
+#: classes/utilities.php:253
+msgid "Only WooCommerce (It bypasses all other transliterations and focuses only on WooCommerce)"
+msgstr "Толькі WooCommerce (абыходзіць усе астатнія віды транслітарацыі і засяроджваецца толькі на WooCommerce)"
+
+#: classes/utilities.php:254
+msgid "Dev Mode (Only for developers and testers)"
+msgstr "Рэжым распрацоўніка (толькі для распрацоўнікаў і тэставальнікаў)"
+
+#: classes/utilities.php:1267
+msgid " degrees "
+msgstr " градусаў "
+
+#: classes/utilities.php:1268
+msgid " divided by "
+msgstr " падзяліць на "
+
+#: classes/utilities.php:1269
+msgid " times "
+msgstr " памножыць на "
+
+#: classes/utilities.php:1270
+msgid " plus-minus "
+msgstr " плюс-мінус "
+
+#: classes/utilities.php:1271
+msgid " square root "
+msgstr " квадратны корань "
+
+#: classes/utilities.php:1272
+msgid " infinity "
+msgstr " бясконцасць "
+
+#: classes/utilities.php:1273
+msgid " almost equal to "
+msgstr " амаль роўна "
+
+#: classes/utilities.php:1274
+msgid " not equal to "
+msgstr " не роўна "
+
+#: classes/utilities.php:1275
+msgid " identical to "
+msgstr " тоесна "
+
+#: classes/utilities.php:1276
+msgid " less than or equal to "
+msgstr " менш або роўна "
+
+#: classes/utilities.php:1277
+msgid " greater than or equal to "
+msgstr " больш або роўна "
+
+#: classes/utilities.php:1278
+msgid " left "
+msgstr " налева "
+
+#: classes/utilities.php:1279
+msgid " right "
+msgstr " направа "
+
+#: classes/utilities.php:1280
+msgid " up "
+msgstr " уверх "
+
+#: classes/utilities.php:1281
+msgid " down "
+msgstr " уніз "
+
+#: classes/utilities.php:1282
+msgid " left and right "
+msgstr " налева і направа "
+
+#: classes/utilities.php:1283
+msgid " up and down "
+msgstr " уверх і ўніз "
+
+#: classes/utilities.php:1284
+msgid " care of "
+msgstr " на імя "
+
+#: classes/utilities.php:1285
+msgid " estimated "
+msgstr " прыблізна "
+
+#: classes/utilities.php:1286
+msgid " ohm "
+msgstr " ом "
+
+#: classes/utilities.php:1287
+msgid " female "
+msgstr " жаночы "
+
+#: classes/utilities.php:1288
+msgid " male "
+msgstr " мужчынскі "
+
+#: classes/utilities.php:1289
+msgid " Copyright "
+msgstr " Аўтарскія правы "
+
+#: classes/utilities.php:1290
+msgid " Registered "
+msgstr " Зарэгістравана "
+
+#: classes/utilities.php:1291
+msgid " Trademark "
+msgstr " Гандлёвая марка "
+
+#: classes/utilities.php:1620
+msgid "Option name"
+msgstr "Назва параметра"
+
+#: classes/utilities.php:1621 classes/utilities.php:1635
+msgid "Value"
+msgstr "Значэнне"
+
+#: classes/utilities.php:1634
+msgid "Key"
+msgstr "Ключ"
+
+#: classes/utilities.php:1665
+msgid "Automatic"
+msgstr "Аўтаматычна"
+
+#: classes/utilities.php:1685
+msgid "Disabled"
+msgstr "Адключана"
+
+#: classes/wp-cli.php:60
+msgid "Please wait! Do not close the terminal or terminate the script until this operation is completed!"
+msgstr "Калі ласка, пачакайце! Не закрывайце тэрмінал і не перарывайце скрыпт, пакуль аперацыя не будзе завершана!"
+
+#: classes/wp-cli.php:62
+msgid "Progress:"
+msgstr "Прагрэс:"
+
+#: classes/wp-cli.php:111
+#, php-format
+msgid "Updated page ID %1$d, (%2$s) at URL: %3$s"
+msgstr "Абноўлена старонка з ID %1$d, (%2$s) па URL: %3$s"
+
+#: classes/wp-cli.php:126
+#, php-format
+msgid "%d permalink was successfully transliterated."
+msgid_plural "%d permalinks were successfully transliterated."
+msgstr[0] "%d пастаянная спасылка была паспяхова транслітаравана."
+msgstr[1] "%d пастаянныя спасылкі былі паспяхова транслітараваны."
+msgstr[2] "%d пастаянных спасылак былі паспяхова транслітараваны."
+
+#: classes/wp-cli.php:128
+msgid "No changes to the permalink have been made."
+msgstr "Змен у пастаянную спасылку не ўносілася."
+
+#: functions.php:485
+#, php-format
+msgid "Choose one of the display types: \"%1$s\", \"%2$s\", \"%3$s\", \"%4$s\", \"%5$s\" or \"%6$s\""
+msgstr "Выберыце адзін з тыпаў адлюстравання: \\\"%1$s\\\", \\\"%2$s\\\", \\\"%3$s\\\", \\\"%4$s\\\", \\\"%5$s\\\" або \\\"%6$s\\\""
+
+#: serbian-transliteration.php:155 serbian-transliteration.php:156
+msgid "Transliterator"
+msgstr "Transliterator"
+
+#: serbian-transliteration.php:171
+msgid "You do not have sufficient permissions to access this page."
+msgstr "У вас недастаткова правоў для доступу да гэтай старонкі."
+
+#: serbian-transliteration.php:194
+msgid "Security check failed. Please try again."
+msgstr "Праверка бяспекі не прайшла. Калі ласка, паспрабуйце яшчэ раз."
+
+#: serbian-transliteration.php:223
+msgid "Transliterator - Network Settings"
+msgstr "Transliterator — сеткавыя налады"
+
+#: serbian-transliteration.php:230
+msgid "Select sites where the plugin should run when it is network-activated."
+msgstr "Выберыце сайты, на якіх павінен працаваць плагін, калі ён актываваны ў сетцы."
+
+#: serbian-transliteration.php:235
+msgid "Enable"
+msgstr "Уключыць"
+
+#: serbian-transliteration.php:236
+msgid "Site"
+msgstr "Сайт"
+
+#: serbian-transliteration.php:237
+msgid "Domain"
+msgstr "Дамен"
+
+#: serbian-transliteration.php:238
+msgid "Path"
+msgstr "Шлях"
+
+#: serbian-transliteration.php:253
+#, php-format
+msgid "Site #%d"
+msgstr "Сайт №%d"
+
+#: serbian-transliteration.php:260
+#, php-format
+msgid "Enable Transliterator on site ID %d"
+msgstr "Уключыць Transliterator на сайце з ID %d"
+
+#: serbian-transliteration.php:279
+msgid "No sites found."
+msgstr "Сайты не знойдзены."
+
+#: serbian-transliteration.php:288
+msgid "Save changes"
+msgstr "Захаваць змены"
+
+#. Plugin Name of the plugin/theme
+msgid "Transliterator – Multilingual and Multi-script Text Conversion"
+msgstr "Transliterator — шматмоўнае і шматпісьмовае пераўтварэнне тэксту"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/serbian-transliteration/"
+msgstr "https://wordpress.org/plugins/serbian-transliteration/"
+
+#. Description of the plugin/theme
+msgid "All-in-one Cyrillic to Latin transliteration plugin for WordPress. Supports Slavic, Arabic, Greek, and Central Asian scripts."
+msgstr "Універсальны плагін транслітарацыі з кірыліцы ў лацініцу для WordPress. Падтрымлівае славянскія, арабскія, грэчаскія і цэнтральнаазіяцкія пісьменнасці."
+
+#. Author of the plugin/theme
+msgid "Ivijan-Stefan Stipić"
+msgstr "Ivijan-Stefan Stipić"
+
+#. Author URI of the plugin/theme
+msgid "https://profiles.wordpress.org/ivijanstefan/"
+msgstr "https://profiles.wordpress.org/ivijanstefan/"

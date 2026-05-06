@@ -91,10 +91,17 @@ if (!function_exists('get_script')) :
         return Transliteration_Utilities::get_current_script();
     } elseif (!function_exists('rstr_get_script')):
         function rstr_get_script()
-        {
-            _doing_it_wrong('rstr_get_script', __('This function is deprecated and will be removed. Replace it with the `get_script()` function', 'serbian-transliteration'), '1.10.5');
-            return Transliteration_Utilities::get_current_script();
-        }
+		{
+			$message = 'This function is deprecated and will be removed. Replace it with the `get_script()` function';
+
+			if (function_exists('did_action') && did_action('init')) {
+				$message = __($message, 'serbian-transliteration');
+			}
+
+			_doing_it_wrong('rstr_get_script', $message, '1.10.5');
+
+			return Transliteration_Utilities::get_current_script();
+		}
     endif;
 
 
@@ -429,13 +436,22 @@ if (!function_exists('script_selector')) :
     function script_selector($args)
     {
         $ID   = uniqid('script_selector_');
+		
+		$cyr_caption = (function_exists('did_action') && did_action('init'))
+			? __('Cyrillic', 'serbian-transliteration')
+			: 'Cyrillic';
+
+		$lat_caption = (function_exists('did_action') && did_action('init'))
+			? __('Latin', 'serbian-transliteration')
+			: 'Latin';
+	
         $args = (object) wp_parse_args($args, [
             'id'           => $ID,
             'display_type' => 'inline',
             'echo'         => false,
             'separator'    => ' | ',
-            'cyr_caption'  => __('Cyrillic', 'serbian-transliteration'),
-			'lat_caption'  => __('Latin', 'serbian-transliteration'),
+            'cyr_caption'  => $cyr_caption,
+			'lat_caption'  => $lat_caption,
         ]);
 		
 		/*

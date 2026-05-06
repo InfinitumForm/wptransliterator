@@ -134,6 +134,13 @@ class Transliteration_Plugin_Woocommerce extends Transliteration
     //		'woocommerce_cart_item_product' => 'objects',
             'woocommerce_cart_item_price'    => 'currency_symbol',
             'woocommerce_cart_item_subtotal' => 'currency_symbol',
+			
+			'woocommerce_page_title'         => 'no_html_content',
+			'woocommerce_product_title'      => 'no_html_content',
+			'woocommerce_cart_item_subtotal' => 'html_content',
+			'woocommerce_cart_subtotal'      => 'html_content',
+			'woocommerce_cart_totals_order_total_html' => 'html_content',
+			'woocommerce_get_breadcrumb'     => 'woocommerce_breadcrumb_content',
         ]);
     }
 
