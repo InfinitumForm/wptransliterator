@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Serbian Transliteration\n"
-"POT-Creation-Date: 2026-05-05 23:25+0200\n"
-"PO-Revision-Date: 2026-05-05 23:26+0200\n"
+"POT-Creation-Date: 2026-05-26 15:43+0200\n"
+"PO-Revision-Date: 2026-05-26 15:44+0200\n"
 "Last-Translator: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -89,9 +89,9 @@ msgid "Contra Team - A complete hosting solution in one place"
 msgstr "Contra Team - Комплетно решење за хостинг на једном месту"
 
 #: classes/menus.php:34 classes/settings.php:52 classes/settings.php:98
-#: classes/settings.php:318 classes/settings.php:394 classes/settings.php:432
-#: classes/settings.php:470 classes/settings.php:517 classes/settings.php:548
-#: classes/settings.php:586 classes/settings.php:616
+#: classes/settings.php:362 classes/settings.php:438 classes/settings.php:476
+#: classes/settings.php:514 classes/settings.php:561 classes/settings.php:592
+#: classes/settings.php:630 classes/settings.php:660
 msgid "Transliteration"
 msgstr "Пресловљавање"
 
@@ -645,13 +645,13 @@ msgstr "Одредите да ли је ваш примарни алфабет �
 msgid "Transliteration disabled"
 msgstr "Угаси пресловљавање"
 
-#: classes/settings-fields.php:544 classes/settings.php:692
+#: classes/settings-fields.php:544 classes/settings.php:736
 #: classes/settings/page-shortcodes.php:8 classes/settings/page-tags.php:5
 #: classes/utilities.php:1669
 msgid "Cyrillic to Latin"
 msgstr "Ћирилица у латиницу"
 
-#: classes/settings-fields.php:545 classes/settings.php:693
+#: classes/settings-fields.php:545 classes/settings.php:737
 #: classes/settings/page-shortcodes.php:14 classes/settings/page-tags.php:8
 #: classes/utilities.php:1673
 msgid "Latin to Cyrillic"
@@ -782,8 +782,8 @@ msgstr ""
 #: classes/settings-fields.php:888 classes/settings-fields.php:910
 #: classes/settings-fields.php:932 classes/settings-fields.php:978
 #: classes/settings-fields.php:997 classes/settings-fields.php:1059
-#: classes/settings-fields.php:1098 classes/settings.php:696
-#: classes/settings.php:700 classes/settings.php:704 classes/settings.php:708
+#: classes/settings-fields.php:1098 classes/settings.php:740
+#: classes/settings.php:744 classes/settings.php:748 classes/settings.php:752
 #: classes/utilities.php:1657
 msgid "Yes"
 msgstr "Да"
@@ -795,8 +795,8 @@ msgstr "Да"
 #: classes/settings-fields.php:889 classes/settings-fields.php:911
 #: classes/settings-fields.php:933 classes/settings-fields.php:979
 #: classes/settings-fields.php:998 classes/settings-fields.php:1060
-#: classes/settings-fields.php:1099 classes/settings.php:697
-#: classes/settings.php:701 classes/settings.php:705 classes/settings.php:709
+#: classes/settings-fields.php:1099 classes/settings.php:741
+#: classes/settings.php:745 classes/settings.php:749 classes/settings.php:753
 #: classes/utilities.php:1661
 msgid "No"
 msgstr "Не"
@@ -1053,7 +1053,7 @@ msgstr "придружите се нашем тиму"
 msgid "Settings saved."
 msgstr "Подешавања су сачувана."
 
-#: classes/settings.php:77 classes/settings.php:714
+#: classes/settings.php:77 classes/settings.php:758
 msgid "Settings"
 msgstr "Подешавања"
 
@@ -1131,94 +1131,94 @@ msgstr "Алат за трајне везе"
 msgid "General Settings"
 msgstr "Глобална подешавања"
 
-#: classes/settings.php:271 classes/settings.php:715
+#: classes/settings.php:271 classes/settings.php:759
 msgid "Documentation"
 msgstr "Документација"
 
-#: classes/settings.php:275 classes/settings.php:716
+#: classes/settings.php:275 classes/settings.php:760
 msgid "Tools"
 msgstr "Алати"
 
-#: classes/settings.php:279 classes/settings.php:717
+#: classes/settings.php:279 classes/settings.php:761
 msgid "Debug"
 msgstr "Дебаговање"
 
-#: classes/settings.php:283 classes/settings.php:616 classes/settings.php:718
+#: classes/settings.php:283 classes/settings.php:660 classes/settings.php:762
 #: classes/settings/page-credits.php:60
 msgid "Credits"
 msgstr "Информације"
 
-#: classes/settings.php:339 classes/settings.php:348
+#: classes/settings.php:300 classes/settings/page-credits.php:52
+msgid "Support"
+msgstr "Подршка"
+
+#: classes/settings.php:383 classes/settings.php:392
 msgid "Save Changes"
 msgstr "Сачувај промене"
 
-#: classes/settings.php:394
+#: classes/settings.php:438
 msgid "Available shortcodes"
 msgstr "Доступни кратки кодови"
 
-#: classes/settings.php:432
+#: classes/settings.php:476
 msgid "Available PHP Functions"
 msgstr "Доступне PHP функције"
 
-#: classes/settings.php:470
+#: classes/settings.php:514
 msgid "Available Tags"
 msgstr "Доступни тагови"
 
-#: classes/settings.php:517
+#: classes/settings.php:561
 msgid "Converter for transliterating Cyrillic into Latin and vice versa"
 msgstr "Конвертор за пресловљавање ћирилице у латиницу и обрнуто"
 
-#: classes/settings.php:548
+#: classes/settings.php:592
 msgid "Permalink Transliteration Tool"
 msgstr "Алат за пресловљавање трајних веза"
 
-#: classes/settings.php:586
+#: classes/settings.php:630
 msgid "Debug information"
 msgstr "Информације о отклањању грешака"
 
-#: classes/settings.php:671
+#: classes/settings.php:715
 msgid "WordPress Transliterator"
 msgstr "WordPress пресловљавање"
 
-#: classes/settings.php:712
+#: classes/settings.php:756
 msgid "Quick Access:"
 msgstr "Брз приступ:"
 
-#: classes/settings.php:719
+#: classes/settings.php:763
 msgid "Rate us"
 msgstr "Оцените нас"
 
-#: classes/settings.php:723
+#: classes/settings.php:767
 msgid "Current Settings:"
 msgstr "Тренутна подешавања:"
 
-#: classes/settings.php:725
+#: classes/settings.php:769
 msgid "Transliteration Mode:"
 msgstr "Режим пресловљавања:"
 
-#: classes/settings.php:726
+#: classes/settings.php:770
 msgid "Cache Support:"
 msgstr "Подршка за кеширање:"
 
-#: classes/settings.php:727
+#: classes/settings.php:771
 msgid "Media Transliteration:"
 msgstr "Пресловљавање медија:"
 
-#: classes/settings.php:728
+#: classes/settings.php:772
 msgid "Permalink Transliteration:"
 msgstr "Пресловљавање трајних веза:"
 
-#: classes/settings.php:731
+#: classes/settings.php:775
 msgid ""
 "Transliterator plugin options are not yet available. Please update plugin "
 "settings!"
 msgstr ""
 "Опције Transliterator додатка још увек нису доступне. Молимо вас да "
 "ажурирате подешавања додатка!"
-
-#: classes/settings/page-credits.php:52
-msgid "Support"
-msgstr "Подршка"
 
 #: classes/settings/page-credits.php:53
 msgid ""
@@ -2083,11 +2083,13 @@ msgstr "https://wordpress.org/plugins/serbian-transliteration/"
 
 #. Description of the plugin/theme
 msgid ""
-"All-in-one Cyrillic to Latin transliteration plugin for WordPress. Supports "
-"Slavic, Arabic, Greek, and Central Asian scripts."
+"Universal WordPress transliteration for multilingual and non-Latin URLs, "
+"permalinks, media, search and full site content into SEO-friendly readable "
+"text."
 msgstr ""
-"Свеобухватан додатак за трансформацију текста са ћирилице на латиницу за "
-"ВордПрес. Подржава словенска, арапска, грчка и средњоазијска писма."
+"Универзална WordPress транслитерација за вишејезичне и нелатиничне URL "
+"адресе, permalink-ове, медије, претрагу и комплетан садржај сајта у SEO-"
+"прилагођен читљив текст."
 
 #. Author of the plugin/theme
 msgid "Ivijan-Stefan Stipić"
@@ -2096,6 +2098,13 @@ msgstr "Ивијан-Стефан Стипић"
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/ivijanstefan/"
 msgstr "https://profiles.wordpress.org/ivijanstefan/"
+
+#~ msgid ""
+#~ "All-in-one Cyrillic to Latin transliteration plugin for WordPress. "
+#~ "Supports Slavic, Arabic, Greek, and Central Asian scripts."
+#~ msgstr ""
+#~ "Свеобухватан додатак за трансформацију текста са ћирилице на латиницу за "
+#~ "ВордПрес. Подржава словенска, арапска, грчка и средњоазијска писма."
 
 #~ msgid "Serbian"
 #~ msgstr "Српски"

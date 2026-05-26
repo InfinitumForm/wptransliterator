@@ -202,6 +202,12 @@ class Transliteration_Filters extends Transliteration
 		<script>
 		(function () {
 			"use strict";
+			
+			var RSTR = window.RSTR || (window.RSTR = {});
+
+			if (!RSTR.seed) {
+				RSTR.seed = String(Date.now()) + String(Math.floor(Math.random() * 1000000));
+			}
 
 			if (window.RSTRDynamicObserver && window.RSTRDynamicObserver.initialized) {
 				window.RSTRDynamicObserver.run(document.body);
@@ -259,7 +265,7 @@ class Transliteration_Filters extends Transliteration
 				excludePattern.lastIndex = 0;
 
 				return value.replace(excludePattern, function (full, prefix, word) {
-					var token = "@@::0-" + storage.length + "::@@";
+					var token = "%%::" + RSTR.seed + "::0::" + storage.length + "::%%";
 					storage.push({ token: token, value: word });
 					return prefix + token;
 				});

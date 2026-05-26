@@ -291,7 +291,51 @@ final class Transliteration_Settings extends Transliteration
 			</li>
 			<?php endforeach; ?>
 		</ul>
-		<?php
+		<?php add_action('admin_footer', function(){ ?>
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+
+<script>
+kofiWidgetOverlay.draw('ivijanstefanstipic', {
+	'type': 'floating-chat',
+	'floating-chat.donateButton.text': '<?php esc_attr_e('Support','serbian-transliteration'); ?>',
+	'floating-chat.donateButton.background-color': '#f45d22',
+	'floating-chat.donateButton.text-color': '#ffffff'
+});
+
+(function () {
+	function moveKofiRight() {
+		document.querySelectorAll(
+			'[id^="kofi-widget-overlay-"] .floatingchat-container-wrap,' +
+			'[id^="kofi-widget-overlay-"] .floatingchat-container-wrap-mobi'
+		).forEach(function (element) {
+			element.style.setProperty('left', 'auto', 'important');
+			element.style.setProperty('right', '20px', 'important');
+			element.style.setProperty('bottom', '20px', 'important');
+			element.style.setProperty('position', 'fixed', 'important');
+		});
+		
+		document.querySelectorAll(
+			'[id^="kofi-widget-overlay-"] .floating-chat-kofi-popup-iframe,' +
+			'[id^="kofi-widget-overlay-"] .floating-chat-kofi-popup-iframe-mobi'
+		).forEach(function (element) {
+			element.style.setProperty('left', 'auto', 'important');
+			element.style.setProperty('right', '20px', 'important');
+			element.style.setProperty('bottom', '72px', 'important');
+			element.style.setProperty('position', 'fixed', 'important');
+		});
+	}
+
+	moveKofiRight();
+
+	new MutationObserver(moveKofiRight).observe(document.body, {
+		childList: true,
+		subtree: true,
+		attributes: true,
+		attributeFilter: ['style', 'class']
+	});
+})();
+</script>
+		<?php });
     }
 
     public function settings_page_actions($actions = []): void

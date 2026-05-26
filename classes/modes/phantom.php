@@ -228,6 +228,10 @@ class Transliteration_Mode_Phantom extends Transliteration
 			return;
 		}
 
+		if (function_exists('wp_doing_ajax') && wp_doing_ajax()) {
+			return;
+		}
+
 		if (function_exists('wp_doing_cron') && wp_doing_cron()) {
 			return;
 		}
@@ -236,14 +240,12 @@ class Transliteration_Mode_Phantom extends Transliteration
 			return;
 		}
 
-		if (
-			(function_exists('wp_doing_ajax') && wp_doing_ajax())
-			|| (function_exists('wp_is_json_request') && wp_is_json_request())
-			|| (function_exists('wp_is_serving_rest_request') && wp_is_serving_rest_request())
-		) {
-			if (!$this->is_woocommerce_dynamic_request()) {
-				return;
-			}
+		if (function_exists('wp_is_json_request') && wp_is_json_request()) {
+			return;
+		}
+
+		if (function_exists('wp_is_serving_rest_request') && wp_is_serving_rest_request()) {
+			return;
 		}
 
 		ob_start([$this, 'buffer_callback']);
@@ -280,17 +282,17 @@ class Transliteration_Mode_Phantom extends Transliteration
      * @return string
      */
     public function buffer_callback($buffer): string
-    {
-        if (!is_string($buffer) || $buffer === '') {
-            return (string) $buffer;
-        }
+	{
+		if (!is_string($buffer) || $buffer === '') {
+			return (string) $buffer;
+		}
 
-        if (!$this->looks_like_html_output($buffer)) {
-            return $buffer;
-        }
+		if (trim($buffer) === '') {
+			return $buffer;
+		}
 
-        return Transliteration_Controller::get()->transliterate_html($buffer);
-    }
+		return Transliteration_Controller::get()->transliterate_html($buffer);
+	}
 
     /**
      * Flush only the buffer created by this mode.

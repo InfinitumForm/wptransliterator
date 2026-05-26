@@ -1,3 +1,15 @@
+= 2.5.3 =
+* Corrected spelling errors
+* Updated translations
+
+= 2.5.2 =
+* WordPress 7.0 compatibility
+
+= 2.5.1 =
+* Fixed woocommerce problems with missing transliterations
+* Fixed the order of transliteration
+* Fixed excluded transliterations
+
 = 2.5.0 =
 * Added JavaScript dynamic transliteration for AJAX and frontend content
 * Fixed Latin to Cyrillic and Cyrillic to Latin inconsistencies

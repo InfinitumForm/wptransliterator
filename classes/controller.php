@@ -7,6 +7,13 @@ if (!defined('WPINC')) {
 final class Transliteration_Controller extends Transliteration
 {
     use Transliteration__Cache;
+	
+	/**
+	 * Controller output buffer level.
+	 *
+	 * @var int|null
+	 */
+	private ?int $controller_buffer_level = null;
 
     /*
      * The main constructor
@@ -27,11 +34,15 @@ final class Transliteration_Controller extends Transliteration
 	 */
 	public function init_output_buffer(): void
 	{
-		// Register a shutdown action to flush the buffer at the end of the request
+		if ($this->controller_buffer_level !== null) {
+			return;
+		}
+
 		add_action('shutdown', [$this, 'end_output_buffer'], PHP_INT_MAX);
 
-		// Start output buffering with a custom callback that handles tag-based transliteration
 		$this->ob_start([$this, 'controller_output_buffer']);
+
+		$this->controller_buffer_level = ob_get_level();
 	}
 
 	/**
@@ -50,9 +61,20 @@ final class Transliteration_Controller extends Transliteration
 	 */
 	public function end_output_buffer(): void
 	{
-		if (ob_get_level() > 0) {
-			@ob_end_flush();
+		if ($this->controller_buffer_level === null) {
+			return;
 		}
+
+		if (ob_get_level() < $this->controller_buffer_level) {
+			$this->controller_buffer_level = null;
+			return;
+		}
+
+		while (ob_get_level() >= $this->controller_buffer_level) {
+			ob_end_flush();
+		}
+
+		$this->controller_buffer_level = null;
 	}
 
     /*
@@ -255,6 +277,14 @@ final class Transliteration_Controller extends Transliteration
 		$exclude_placeholders = [];
 		$content = $this->protect_cyr_excluded_words((string) $content, $exclude_placeholders);
 
+		$head_placeholders = [];
+		$content = preg_replace_callback('/<head\b[^>]*>.*?<\/head>/is', function ($matches) use (&$head_placeholders): string {
+			$placeholder = self::make_placeholder(3, count($head_placeholders));
+			$head_placeholders[$placeholder] = $matches[0];
+
+			return $placeholder;
+		}, $content);
+
 		$script_placeholders = [];
 		$content = preg_replace_callback('/<script\b[^>]*>.*?<\/script>/is', function ($matches) use (&$script_placeholders): string {
 			$placeholder = self::make_placeholder(1, count($script_placeholders));
@@ -267,14 +297,6 @@ final class Transliteration_Controller extends Transliteration
 		$content = preg_replace_callback('/<style\b[^>]*>.*?<\/style>/is', function ($matches) use (&$style_placeholders): string {
 			$placeholder = self::make_placeholder(2, count($style_placeholders));
 			$style_placeholders[$placeholder] = $matches[0];
-
-			return $placeholder;
-		}, $content);
-
-		$head_placeholders = [];
-		$content = preg_replace_callback('/<head\b[^>]*>.*?<\/head>/is', function ($matches) use (&$head_placeholders): string {
-			$placeholder = self::make_placeholder(3, count($head_placeholders));
-			$head_placeholders[$placeholder] = $matches[0];
 
 			return $placeholder;
 		}, $content);
@@ -324,6 +346,8 @@ final class Transliteration_Controller extends Transliteration
 		if ($head_placeholders !== []) {
 			$content = strtr($content, $head_placeholders);
 		}
+		
+		$content = $this->cleanup_placeholders($content);
 
 		return $content;
 	}
@@ -421,6 +445,14 @@ final class Transliteration_Controller extends Transliteration
             $self_closing_shortcode_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
+		
+		// Extract <head> contents and replace them with placeholders
+        $head_placeholders = [];
+        $content           = preg_replace_callback('/<head\b[^>]*>(.*?)<\/head>/is', function ($matches) use (&$head_placeholders): string {
+            $placeholder                     = self::make_placeholder(5, count($head_placeholders));
+            $head_placeholders[$placeholder] = $matches[0];
+            return $placeholder;
+        }, $content);
 
         // Extract <script> contents and replace them with placeholders
         $script_placeholders = [];
@@ -435,14 +467,6 @@ final class Transliteration_Controller extends Transliteration
         $content            = preg_replace_callback('/<style\b[^>]*>(.*?)<\/style>/is', function ($matches) use (&$style_placeholders): string {
             $placeholder                      = self::make_placeholder(4, count($style_placeholders));
             $style_placeholders[$placeholder] = $matches[0];
-            return $placeholder;
-        }, $content);
-
-        // Extract <head> contents and replace them with placeholders
-        $head_placeholders = [];
-        $content           = preg_replace_callback('/<head\b[^>]*>(.*?)<\/head>/is', function ($matches) use (&$head_placeholders): string {
-            $placeholder                     = self::make_placeholder(5, count($head_placeholders));
-            $head_placeholders[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
 
@@ -468,7 +492,7 @@ final class Transliteration_Controller extends Transliteration
             : '/(\b\d+(?:\.\d+)?&#37;|%\d*\$?[ds]|&[^;]+;|https?:\/\/[^\s]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|rstr_skip|cyr_to_lat|lat_to_cyr)/'
         );
         $content = preg_replace_callback($regex, function ($matches) use (&$formatSpecifiers): string {
-            $placeholder                    = '@@::8-' . count($formatSpecifiers) . '@@';
+            $placeholder                    = self::make_placeholder(8, count($formatSpecifiers));
             $formatSpecifiers[$placeholder] = $matches[0];
             return $placeholder;
         }, $content);
@@ -527,6 +551,12 @@ final class Transliteration_Controller extends Transliteration
             $content = strtr($content, $exclude_placeholders);
             unset($exclude_placeholders);
         }
+		
+		// Restore <head> contents back to their original form
+        if ($head_placeholders !== []) {
+            $content = strtr($content, $head_placeholders);
+            unset($head_placeholders);
+        }
 
         // Restore <script> contents back to their original form
         if ($script_placeholders !== []) {
@@ -539,12 +569,8 @@ final class Transliteration_Controller extends Transliteration
             $content = strtr($content, $style_placeholders);
             unset($style_placeholders);
         }
-
-        // Restore <head> contents back to their original form
-        if ($head_placeholders !== []) {
-            $content = strtr($content, $head_placeholders);
-            unset($head_placeholders);
-        }
+		
+		$content = $this->cleanup_placeholders($content);
 
         return $content;
     }
@@ -807,6 +833,8 @@ final class Transliteration_Controller extends Transliteration
 		if ($placeholders !== []) {
 			$output = strtr($output, $placeholders);
 		}
+		
+		$output = $this->cleanup_placeholders($output);
 
 		return $output;
 	}
@@ -873,7 +901,25 @@ final class Transliteration_Controller extends Transliteration
 	 */
 	private static function make_placeholder(int $group, int $index): string
 	{
-		return '@@::' . $group . '-' . $index . '@@';
+		static $seed = null;
+
+		if ($seed === null) {
+			$seed = (string) mt_rand(100000, 999999);
+		}
+
+		return '%%::' . $seed . '::' . $group . '::' . $index . '::%%';
+	}
+	
+	/**
+	 * Remove any leftover transliteration placeholders.
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	private function cleanup_placeholders(string $content): string
+	{
+		// Match %%::seed::group::index::%%
+		return preg_replace('/%%::\d+::\d+::\d+::%%/u', '', $content);
 	}
 	
 	/**
@@ -922,4 +968,5 @@ final class Transliteration_Controller extends Transliteration
 
 		return $content;
 	}
+
 }

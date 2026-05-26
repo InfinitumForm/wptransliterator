@@ -1,14 +1,14 @@
 ﻿=== Transliterator – Multilingual and Multi-script Text Conversion ===
 Contributors: ivijanstefan, creativform, tihi
 Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
-Requires at least: 5.4
-Tested up to: 6.9
+Requires at least: 6.0
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.5.0
+Stable tag: 2.5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Universal transliteration for permalinks, posts, tags, categories, media, files, search and more, rendering them universally readable.
+Universal WordPress transliteration for multilingual and non-Latin URLs, permalinks, media, search and full site content into SEO-friendly readable text.
 
 == Description ==
 
@@ -17,7 +17,7 @@ _Serbian, Bosnian, Montenegrin, Russian, Belarusian, Bulgarian, Macedonian, Kaza
 
 This plugin provides a modern, modular, and extensible solution for **transliterating WordPress content** between **Cyrillic and Latin scripts** - with additional support for Arabic-based and other regional alphabets. Originally launched as "Serbian Transliteration," it has evolved into a **general-purpose transliteration tool** built to serve a wider multilingual audience.
 
-📝 [Discover the evolution of this plugin](https://buymeacoffee.com/ivijanstefan/transliterator-wordpress-transforming-language-barriers-bridges)
+📝 [Discover the evolution of this plugin](https://ko-fi.com/post/Transliterator-for-WordPress-P0U1208M8A)
 
 You can transliterate entire posts, pages, permalinks, media filenames, usernames, and even selectively control output using built-in shortcodes. Whether you're managing a bilingual site or just want cleaner slugs, **you remain in control**.
 
@@ -89,6 +89,18 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Changelog ==
 
+= 2.5.3 =
+* Corrected spelling errors
+* Updated translations
+
+= 2.5.2 =
+* WordPress 7.0 compatibility
+
+= 2.5.1 =
+* Fixed woocommerce problems with missing transliterations
+* Fixed the order of transliteration
+* Fixed excluded transliterations
+
 = 2.5.0 =
 * Added JavaScript dynamic transliteration for AJAX and frontend content
 * Fixed Latin to Cyrillic and Cyrillic to Latin inconsistencies
@@ -124,6 +136,18 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Fixed gettext problems
 
 == Upgrade Notice ==
+
+= 2.5.3 =
+* Corrected spelling errors
+* Updated translations
+
+= 2.5.2 =
+* WordPress 7.0 compatibility
+
+= 2.5.1 =
+* Fixed woocommerce problems with missing transliterations
+* Fixed the order of transliteration
+* Fixed excluded transliterations
 
 = 2.5.0 =
 * Added JavaScript dynamic transliteration for AJAX and frontend content
