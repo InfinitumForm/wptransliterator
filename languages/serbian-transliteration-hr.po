@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Serbian Transliteration\n"
-"POT-Creation-Date: 2026-05-26 15:45+0200\n"
-"PO-Revision-Date: 2026-05-26 15:45+0200\n"
+"POT-Creation-Date: 2026-05-27 21:57+0200\n"
+"PO-Revision-Date: 2026-05-27 21:58+0200\n"
 "Last-Translator: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -98,7 +98,7 @@ msgstr "Transliteracija"
 #: classes/menus.php:49 classes/menus.php:51 classes/settings-fields.php:506
 #: classes/settings-fields.php:582 classes/settings.php:128
 #: classes/settings.php:203 classes/settings/page-functions.php:164
-#: classes/shortcodes.php:36 classes/utilities.php:1292
+#: classes/shortcodes.php:38 classes/utilities.php:1292
 #: classes/utilities.php:1677 functions.php:445
 msgid "Latin"
 msgstr "Latinski"
@@ -106,7 +106,7 @@ msgstr "Latinski"
 #: classes/menus.php:50 classes/menus.php:51 classes/settings-fields.php:505
 #: classes/settings-fields.php:583 classes/settings.php:129
 #: classes/settings.php:204 classes/settings/page-functions.php:159
-#: classes/shortcodes.php:35 classes/utilities.php:1293
+#: classes/shortcodes.php:37 classes/utilities.php:1293
 #: classes/utilities.php:1681 functions.php:441
 msgid "Cyrillic"
 msgstr "Ćirilica"
@@ -649,13 +649,13 @@ msgid "Transliteration disabled"
 msgstr "Transliteracija je onemogućena"
 
 #: classes/settings-fields.php:544 classes/settings.php:736
-#: classes/settings/page-shortcodes.php:8 classes/settings/page-tags.php:5
+#: classes/settings/page-shortcodes.php:11 classes/settings/page-tags.php:11
 #: classes/utilities.php:1669
 msgid "Cyrillic to Latin"
 msgstr "Ćirilica na latinicu"
 
 #: classes/settings-fields.php:545 classes/settings.php:737
-#: classes/settings/page-shortcodes.php:14 classes/settings/page-tags.php:8
+#: classes/settings/page-shortcodes.php:17 classes/settings/page-tags.php:14
 #: classes/utilities.php:1673
 msgid "Latin to Cyrillic"
 msgstr "Latinica na ćirilicu"
@@ -1051,7 +1051,7 @@ msgstr ""
 msgid "join our team"
 msgstr "pridružite se našem timu"
 
-#: classes/settings.php:64 serbian-transliteration.php:187
+#: classes/settings.php:64 serbian-transliteration.php:188
 msgid "Settings saved."
 msgstr "Postavke spremljene."
 
@@ -1508,7 +1508,7 @@ msgid ""
 msgstr "(bool) određuje hoće li se prikazati kroz echo ili kao niz. Zadano: %s"
 
 #: classes/settings/page-functions.php:154
-#: classes/settings/page-shortcodes.php:52
+#: classes/settings/page-shortcodes.php:55
 #, php-format
 msgid "(string) Separator to be used when the selector type is %s. Default: %s"
 msgstr ""
@@ -1622,34 +1622,43 @@ msgstr ""
 "Ovo su dostupni kratki kodovi koje možete koristiti u svom sadržaju, "
 "vizualnim uređivačima, temama i dodacima."
 
-#: classes/settings/page-shortcodes.php:5 classes/settings/page-tags.php:11
-msgid "Skip transliteration"
-msgstr "Izbegni transliteraciju"
+#: classes/settings/page-shortcodes.php:5 classes/settings/page-tags.php:5
+msgid "Keep exact content"
+msgstr "Zadrži točan sadržaj"
 
-#: classes/settings/page-shortcodes.php:6 classes/settings/page-tags.php:12
-msgid "Keep this original"
-msgstr "Zadržite ovo kao original"
+#: classes/settings/page-shortcodes.php:6 classes/settings/page-tags.php:6
+#: classes/settings/page-tags.php:9
+msgid "Keep this text exactly as written"
+msgstr "Zadrži ovaj tekst točno kako je napisan"
 
-#: classes/settings/page-shortcodes.php:11
-#: classes/settings/page-shortcodes.php:18
+#: classes/settings/page-shortcodes.php:8 classes/settings/page-tags.php:8
+msgid "Skip active transliteration"
+msgstr "Preskoči aktivnu transliteraciju"
+
+#: classes/settings/page-shortcodes.php:9
+msgid "Display this text in the original site script"
+msgstr "Prikaži ovaj tekst u izvornom pismu stranice"
+
+#: classes/settings/page-shortcodes.php:14
+#: classes/settings/page-shortcodes.php:21
 msgid "(optional) correct HTML code."
 msgstr "(nije obavezno) ispravni HTML kôd."
 
-#: classes/settings/page-shortcodes.php:16
-#: classes/settings/page-shortcodes.php:33
-#: classes/settings/page-shortcodes.php:49
+#: classes/settings/page-shortcodes.php:19
+#: classes/settings/page-shortcodes.php:36
+#: classes/settings/page-shortcodes.php:52
 msgid "Optional shortcode parameters"
 msgstr "Neobavezni parametri kratkog koda"
 
-#: classes/settings/page-shortcodes.php:19
+#: classes/settings/page-shortcodes.php:22
 msgid "(optional) correct diacritics."
 msgstr "(nije obavezno) ispravni dijakritički znakovi."
 
-#: classes/settings/page-shortcodes.php:22
+#: classes/settings/page-shortcodes.php:25
 msgid "Add an image depending on the language script"
 msgstr "Dodavanje slike ovisno o jezičnoj skripti"
 
-#: classes/settings/page-shortcodes.php:23
+#: classes/settings/page-shortcodes.php:26
 msgid ""
 "With this shortcode you can manipulate images and display images in Latin or "
 "Cyrillic depending on the setup."
@@ -1657,74 +1666,74 @@ msgstr ""
 "S ovim kratkim kodom možete manipulirati slikama i prikazati slike na "
 "latinskom ili ćirilici ovisno o postavljanju."
 
-#: classes/settings/page-shortcodes.php:25
+#: classes/settings/page-shortcodes.php:28
 msgid "Example"
 msgstr "Primjer"
 
-#: classes/settings/page-shortcodes.php:27
+#: classes/settings/page-shortcodes.php:30
 msgid "Main shortcode parameters"
 msgstr "Glavni parametri kratkog koda"
 
-#: classes/settings/page-shortcodes.php:29
+#: classes/settings/page-shortcodes.php:32
 msgid "URL (src) as shown in the Latin language"
 msgstr "URL (src) kako je prikazano na latinskom jeziku"
 
-#: classes/settings/page-shortcodes.php:30
+#: classes/settings/page-shortcodes.php:33
 msgid "URL (src) as shown in the Cyrillic language"
 msgstr "URL (src) kako je prikazano na ćiriličnom jeziku"
 
-#: classes/settings/page-shortcodes.php:31
+#: classes/settings/page-shortcodes.php:34
 msgid ""
 "(optional) URL (src) to the default image if Latin and Cyrillic are "
 "unavailable"
 msgstr ""
 "(neobavezno) URL (src) na zadanu sliku ako su latinica i ćirilica nedostupni"
 
-#: classes/settings/page-shortcodes.php:35
+#: classes/settings/page-shortcodes.php:38
 msgid "(optional) title (alt) description of the image for Cyrillic"
 msgstr "(neobavezno) naslov (alt) slike za ćirilicu"
 
-#: classes/settings/page-shortcodes.php:36
+#: classes/settings/page-shortcodes.php:39
 msgid "(optional) caption description of the image for Cyrillic"
 msgstr "(neobavezno) opis slike za ćirilicu"
 
-#: classes/settings/page-shortcodes.php:37
+#: classes/settings/page-shortcodes.php:40
 msgid "(optional) title (alt) description of the image for Latin"
 msgstr "(neobavezno) naslov (alt) slike za latinski"
 
-#: classes/settings/page-shortcodes.php:38
+#: classes/settings/page-shortcodes.php:41
 msgid "(optional) caption description of the image for Latin"
 msgstr "(neobavezno) opis slike za latinski"
 
-#: classes/settings/page-shortcodes.php:39
+#: classes/settings/page-shortcodes.php:42
 msgid ""
 "(optional) title (alt) description of the image if Latin and Cyrillic are "
 "unavailable"
 msgstr "(neobavezno) naslov (alt) slike ako su latinica i ćirilica nedostupni"
 
-#: classes/settings/page-shortcodes.php:40
+#: classes/settings/page-shortcodes.php:43
 msgid ""
 "(optional) caption description of the imag if Latin and Cyrillic are "
 "unavailable"
 msgstr "(neobavezno) opis slike ako su latinica i ćirilica nedostupni"
 
-#: classes/settings/page-shortcodes.php:42
+#: classes/settings/page-shortcodes.php:45
 msgid "Shortcode return"
 msgstr "Povrat kratkog koda"
 
-#: classes/settings/page-shortcodes.php:43
+#: classes/settings/page-shortcodes.php:46
 msgid "HTML image corresponding to the parameters set in this shortcode."
 msgstr "HTML slika koja odgovara parametrima postavljenim u ovom kratkom kodu."
 
-#: classes/settings/page-shortcodes.php:46
+#: classes/settings/page-shortcodes.php:49
 msgid "Language script menu"
 msgstr "Izbornik skripte jezika"
 
-#: classes/settings/page-shortcodes.php:47
+#: classes/settings/page-shortcodes.php:50
 msgid "This shortcode displays a selector for the transliteration script."
 msgstr "Ovaj kratki kod prikazuje izbornik za skriptu transliteracije."
 
-#: classes/settings/page-shortcodes.php:51
+#: classes/settings/page-shortcodes.php:54
 #, php-format
 msgid ""
 "(string) The type of selector that will be displayed on the site. It can be: "
@@ -1733,15 +1742,15 @@ msgstr ""
 "(string) Vrsta izbornika koja će se prikazati na web-mjestu. Može biti: "
 "\"%1$s\", \"%2$s\", \"%3$s\" ili \"%4$s\""
 
-#: classes/settings/page-shortcodes.php:53
+#: classes/settings/page-shortcodes.php:56
 msgid "(string) Text for Cyrillic link. Default: Cyrillic"
 msgstr "(string) Tekst za ćirilični link. Zadano: ćirilica"
 
-#: classes/settings/page-shortcodes.php:54
+#: classes/settings/page-shortcodes.php:57
 msgid "(string) Text for Latin link. Default: Latin"
 msgstr "(string) Tekst za latiničnog linka. Zadano: latinski"
 
-#: classes/settings/page-shortcodes.php:57
+#: classes/settings/page-shortcodes.php:60
 msgid ""
 "This shortcodes work independently of the plugin settings and can be used "
 "anywhere within WordPress pages, posts, taxonomies and widgets (if they "
@@ -1787,8 +1796,8 @@ msgstr "Pretvori u ćirilicu"
 msgid "Reset"
 msgstr "Očisti sve"
 
-#: classes/shortcodes.php:57 classes/shortcodes.php:87
-#: classes/shortcodes.php:119
+#: classes/shortcodes.php:59 classes/shortcodes.php:89
+#: classes/shortcodes.php:121 classes/shortcodes.php:143
 #, php-format
 msgid ""
 "The %1$s shortcode has been deprecated as of version %2$s. Please update "
@@ -1797,7 +1806,7 @@ msgstr ""
 "Šortkod %1$s je zastario od verzije %2$s. Molimo vas da ažurirate svoj "
 "sadržaj i koristite novi šortkod %3$s."
 
-#: classes/shortcodes.php:153
+#: classes/shortcodes.php:169
 msgid ""
 "Transliteration shortcode does not have adequate parameters and translation "
 "is not possible. Please check the documentation."
@@ -2018,59 +2027,59 @@ msgstr ""
 "Odaberite jednu od vrsta prikaza: \"%1$s\", \"%2$s\", \"%3$s\", \"%4$s\", "
 "\"%5$s\" ili \"%6$s\""
 
-#: serbian-transliteration.php:155 serbian-transliteration.php:156
+#: serbian-transliteration.php:156 serbian-transliteration.php:157
 msgid "Transliterator"
 msgstr "Transliteracija"
 
-#: serbian-transliteration.php:171
+#: serbian-transliteration.php:172
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Nemate dovoljne ovlasti za pristup ovoj stranici."
 
-#: serbian-transliteration.php:194
+#: serbian-transliteration.php:195
 msgid "Security check failed. Please try again."
 msgstr "Sigurnosna provjera nije uspjela. Molimo pokušajte ponovno."
 
-#: serbian-transliteration.php:223
+#: serbian-transliteration.php:224
 msgid "Transliterator - Network Settings"
 msgstr "Transliteracije - Postavka mreže"
 
-#: serbian-transliteration.php:230
+#: serbian-transliteration.php:231
 msgid "Select sites where the plugin should run when it is network-activated."
 msgstr ""
 "Odaberite stranice na kojima bi se dodatak trebao pokretati kada je "
 "aktiviran na mreži."
 
-#: serbian-transliteration.php:235
+#: serbian-transliteration.php:236
 msgid "Enable"
 msgstr "Odobri"
 
-#: serbian-transliteration.php:236
+#: serbian-transliteration.php:237
 msgid "Site"
 msgstr "Stranice"
 
-#: serbian-transliteration.php:237
+#: serbian-transliteration.php:238
 msgid "Domain"
 msgstr "Domena"
 
-#: serbian-transliteration.php:238
+#: serbian-transliteration.php:239
 msgid "Path"
 msgstr "Putanja"
 
-#: serbian-transliteration.php:253
+#: serbian-transliteration.php:254
 #, php-format
 msgid "Site #%d"
 msgstr "Stranica #%d"
 
-#: serbian-transliteration.php:260
+#: serbian-transliteration.php:261
 #, php-format
 msgid "Enable Transliterator on site ID %d"
 msgstr "Omogući Transliterator na ID sajta %d"
 
-#: serbian-transliteration.php:279
+#: serbian-transliteration.php:280
 msgid "No sites found."
 msgstr "Nijedna sajt nije pronađen."
 
-#: serbian-transliteration.php:288
+#: serbian-transliteration.php:289
 msgid "Save changes"
 msgstr "Spremi promjene"
 
@@ -2099,6 +2108,9 @@ msgstr "Ivijan-Stefan Stipić"
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/ivijanstefan/"
 msgstr "https://profiles.wordpress.org/ivijanstefan/"
+
+#~ msgid "Keep this original"
+#~ msgstr "Zadržite ovo kao original"
 
 #~ msgid ""
 #~ "All-in-one Cyrillic to Latin transliteration plugin for WordPress. "
@@ -2394,9 +2406,6 @@ msgstr "https://profiles.wordpress.org/ivijanstefan/"
 
 #~ msgid "Page title"
 #~ msgstr "Naslov stranice"
-
-#~ msgid "Post content"
-#~ msgstr "Sadržaj posta"
 
 #~ msgid "Post excerpt"
 #~ msgstr "Odlomak posta"

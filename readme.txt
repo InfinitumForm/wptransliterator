@@ -4,15 +4,15 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.5.3
+Stable tag: 2.5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Universal WordPress transliteration for multilingual and non-Latin URLs, permalinks, media, search and full site content into SEO-friendly readable text.
+Universal WordPress transliteration for multilingual and non-Latin URLs, permalinks, media, search and SEO-friendly content.
 
 == Description ==
 
-✅ **MULTILINGUAL SCRIPT SUPPORT**:  
+✅ **MULTILINGUAL SCRIPT SUPPORT**:
 _Serbian, Bosnian, Montenegrin, Russian, Belarusian, Bulgarian, Macedonian, Kazakh, Ukrainian, Georgian, Greek, Arabic, Armenian, Uzbek, Tajik, Kyrgyz, Mongolian, Bashkir_
 
 This plugin provides a modern, modular, and extensible solution for **transliterating WordPress content** between **Cyrillic and Latin scripts** - with additional support for Arabic-based and other regional alphabets. Originally launched as "Serbian Transliteration," it has evolved into a **general-purpose transliteration tool** built to serve a wider multilingual audience.
@@ -89,6 +89,12 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Changelog ==
 
+= 2.5.4 =
+* Added new rstr_keep shortcode for exact content preservation
+* Improved skip transliteration behavior for mixed-script content
+* Fixed Roman numeral handling inside protected transliteration blocks
+* Improved nested shortcode processing for transliteration tags
+
 = 2.5.3 =
 * Corrected spelling errors
 * Updated translations
@@ -137,24 +143,11 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Upgrade Notice ==
 
-= 2.5.3 =
-* Corrected spelling errors
-* Updated translations
-
-= 2.5.2 =
-* WordPress 7.0 compatibility
-
-= 2.5.1 =
-* Fixed woocommerce problems with missing transliterations
-* Fixed the order of transliteration
-* Fixed excluded transliterations
-
-= 2.5.0 =
-* Added JavaScript dynamic transliteration for AJAX and frontend content
-* Fixed Latin to Cyrillic and Cyrillic to Latin inconsistencies
-* Improved handling of excluded words
-* Fixed edge cases with dynamic content rendering
-* Minor UX improvements
+= 2.5.4 =
+* Added new rstr_keep shortcode for exact content preservation
+* Improved skip transliteration behavior for mixed-script content
+* Fixed Roman numeral handling inside protected transliteration blocks
+* Improved nested shortcode processing for transliteration tags
 
 == Frequently Asked Questions ==
 
@@ -253,13 +246,13 @@ This custom mapping will override the default transliteration rules for the spec
 We regularly update the Transliterator plugin to improve its functionality, enhance performance, and ensure compatibility with the latest versions of WordPress and PHP. Keep your plugin up to date to benefit from the latest features and fixes. To stay informed about updates, visit our plugin page on WordPress.org or follow us on social media.
 
 = Support and Feedback =
-If you encounter any issues or have suggestions for improving the plugin, please don't hesitate to reach out. You can contact us through the support forum on WordPress.org, or directly via [GitHub repository](https://github.com/InfinitumForm/serbian-transliteration). We value your feedback and are committed to providing prompt and effective support.
+If you encounter any issues or have suggestions for improving the plugin, please don't hesitate to reach out. You can contact us through the support forum on WordPress.org, or directly via [GitHub repository](https://github.com/InfinitumForm/wptransliterator). We value your feedback and are committed to providing prompt and effective support.
 
 = Compatibility =
 The Transliterator plugin is compatible with a wide range of WordPress versions and works seamlessly with many popular plugins. However, due to the vast number of available plugins, there's a small chance of encountering conflicts. If you experience any issues, please check for plugin conflicts and update your WordPress installation and all plugins.
 
 = Contributing =
-We welcome contributions from the community! If you're a developer or a user with ideas for improvement, visit our [GitHub repository](https://github.com/InfinitumForm/serbian-transliteration) to contribute. You can report issues, suggest new features, or submit pull requests.
+We welcome contributions from the community! If you're a developer or a user with ideas for improvement, visit our [GitHub repository](https://github.com/InfinitumForm/wptransliterator) to contribute. You can report issues, suggest new features, or submit pull requests.
 
 = Credits =
 Special thanks to all contributors and beta testers who helped in developing and refining this plugin. Your feedback and support are invaluable.

@@ -2,8 +2,11 @@
     die();
 } ?>
 <p class="description"><?php esc_html_e('These are available shortcodes that you can use in your content, visual editors, themes and plugins.', 'serbian-transliteration'); ?></p>
-<h2 style="margin:0;"><?php esc_html_e('Skip transliteration', 'serbian-transliteration'); ?>:</h2>
-<p><code class="lang-txt">[<span class="hljs-title">skip_translit</span>]<?php esc_html_e('Keep this original', 'serbian-transliteration'); ?>[/<span class="hljs-title">skip_translit</span>]</code></p>
+<h2 style="margin:0;"><?php esc_html_e('Keep exact content', 'serbian-transliteration'); ?>:</h2>
+<p><code class="lang-txt">[<span class="hljs-title">keep_translit</span>]<?php esc_html_e('Keep this text exactly as written', 'serbian-transliteration'); ?>[/<span class="hljs-title">keep_translit</span>]</code></p>
+<br>
+<h2 style="margin:0;"><?php esc_html_e('Skip active transliteration', 'serbian-transliteration'); ?>:</h2>
+<p><code class="lang-txt">[<span class="hljs-title">skip_translit</span>]<?php esc_html_e('Display this text in the original site script', 'serbian-transliteration'); ?>[/<span class="hljs-title">skip_translit</span>]</code></p>
 <br>
 <h2 style="margin:0;"><?php esc_html_e('Cyrillic to Latin', 'serbian-transliteration'); ?>:</h2>
 <p><code class="lang-txt">[<span class="hljs-title">cyr_to_lat</span>]Ћирилица у латиницу[/<span class="hljs-title">cyr_to_lat</span>]</code></p>

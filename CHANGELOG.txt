@@ -1,3 +1,9 @@
+= 2.5.4 =
+* Added new rstr_keep shortcode for exact content preservation
+* Improved skip transliteration behavior for mixed-script content
+* Fixed Roman numeral handling inside protected transliteration blocks
+* Improved nested shortcode processing for transliteration tags
+
 = 2.5.3 =
 * Corrected spelling errors
 * Updated translations

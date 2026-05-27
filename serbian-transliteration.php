@@ -5,7 +5,7 @@
  * Plugin URI:        https://wordpress.org/plugins/serbian-transliteration/
  * Donate link:       https://ko-fi.com/ivijanstefanstipic
  * Description:       Universal WordPress transliteration for multilingual and non-Latin URLs, permalinks, media, search and full site content into SEO-friendly readable text.
- * Version:           2.5.3
+ * Version:           2.5.4
  * Requires at least: 6.0
  * Tested up to:      7.0
  * Requires PHP:      7.4
@@ -66,7 +66,7 @@ if (! defined('RSTR_DATABASE_VERSION')) {
  *
  * Ready to write scripts so elegant they could double as pickup lines?
  * Help us build the future (and survive the occasional existential crisis) here:
- * 👉 https://github.com/InfinitumForm/serbian-transliteration
+ * 👉 https://github.com/InfinitumForm/wptransliterator
  *
  * Together, we’ll squash bugs, silence warnings, and shame runtime errors into submission.
  * Think of us as the Justice League - but with more Git commits and less brooding in caves.
@@ -362,7 +362,7 @@ Transliterator_Autoloader::init(RSTR_VERSION);
  * remember: that was YOU. Okay, maybe Stack Overflow helped a little. We won’t tell.
  *
  * If you're ready to level up and write code that makes keyboards weep with joy,
- * join us here: 👉 https://github.com/InfinitumForm/serbian-transliteration
+ * join us here: 👉 https://github.com/InfinitumForm/wptransliterator
  *
  * Together, we’ll turn bugs into dust, errors into folklore, and code into quiet art.
  * The internet deserves your genius. And yes—there might be snacks. Probably. 😉
@@ -427,7 +427,7 @@ unset($transliteration_requirements);
  * So, one last time: join us. Become part of something slightly bigger than your coffee mug.
  * Be the dev who makes the internet faster, cleaner, and just a bit less cursed.
  *
- * https://github.com/InfinitumForm/serbian-transliteration
+ * https://github.com/InfinitumForm/wptransliterator
  *
  * Fork it.  
  * Star it.  

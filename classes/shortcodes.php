@@ -17,11 +17,13 @@ class Transliteration_Shortcodes extends Transliteration
         $this->add_shortcode('cyr_to_lat', 'cyr_to_lat');
         $this->add_shortcode('lat_to_cyr', 'lat_to_cyr');
         $this->add_shortcode('skip_translit', 'skip');
+		$this->add_shortcode('keep_translit', 'keep');
 
         // Deprecated shortcodes
         $this->add_shortcode('rstr_cyr_to_lat', 'cyr_to_lat');
         $this->add_shortcode('rstr_lat_to_cyr', 'lat_to_cyr');
         $this->add_shortcode('rstr_skip', 'skip');
+		$this->add_shortcode('rstr_keep', 'keep');
     }
 
     /*
@@ -126,15 +128,29 @@ class Transliteration_Shortcodes extends Transliteration
 
         shortcode_atts([], $attr);
 
-        switch (get_rstr_option('transliteration-mode', '')) {
-            case 'cyr_to_lat':
-                return $this->lat_to_cyr([], do_shortcode($content));
-
-            case 'lat_to_cyr':
-                return $this->cyr_to_lat([], do_shortcode($content));
+        return '{rstr_skip}' . do_shortcode($content) . '{/rstr_skip}';
+    }
+	
+	/*
+     * Keep transliteration
+     */
+    public function keep($attr = [], $content = '', string $shortcode_tag = '')
+    {
+        if (is_admin() && $shortcode_tag === 'rstr_keep') {
+            $content = sprintf(
+                '<div class="notice notice-warning"><p class="deprecated">%s</p></div>',
+                sprintf(
+                    __('The %1$s shortcode has been deprecated as of version %2$s. Please update your content and use the new %3$s shortcode.', 'serbian-transliteration'),
+                    '<code>[' . $shortcode_tag . ']</code>',
+                    '2.0.0',
+                    '<code>[keep_translit]</code>',
+                )
+            ) . $content;
         }
 
-        return $content;
+        shortcode_atts([], $attr);
+
+        return '{rstr_keep}' . do_shortcode($content) . '{/rstr_keep}';
     }
 
     /*

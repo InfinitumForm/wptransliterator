@@ -273,7 +273,7 @@ final class Transliteration_Controller extends Transliteration
 				return $content;
 			}
 		}
-
+		
 		$exclude_placeholders = [];
 		$content = $this->protect_cyr_excluded_words((string) $content, $exclude_placeholders);
 
@@ -624,6 +624,34 @@ final class Transliteration_Controller extends Transliteration
 					return $this->lat_to_cyr($content, true);
 
 				case 'rstr_skip':
+					$keep_blocks = [];
+
+					$content = preg_replace_callback(
+						'~\{rstr_keep\}(.*?)\{/rstr_keep\}~is',
+						static function (array $keep_matches) use (&$keep_blocks): string {
+							$token = '%%00-' . count($keep_blocks) . '-00%%';
+
+							$keep_blocks[$token] = $keep_matches[1] ?? '';
+
+							return $token;
+						},
+						$content
+					);
+
+					switch (get_rstr_option('transliteration-mode', 'cyr_to_lat')) {
+						case 'cyr_to_lat':
+							$content = $this->lat_to_cyr($content, true);
+							break;
+
+						case 'lat_to_cyr':
+							$content = $this->cyr_to_lat($content, true, true);
+							break;
+					}
+
+					if ($keep_blocks !== []) {
+						$content = strtr($content, $keep_blocks);
+					}
+
 					return $content;
 
 				default:
@@ -632,7 +660,7 @@ final class Transliteration_Controller extends Transliteration
 		};
 
 		return preg_replace_callback(
-			'~\{(cyr_to_lat|lat_to_cyr|rstr_skip)\}(.*?)\{/\1\}~is',
+			'~\{(cyr_to_lat|lat_to_cyr|rstr_skip|rstr_keep)\}(.*?)\{/\1\}~is',
 			$callback,
 			$buffer
 		);

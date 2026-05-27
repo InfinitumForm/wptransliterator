@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Transliterator\n"
-"POT-Creation-Date: 2026-05-26 15:47+0200\n"
-"PO-Revision-Date: 2026-05-26 15:47+0200\n"
+"POT-Creation-Date: 2026-05-27 21:59+0200\n"
+"PO-Revision-Date: 2026-05-27 21:59+0200\n"
 "Last-Translator: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
 "Language-Team: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
 "Language: ka_GE\n"
@@ -97,7 +97,7 @@ msgstr "ტრანსლიტერაცია"
 #: classes/menus.php:49 classes/menus.php:51 classes/settings-fields.php:506
 #: classes/settings-fields.php:582 classes/settings.php:128
 #: classes/settings.php:203 classes/settings/page-functions.php:164
-#: classes/shortcodes.php:36 classes/utilities.php:1292
+#: classes/shortcodes.php:38 classes/utilities.php:1292
 #: classes/utilities.php:1677 functions.php:445
 msgid "Latin"
 msgstr "ლათინური"
@@ -105,7 +105,7 @@ msgstr "ლათინური"
 #: classes/menus.php:50 classes/menus.php:51 classes/settings-fields.php:505
 #: classes/settings-fields.php:583 classes/settings.php:129
 #: classes/settings.php:204 classes/settings/page-functions.php:159
-#: classes/shortcodes.php:35 classes/utilities.php:1293
+#: classes/shortcodes.php:37 classes/utilities.php:1293
 #: classes/utilities.php:1681 functions.php:441
 msgid "Cyrillic"
 msgstr "კირилიცა"
@@ -649,13 +649,13 @@ msgid "Transliteration disabled"
 msgstr "ტრანსლიტერაცია გამორთულია"
 
 #: classes/settings-fields.php:544 classes/settings.php:736
-#: classes/settings/page-shortcodes.php:8 classes/settings/page-tags.php:5
+#: classes/settings/page-shortcodes.php:11 classes/settings/page-tags.php:11
 #: classes/utilities.php:1669
 msgid "Cyrillic to Latin"
 msgstr "კირილიციდან ლათინურზე"
 
 #: classes/settings-fields.php:545 classes/settings.php:737
-#: classes/settings/page-shortcodes.php:14 classes/settings/page-tags.php:8
+#: classes/settings/page-shortcodes.php:17 classes/settings/page-tags.php:14
 #: classes/utilities.php:1673
 msgid "Latin to Cyrillic"
 msgstr "ლათინურიდან კირილიცაზე"
@@ -1054,7 +1054,7 @@ msgstr ""
 msgid "join our team"
 msgstr "შემოუერთდით ჩვენს გუნდს"
 
-#: classes/settings.php:64 serbian-transliteration.php:187
+#: classes/settings.php:64 serbian-transliteration.php:188
 msgid "Settings saved."
 msgstr "პარამეტრები შენახულია."
 
@@ -1516,7 +1516,7 @@ msgstr ""
 "სტრიქონის სახით. ნაგულისხმევად: %s"
 
 #: classes/settings/page-functions.php:154
-#: classes/settings/page-shortcodes.php:52
+#: classes/settings/page-shortcodes.php:55
 #, php-format
 msgid "(string) Separator to be used when the selector type is %s. Default: %s"
 msgstr ""
@@ -1629,34 +1629,43 @@ msgstr ""
 "ეს ხელმისაწვდომი შორტკოდებია, რომლებიც შეგიძლიათ შინაარსში, ვიზუალურ "
 "რედაქტორებში, თემებსა და პლაგინებში გამოიყენოთ."
 
-#: classes/settings/page-shortcodes.php:5 classes/settings/page-tags.php:11
-msgid "Skip transliteration"
-msgstr "ტრანსლიტერაციის გამოტოვება"
+#: classes/settings/page-shortcodes.php:5 classes/settings/page-tags.php:5
+msgid "Keep exact content"
+msgstr "ზუსტი შინაარსის შენარჩუნება"
 
-#: classes/settings/page-shortcodes.php:6 classes/settings/page-tags.php:12
-msgid "Keep this original"
-msgstr "ორიგინალის შენარჩუნება"
+#: classes/settings/page-shortcodes.php:6 classes/settings/page-tags.php:6
+#: classes/settings/page-tags.php:9
+msgid "Keep this text exactly as written"
+msgstr "შეინარჩუნე ეს ტექსტი ზუსტად ისე, როგორც დაწერილია"
 
-#: classes/settings/page-shortcodes.php:11
-#: classes/settings/page-shortcodes.php:18
+#: classes/settings/page-shortcodes.php:8 classes/settings/page-tags.php:8
+msgid "Skip active transliteration"
+msgstr "აქტიური ტრანსლიტერაციის გამოტოვება"
+
+#: classes/settings/page-shortcodes.php:9
+msgid "Display this text in the original site script"
+msgstr "ამ ტექსტის ჩვენება საიტის ორიგინალურ დამწერლობაში"
+
+#: classes/settings/page-shortcodes.php:14
+#: classes/settings/page-shortcodes.php:21
 msgid "(optional) correct HTML code."
 msgstr "(არასავალდებულო) სწორი HTML კოდი."
 
-#: classes/settings/page-shortcodes.php:16
-#: classes/settings/page-shortcodes.php:33
-#: classes/settings/page-shortcodes.php:49
+#: classes/settings/page-shortcodes.php:19
+#: classes/settings/page-shortcodes.php:36
+#: classes/settings/page-shortcodes.php:52
 msgid "Optional shortcode parameters"
 msgstr "შორტკოდის არასავალდებულო პარამეტრები"
 
-#: classes/settings/page-shortcodes.php:19
+#: classes/settings/page-shortcodes.php:22
 msgid "(optional) correct diacritics."
 msgstr "(არასავალდებულო) დიაკრიტიკის გასწორება."
 
-#: classes/settings/page-shortcodes.php:22
+#: classes/settings/page-shortcodes.php:25
 msgid "Add an image depending on the language script"
 msgstr "სურათის დამატება ენის დამწერლობის მიხედვით"
 
-#: classes/settings/page-shortcodes.php:23
+#: classes/settings/page-shortcodes.php:26
 msgid ""
 "With this shortcode you can manipulate images and display images in Latin or "
 "Cyrillic depending on the setup."
@@ -1664,23 +1673,23 @@ msgstr ""
 "ამ შორტკოდით შეგიძლიათ სურათების მართვა და მათი ლათინურად ან კირილიცაზე "
 "ჩვენება პარამეტრების მიხედვით."
 
-#: classes/settings/page-shortcodes.php:25
+#: classes/settings/page-shortcodes.php:28
 msgid "Example"
 msgstr "მაგალითი"
 
-#: classes/settings/page-shortcodes.php:27
+#: classes/settings/page-shortcodes.php:30
 msgid "Main shortcode parameters"
 msgstr "შორტკოდის ძირითადი პარამეტრები"
 
-#: classes/settings/page-shortcodes.php:29
+#: classes/settings/page-shortcodes.php:32
 msgid "URL (src) as shown in the Latin language"
 msgstr "URL (src), როგორც ლათინურზე ჩანს"
 
-#: classes/settings/page-shortcodes.php:30
+#: classes/settings/page-shortcodes.php:33
 msgid "URL (src) as shown in the Cyrillic language"
 msgstr "URL (src), როგორც კირილიცაზე ჩანს"
 
-#: classes/settings/page-shortcodes.php:31
+#: classes/settings/page-shortcodes.php:34
 msgid ""
 "(optional) URL (src) to the default image if Latin and Cyrillic are "
 "unavailable"
@@ -1688,23 +1697,23 @@ msgstr ""
 "(არასავალდებულო) ნაგულისხმევი სურათის URL (src), თუ ლათინური და კირილიცა "
 "მიუწვდომელია"
 
-#: classes/settings/page-shortcodes.php:35
+#: classes/settings/page-shortcodes.php:38
 msgid "(optional) title (alt) description of the image for Cyrillic"
 msgstr "(არასავალდებულო) სურათის title (alt) აღწერა კირილიცისთვის"
 
-#: classes/settings/page-shortcodes.php:36
+#: classes/settings/page-shortcodes.php:39
 msgid "(optional) caption description of the image for Cyrillic"
 msgstr "(არასავალდებულო) სურათის წარწერის აღწერა კირილიცისთვის"
 
-#: classes/settings/page-shortcodes.php:37
+#: classes/settings/page-shortcodes.php:40
 msgid "(optional) title (alt) description of the image for Latin"
 msgstr "(არასავალდებულო) სურათის title (alt) აღწერა ლათინურისთვის"
 
-#: classes/settings/page-shortcodes.php:38
+#: classes/settings/page-shortcodes.php:41
 msgid "(optional) caption description of the image for Latin"
 msgstr "(არასავალდებულო) სურათის წარწერის აღწერა ლათინურისთვის"
 
-#: classes/settings/page-shortcodes.php:39
+#: classes/settings/page-shortcodes.php:42
 msgid ""
 "(optional) title (alt) description of the image if Latin and Cyrillic are "
 "unavailable"
@@ -1712,7 +1721,7 @@ msgstr ""
 "(არასავალდებულო) სურათის title (alt) აღწერა, თუ ლათინური და კირილიცა "
 "მიუწვდომელია"
 
-#: classes/settings/page-shortcodes.php:40
+#: classes/settings/page-shortcodes.php:43
 msgid ""
 "(optional) caption description of the imag if Latin and Cyrillic are "
 "unavailable"
@@ -1720,23 +1729,23 @@ msgstr ""
 "(არასავალდებულო) სურათის წარწერის აღწერა, თუ ლათინური და კირილიცა "
 "მიუწვდომელია"
 
-#: classes/settings/page-shortcodes.php:42
+#: classes/settings/page-shortcodes.php:45
 msgid "Shortcode return"
 msgstr "შორტკოდის დაბრუნებული მნიშვნელობა"
 
-#: classes/settings/page-shortcodes.php:43
+#: classes/settings/page-shortcodes.php:46
 msgid "HTML image corresponding to the parameters set in this shortcode."
 msgstr "HTML სურათი, რომელიც ამ შორტკოდში მითითებულ პარამეტრებს შეესაბამება."
 
-#: classes/settings/page-shortcodes.php:46
+#: classes/settings/page-shortcodes.php:49
 msgid "Language script menu"
 msgstr "ენის დამწერლობის მენიუ"
 
-#: classes/settings/page-shortcodes.php:47
+#: classes/settings/page-shortcodes.php:50
 msgid "This shortcode displays a selector for the transliteration script."
 msgstr "ეს შორტკოდი ტრანსლიტერაციის დამწერლობის ამრჩევს აჩვენებს."
 
-#: classes/settings/page-shortcodes.php:51
+#: classes/settings/page-shortcodes.php:54
 #, php-format
 msgid ""
 "(string) The type of selector that will be displayed on the site. It can be: "
@@ -1745,15 +1754,15 @@ msgstr ""
 "(string) ამრჩევის ტიპი, რომელიც საიტზე გამოჩნდება. ის შეიძლება იყოს: \\"
 "\"%1$s\\\", \\\"%2$s\\\", \\\"%3$s\\\" ან \\\"%4$s\\\""
 
-#: classes/settings/page-shortcodes.php:53
+#: classes/settings/page-shortcodes.php:56
 msgid "(string) Text for Cyrillic link. Default: Cyrillic"
 msgstr "(string) ტექსტი კირილიცის ბმულისთვის. ნაგულისხმევად: კირილიცა"
 
-#: classes/settings/page-shortcodes.php:54
+#: classes/settings/page-shortcodes.php:57
 msgid "(string) Text for Latin link. Default: Latin"
 msgstr "(string) ტექსტი ლათინურის ბმულისთვის. ნაგულისხმევად: ლათინური"
 
-#: classes/settings/page-shortcodes.php:57
+#: classes/settings/page-shortcodes.php:60
 msgid ""
 "This shortcodes work independently of the plugin settings and can be used "
 "anywhere within WordPress pages, posts, taxonomies and widgets (if they "
@@ -1799,8 +1808,8 @@ msgstr "კირილიცაზე გადაყვანა"
 msgid "Reset"
 msgstr "გასუფთავება"
 
-#: classes/shortcodes.php:57 classes/shortcodes.php:87
-#: classes/shortcodes.php:119
+#: classes/shortcodes.php:59 classes/shortcodes.php:89
+#: classes/shortcodes.php:121 classes/shortcodes.php:143
 #, php-format
 msgid ""
 "The %1$s shortcode has been deprecated as of version %2$s. Please update "
@@ -1809,7 +1818,7 @@ msgstr ""
 "შორტკოდი %1$s ვერსია %2$s-დან მოძველებულია. გთხოვთ განაახლოთ შინაარსი და "
 "გამოიყენოთ ახალი შორტკოდი %3$s."
 
-#: classes/shortcodes.php:153
+#: classes/shortcodes.php:169
 msgid ""
 "Transliteration shortcode does not have adequate parameters and translation "
 "is not possible. Please check the documentation."
@@ -2027,58 +2036,58 @@ msgstr ""
 "აირჩიეთ ჩვენების ერთ-ერთი ტიპი: \\\"%1$s\\\", \\\"%2$s\\\", \\\"%3$s\\\", \\"
 "\"%4$s\\\", \\\"%5$s\\\" ან \\\"%6$s\\\""
 
-#: serbian-transliteration.php:155 serbian-transliteration.php:156
+#: serbian-transliteration.php:156 serbian-transliteration.php:157
 msgid "Transliterator"
 msgstr "Transliterator"
 
-#: serbian-transliteration.php:171
+#: serbian-transliteration.php:172
 msgid "You do not have sufficient permissions to access this page."
 msgstr "ამ გვერდზე წვდომისთვის საკმარისი უფლებები არ გაქვთ."
 
-#: serbian-transliteration.php:194
+#: serbian-transliteration.php:195
 msgid "Security check failed. Please try again."
 msgstr "უსაფრთხოების შემოწმება ვერ შესრულდა. გთხოვთ თავიდან სცადოთ."
 
-#: serbian-transliteration.php:223
+#: serbian-transliteration.php:224
 msgid "Transliterator - Network Settings"
 msgstr "Transliterator - ქსელის პარამეტრები"
 
-#: serbian-transliteration.php:230
+#: serbian-transliteration.php:231
 msgid "Select sites where the plugin should run when it is network-activated."
 msgstr ""
 "აირჩიეთ საიტები, სადაც პლაგინი უნდა მუშაობდეს, როცა ქსელურადაა გააქტიურებული."
 
-#: serbian-transliteration.php:235
+#: serbian-transliteration.php:236
 msgid "Enable"
 msgstr "ჩართვა"
 
-#: serbian-transliteration.php:236
+#: serbian-transliteration.php:237
 msgid "Site"
 msgstr "საიტი"
 
-#: serbian-transliteration.php:237
+#: serbian-transliteration.php:238
 msgid "Domain"
 msgstr "დომენი"
 
-#: serbian-transliteration.php:238
+#: serbian-transliteration.php:239
 msgid "Path"
 msgstr "გზა"
 
-#: serbian-transliteration.php:253
+#: serbian-transliteration.php:254
 #, php-format
 msgid "Site #%d"
 msgstr "საიტი №%d"
 
-#: serbian-transliteration.php:260
+#: serbian-transliteration.php:261
 #, php-format
 msgid "Enable Transliterator on site ID %d"
 msgstr "Transliterator-ის ჩართვა საიტზე ID %d"
 
-#: serbian-transliteration.php:279
+#: serbian-transliteration.php:280
 msgid "No sites found."
 msgstr "საიტები ვერ მოიძებნა."
 
-#: serbian-transliteration.php:288
+#: serbian-transliteration.php:289
 msgid "Save changes"
 msgstr "ცვლილებების შენახვა"
 
@@ -2108,6 +2117,9 @@ msgstr "Ivijan-Stefan Stipić"
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/ivijanstefan/"
 msgstr "https://profiles.wordpress.org/ivijanstefan/"
+
+#~ msgid "Keep this original"
+#~ msgstr "ორიგინალის შენარჩუნება"
 
 #~ msgid ""
 #~ "All-in-one Cyrillic to Latin transliteration plugin for WordPress. "
