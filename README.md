@@ -1,7 +1,7 @@
 Transliteration – WordPress Transliteration Plugin
 ========
 
-[![PHP compatibility](https://plugintests.com/plugins/wporg/serbian-transliteration/php-badge.svg)](https://plugintests.com/plugins/wporg/serbian-transliteration/latest) [![WP compatibility](https://plugintests.com/plugins/wporg/serbian-transliteration/wp-badge.svg)](https://plugintests.com/plugins/wporg/serbian-transliteration/latest)
+[![PHP compatibility](https://plugintests.com/plugins/wporg/serbian-transliteration/php-badge.svg)](https://plugintests.com/plugins/wporg/serbian-transliteration/latest) [![WP compatibility](https://plugintests.com/plugins/wporg/serbian-transliteration/wp-badge.svg)](https://plugintests.com/plugins/wporg/serbian-transliteration/latest) [![Version](https://img.shields.io/wordpress/plugin/v/serbian-transliteration.svg)](https://wordpress.org/plugins/serbian-transliteration/) [![Downloads](https://img.shields.io/wordpress/plugin/dt/serbian-transliteration.svg)](https://wordpress.org/plugins/serbian-transliteration/) [![Rating](https://img.shields.io/wordpress/plugin/rating/serbian-transliteration.svg)](https://wordpress.org/plugins/serbian-transliteration/)
 
 Welcome to the official repository of the [Transliteration WordPress Plugin](https://wordpress.org/plugins/serbian-transliteration/), a comprehensive solution for transliterating text in WordPress. This plugin is designed to provide robust and flexible transliteration capabilities, making your WordPress site more accessible and user-friendly for a diverse audience.
 
