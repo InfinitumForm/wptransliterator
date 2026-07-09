@@ -1813,4 +1813,18 @@ class Transliteration_Utilities
 		return self::$lang_cache;
 	}
 	
+	public static function is_known_crawler(): bool
+	{
+		$user_agent = strtolower((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''));
+
+		if ($user_agent === '') {
+			return false;
+		}
+
+		return preg_match(
+			'/facebookexternalhit|facebot|twitterbot|linkedinbot|whatsapp|telegrambot|slackbot|discordbot|googlebot|bingbot/i',
+			$user_agent
+		) === 1;
+	}
+	
 }

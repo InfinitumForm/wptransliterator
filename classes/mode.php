@@ -66,12 +66,23 @@ final class Transliteration_Mode extends Transliteration
             if (get_rstr_option('transliteration-mode', 'light') == 'none') {
                 $filters = [];
                 $filters = apply_filters('transliteration_mode_filters', $filters);
+				
+				if (get_rstr_option('force-email-transliteration', 'no') !== 'yes') {
+					unset($filters['wp_mail']);
+				}
+				
                 return apply_filters_deprecated('rstr/transliteration/exclude/filters', [$filters], '2.0.0', 'transliteration_mode_filters');
             }
+			
             $filters = $this->mode->filters();
             $filters = apply_filters('transliteration_mode_filters', $filters);
             $filters = apply_filters('transliteration_mode_filters_' . $this->mode::MODE, $filters);
             $filters = apply_filters_deprecated('rstr/transliteration/exclude/filters', [$filters], '2.0.0', 'transliteration_mode_filters');
+			
+			if (get_rstr_option('force-email-transliteration', 'no') !== 'yes') {
+				unset($filters['wp_mail']);
+			}
+			
             return apply_filters_deprecated('rstr/transliteration/exclude/filters/' . $this->mode::MODE, [$filters], '2.0.0', 'transliteration_mode_filters_' . $this->mode::MODE);
         });
     }

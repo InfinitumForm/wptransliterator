@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.5.4
+Stable tag: 2.5.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,10 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Changelog ==
 
+= 2.5.5 =
+* Fix PHP 8 compatibility
+* Improved email handling and engine stability
+
 = 2.5.4 =
 * Added new rstr_keep shortcode for exact content preservation
 * Improved skip transliteration behavior for mixed-script content
@@ -142,6 +146,10 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Fixed gettext problems
 
 == Upgrade Notice ==
+
+= 2.5.5 =
+* Fix PHP 8 compatibility
+* Improved email handling and engine stability
 
 = 2.5.4 =
 * Added new rstr_keep shortcode for exact content preservation

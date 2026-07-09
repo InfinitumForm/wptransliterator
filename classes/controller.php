@@ -108,6 +108,14 @@ final class Transliteration_Controller extends Transliteration
 
             // Settings mode
             $mode = get_rstr_option('transliteration-mode', 'cyr_to_lat');
+			
+			/**
+			 * Known crawlers must not receive cookie-based redirects.
+			 * They need stable HTML output for Open Graph, Twitter Cards, schema, canonical tags, etc.
+			 */
+			if (Transliteration_Utilities::is_known_crawler()) {
+				return $mode;
+			}
 
             // Cookie mode
             if (!empty($_COOKIE['rstr_script'] ?? null)) {
@@ -946,8 +954,11 @@ final class Transliteration_Controller extends Transliteration
 	 */
 	private function cleanup_placeholders(string $content): string
 	{
-		// Match %%::seed::group::index::%%
-		return preg_replace('/%%::\d+::\d+::\d+::%%/u', '', $content);
+		// Match %%::seed::group::index::%%.
+		// Do not use the /u modifier here because content may contain malformed UTF-8.
+		$cleaned = preg_replace('/%%::\d+::\d+::\d+::%%/', '', $content);
+
+		return is_string($cleaned) ? $cleaned : $content;
 	}
 	
 	/**
@@ -987,10 +998,15 @@ final class Transliteration_Controller extends Transliteration
 
 			$pattern = '/(?<![\p{L}\p{N}_])' . preg_quote($word, '/') . '(?![\p{L}\p{N}_])/u';
 
-			$content = preg_replace_callback($pattern, static function () use ($placeholder): string {
+			$replaced = preg_replace_callback($pattern, static function () use ($placeholder): string {
 				return $placeholder;
 			}, $content);
 
+			if (! is_string($replaced)) {
+				continue;
+			}
+
+			$content = $replaced;
 			$placeholders[$placeholder] = $word;
 		}
 

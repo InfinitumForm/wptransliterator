@@ -59,8 +59,8 @@ class Transliteration_Mode_Phantom extends Transliteration
 			'document_title_parts'           => 'array_content',
 			'bloginfo'                       => 'no_html_content',
 			'get_bloginfo'                   => 'no_html_content',
-			'language_attributes'            => 'html_content',
-			'the_generator'                  => 'html_content',
+			'language_attributes'            => 'transliterate_html',
+			'the_generator'                  => 'transliterate_html',
 
 			// WooCommerce titles and common labels.
 			

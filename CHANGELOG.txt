@@ -1,3 +1,7 @@
+= 2.5.5 =
+* Fix PHP 8 compatibility
+* Improved email handling and engine stability
+
 = 2.5.4 =
 * Added new rstr_keep shortcode for exact content preservation
 * Improved skip transliteration behavior for mixed-script content
