@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Serbian Transliteration\n"
 "POT-Creation-Date: 2026-05-27 21:57+0200\n"
-"PO-Revision-Date: 2026-05-27 21:58+0200\n"
+"PO-Revision-Date: 2026-07-27 10:48+0200\n"
 "Last-Translator: Ivijan-Stefan Stipić <infinitumform@gmail.com>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -1273,7 +1273,7 @@ msgstr "Autorska prava"
 #: classes/settings/page-credits.php:121
 #, php-format
 msgid "Copyright &copy; 2020 - %1$d %2$s by %3$s. All Right Reserved."
-msgstr "Autorska prava &copy; 2020 - %1$d %2$s od %3$s. Sva prava pridržana."
+msgstr "Autorska prava &copy; 2020 - %1$d %2$s od %3$s."
 
 #: classes/settings/page-credits.php:123
 msgid "Transliterator – WordPress Transliteration"

@@ -13,6 +13,7 @@ $special_thanks_sponsors = [
 $special_thanks = [
     'tihi'                => 'https://profiles.wordpress.org/tihi/',
     'dizajn24'            => 'https://profiles.wordpress.org/dizajn24/',
+	'Boris Košpić' 		  => 'https://profiles.wordpress.org/boka003/',
     'Yaroslav Ingulskyi'  => 'https://profiles.wordpress.org/ingyaroslav/',
 	'BlackWiCKED'         => 'https://profiles.wordpress.org/blackwicked/',
 	'Nemanja Novaković'   => 'https://profiles.wordpress.org/lupus1204/',

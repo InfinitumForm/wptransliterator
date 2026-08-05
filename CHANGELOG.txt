@@ -1,3 +1,11 @@
+= 2.5.7 =
+* Improve WP Rocket compatibility.
+* Improve cached content synchronization.
+* WP Rocket compatibility improvements contributed by Boris Košpić (@Boka003).
+
+= 2.5.6 =
+* Improve WP Rocket compatibility
+
 = 2.5.5 =
 * Fix PHP 8 compatibility
 * Improved email handling and engine stability
