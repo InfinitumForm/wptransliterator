@@ -19,9 +19,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Run WordPress Plugin Check
         uses: wordpress/plugin-check-action@v1
         with:
           build-dir: './'
+          slug: 'serbian-transliteration'
+          ignore-warnings: true
+          exclude-directories: '.github'
+          exclude-files: 'CODE_OF_CONDUCT.md,CONTRIBUTING.md,ISSUE_TEMPLATE.md,PULL_REQUEST_TEMPLATE.md'
