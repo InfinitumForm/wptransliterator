@@ -85,7 +85,7 @@ final class Transliteration_Settings extends Transliteration
             return array_merge($links, [
                 'rstr-shortcodes' => '<a href="' . esc_url(admin_url('/options-general.php?page=transliteration-settings&tab=documentation&action=shortcodes')) . '">' . __('Shortcodes', 'serbian-transliteration') . '</a>',
                 'rstr-functions'  => '<a href="' . esc_url(admin_url('/options-general.php?page=transliteration-settings&tab=documentation&action=functions')) . '">' . __('PHP Functions', 'serbian-transliteration') . '</a>',
-                'rstr-review'     => '<a href="https://wordpress.org/support/plugin/serbian-transliteration/reviews/?filter=5#new-post" target="_blank">' . __('5 stars?', 'serbian-transliteration') . '</a>',
+                'rstr-review'     => '<a href="https://wordpress.org/support/plugin/serbian-transliteration/reviews/#new-post" target="_blank">' . __('Rate us', 'serbian-transliteration') . '</a>',
             ]);
         }
         return $links;
@@ -108,8 +108,8 @@ final class Transliteration_Settings extends Transliteration
         $min = defined('RSTR_DEV_MODE') && RSTR_DEV_MODE ? '' : '.min';
 
         if (get_rstr_option('allow-admin-tools', 'yes') == 'yes') {
-            wp_register_style('transliteration-tools', RSTR_ASSETS . '/css/tools' . $min . '.css');
-            wp_register_script('transliteration-tools', RSTR_ASSETS . '/js/tools' . $min . '.js', ['jquery'], null, true);
+            wp_register_style('transliteration-tools', RSTR_ASSETS . '/css/tools' . $min . '.css', [], (string) RSTR_VERSION);
+            wp_register_script('transliteration-tools', RSTR_ASSETS . '/js/tools' . $min . '.js', ['jquery'], (string) RSTR_VERSION, true);
 
             wp_enqueue_style('transliteration-tools');
             wp_enqueue_script('transliteration-tools');
@@ -141,7 +141,7 @@ final class Transliteration_Settings extends Transliteration
             return;
         }
 
-        $tab = sanitize_text_field($_GET['tab'] ?? 'general');
+        $tab = isset($_GET['tab']) && is_scalar($_GET['tab']) ? sanitize_text_field(wp_unslash((string) $_GET['tab'])) : 'general';
 
         // Register the CSS and JS files
         wp_register_style('transliteration-admin', RSTR_ASSETS . '/css/admin' . $min . '.css', [], (string)RSTR_VERSION);
@@ -186,7 +186,7 @@ final class Transliteration_Settings extends Transliteration
             'transliteration-tools-block',
             RSTR_ASSETS . '/js/tools-block' . $min . '.js',
             ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data'],
-            null,
+            (string) RSTR_VERSION,
             true
         );
 
@@ -291,51 +291,7 @@ final class Transliteration_Settings extends Transliteration
 			</li>
 			<?php endforeach; ?>
 		</ul>
-		<?php add_action('admin_footer', function(){ ?>
-<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
-
-<script>
-kofiWidgetOverlay.draw('ivijanstefanstipic', {
-	'type': 'floating-chat',
-	'floating-chat.donateButton.text': '<?php esc_attr_e('Support','serbian-transliteration'); ?>',
-	'floating-chat.donateButton.background-color': '#f45d22',
-	'floating-chat.donateButton.text-color': '#ffffff'
-});
-
-(function () {
-	function moveKofiRight() {
-		document.querySelectorAll(
-			'[id^="kofi-widget-overlay-"] .floatingchat-container-wrap,' +
-			'[id^="kofi-widget-overlay-"] .floatingchat-container-wrap-mobi'
-		).forEach(function (element) {
-			element.style.setProperty('left', 'auto', 'important');
-			element.style.setProperty('right', '20px', 'important');
-			element.style.setProperty('bottom', '20px', 'important');
-			element.style.setProperty('position', 'fixed', 'important');
-		});
-		
-		document.querySelectorAll(
-			'[id^="kofi-widget-overlay-"] .floating-chat-kofi-popup-iframe,' +
-			'[id^="kofi-widget-overlay-"] .floating-chat-kofi-popup-iframe-mobi'
-		).forEach(function (element) {
-			element.style.setProperty('left', 'auto', 'important');
-			element.style.setProperty('right', '20px', 'important');
-			element.style.setProperty('bottom', '72px', 'important');
-			element.style.setProperty('position', 'fixed', 'important');
-		});
-	}
-
-	moveKofiRight();
-
-	new MutationObserver(moveKofiRight).observe(document.body, {
-		childList: true,
-		subtree: true,
-		attributes: true,
-		attributeFilter: ['style', 'class']
-	});
-})();
-</script>
-		<?php });
+		<?php
     }
 
     public function settings_page_actions($actions = []): void
@@ -728,7 +684,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         $tools_url         = esc_url($settings_url . '&tab=tools');
         $debug_url         = esc_url($settings_url . '&tab=debug');
         $credits_url       = esc_url($settings_url . '&tab=credits');
-        $rate_url          = esc_url('https://wordpress.org/support/plugin/serbian-transliteration/reviews/?filter=5#new-post');
+        $rate_url          = esc_url('https://wordpress.org/support/plugin/serbian-transliteration/reviews/#new-post');
 
         $options = get_rstr_option();
 

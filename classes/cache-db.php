@@ -32,7 +32,7 @@ class Transliteration_Cache_DB
     {
         if (self::table_exists()) {
             global $wpdb;
-            $wpdb->query($wpdb->prepare('DELETE FROM `%s` WHERE `expire` != 0 AND `expire` <= ' . $wpdb->rstr_cache, time()));
+            $wpdb->query($wpdb->prepare("DELETE FROM `{$wpdb->rstr_cache}` WHERE `expire` != 0 AND `expire` <= %d", time()));
         }
     }
 

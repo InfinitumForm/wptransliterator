@@ -24,6 +24,7 @@ class Transliteration_Settings_Sidebars
 		<?php printf('<p>%s</p>', __('If the plugin adds value to your work, you are welcome to support its further development with a voluntary contribution.', 'serbian-transliteration')); /*?>
 		<p><a href="https://www.buymeacoffee.com/ivijanstefan" target="_blank"><img src="https://img.buymeacoffee.com/button-api/?text=<?php esc_attr_e('Buy me a coffee', 'serbian-transliteration'); ?>&emoji=&slug=ivijanstefan&button_colour=FFDD00&font_colour=000000&font_family=Bree&outline_colour=000000&coffee_colour=ffffff" /></a></p>
 		*/ ?>
+		<p><a class="button button-primary" href="<?php echo esc_url('https://ko-fi.com/ivijanstefanstipic'); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Support via Ko-fi', 'serbian-transliteration'); ?></a></p>
 		<hr>
 		<ul>
 			<?php printf(

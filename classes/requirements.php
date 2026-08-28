@@ -72,8 +72,8 @@ final class Transliteration_Requirements
 
 	public function in_plugin_update_message($args, $response): void
 	{
-
-		if (isset($response->upgrade_notice) && strlen(trim($response->upgrade_notice)) > 0) : ?>
+		$upgrade_notice = isset($response->upgrade_notice) && is_string($response->upgrade_notice) ? trim($response->upgrade_notice) : '';
+		if ($upgrade_notice !== '') : ?>
 <style>
 .serbian-transliteration-upgrade-notice{
 padding: 10px;
@@ -94,9 +94,32 @@ font-weight:600;
 }
 </style>
 <div class="serbian-transliteration-upgrade-notice">
-<h3><?php printf(__('Important upgrade notice for the version %s:', 'serbian-transliteration'), $response->new_version); ?></h3>
+<h3><?php
+/* translators: %s: plugin version. */
+printf(esc_html__('Important upgrade notice for the version %s:', 'serbian-transliteration'), esc_html((string) ($response->new_version ?? '')));
+?></h3>
 <div class="serbian-transliteration-upgrade-notice-list">
-<?php echo str_replace(
+<?php
+$allowed_upgrade_notice_html = [
+	'a'      => [
+		'href'   => true,
+		'title'  => true,
+		'target' => true,
+		'rel'    => true,
+	],
+	'b'      => [],
+	'br'     => [],
+	'code'   => [],
+	'em'     => [],
+	'i'      => [],
+	'li'     => [],
+	'ol'     => [],
+	'p'      => [],
+	'strong' => [],
+	'ul'     => [],
+];
+
+echo wp_kses(str_replace(
 	[
 	 '<ul>',
 	 '</ul>',
@@ -105,8 +128,8 @@ font-weight:600;
 	 '<ol>',
 	 '</ol>',
 	],
-	$response->upgrade_notice
-); ?>
+	$upgrade_notice
+), $allowed_upgrade_notice_html); ?>
 </div>
 <div class="serbian-transliteration-upgrade-notice-info">
 <?php esc_html_e('NOTE: Before doing the update, it would be a good idea to backup your WordPress installations and settings.', 'serbian-transliteration'); ?>

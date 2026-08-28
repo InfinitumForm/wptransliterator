@@ -20,11 +20,11 @@ $editor_type = Transliteration_Utilities::get_editor_type();
 		<?php do_action('rstr/settings/debug/table/tbody/start'); ?>
 		<tr>
 			<td width="30%" style="width:30%;"><strong><?php esc_html_e('Plugin ID', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo get_option(RSTR_NAME . '-ID'); ?></td>
+			<td><?php echo esc_html(get_option(RSTR_NAME . '-ID')); ?></td>
 		</tr>
 		<tr>
 			<td width="30%" style="width:30%;"><strong><?php esc_html_e('Plugin version', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo RSTR_VERSION; ?></td>
+			<td><?php echo esc_html(RSTR_VERSION); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Current rstr_script cookie', 'serbian-transliteration'); ?></strong></td>
@@ -60,23 +60,26 @@ $editor_type = Transliteration_Utilities::get_editor_type();
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('WordPress version', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo get_bloginfo('version'); ?></td>
+			<td><?php echo esc_html(get_bloginfo('version')); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Last plugin update', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo(empty($activations) ? '-' : end($activations)); ?></td>
+			<td><?php echo esc_html(empty($activations) ? '-' : end($activations)); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('PHP version', 'serbian-transliteration'); ?></strong></td>
-			<td>PHP <?php echo PHP_VERSION; ?></td>
+			<td>PHP <?php echo esc_html(PHP_VERSION); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('PHP version ID', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo PHP_VERSION_ID; ?></td>
+			<td><?php echo esc_html(PHP_VERSION_ID); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('PHP architecture', 'serbian-transliteration'); ?></strong></td>
-			<td><?php printf(__('%d bit', 'serbian-transliteration'), (Transliteration_Debug::is_php64() ? 64 : 32)); ?></td>
+			<td><?php
+			/* translators: %d: PHP architecture in bits. */
+			printf(esc_html__('%d bit', 'serbian-transliteration'), (Transliteration_Debug::is_php64() ? 64 : 32));
+			?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('WordPress debug', 'serbian-transliteration'); ?></strong></td>
@@ -94,14 +97,14 @@ $editor_type = Transliteration_Utilities::get_editor_type();
 		<?php if (defined('WC_VERSION')) : ?>
 		<tr>
 			<td><strong><?php esc_html_e('WooCommerce version', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo WC_VERSION; ?></td>
+			<td><?php echo esc_html(WC_VERSION); ?></td>
 		</tr>
 		<?php endif; ?>
 	<?php endif; ?>
 		<tr>
 			<td><strong><?php esc_html_e('Site title', 'serbian-transliteration'); ?></strong></td>
 			<td><?php if ($name = get_bloginfo('name')) {
-			    echo $name;
+			    echo esc_html($name);
 			} else {
 			    echo '-';
 			} ?></td>
@@ -109,51 +112,54 @@ $editor_type = Transliteration_Utilities::get_editor_type();
 		<tr>
 			<td><strong><?php esc_html_e('Tagline', 'serbian-transliteration'); ?></strong></td>
 			<td><?php if ($description = get_bloginfo('description')) {
-			    echo $description;
+			    echo esc_html($description);
 			} else {
 			    echo '-';
 			} ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('WordPress address (URL)', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo get_bloginfo('wpurl'); ?></td>
+			<td><?php echo esc_html(get_bloginfo('wpurl')); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Admin email', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo get_bloginfo('admin_email'); ?></td>
+			<td><?php echo esc_html(get_bloginfo('admin_email')); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Encoding for pages and feeds', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo get_bloginfo('charset'); ?></td>
+			<td><?php echo esc_html(get_bloginfo('charset')); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Content-Type', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo get_bloginfo('html_type'); ?></td>
+			<td><?php echo esc_html(get_bloginfo('html_type')); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Site Language', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo get_locale(); ?></td>
+			<td><?php echo esc_html(get_locale()); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Server time', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo date('r'); ?></td>
+			<td><?php echo esc_html(date('r')); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('WordPress directory path', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo ABSPATH; ?></td>
+			<td><?php echo esc_html(ABSPATH); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Operting system', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo Transliteration_Debug::getOS(); ?> <?php printf(__('%d bit', 'serbian-transliteration'), Transliteration_Debug::architecture()); ?></td>
+			<td><?php echo esc_html(Transliteration_Debug::getOS()); ?> <?php
+			/* translators: %d: operating system architecture in bits. */
+			printf(esc_html__('%d bit', 'serbian-transliteration'), Transliteration_Debug::architecture());
+			?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('User agent', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo Transliteration_Debug::user_agent(); ?></td>
+			<td><?php echo esc_html(Transliteration_Debug::user_agent()); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Plugin directory path', 'serbian-transliteration'); ?></strong></td>
 <?php // Hook after last debug table row ?>
-			<td><?php echo RSTR_ROOT; ?></td>
+			<td><?php echo esc_html(RSTR_ROOT); ?></td>
 <?php // Hook to extend debug table footer ?>
 		</tr>
 		<?php do_action('rstr/settings/debug/table/tbody/end'); ?>

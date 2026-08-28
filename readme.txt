@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.5.7
+Stable tag: 2.5.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,11 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Changelog ==
 
+= 2.5.8 =
+* Hardened the permalink transliteration tool with stricter authorization, request validation, and prepared SQL queries.
+* Fixed database cache expiration cleanup and secured admin notice dismissal actions.
+* Improved WordPress.org compliance for review prompts, remote admin scripts, output escaping, and localization.
+
 = 2.5.7 =
 * Fixed transliteration of URL-bearing HTML attributes that could break links and media URLs.
 * Fixed compatibility with Avada Live Builder and Serbian Latin/Cyrillic switching in Polylang environments.
@@ -156,6 +161,9 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Fixed gettext problems
 
 == Upgrade Notice ==
+
+= 2.5.8 =
+* Hardened the permalink transliteration tool and improved admin security and WordPress.org compliance.
 
 = 2.5.7 =
 * Fixed transliteration of URL-bearing HTML attributes that could break links and media URLs.

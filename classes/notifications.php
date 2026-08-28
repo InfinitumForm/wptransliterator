@@ -27,15 +27,12 @@ class Transliteration_Notifications extends Transliteration
     // remove the notice for the user if review already done or if the user does not want to
     public function rstr_dimiss_review(): void
     {
-        if (isset($_GET['rstr_dimiss_review']) && !empty($_GET['rstr_dimiss_review'])) {
-            $rstr_dimiss_review = $_GET['rstr_dimiss_review'];
-            if ($rstr_dimiss_review == 1) {
-                add_option('serbian-transliteration-reviewed', time());
+        if ($this->can_dismiss_notice('rstr_dimiss_review')) {
+            add_option('serbian-transliteration-reviewed', time());
 
-                $parse_url = Transliteration_Utilities::parse_url();
-                if (!headers_sent() && wp_safe_redirect(remove_query_arg('rstr_dimiss_review', $parse_url['url']))) {
-                    exit;
-                }
+            $parse_url = Transliteration_Utilities::parse_url();
+            if (!headers_sent() && wp_safe_redirect(remove_query_arg(['rstr_dimiss_review', 'rstr_dismiss_nonce'], $parse_url['url']))) {
+                exit;
             }
         }
     }
@@ -43,15 +40,12 @@ class Transliteration_Notifications extends Transliteration
     // remove the notice for the user if donation already done or if the user does not want to
     public function rstr_dimiss_donation(): void
     {
-        if (isset($_GET['rstr_dimiss_donation']) && !empty($_GET['rstr_dimiss_donation'])) {
-            $rstr_dimiss_donation = $_GET['rstr_dimiss_donation'];
-            if ($rstr_dimiss_donation == 1) {
-                add_option('serbian-transliteration-donated', time());
+        if ($this->can_dismiss_notice('rstr_dimiss_donation')) {
+            add_option('serbian-transliteration-donated', time());
 
-                $parse_url = Transliteration_Utilities::parse_url();
-                if (!headers_sent() && wp_safe_redirect(remove_query_arg('rstr_dimiss_donation', $parse_url['url']), 302)) {
-                    exit;
-                }
+            $parse_url = Transliteration_Utilities::parse_url();
+            if (!headers_sent() && wp_safe_redirect(remove_query_arg(['rstr_dimiss_donation', 'rstr_dismiss_nonce'], $parse_url['url']), 302)) {
+                exit;
             }
         }
     }
@@ -59,22 +53,44 @@ class Transliteration_Notifications extends Transliteration
     // remove ads notice
     public function rstr_dimiss_ads(): void
     {
-        if (isset($_GET['rstr_dimiss_adds']) && !empty($_GET['rstr_dimiss_adds'])) {
-            $rstr_dimiss_donation = $_GET['rstr_dimiss_adds'];
-            if ($rstr_dimiss_donation == 1) {
-                set_transient('serbian-transliteration-ads', time(), MONTH_IN_SECONDS);
+        if ($this->can_dismiss_notice('rstr_dimiss_adds')) {
+            set_transient('serbian-transliteration-ads', time(), MONTH_IN_SECONDS);
 
-                $parse_url = Transliteration_Utilities::parse_url();
-                if (!headers_sent() && wp_safe_redirect(remove_query_arg('rstr_dimiss_adds', $parse_url['url']), 302)) {
-                    exit;
-                }
+            $parse_url = Transliteration_Utilities::parse_url();
+            if (!headers_sent() && wp_safe_redirect(remove_query_arg(['rstr_dimiss_adds', 'rstr_dismiss_nonce'], $parse_url['url']), 302)) {
+                exit;
             }
         }
+    }
+
+    private function can_dismiss_notice(string $action): bool
+    {
+        if (!current_user_can('manage_options') || !isset($_GET[$action], $_GET['rstr_dismiss_nonce'])) {
+            return false;
+        }
+
+        if (!is_scalar($_GET[$action]) || !is_scalar($_GET['rstr_dismiss_nonce'])) {
+            return false;
+        }
+
+        $value = absint(wp_unslash((string) $_GET[$action]));
+        $nonce = sanitize_text_field(wp_unslash((string) $_GET['rstr_dismiss_nonce']));
+
+        return $value === 1 && $nonce !== '' && wp_verify_nonce($nonce, 'rstr-dismiss-' . $action) !== false;
+    }
+
+    private function dismissal_url(string $action, string $url): string
+    {
+        return esc_url(wp_nonce_url(add_query_arg($action, '1', $url), 'rstr-dismiss-' . $action, 'rstr_dismiss_nonce'));
     }
 
     // check if review notice should be shown or not
     public function check_installation_time(): void
     {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
         $this->display_vote();
         $this->display_donation();
         //	$this->display_ads();
@@ -150,9 +166,9 @@ class Transliteration_Notifications extends Transliteration
     public function notice__give_us_vote(): void
     {
         $parse_url    = Transliteration_Utilities::parse_url();
-        $dont_disturb = esc_url(add_query_arg('rstr_dimiss_review', '1', $parse_url['url']));
+        $dont_disturb = $this->dismissal_url('rstr_dimiss_review', $parse_url['url']);
         $plugin_info  = get_plugin_data(RSTR_FILE, true, true);
-        $reviewurl    = esc_url('https://wordpress.org/support/plugin/serbian-transliteration/reviews/?filter=5#new-post');
+        $reviewurl    = esc_url('https://wordpress.org/support/plugin/serbian-transliteration/reviews/#new-post');
 
         printf(
             '<div class="notice notice-info"><h3>' . __('You have been using <b> %1$s </b> plugin for a while. We hope you liked it!', 'serbian-transliteration') . '</h3><p>' . __('Please give us a quick rating, it works as a boost for us to keep working on the plugin!', 'serbian-transliteration') . '</p><p class="void-review-btn"><a href="%2$s" class="button button-primary" target="_blank">' . __('Rate Now!', 'serbian-transliteration') . '</a><a href="%3$s" class="void-grid-review-done" style="margin-left: 10px;">' . __("I've already done that!", 'serbian-transliteration') . '</a></p></div>',
@@ -168,7 +184,7 @@ class Transliteration_Notifications extends Transliteration
     public function notice__buy_me_a_coffee(): void
     {
         $parse_url    = Transliteration_Utilities::parse_url();
-        $dont_disturb = esc_url(add_query_arg('rstr_dimiss_donation', '1', $parse_url['url']));
+        $dont_disturb = $this->dismissal_url('rstr_dimiss_donation', $parse_url['url']);
         $plugin_info  = get_plugin_data(RSTR_FILE, true, true);
         $donationurl  = 'https://www.buymeacoffee.com/ivijanstefan';
 
@@ -192,7 +208,7 @@ class Transliteration_Notifications extends Transliteration
 	public function notice__donation_bank_account(): void
 	{
 		$parse_url    = Transliteration_Utilities::parse_url();
-		$dont_disturb = esc_url(add_query_arg('rstr_dimiss_donation', '1', $parse_url['url']));
+		$dont_disturb = $this->dismissal_url('rstr_dimiss_donation', $parse_url['url']);
 		$plugin_info  = get_plugin_data(RSTR_FILE, true, true);
 
 		echo '<div class="notice notice-info">
@@ -222,7 +238,7 @@ class Transliteration_Notifications extends Transliteration
     public function notice__ads(): void
     {
         $parse_url    = Transliteration_Utilities::parse_url();
-        $dont_disturb = add_query_arg('rstr_dimiss_adds', '1', $parse_url['url']);
+        $dont_disturb = $this->dismissal_url('rstr_dimiss_adds', $parse_url['url']);
 
         printf(
             '<div class="notice notice-info is-dismissible" id="ads-freelance-poslovi"><img src="' . esc_url(RSTR_ASSETS . '/img/fp-icon-80x80.png') . '" alt="FreelancePoslovi.com"><h3>' . __('Find Work or %1$s in Serbia, Bosnia, Croatia, and Beyond!', 'serbian-transliteration') . '</h3><p>' . __('Visit %2$s to connect with skilled professionals across the region. Whether you need a project completed or are looking for work, our platform is your gateway to successful collaboration.', 'serbian-transliteration') . '</p><p>%3$s</p><a href="%4$s" class="notice-dismiss" style="text-decoration:none;"></a></div>',

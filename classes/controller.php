@@ -959,7 +959,7 @@ final class Transliteration_Controller extends Transliteration
 		static $seed = null;
 
 		if ($seed === null) {
-			$seed = (string) mt_rand(100000, 999999);
+            $seed = (string) wp_rand(100000, 999999);
 		}
 
 		return '%%::' . $seed . '::' . $group . '::' . $index . '::%%';

@@ -1368,8 +1368,8 @@ class Transliteration_Utilities
         $actual_link = rtrim($_SERVER['REQUEST_URI'] ?? '', '/');
 
         // Parse the URL to get the path
-        $parsed_url = parse_url($actual_link);
-        $path       = $parsed_url['path'];
+        $parsed_url = wp_parse_url($actual_link);
+        $path       = $parsed_url['path'] ?? '';
 
         // Explode the path into parts and get the last part
         $parts = explode('/', trim($path, '/'));

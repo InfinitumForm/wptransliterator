@@ -338,7 +338,7 @@ class Transliteration_Debug
             }
         }
 
-        return __('undefined', 'cf-geoplugin');
+        return __('undefined', 'serbian-transliteration');
     }
 
     /**

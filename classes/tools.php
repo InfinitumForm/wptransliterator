@@ -68,84 +68,140 @@ class Transliteration_Tools extends Transliteration
             'loading' => false,
         ];
 
-        if (isset($_REQUEST['nonce']) && wp_verify_nonce(sanitize_text_field($_REQUEST['nonce']), 'rstr-run-permalink-transliteration') !== false) {
-            // Posts per page
-            $posts_per_page = apply_filters('transliteration_permalink_transliteration_batch_size', 50);
-            $posts_per_page = apply_filters_deprecated('rstr/permalink-tool/transliteration/offset', [$posts_per_page], '2.0.0', 'transliteration_permalink_transliteration_batch_size');
+        $nonce = isset($_REQUEST['nonce']) && is_scalar($_REQUEST['nonce'])
+            ? sanitize_text_field(wp_unslash((string) $_REQUEST['nonce']))
+            : '';
 
-            // Set post type
-            $post_type       = isset($_REQUEST['post_type']) ? (is_array($_REQUEST['post_type']) ? implode(',', array_map('sanitize_text_field', $_REQUEST['post_type'])) : sanitize_text_field($_REQUEST['post_type'])) : null;
-            $post_type_query = $post_type ? sprintf("FIND_IN_SET(`post_type`, '%s')", $post_type) : '1=1'; // Use "1=1" as a fallback to avoid SQL syntax errors
+        if (!current_user_can('manage_options') || $nonce === '' || wp_verify_nonce($nonce, 'rstr-run-permalink-transliteration') === false) {
+            wp_send_json($data);
+        }
 
-            // Get maximum number of the posts
-            $total = isset($_POST['total']) ? absint($_POST['total']) : absint($wpdb->get_var(sprintf("SELECT COUNT(1) FROM `%s` WHERE %s AND `post_type` NOT LIKE 'revision' AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_status` NOT LIKE 'trash'", $wpdb->posts, $post_type_query)));
+        // Posts per page.
+        $posts_per_page = apply_filters('transliteration_permalink_transliteration_batch_size', 50);
+        $posts_per_page = apply_filters_deprecated('rstr/permalink-tool/transliteration/offset', [$posts_per_page], '2.0.0', 'transliteration_permalink_transliteration_batch_size');
+        $posts_per_page = max(1, absint($posts_per_page));
 
-            // Get updated and current page
-            $updated = isset($_POST['updated']) ? absint($_POST['updated']) : 0;
-            $paged   = isset($_POST['paged']) ? absint($_POST['paged']) + 1 : 1;
+        $available_post_types = get_post_types([
+            'public' => true,
+        ], 'names', 'and');
+        $requested_post_types = $_REQUEST['post_type'] ?? null;
+        $post_types           = [];
 
-            // Calculate pagination values
-            $pages      = max(ceil($total / $posts_per_page), 1);
-            $percentage = min(max(round(($paged / $pages) * 100, 2), 0), 100);
+        if (is_array($requested_post_types)) {
+            $requested_post_types = $requested_post_types;
+        } elseif (is_scalar($requested_post_types)) {
+            // The batch response is sent back by the existing JavaScript as a comma-separated value.
+            $requested_post_types = explode(',', wp_unslash((string) $requested_post_types));
+        } else {
+            $requested_post_types = [];
+        }
 
-            // Perform transliteration
-            $return = [];
-            if ($total) {
-                $offset      = ($paged - 1) * $posts_per_page;
-                $get_results = $wpdb->get_results($wpdb->prepare(sprintf("SELECT `ID`, `post_name` FROM `%s` WHERE %s AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash' ORDER BY `ID` DESC LIMIT %%d, %%d", $wpdb->posts, $post_type_query), $offset, $posts_per_page));
-
-                if ($get_results) {
-                    foreach ($get_results as $match) {
-                        $original_post_name = $match->post_name;
-                        $match->post_name   = Transliteration_Utilities::decode($match->post_name);
-                        $match->post_name   = Transliteration_Controller::get()->cyr_to_lat_sanitize($match->post_name);
-
-                        if ($match->post_name !== $original_post_name && wp_update_post(['ID' => $match->ID, 'post_name' => $match->post_name])) {
-                            $updated++;
-                            $return[] = $match;
-                        }
-                    }
-                }
+        foreach ($requested_post_types as $requested_post_type) {
+            if (!is_scalar($requested_post_type)) {
+                continue;
             }
 
-            if ($percentage >= 100 && function_exists('flush_rewrite_rules')) {
-                flush_rewrite_rules();
-            }
-
-            if ($paged < $pages) {
-                $data = [
-                    'error'          => false,
-                    'done'           => false,
-                    'message'        => null,
-                    'posts_per_page' => $posts_per_page,
-                    'paged'          => $paged,
-                    'total'          => $total,
-                    'pages'          => $pages,
-                    'loading'        => true,
-                    'percentage'     => $percentage,
-                    'updated'        => $updated,
-                    'nonce'          => sanitize_text_field($_REQUEST['nonce']),
-                    'action'         => sanitize_text_field($_REQUEST['action']),
-                    'post_type'      => $post_type,
-                ];
-            } else {
-                $data = [
-                    'error'      => false,
-                    'done'       => true,
-                    'message'    => null,
-                    'loading'    => true,
-                    'percentage' => $percentage,
-                    'return'     => $return,
-                    'updated'    => $updated,
-                    'nonce'      => sanitize_text_field($_REQUEST['nonce']),
-                    'action'     => sanitize_text_field($_REQUEST['action']),
-                    'post_type'  => $post_type,
-                ];
+            $post_type = sanitize_text_field(wp_unslash((string) $requested_post_type));
+            if (in_array($post_type, $available_post_types, true)) {
+                $post_types[] = $post_type;
             }
         }
 
-        header('Content-Type: application/json');
-        echo json_encode($data);
-        exit;
+        $post_types = array_values(array_unique($post_types));
+
+        // An omitted post_type retains the existing all-applicable-post-types behavior.
+        if ($requested_post_types !== [] && $post_types === []) {
+            wp_send_json($data);
+        }
+
+        $post_type       = $post_types === [] ? null : implode(',', $post_types);
+        $post_type_query = '1=1';
+        $post_type_args  = [];
+
+        if ($post_types !== []) {
+            $post_type_query = '`post_type` IN (' . implode(', ', array_fill(0, count($post_types), '%s')) . ')';
+            $post_type_args  = $post_types;
+        }
+
+        // Get maximum number of posts.
+        $total = isset($_POST['total']) && is_scalar($_POST['total'])
+            ? absint(wp_unslash((string) $_POST['total']))
+            : 0;
+
+        if (!isset($_POST['total'])) {
+            $count_query = "SELECT COUNT(1) FROM `{$wpdb->posts}` WHERE {$post_type_query} AND `post_type` NOT LIKE 'revision' AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_status` NOT LIKE 'trash'";
+            $total       = absint($post_type_args === [] ? $wpdb->get_var($count_query) : $wpdb->get_var($wpdb->prepare($count_query, ...$post_type_args)));
+        }
+
+        // Get updated and current page.
+        $updated = isset($_POST['updated']) && is_scalar($_POST['updated']) ? absint(wp_unslash((string) $_POST['updated'])) : 0;
+        $paged   = isset($_POST['paged']) && is_scalar($_POST['paged']) ? absint(wp_unslash((string) $_POST['paged'])) + 1 : 1;
+
+        // Calculate pagination values.
+        $pages      = max(ceil($total / $posts_per_page), 1);
+        $percentage = min(max(round(($paged / $pages) * 100, 2), 0), 100);
+
+        // Perform transliteration.
+        $return = [];
+        if ($total) {
+            $offset       = ($paged - 1) * $posts_per_page;
+            $select_query = "SELECT `ID`, `post_name` FROM `{$wpdb->posts}` WHERE {$post_type_query} AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash' ORDER BY `ID` DESC LIMIT %d, %d";
+            $select_args  = array_merge($post_type_args, [$offset, $posts_per_page]);
+            $get_results  = $wpdb->get_results($wpdb->prepare($select_query, ...$select_args));
+
+            if ($get_results) {
+                foreach ($get_results as $match) {
+                    $original_post_name = $match->post_name;
+                    $match->post_name   = Transliteration_Utilities::decode($match->post_name);
+                    $match->post_name   = Transliteration_Controller::get()->cyr_to_lat_sanitize($match->post_name);
+
+                    if ($match->post_name !== $original_post_name && wp_update_post(['ID' => $match->ID, 'post_name' => $match->post_name])) {
+                        $updated++;
+                        $return[] = $match;
+                    }
+                }
+            }
+        }
+
+        if ($percentage >= 100 && function_exists('flush_rewrite_rules')) {
+            flush_rewrite_rules();
+        }
+
+        $action = isset($_REQUEST['action']) && is_scalar($_REQUEST['action'])
+            ? sanitize_text_field(wp_unslash((string) $_REQUEST['action']))
+            : '';
+
+        if ($paged < $pages) {
+            $data = [
+                'error'          => false,
+                'done'           => false,
+                'message'        => null,
+                'posts_per_page' => $posts_per_page,
+                'paged'          => $paged,
+                'total'          => $total,
+                'pages'          => $pages,
+                'loading'        => true,
+                'percentage'     => $percentage,
+                'updated'        => $updated,
+                'nonce'          => $nonce,
+                'action'         => $action,
+                'post_type'      => $post_type,
+            ];
+        } else {
+            $data = [
+                'error'      => false,
+                'done'       => true,
+                'message'    => null,
+                'loading'    => true,
+                'percentage' => $percentage,
+                'return'     => $return,
+                'updated'    => $updated,
+                'nonce'      => $nonce,
+                'action'     => $action,
+                'post_type'  => $post_type,
+            ];
+        }
+
+        wp_send_json($data);
     }
 }

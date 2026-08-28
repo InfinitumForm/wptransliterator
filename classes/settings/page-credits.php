@@ -96,7 +96,7 @@ printf(
             continue;
         }
         $info                                                       = (object) $info;
-        $special_thanks_render[sanitize_title($info->display_name)] = '<a href="' . esc_url($info->profile) . '" target="_blank">' . $info->display_name . '</a>';
+        $special_thanks_render[sanitize_title($info->display_name)] = '<a href="' . esc_url($info->profile) . '" target="_blank">' . esc_html($info->display_name) . '</a>';
     }
 
     foreach ($special_thanks as $name => $thanks_url) {
@@ -126,5 +126,5 @@ printf('<strong>%s</strong> %s', esc_html__('Special thanks to the contributors 
 
 <?php printf('<p>%s</p>', esc_html__('This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.', 'serbian-transliteration')); ?>
 <?php printf('<p>%s</p>', esc_html__('This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.', 'serbian-transliteration')); ?>
-<p><a href="javascript:void(0);" onClick="rstr_popup('<?php echo RSTR_URL; ?>/LICENSE.txt','GNU GENERAL PUBLIC LICENSE','550','450');"><?php esc_html_e('See the GNU General Public License for more details.', 'serbian-transliteration'); ?></a></p>
+<p><a href="javascript:void(0);" onClick="rstr_popup('<?php echo esc_js(RSTR_URL . '/LICENSE.txt'); ?>','GNU GENERAL PUBLIC LICENSE','550','450');"><?php esc_html_e('See the GNU General Public License for more details.', 'serbian-transliteration'); ?></a></p>
 <?php printf('<p>%s</p>', esc_html__('You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.', 'serbian-transliteration')); ?>
