@@ -221,7 +221,7 @@ final class Transliteration_Menus extends Transliteration
 
     public function menu_objects(array $sorted_menu_items): array
 	{
-		$hide_trans_items = ! Transliteration_Utilities::is_cyrillic_locale();
+		$hide_trans_items = ! Transliteration_Utilities::is_transliteration_language();
 
 		foreach ($sorted_menu_items as $index => $item) {
 			$item_url = isset($item->url) ? (string) $item->url : '';

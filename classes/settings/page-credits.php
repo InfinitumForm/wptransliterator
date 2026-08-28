@@ -4,10 +4,8 @@
 
 $special_thanks_sponsors = [
     'INFINITUM FORM'       => 'https://infinitumform.com/',
-    'FreelancePoslovi.com' => 'https://freelanceposlovi.com/',
     'Contra Team d.o.o.'   => 'https://korisnickicentar.contrateam.com/aff.php?aff=385',
     'UG Preobraženje'      => 'https://preobrazenje.rs/',
-    'CNZD'                 => 'https://cnzd.rs/',
 ];
 
 $special_thanks = [

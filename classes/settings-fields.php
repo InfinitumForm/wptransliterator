@@ -441,6 +441,15 @@ class Transliteration_Settings_Fields
                 'default'
             );
         }
+
+        add_meta_box(
+            'more-useful-plugins',
+            __('More useful plugins', 'serbian-transliteration'),
+            [$sidebars, 'more_useful_plugins'],
+            'transliteration-settings',
+            'side',
+            'default'
+        );
     }
 
     /*

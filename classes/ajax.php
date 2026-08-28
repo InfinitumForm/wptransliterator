@@ -19,6 +19,10 @@ class Transliteration_Ajax extends Transliteration
 
     public function ajax_transliteration_callback($buffer)
     {
+        if (Transliteration_Utilities::is_editor()) {
+            return $buffer;
+        }
+
         if (!isset($_REQUEST['action']) || (!in_array($_REQUEST['action'], ['find_posts', 'heartbeat', 'query-attachments', 'wp_block']) && !preg_match('/^((ct_|oxy_)(.*?))$/i', $_REQUEST['action']) && !preg_match('/^(rstr_(.*?))$/i', $_REQUEST['action']) && !preg_match('/^(divi_(.*?))$/i', $_REQUEST['action']) && !preg_match('/^(elementor_(.*?))$/i', $_REQUEST['action']))) {
             $json = json_decode($buffer, true);
             if ($json !== null && is_array($json)) {

@@ -2,7 +2,7 @@
 Contributors: ivijanstefan, creativform, tihi, boka003
 Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 2.5.7
 License: GPLv2 or later
@@ -90,12 +90,14 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 == Changelog ==
 
 = 2.5.7 =
+* Fixed transliteration of URL-bearing HTML attributes that could break links and media URLs.
+* Fixed compatibility with Avada Live Builder and Serbian Latin/Cyrillic switching in Polylang environments.
+* Improved frontend transliteration runtime diagnostics in the Debugging tab.
+
+= 2.5.6 =
 * Improve WP Rocket compatibility.
 * Improve cached content synchronization.
 * WP Rocket compatibility improvements contributed by Boris Košpić (@Boka003).
-
-= 2.5.6 =
-* Improve WP Rocket compatibility
 
 = 2.5.5 =
 * Fix PHP 8 compatibility
@@ -156,12 +158,14 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 == Upgrade Notice ==
 
 = 2.5.7 =
+* Fixed transliteration of URL-bearing HTML attributes that could break links and media URLs.
+* Fixed compatibility with Avada Live Builder and Serbian Latin/Cyrillic switching in Polylang environments.
+* Improved frontend transliteration runtime diagnostics in the Debugging tab.
+
+= 2.5.6 =
 * Improve WP Rocket compatibility.
 * Improve cached content synchronization.
 * WP Rocket compatibility improvements contributed by Boris Košpić (@Boka003).
-
-= 2.5.6 =
-* Improve WP Rocket compatibility
 
 = 2.5.5 =
 * Fix PHP 8 compatibility

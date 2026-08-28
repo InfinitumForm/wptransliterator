@@ -98,7 +98,7 @@ final class Transliteration_Controller extends Transliteration
                 return $mode;
             }
 			
-			if (!Transliteration_Utilities::is_admin() && !Transliteration_Utilities::is_cyrillic_locale()) {
+			if (!Transliteration_Utilities::is_admin() && !Transliteration_Utilities::is_transliteration_language()) {
 				return null;
 			}
 
@@ -285,6 +285,11 @@ final class Transliteration_Controller extends Transliteration
 		$exclude_placeholders = [];
 		$content = $this->protect_cyr_excluded_words((string) $content, $exclude_placeholders);
 
+		$url_attribute_placeholders = [];
+		if ($sanitize_html) {
+			$content = $this->protect_url_attributes($content, $url_attribute_placeholders);
+		}
+
 		$head_placeholders = [];
 		$content = preg_replace_callback('/<head\b[^>]*>.*?<\/head>/is', function ($matches) use (&$head_placeholders): string {
 			$placeholder = self::make_placeholder(3, count($head_placeholders));
@@ -341,6 +346,10 @@ final class Transliteration_Controller extends Transliteration
 
 		if ($exclude_placeholders !== []) {
 			$content = strtr($content, $exclude_placeholders);
+		}
+
+		if ($url_attribute_placeholders !== []) {
+			$content = strtr($content, $url_attribute_placeholders);
 		}
 
 		if ($script_placeholders !== []) {
@@ -492,6 +501,11 @@ final class Transliteration_Controller extends Transliteration
             return $placeholder;
         }, $content);
 
+        $url_attribute_placeholders = [];
+        if ($sanitize_html) {
+            $content = $this->protect_url_attributes($content, $url_attribute_placeholders);
+        }
+
         // Handle various format specifiers and other patterns by replacing them with placeholders
         $formatSpecifiers = [];
         $regex            = (
@@ -559,6 +573,11 @@ final class Transliteration_Controller extends Transliteration
             $content = strtr($content, $exclude_placeholders);
             unset($exclude_placeholders);
         }
+
+        if ($url_attribute_placeholders !== []) {
+            $content = strtr($content, $url_attribute_placeholders);
+            unset($url_attribute_placeholders);
+        }
 		
 		// Restore <head> contents back to their original form
         if ($head_placeholders !== []) {
@@ -604,7 +623,7 @@ final class Transliteration_Controller extends Transliteration
 			return $buffer;
 		}
 
-		if (!Transliteration_Utilities::is_cyrillic_locale()) {
+		if (!Transliteration_Utilities::is_transliteration_language()) {
 			return $buffer;
 		}
 
@@ -959,6 +978,64 @@ final class Transliteration_Controller extends Transliteration
 		$cleaned = preg_replace('/%%::\d+::\d+::\d+::%%/', '', $content);
 
 		return is_string($cleaned) ? $cleaned : $content;
+	}
+
+	/**
+	 * Protect URL-bearing HTML attributes before transliterating an HTML string.
+	 *
+	 * Attribute values are restored byte-for-byte after the main transliteration
+	 * pass, so URLs, encoded values, and srcset candidates are never modified.
+	 *
+	 * @param string               $content Input HTML.
+	 * @param array<string, string> $placeholders Placeholder storage.
+	 *
+	 * @return string
+	 */
+	private function protect_url_attributes(string $content, array &$placeholders): string
+	{
+		$attributes = apply_filters('rstr/protected_url_attributes', [
+			'href',
+			'src',
+			'srcset',
+			'action',
+			'formaction',
+			'poster',
+			'cite',
+		]);
+
+		if (!is_array($attributes)) {
+			return $content;
+		}
+
+		$attributes = array_values(array_unique(array_filter(array_map(static function ($attribute): string {
+			return is_string($attribute) ? sanitize_key($attribute) : '';
+		}, $attributes))));
+
+		if ($attributes === []) {
+			return $content;
+		}
+
+		$pattern = '/(?<![\w-])(' . implode('|', array_map(static function (string $attribute): string {
+			return preg_quote($attribute, '/');
+		}, $attributes)) . ')(\s*=\s*)(?:(["\'])(.*?)\3|([^\s"\'=<>`]+))/is';
+
+		$protected = preg_replace_callback($pattern, static function ($matches) use (&$placeholders, $content): string {
+			$index = count($placeholders);
+			do {
+				$placeholder = self::make_placeholder(10, $index++);
+			} while (strpos($content, $placeholder) !== false || isset($placeholders[$placeholder]));
+
+			$value = isset($matches[3]) && $matches[3] !== ''
+				? $matches[3] . $placeholder . $matches[3]
+				: $placeholder;
+
+			$original_value = isset($matches[3]) && $matches[3] !== '' ? $matches[4] : $matches[5];
+			$placeholders[$placeholder] = $original_value;
+
+			return $matches[1] . $matches[2] . $value;
+		}, $content);
+
+		return is_string($protected) ? $protected : $content;
 	}
 	
 	/**

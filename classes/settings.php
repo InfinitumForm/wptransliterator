@@ -144,11 +144,11 @@ final class Transliteration_Settings extends Transliteration
         $tab = sanitize_text_field($_GET['tab'] ?? 'general');
 
         // Register the CSS and JS files
-        wp_register_style('transliteration-admin', RSTR_ASSETS . '/css/admin' . $min . '.css');
-        wp_register_script('transliteration-admin', RSTR_ASSETS . '/js/admin' . $min . '.js', ['jquery'], null, true);
+        wp_register_style('transliteration-admin', RSTR_ASSETS . '/css/admin' . $min . '.css', [], (string)RSTR_VERSION);
+        wp_register_script('transliteration-admin', RSTR_ASSETS . '/js/admin' . $min . '.js', ['jquery'], (string)RSTR_VERSION, true);
 
-        wp_register_style('transliteration-highlight', RSTR_ASSETS . '/css/highlight.min.css');
-        wp_register_script('transliteration-highlight', RSTR_ASSETS . '/js/highlight.min.js', ['jquery'], null, true);
+        wp_register_style('transliteration-highlight', RSTR_ASSETS . '/css/highlight.min.css', ['transliteration-admin'], (string)RSTR_VERSION);
+        wp_register_script('transliteration-highlight', RSTR_ASSETS . '/js/highlight.min.js', ['jquery'], (string)RSTR_VERSION, true);
 
         // Enqueue the CSS and JS files
         wp_enqueue_style('transliteration-admin');

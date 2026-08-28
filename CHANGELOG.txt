@@ -1,10 +1,12 @@
 = 2.5.7 =
+* Fixed transliteration of URL-bearing HTML attributes that could break links and media URLs.
+* Fixed compatibility with Avada Live Builder and Serbian Latin/Cyrillic switching in Polylang environments.
+* Improved frontend transliteration runtime diagnostics in the Debugging tab.
+
+= 2.5.6 =
 * Improve WP Rocket compatibility.
 * Improve cached content synchronization.
 * WP Rocket compatibility improvements contributed by Boris Košpić (@Boka003).
-
-= 2.5.6 =
-* Improve WP Rocket compatibility
 
 = 2.5.5 =
 * Fix PHP 8 compatibility

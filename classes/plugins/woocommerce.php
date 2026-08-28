@@ -325,6 +325,10 @@ class Transliteration_Plugin_Woocommerce extends Transliteration
             return false;
         }
 
+        if (Transliteration_Utilities::is_editor()) {
+            return false;
+        }
+
         if (function_exists('wp_doing_cron') && wp_doing_cron()) {
             return false;
         }

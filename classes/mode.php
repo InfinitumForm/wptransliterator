@@ -98,7 +98,9 @@ final class Transliteration_Mode extends Transliteration
             $this->mode = $mode_class::get();
 			
 			// Include buffer
-			Transliteration_Controller::get()->init_output_buffer();
+			if (!Transliteration_Utilities::is_editor()) {
+				Transliteration_Controller::get()->init_output_buffer();
+			}
         }
     }
 
@@ -117,6 +119,10 @@ final class Transliteration_Mode extends Transliteration
         }
 
         if (get_rstr_option('transliteration-mode', 'cyr_to_lat') === 'none') {
+            return;
+        }
+
+        if (Transliteration_Utilities::is_editor()) {
             return;
         }
 

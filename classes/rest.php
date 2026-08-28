@@ -14,6 +14,10 @@ class Transliteration_Rest extends Transliteration
 
     public function rest_response($response)
     {
+        if (Transliteration_Utilities::is_editor()) {
+            return $response;
+        }
+
         return Transliteration_Mode::get()->transliterate_objects($response);
     }
 }

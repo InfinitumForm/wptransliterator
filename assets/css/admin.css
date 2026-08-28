@@ -570,3 +570,88 @@ Webkit browsers provide two pseudo classes that can be use to style HTML5 progre
 #wp-transliteration-settings .meta-box-sortables:empty {
 	display:none !important;
 }
+
+/* More useful plugins sidebar */
+#wp-transliteration-settings #more-useful-plugins .inside > p:first-child {
+	margin-bottom: 14px;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin {
+	border-top: 1px solid #dcdcde;
+	display: grid;
+	gap: 10px;
+	grid-template-columns: 44px minmax(0, 1fr);
+	padding: 14px 0;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin:first-child {
+	border-top: 0;
+	padding-top: 0;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin:last-child {
+	padding-bottom: 0;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin__icon-wrap {
+	align-items: center;
+	border: 1px solid #dcdcde;
+	border-radius: 3px;
+	display: flex;
+	height: 44px;
+	justify-content: center;
+	overflow: hidden;
+	width: 44px;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin__icon {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin__placeholder {
+	color: #646970;
+	font-size: 24px;
+	height: 24px;
+	width: 24px;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin__content {
+	min-width: 0;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin__content h3 {
+	font-size: 13px;
+	line-height: 1.35;
+	margin: 0 0 4px;
+	overflow-wrap: anywhere;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin__description {
+	color: #50575e;
+	display: -webkit-box;
+	font-size: 12px;
+	line-height: 1.4;
+	margin: 0 0 5px;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin__meta {
+	color: #646970;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 12px;
+	gap: 8px;
+	line-height: 1.4;
+	margin: 0 0 5px;
+}
+
+#wp-transliteration-settings #more-useful-plugins .rstr-useful-plugin__action {
+	font-size: 12px;
+	line-height: 1.4;
+	margin: 0;
+}

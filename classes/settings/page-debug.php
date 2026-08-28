@@ -2,6 +2,15 @@
     die();
 }
 $activations = get_option(RSTR_NAME . '-activation');
+$script_cookie = isset($_COOKIE['rstr_script']) && is_scalar($_COOKIE['rstr_script'])
+	? sanitize_key(wp_unslash((string) $_COOKIE['rstr_script']))
+	: '';
+$script_cookie = in_array($script_cookie, ['cyr', 'lat'], true) ? $script_cookie : '-';
+$resolved_script = Transliteration_Utilities::get_current_script();
+$configured_direction = get_rstr_option('transliteration-mode', 'cyr_to_lat');
+$is_disabled = Transliteration_Controller::get()->disable_transliteration();
+$is_editor = Transliteration_Utilities::is_editor();
+$editor_type = Transliteration_Utilities::get_editor_type();
 ?><br>
 <table class="table table-sm table-striped w-100">
 <?php // Hook to extend debug table header ?>
@@ -16,6 +25,38 @@ $activations = get_option(RSTR_NAME . '-activation');
 		<tr>
 			<td width="30%" style="width:30%;"><strong><?php esc_html_e('Plugin version', 'serbian-transliteration'); ?></strong></td>
 			<td><?php echo RSTR_VERSION; ?></td>
+		</tr>
+		<tr>
+			<td><strong><?php esc_html_e('Current rstr_script cookie', 'serbian-transliteration'); ?></strong></td>
+			<td><?php echo esc_html($script_cookie); ?></td>
+		</tr>
+		<tr>
+			<td><strong><?php esc_html_e('Resolved frontend script', 'serbian-transliteration'); ?></strong></td>
+			<td><?php echo esc_html($resolved_script); ?></td>
+		</tr>
+		<tr>
+			<td><strong><?php esc_html_e('Configured transliteration direction', 'serbian-transliteration'); ?></strong></td>
+			<td><?php echo esc_html($configured_direction); ?></td>
+		</tr>
+		<tr>
+			<td><strong><?php esc_html_e('Transliteration currently disabled', 'serbian-transliteration'); ?></strong></td>
+			<td><?php echo $is_disabled ? esc_html__('Yes', 'serbian-transliteration') : esc_html__('No', 'serbian-transliteration'); ?></td>
+		</tr>
+		<tr>
+			<td><strong><?php esc_html_e('Current request detected as editor', 'serbian-transliteration'); ?></strong></td>
+			<td><?php echo $is_editor ? esc_html__('Yes', 'serbian-transliteration') : esc_html__('No', 'serbian-transliteration'); ?></td>
+		</tr>
+		<tr>
+			<td><strong><?php esc_html_e('Detected editor type', 'serbian-transliteration'); ?></strong></td>
+			<td><?php echo esc_html($editor_type ?: '-'); ?></td>
+		</tr>
+		<tr>
+			<td><strong><?php esc_html_e('Current REST request', 'serbian-transliteration'); ?></strong></td>
+			<td><?php echo Transliteration_Utilities::is_rest_request() ? esc_html__('Yes', 'serbian-transliteration') : esc_html__('No', 'serbian-transliteration'); ?></td>
+		</tr>
+		<tr>
+			<td><strong><?php esc_html_e('Current AJAX request', 'serbian-transliteration'); ?></strong></td>
+			<td><?php echo Transliteration_Utilities::is_ajax_request() ? esc_html__('Yes', 'serbian-transliteration') : esc_html__('No', 'serbian-transliteration'); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('WordPress version', 'serbian-transliteration'); ?></strong></td>

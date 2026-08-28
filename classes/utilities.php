@@ -173,6 +173,39 @@ class Transliteration_Utilities
 		return $is_cyr;
 	}
 
+	/**
+	 * Check whether the current language is eligible for transliteration.
+	 *
+	 * This intentionally differs from is_cyrillic_locale(): Serbian remains
+	 * eligible when Polylang identifies it as a Latin script variant, while
+	 * unrelated languages continue to be excluded.
+	 *
+	 * @param string|null $slug   Optional language slug.
+	 * @param string|null $locale Optional locale.
+	 *
+	 * @return bool
+	 */
+	public static function is_transliteration_language(?string $slug = null, ?string $locale = null): bool
+	{
+		$info = self::current_language_info();
+
+		if ($slug === null || $slug === '') {
+			$slug = $info['slug'] ?: null;
+		}
+
+		if ($locale === null || $locale === '') {
+			$locale = $info['locale'] ?: null;
+		}
+
+		$normalized_slug = strtolower(str_replace('_', '-', (string) $slug));
+		$normalized_locale = strtolower(str_replace('_', '-', (string) $locale));
+		$language = strtok($normalized_slug ?: $normalized_locale, '-');
+
+		$is_eligible = $language === 'sr' || self::is_cyrillic_locale($slug, $locale);
+
+		return (bool) apply_filters('rstr_is_transliteration_language', $is_eligible, $slug, $locale, $info);
+	}
+
 
     /*
      * Skip transliteration
@@ -288,6 +321,8 @@ class Transliteration_Utilities
 
 			// If language scheme is forced, keep existing behavior (BC)
 			if ($language_scheme !== 'auto') {
+				$language_scheme = self::normalize_serbian_locale((string) $language_scheme);
+
 				if ($locale === null || $locale === '') {
 					return $language_scheme;
 				}
@@ -314,6 +349,8 @@ class Transliteration_Utilities
 			if (empty($get_locale)) {
 				$get_locale = get_locale();
 			}
+
+			$get_locale = self::normalize_serbian_locale((string) $get_locale);
 
 			// Normalize short codes to full locale codes
 			switch ($get_locale) {
@@ -344,6 +381,18 @@ class Transliteration_Utilities
 			// Kada se prosledi konkretan locale, vraćamo bool (BC sa postojećim pozivima)
 			return $get_locale === $locale;
 		}, $locale);
+	}
+
+	/**
+	 * Map Polylang Serbian script variants to the existing Serbian map locale.
+	 */
+	private static function normalize_serbian_locale(string $locale): string
+	{
+		$normalized = strtolower(str_replace('_', '-', $locale));
+
+		return strpos($normalized, 'sr') === 0 && ($normalized === 'sr' || strpos($normalized, 'sr-') === 0)
+			? 'sr_RS'
+			: $locale;
 	}
 
 
@@ -920,7 +969,8 @@ class Transliteration_Utilities
             if (
                 self::is_elementor_editor() ||
                 self::is_oxygen_editor() ||
-                self::is_wpbakery_editor()
+                self::is_wpbakery_editor() ||
+                self::is_avada_editor()
             ) {
                 return true;
             }
@@ -1026,6 +1076,104 @@ class Transliteration_Utilities
 
             return false;
         });
+    }
+
+    /*
+     * Check if the current request is an Avada Live Builder request.
+     *
+     * Runtime indicators are preferred. Query-string fallback is deliberately
+     * limited to Avada Live Builder-specific request markers so normal Avada
+     * frontend rendering remains eligible for transliteration.
+     */
+    public static function is_avada_editor()
+    {
+        return self::cached_static('is_avada_editor', function (): bool {
+            if (function_exists('fusion_is_preview_frame') && fusion_is_preview_frame()) {
+                return true;
+            }
+
+            if (function_exists('fusion_is_builder_frame') && fusion_is_builder_frame()) {
+                return true;
+            }
+
+            $fb_edit    = self::request_value('fb-edit');
+            $fb_preview = self::request_value('fbpreview');
+            $builder    = self::request_value('builder');
+            $builder_id = self::request_value('builder_id');
+            $action     = self::request_value('action');
+
+            if ($fb_edit !== '' || $fb_preview !== '') {
+                return true;
+            }
+
+            if (self::request_is_truthy($builder) && is_numeric($builder_id)) {
+                return true;
+            }
+
+            return strpos($action, 'fusion_') === 0 && (self::request_is_truthy($builder) || is_numeric($builder_id));
+        });
+    }
+
+    /**
+     * Return a sanitized scalar request value for editor context detection.
+     */
+    private static function request_value(string $key): string
+    {
+        if (!isset($_REQUEST[$key]) || !is_scalar($_REQUEST[$key])) {
+            return '';
+        }
+
+        return sanitize_text_field(wp_unslash((string) $_REQUEST[$key]));
+    }
+
+    /**
+     * Check commonly-used truthy request values.
+     */
+    private static function request_is_truthy(string $value): bool
+    {
+        return in_array(strtolower($value), ['1', 'true', 'yes', 'on'], true);
+    }
+
+    /**
+     * Return the detected editor type for support diagnostics.
+     */
+    public static function get_editor_type(): string
+    {
+        if (self::is_elementor_editor()) {
+            return 'Elementor';
+        }
+
+        if (self::is_oxygen_editor()) {
+            return 'Oxygen';
+        }
+
+        if (self::is_wpbakery_editor()) {
+            return 'WPBakery';
+        }
+
+        if (self::is_avada_editor()) {
+            return 'Avada Live Builder';
+        }
+
+        return self::is_editor() ? 'WordPress editor' : '';
+    }
+
+    /**
+     * Check whether the current request is a REST API request.
+     */
+    public static function is_rest_request(): bool
+    {
+        return defined('REST_REQUEST') && REST_REQUEST;
+    }
+
+    /**
+     * Check whether the current request is an AJAX request.
+     */
+    public static function is_ajax_request(): bool
+    {
+        return function_exists('wp_doing_ajax')
+            ? wp_doing_ajax()
+            : defined('DOING_AJAX') && DOING_AJAX;
     }
 
     /*

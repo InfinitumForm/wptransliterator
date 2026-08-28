@@ -157,7 +157,7 @@ class Transliteration_Filters extends Transliteration
 			return;
 		}
 		
-		if (is_admin()) {
+		if (is_admin() || Transliteration_Utilities::is_editor()) {
 			return;
 		}
 
