@@ -26,3 +26,6 @@ jobs:
         with:
           build-dir: './'
           slug: 'serbian-transliteration'
+          ignore-warnings: true
+          exclude-directories: '.github'
+          exclude-files: 'CODE_OF_CONDUCT.md,CONTRIBUTING.md,ISSUE_TEMPLATE.md,PULL_REQUEST_TEMPLATE.md'
