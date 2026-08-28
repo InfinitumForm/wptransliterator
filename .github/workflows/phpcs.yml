@@ -1,0 +1,116 @@
+name: WordPress Coding Standards
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  phpcs:
+    name: PHPCS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          tools: composer
+
+      - name: Install WordPress Coding Standards
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          composer global config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+
+          composer global require \
+            --no-interaction \
+            --no-progress \
+            wp-coding-standards/wpcs:"^3.0"
+
+          COMPOSER_BIN="$(composer global config bin-dir --absolute)"
+          echo "${COMPOSER_BIN}" >> "${GITHUB_PATH}"
+
+          "${COMPOSER_BIN}/phpcs" -i
+
+      - name: Find changed PHP files
+        id: changed-files
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          elif [[ "${{ github.event_name }}" == "push" ]]; then
+            BASE_SHA="${{ github.event.before }}"
+
+            if [[ "${BASE_SHA}" == "0000000000000000000000000000000000000000" ]]; then
+              BASE_SHA="$(git rev-list --max-parents=0 HEAD)"
+            fi
+          else
+            BASE_SHA="HEAD^"
+          fi
+
+          echo "Comparing:"
+          echo "Base: ${BASE_SHA}"
+          echo "Head: ${GITHUB_SHA}"
+
+          mapfile -t PHP_FILES < <(
+            git diff \
+              --diff-filter=ACMR \
+              --name-only \
+              "${BASE_SHA}" \
+              "${GITHUB_SHA}" \
+              -- '*.php'
+          )
+
+          if [[ ${#PHP_FILES[@]} -eq 0 ]]; then
+            echo "No changed PHP files found."
+            echo "has_files=false" >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+
+          printf '%s\n' "${PHP_FILES[@]}"
+
+          {
+            echo "has_files=true"
+            echo "files<<EOF"
+            printf '%s\n' "${PHP_FILES[@]}"
+            echo "EOF"
+          } >> "${GITHUB_OUTPUT}"
+
+      - name: Run WordPress Coding Standards
+        if: steps.changed-files.outputs.has_files == 'true'
+        shell: bash
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.files }}
+        run: |
+          set -euo pipefail
+
+          mapfile -t FILES <<< "${CHANGED_FILES}"
+
+          phpcs \
+            --standard=WordPress \
+            --extensions=php \
+            --warning-severity=0 \
+            --colors \
+            -p \
+            "${FILES[@]}"
+
+      - name: No PHP changes
+        if: steps.changed-files.outputs.has_files != 'true'
+        run: echo "No changed PHP files to check."
