@@ -21,12 +21,26 @@ final class Transliteration_Init extends Transliteration
 	
 	public function load_textdomain(): void
 	{
+		$domain = RSTR_NAME;
+		$locale = function_exists('determine_locale') ? determine_locale() : get_locale();
+		$locale = apply_filters('plugin_locale', $locale, $domain);
+
+		if (function_exists('is_textdomain_loaded') && is_textdomain_loaded($domain)) {
+			unload_textdomain($domain);
+		}
+
 		if (function_exists('load_plugin_textdomain')) {
 			load_plugin_textdomain(
-				'serbian-transliteration',
+				$domain,
 				false,
 				dirname(RSTR_BASENAME) . '/languages'
 			);
+		}
+
+		$mofile = rstr_local_translation_file('', $locale);
+
+		if (is_readable($mofile)) {
+			load_textdomain($domain, $mofile, $locale);
 		}
 	}
 

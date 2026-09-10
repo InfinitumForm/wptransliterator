@@ -2436,3 +2436,43 @@ msgstr "https://profiles.wordpress.org/ivijanstefan/"
 
 #~ msgid "https://infinitumform.com/"
 #~ msgstr "https://infinitumform.com/"
+
+#: classes/settings-sidebars.php:58
+msgid "Developers"
+msgstr "Програмери"
+
+#: classes/settings-sidebars.php:70
+msgid "Contributors"
+msgstr "Сарадници"
+
+#: classes/settings/page-debug.php:30
+msgid "Current rstr_script cookie"
+msgstr "Тренутни rstr_script колачић"
+
+#: classes/settings/page-debug.php:34
+msgid "Resolved frontend script"
+msgstr "Утврђено писмо корисничког дела"
+
+#: classes/settings/page-debug.php:38
+msgid "Configured transliteration direction"
+msgstr "Подешени смер транслитерације"
+
+#: classes/settings/page-debug.php:42
+msgid "Transliteration currently disabled"
+msgstr "Транслитерација је тренутно искључена"
+
+#: classes/settings/page-debug.php:46
+msgid "Current request detected as editor"
+msgstr "Тренутни захтев је препознат као захтев уређивача"
+
+#: classes/settings/page-debug.php:50
+msgid "Detected editor type"
+msgstr "Препозната врста уређивача"
+
+#: classes/settings/page-debug.php:54
+msgid "Current REST request"
+msgstr "Тренутни REST захтев"
+
+#: classes/settings/page-debug.php:58
+msgid "Current AJAX request"
+msgstr "Тренутни AJAX захтев"

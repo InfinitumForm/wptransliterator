@@ -308,6 +308,82 @@ if (!defined('COOKIEHASH') || !defined('COOKIEPATH') || !defined('COOKIE_DOMAIN'
 // Set of constants
 include_once __DIR__ . '/constants.php';
 
+/**
+ * Build the bundled MO path for this plugin and the requested locale.
+ *
+ * @param string      $file   Translation file path requested by WordPress.
+ * @param string|null $locale Requested locale when WordPress provides it.
+ *
+ * @return string
+ */
+if (!function_exists('rstr_local_translation_file')) :
+function rstr_local_translation_file(string $file = '', ?string $locale = null): string
+{
+    if (!$locale && $file !== '') {
+        $file_name = basename($file);
+        $pattern   = '/^' . preg_quote(RSTR_NAME, '/') . '-(.+?)(?:\.l10n\.php|\.mo)$/';
+
+        if (preg_match($pattern, $file_name, $matches)) {
+            $locale = $matches[1];
+        }
+    }
+
+    if (!$locale) {
+        $locale = function_exists('determine_locale') ? determine_locale() : get_locale();
+    }
+
+    // A locale is used as a filename segment, so path separators are never valid.
+    $locale = preg_replace('/[^A-Za-z0-9_@.-]/', '', (string) $locale);
+
+    return RSTR_ROOT . '/languages/' . RSTR_NAME . '-' . $locale . '.mo';
+}
+endif;
+
+/**
+ * Use MO translations only for this plugin's text domain.
+ *
+ * @param string $preferred_format Preferred format selected by WordPress.
+ * @param string $domain           Translation text domain.
+ *
+ * @return string
+ */
+if (!function_exists('rstr_translation_file_format')) :
+function rstr_translation_file_format(string $preferred_format, string $domain): string
+{
+    return RSTR_NAME === $domain ? 'mo' : $preferred_format;
+}
+endif;
+
+/**
+ * Keep this plugin's translations inside its bundled languages directory.
+ *
+ * The optional locale keeps this callback compatible with both WordPress 6.5,
+ * where the filter originally received two arguments, and newer releases.
+ *
+ * @param string      $file   Translation file path selected by WordPress.
+ * @param string      $domain Translation text domain.
+ * @param string|null $locale Requested locale when available.
+ *
+ * @return string
+ */
+if (!function_exists('rstr_force_local_translation_file')) :
+function rstr_force_local_translation_file(string $file, string $domain, ?string $locale = null): string
+{
+    if (RSTR_NAME !== $domain) {
+        return $file;
+    }
+
+    return rstr_local_translation_file($file, $locale);
+}
+endif;
+
+// WordPress 6.0-6.4 resolves MO paths through the legacy filter.
+add_filter('load_textdomain_mofile', 'rstr_force_local_translation_file', PHP_INT_MAX, 2);
+
+// WordPress 6.5+ supports PHP translation files; keep this domain on bundled MO files.
+add_filter('translation_file_format', 'rstr_translation_file_format', PHP_INT_MAX, 2);
+add_filter('load_translation_file', 'rstr_force_local_translation_file', PHP_INT_MAX, 3);
+
 // Set database tables
 global $wpdb, $rstr_is_admin;
 $wpdb->rstr_cache = $wpdb->get_blog_prefix() . 'rstr_cache';

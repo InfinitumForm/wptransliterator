@@ -141,6 +141,14 @@
 	box-shadow: 0px 0px 3px rgba(0, 0, 0, .14);
 }
 
+#wp-transliteration-settings .postbox .inside .rstr-contributor-group-title.developers {
+	margin:1em 0 0 0;
+}
+
+#wp-transliteration-settings .postbox .inside .rstr-contributor-group-title.contributors {
+	margin:2em 0 0 0;
+}
+
 
 
 /* Accordion Container */

@@ -55,7 +55,7 @@ class Transliteration_Settings_Sidebars
 				}
 			}
 		?>
-		<h3><?php esc_html_e('Developers', 'serbian-transliteration'); ?></h3>
+		<h3 class="rstr-contributor-group-title developers"><?php esc_html_e('Developers', 'serbian-transliteration'); ?></h3>
 		<div class="rstr-inside-metabox flex">
 			<?php foreach ($developers as $username => $info) : $info = (object) $info; $avatar_url = add_query_arg('d', 'mp', $info->avatar); ?>
 			<div class="contributor contributor-<?php echo esc_attr($username); ?>" id="contributor-<?php echo esc_attr($username); ?>">
@@ -67,7 +67,7 @@ class Transliteration_Settings_Sidebars
 			<?php endforeach; ?>
 		</div>
 		<?php if ($collaborators) : ?>
-		<h3><?php esc_html_e('Contributors', 'serbian-transliteration'); ?></h3>
+		<h3 class="rstr-contributor-group-title contributors"><?php esc_html_e('Contributors', 'serbian-transliteration'); ?></h3>
 		<div class="rstr-inside-metabox flex">
 			<?php foreach ($collaborators as $username => $info) : $info = (object) $info; $avatar_url = add_query_arg('d', 'mp', $info->avatar); ?>
 			<div class="contributor contributor-<?php echo esc_attr($username); ?>" id="contributor-<?php echo esc_attr($username); ?>">

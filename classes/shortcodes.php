@@ -56,6 +56,7 @@ class Transliteration_Shortcodes extends Transliteration
             $content = sprintf(
                 '<div class="notice notice-warning"><p class="deprecated">%s</p></div>',
                 sprintf(
+                    /* translators: %1$s: Deprecated shortcode tag, %2$s: version number, %3$s: replacement shortcode tag. */
                     __('The %1$s shortcode has been deprecated as of version %2$s. Please update your content and use the new %3$s shortcode.', 'serbian-transliteration'),
                     '<code>[' . $shortcode_tag . ']</code>',
                     '2.0.0',
@@ -86,6 +87,7 @@ class Transliteration_Shortcodes extends Transliteration
             $content = sprintf(
                 '<div class="notice notice-warning"><p class="deprecated">%s</p></div>',
                 sprintf(
+                    /* translators: %1$s: Deprecated shortcode tag, %2$s: version number, %3$s: replacement shortcode tag. */
                     __('The %1$s shortcode has been deprecated as of version %2$s. Please update your content and use the new %3$s shortcode.', 'serbian-transliteration'),
                     '<code>[' . $shortcode_tag . ']</code>',
                     '2.0.0',
@@ -118,6 +120,7 @@ class Transliteration_Shortcodes extends Transliteration
             $content = sprintf(
                 '<div class="notice notice-warning"><p class="deprecated">%s</p></div>',
                 sprintf(
+                    /* translators: %1$s: Deprecated shortcode tag, %2$s: version number, %3$s: replacement shortcode tag. */
                     __('The %1$s shortcode has been deprecated as of version %2$s. Please update your content and use the new %3$s shortcode.', 'serbian-transliteration'),
                     '<code>[' . $shortcode_tag . ']</code>',
                     '2.0.0',
@@ -140,6 +143,7 @@ class Transliteration_Shortcodes extends Transliteration
             $content = sprintf(
                 '<div class="notice notice-warning"><p class="deprecated">%s</p></div>',
                 sprintf(
+                    /* translators: %1$s: Deprecated shortcode tag, %2$s: version number, %3$s: replacement shortcode tag. */
                     __('The %1$s shortcode has been deprecated as of version %2$s. Please update your content and use the new %3$s shortcode.', 'serbian-transliteration'),
                     '<code>[' . $shortcode_tag . ']</code>',
                     '2.0.0',

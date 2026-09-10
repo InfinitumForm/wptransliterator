@@ -368,6 +368,7 @@ class Transliteration_Settings_Fields
         foreach ($installed_languages as $locale) {
 
             $language_name = sprintf(
+                /* translators: %s: WordPress locale code. */
                 __('Language: %s', 'serbian-transliteration'),
                 $locale
             );
@@ -457,7 +458,7 @@ class Transliteration_Settings_Fields
      **********************/
     public function print_global_settings_callback(): void
     {
-        printf('<p>%s</p>', __('This setting determines the mode of operation for the Transliteration plugin.', 'serbian-transliteration'));
+        printf('<p>%s</p>', esc_html__('This setting determines the mode of operation for the Transliteration plugin.', 'serbian-transliteration'));
         printf('<p>%s</p>', __('Carefully choose the option that is best for your site and the plugin will automatically set everything you need for optimal performance.', 'serbian-transliteration'));
     }
 

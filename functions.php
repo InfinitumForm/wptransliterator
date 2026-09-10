@@ -90,15 +90,15 @@ if (!function_exists('get_script')) :
     {
         return Transliteration_Utilities::get_current_script();
     } elseif (!function_exists('rstr_get_script')):
-        function rstr_get_script()
+		function rstr_get_script()
 		{
 			$message = 'This function is deprecated and will be removed. Replace it with the `get_script()` function';
 
 			if (function_exists('did_action') && did_action('init')) {
-				$message = __($message, 'serbian-transliteration');
+				$message = __('This function is deprecated and will be removed. Replace it with the `get_script()` function', 'serbian-transliteration');
 			}
 
-			_doing_it_wrong('rstr_get_script', $message, '1.10.5');
+			_doing_it_wrong('rstr_get_script', esc_html($message), '1.10.5');
 
 			return Transliteration_Utilities::get_current_script();
 		}
@@ -482,10 +482,20 @@ if (!function_exists('script_selector')) :
         if (isset($templateHandlers[$args->display_type])) {
             $return = call_user_func($templateHandlers[$args->display_type]);
         } else {
-            $return = sprintf(__('Choose one of the display types: "%1$s", "%2$s", "%3$s", "%4$s", "%5$s" or "%6$s"', 'serbian-transliteration'), 'inline', 'select', 'list', 'list_items', 'array', 'object');
+            $return = sprintf(
+                /* translators: %1$s, %2$s, %3$s, %4$s, %5$s, and %6$s: Supported script selector display types. */
+                __('Choose one of the display types: "%1$s", "%2$s", "%3$s", "%4$s", "%5$s" or "%6$s"', 'serbian-transliteration'),
+                'inline',
+                'select',
+                'list',
+                'list_items',
+                'array',
+                'object'
+            );
         }
 
         if ($args->echo) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Renderer-produced HTML has contextual escaping applied in get_script_selector_template_handlers().
             echo $return;
         } else {
             return $return;
