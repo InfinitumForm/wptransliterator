@@ -117,7 +117,7 @@ jobs:
           mapfile -t FILES <<< "${CHANGED_FILES}"
 
           "${RUNNER_TEMP}/phpcs/vendor/bin/phpcs" \
-            --standard=WordPress \
+            --standard=phpcs.xml.dist \
             --extensions=php \
             --warning-severity=0 \
             --report=full \
