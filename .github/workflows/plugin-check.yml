@@ -21,11 +21,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Prepare plugin build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BUILD_DIR="${RUNNER_TEMP}/serbian-transliteration"
+
+          mkdir -p "${BUILD_DIR}"
+
+          rsync -a ./ "${BUILD_DIR}/" \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.gitignore' \
+            --exclude='.gitattributes' \
+            --exclude='CODE_OF_CONDUCT.md' \
+            --exclude='CONTRIBUTING.md' \
+            --exclude='ISSUE_TEMPLATE.md' \
+            --exclude='PULL_REQUEST_TEMPLATE.md' \
+            --exclude='phpcs.xml' \
+            --exclude='phpcs.xml.dist' \
+            --exclude='phpunit.xml' \
+            --exclude='phpunit.xml.dist' \
+            --exclude='composer.lock'
+
+          echo "Plugin build:"
+          find "${BUILD_DIR}" -maxdepth 2 -type f | sort
+
       - name: Run WordPress Plugin Check
         uses: wordpress/plugin-check-action@v1
         with:
-          build-dir: './'
+          build-dir: '${{ runner.temp }}/serbian-transliteration'
           slug: 'serbian-transliteration'
           ignore-warnings: true
-          exclude-directories: '.github'
-          exclude-files: 'CODE_OF_CONDUCT.md,CONTRIBUTING.md,ISSUE_TEMPLATE.md,PULL_REQUEST_TEMPLATE.md'
+          include-experimental: false
