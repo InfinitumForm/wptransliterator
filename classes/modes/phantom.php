@@ -224,27 +224,7 @@ class Transliteration_Mode_Phantom extends Transliteration
 			return;
 		}
 
-		if (is_admin()) {
-			return;
-		}
-
-		if (function_exists('wp_doing_ajax') && wp_doing_ajax()) {
-			return;
-		}
-
-		if (function_exists('wp_doing_cron') && wp_doing_cron()) {
-			return;
-		}
-
-		if (defined('WP_CLI') && WP_CLI) {
-			return;
-		}
-
-		if (function_exists('wp_is_json_request') && wp_is_json_request()) {
-			return;
-		}
-
-		if (function_exists('wp_is_serving_rest_request') && wp_is_serving_rest_request()) {
+		if (!$this->is_frontend_html_request() || $this->is_machine_readable_request()) {
 			return;
 		}
 
@@ -291,6 +271,10 @@ class Transliteration_Mode_Phantom extends Transliteration
 			return $buffer;
 		}
 
+		if ($this->has_non_html_content_type() || !$this->looks_like_html_output($buffer)) {
+			return $buffer;
+		}
+
 		return Transliteration_Controller::get()->transliterate_html($buffer);
 	}
 
@@ -333,6 +317,10 @@ class Transliteration_Mode_Phantom extends Transliteration
             return false;
         }
 
+		if (defined('XMLRPC_REQUEST') && XMLRPC_REQUEST) {
+			return false;
+		}
+
         if (function_exists('wp_is_json_request') && wp_is_json_request()) {
             return false;
         }
@@ -344,6 +332,78 @@ class Transliteration_Mode_Phantom extends Transliteration
         return true;
     }
 
+	/**
+	 * Check whether the current request is expected to return machine-readable output.
+	 *
+	 * @return bool
+	 */
+	private function is_machine_readable_request(): bool
+	{
+		if ($this->is_woocommerce_dynamic_request()) {
+			return true;
+		}
+
+		foreach (['is_feed', 'is_robots', 'is_trackback', 'is_favicon'] as $conditional) {
+			if (function_exists($conditional) && $conditional()) {
+				return true;
+			}
+		}
+
+		if (Transliteration_Utilities::is_sitemap()) {
+			return true;
+		}
+
+		$request_uri = isset($_SERVER['REQUEST_URI']) ? (string) $_SERVER['REQUEST_URI'] : '';
+
+		if ($request_uri === '') {
+			return false;
+		}
+
+		$path = parse_url($request_uri, PHP_URL_PATH);
+		$path = is_string($path) ? rawurldecode($path) : $request_uri;
+
+		if (
+			preg_match('~(?:^|/)\.well-known(?:/|$)~i', $path)
+			|| preg_match('~(?:^|/)robots\.txt$~i', $path)
+			|| preg_match('~\.(?:xml|xsl|xslt|json|txt)$~i', $path)
+			|| preg_match('~(?:^|/)feed/?$~i', $path)
+		) {
+			return true;
+		}
+
+		$query = parse_url($request_uri, PHP_URL_QUERY);
+
+		return is_string($query) && preg_match('~(?:^|&)feed(?:=[^&]*)?(?:&|$)~i', $query) === 1;
+	}
+
+	/**
+	 * Check whether PHP has an explicit response content type other than HTML.
+	 *
+	 * @return bool
+	 */
+	private function has_non_html_content_type(): bool
+	{
+		$content_type = null;
+
+		foreach (headers_list() as $header) {
+			if (stripos($header, 'Content-Type:') === 0) {
+				$content_type = trim(substr($header, strlen('Content-Type:')));
+			}
+		}
+
+		if ($content_type === null || $content_type === '') {
+			return false;
+		}
+
+		$separator = strpos($content_type, ';');
+
+		if ($separator !== false) {
+			$content_type = substr($content_type, 0, $separator);
+		}
+
+		return strtolower(trim($content_type)) !== 'text/html';
+	}
+
     /**
      * Check whether buffer looks like HTML or visible text output.
      *
@@ -351,30 +411,21 @@ class Transliteration_Mode_Phantom extends Transliteration
      *
      * @return bool
      */
-    private function looks_like_html_output(string $buffer): bool
-    {
-        if (trim($buffer) === '') {
-            return false;
-        }
+	private function looks_like_html_output(string $buffer): bool
+	{
+		$content = ltrim($buffer);
 
-        if (
-            stripos($buffer, '<html') !== false
-            || stripos($buffer, '<!doctype') !== false
-            || stripos($buffer, '<body') !== false
-            || stripos($buffer, '</body>') !== false
-            || stripos($buffer, '<div') !== false
-            || stripos($buffer, '<main') !== false
-            || stripos($buffer, '<section') !== false
-            || stripos($buffer, '<article') !== false
-            || stripos($buffer, '<span') !== false
-            || stripos($buffer, '<h1') !== false
-            || stripos($buffer, '<h2') !== false
-            || stripos($buffer, '<p') !== false
-            || stripos($buffer, 'woocommerce') !== false
-        ) {
-            return true;
-        }
+		if (strncmp($content, "\xEF\xBB\xBF", 3) === 0) {
+			$content = ltrim(substr($content, 3));
+		}
 
-        return wp_strip_all_tags($buffer) !== trim($buffer) || preg_match('/[\p{Cyrillic}]/u', $buffer) === 1;
-    }
+		if ($content === '' || stripos($content, '<?xml') === 0) {
+			return false;
+		}
+
+		return preg_match(
+			'~^(?:<!--.*?-->\s*)*(?:<!doctype\s+html(?:\s|>)|<(?:html|head|body|main|section|article|div|span|p|h[1-6]|header|footer|nav|aside|form|table|ul|ol|picture|figure)(?:\s|>))~is',
+			$content
+		) === 1;
+	}
 }

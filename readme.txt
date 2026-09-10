@@ -1,5 +1,5 @@
 ﻿=== Transliterator – Multilingual and Multi-script Text Conversion ===
-Contributors: ivijanstefan, creativform, tihi, boka003
+Contributors: ivijanstefan, creativform, tihi, boka003, mtoptech
 Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.1
@@ -90,6 +90,9 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 == Changelog ==
 
 = 2.5.8 =
+* Fixed Phantom mode corrupting non-HTML responses such as robots.txt, feeds, sitemaps, XSL stylesheets, JSON, and other machine-readable output. Thanks to @mtoptech for reporting the issue.
+* Added dedicated Bosnian skip-word and diacritical word libraries with inflected forms.
+* Cleaned duplicate, conflicting, and unreachable Serbian word-library entries and added missing Serbian forms.
 * Hardened the permalink transliteration tool with stricter authorization, request validation, and prepared SQL queries.
 * Fixed database cache expiration cleanup and secured admin notice dismissal actions.
 * Improved WordPress.org compliance for review prompts, remote admin scripts, output escaping, and localization.
@@ -163,7 +166,7 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 == Upgrade Notice ==
 
 = 2.5.8 =
-* Hardened the permalink transliteration tool and improved admin security and WordPress.org compliance.
+* Prevents Phantom mode from processing non-HTML responses, improves Bosnian and Serbian word-library coverage, and hardens the permalink transliteration tool and admin security.
 
 = 2.5.7 =
 * Fixed transliteration of URL-bearing HTML attributes that could break links and media URLs.

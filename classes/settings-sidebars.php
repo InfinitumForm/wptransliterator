@@ -24,7 +24,6 @@ class Transliteration_Settings_Sidebars
 		<?php printf('<p>%s</p>', __('If the plugin adds value to your work, you are welcome to support its further development with a voluntary contribution.', 'serbian-transliteration')); /*?>
 		<p><a href="https://www.buymeacoffee.com/ivijanstefan" target="_blank"><img src="https://img.buymeacoffee.com/button-api/?text=<?php esc_attr_e('Buy me a coffee', 'serbian-transliteration'); ?>&emoji=&slug=ivijanstefan&button_colour=FFDD00&font_colour=000000&font_family=Bree&outline_colour=000000&coffee_colour=ffffff" /></a></p>
 		*/ ?>
-		<p><a class="button button-primary" href="<?php echo esc_url('https://ko-fi.com/ivijanstefanstipic'); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Support via Ko-fi', 'serbian-transliteration'); ?></a></p>
 		<hr>
 		<ul>
 			<?php printf(
@@ -37,14 +36,28 @@ class Transliteration_Settings_Sidebars
 			<?php /* printf('<li><b>%s</b>: %s</li>', esc_html__('PayPal', 'serbian-transliteration'), 'creativform@gmail.com');*/ ?>
 		</ul>
 		<hr>
-		<?php printf('<p>%s</p>', __('Thank you for your support.', 'serbian-transliteration'));
+		<?php printf('<p>%s</p>', __('Thank you for your support.', 'serbian-transliteration')); ?>
+		<p><a class="button button-primary" href="<?php echo esc_url('https://ko-fi.com/ivijanstefanstipic'); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Support via Ko-fi', 'serbian-transliteration'); ?></a></p>
+        <?php
     }
 
     public function contributors(): void
     {
-        if ($plugin_info = Transliteration_Utilities::plugin_info(['contributors' => true, 'donate_link' => true])) : ?>
+		if ($plugin_info = Transliteration_Utilities::plugin_info(['contributors' => true, 'donate_link' => true])) :
+			$developers = [];
+			$collaborators = [];
+
+			foreach ($plugin_info->contributors as $username => $info) {
+				if (in_array($username, ['ivijanstefan', 'creativform', 'infinitumform'], true)) {
+					$developers[$username] = $info;
+				} else {
+					$collaborators[$username] = $info;
+				}
+			}
+		?>
+		<h3><?php esc_html_e('Developers', 'serbian-transliteration'); ?></h3>
 		<div class="rstr-inside-metabox flex">
-			<?php foreach ($plugin_info->contributors as $username => $info) : $info = (object) $info; $avatar_url = add_query_arg('d', 'mp', $info->avatar); ?>
+			<?php foreach ($developers as $username => $info) : $info = (object) $info; $avatar_url = add_query_arg('d', 'mp', $info->avatar); ?>
 			<div class="contributor contributor-<?php echo esc_attr($username); ?>" id="contributor-<?php echo esc_attr($username); ?>">
 				<a href="<?php echo esc_url($info->profile); ?>" target="_blank">
 					<img src="<?php echo esc_url($avatar_url); ?>">
@@ -53,6 +66,19 @@ class Transliteration_Settings_Sidebars
 			</div>
 			<?php endforeach; ?>
 		</div>
+		<?php if ($collaborators) : ?>
+		<h3><?php esc_html_e('Contributors', 'serbian-transliteration'); ?></h3>
+		<div class="rstr-inside-metabox flex">
+			<?php foreach ($collaborators as $username => $info) : $info = (object) $info; $avatar_url = add_query_arg('d', 'mp', $info->avatar); ?>
+			<div class="contributor contributor-<?php echo esc_attr($username); ?>" id="contributor-<?php echo esc_attr($username); ?>">
+				<a href="<?php echo esc_url($info->profile); ?>" target="_blank">
+					<img src="<?php echo esc_url($avatar_url); ?>">
+					<h3><?php echo esc_html($info->display_name); ?></h3>
+				</a>
+			</div>
+			<?php endforeach; ?>
+		</div>
+		<?php endif; ?>
 		<div class="rstr-inside-metabox">
 			<?php printf('<p>%s</p>', sprintf(__('If you want to support our work and effort, if you have new ideas or want to improve the existing code, %s.', 'serbian-transliteration'), '<a href="https://github.com/CreativForm/serbian-transliteration" target="_blank">' . __('join our team', 'serbian-transliteration') . '</a>')); ?>
 			<?php /* printf('<p>%s</p>', sprintf(__('If you want to help further plugin development, you can also %s.', 'serbian-transliteration'), '<a href="' . esc_url($plugin_info->donate_link) . '" target="_blank">' . __('donate something for effort', 'serbian-transliteration') . '</a>')); */ ?>

@@ -1,0 +1,32 @@
+Word library sources
+====================
+
+Bosnian (bs_BA)
+----------------
+
+The bs_BA word libraries are derived from the Bosnian Hunspell dictionary
+distributed by the LibreOffice dictionaries project:
+
+https://github.com/LibreOffice/dictionaries/tree/master/bs_BA
+
+The upstream README permits use under the GNU General Public License version 2
+or later, GNU Lesser General Public License version 2.1 or later, or Mozilla
+Public License version 1.1 or later. The derived word lists in this plugin are
+distributed under GPL-2.0-or-later, consistently with the plugin.
+
+Serbian (sr_RS)
+----------------
+
+The existing sr_RS word libraries were cleaned and supplemented using the
+Serbian Latin Hunspell dictionary maintained by Milutin Smiljanic and
+distributed by the LibreOffice dictionaries project:
+
+https://github.com/LibreOffice/dictionaries/tree/master/sr
+
+The upstream README permits use under GNU LGPL version 3 or later, Mozilla
+Public License version 2 or later, or GNU GPL version 3 or later.
+
+Source dictionaries were retrieved on 2026-09-10. Hunspell flags and affix
+rules were expanded only to produce plain word forms relevant to the plugin's
+existing dj/sh/ch/cs/dz ambiguity handling. No Hunspell source files are
+shipped with the plugin.
