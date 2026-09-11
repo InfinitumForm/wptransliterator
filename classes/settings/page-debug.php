@@ -83,16 +83,16 @@ $editor_type = Transliteration_Utilities::get_editor_type();
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('WordPress debug', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo(WP_DEBUG ? '<strong><span style="color:#007d1b">' . esc_html__('On', 'serbian-transliteration') . '</span></strong>' : __('Off', 'serbian-transliteration')); ?></td>
+			<td><?php echo(WP_DEBUG ? '<strong><span style="color:#007d1b">' . esc_html__('On', 'serbian-transliteration') . '</span></strong>' : esc_html__('Off', 'serbian-transliteration')); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('WordPress multisite', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo(RSTR_MULTISITE ? '<strong><span style="color:#007d1b">' . esc_html__('On', 'serbian-transliteration') . '</span></strong>' : __('Off', 'serbian-transliteration')); ?></td>
+			<td><?php echo(RSTR_MULTISITE ? '<strong><span style="color:#007d1b">' . esc_html__('On', 'serbian-transliteration') . '</span></strong>' : esc_html__('Off', 'serbian-transliteration')); ?></td>
 		</tr>
 	<?php if (RSTR_WOOCOMMERCE) : ?>
 		<tr>
 			<td><strong><?php esc_html_e('WooCommerce active', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo(RSTR_WOOCOMMERCE ? '<strong><span style="color:#007d1b">' . esc_html__('On', 'serbian-transliteration') . '</span></strong>' : __('Off', 'serbian-transliteration')); ?></td>
+			<td><?php echo(RSTR_WOOCOMMERCE ? '<strong><span style="color:#007d1b">' . esc_html__('On', 'serbian-transliteration') . '</span></strong>' : esc_html__('Off', 'serbian-transliteration')); ?></td>
 		</tr>
 		<?php if (defined('WC_VERSION')) : ?>
 		<tr>
@@ -139,7 +139,7 @@ $editor_type = Transliteration_Utilities::get_editor_type();
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('Server time', 'serbian-transliteration'); ?></strong></td>
-			<td><?php echo esc_html(date('r')); ?></td>
+			<td><?php echo esc_html(wp_date('r')); ?></td>
 		</tr>
 		<tr>
 			<td><strong><?php esc_html_e('WordPress directory path', 'serbian-transliteration'); ?></strong></td>
@@ -149,7 +149,7 @@ $editor_type = Transliteration_Utilities::get_editor_type();
 			<td><strong><?php esc_html_e('Operting system', 'serbian-transliteration'); ?></strong></td>
 			<td><?php echo esc_html(Transliteration_Debug::getOS()); ?> <?php
 			/* translators: %d: operating system architecture in bits. */
-			printf(esc_html__('%d bit', 'serbian-transliteration'), Transliteration_Debug::architecture());
+			printf(esc_html__('%d bit', 'serbian-transliteration'), esc_html(Transliteration_Debug::architecture()));
 			?></td>
 		</tr>
 		<tr>

@@ -48,11 +48,10 @@ if (class_exists('WP_CLI_Command')):
                 'public' => true,
             ], 'names', 'and');
 
-            $post_type       = implode(', ', $get_post_types);
-            $post_type_query = sprintf("FIND_IN_SET(`post_type`, '%s')", $post_type);
+			$post_type = implode(', ', $get_post_types);
 
 
-            $total = $wpdb->get_var(sprintf("SELECT COUNT(`ID`) FROM `%s` WHERE %s AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash'", $wpdb->posts, $post_type_query));
+			$total = $wpdb->get_var($wpdb->prepare("SELECT COUNT(`ID`) FROM `{$wpdb->posts}` WHERE FIND_IN_SET(`post_type`, %s) AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash'", $post_type));
 
             if ($total > 0) {
                 $inst = Transliteration_Controller::get();
@@ -62,9 +61,10 @@ if (class_exists('WP_CLI_Command')):
                 $progress = \WP_CLI\Utils\make_progress_bar(__('Progress:', 'serbian-transliteration'), $total);
 
                 for ($offset = 0; $offset < $total; $offset += $batch_size) {
-                    $get_results = $wpdb->get_results($wpdb->prepare(
-                        sprintf("SELECT `ID`, `post_name`, `post_title` FROM `%s` WHERE %s AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash' ORDER BY `ID` DESC LIMIT %%d OFFSET %%d", $wpdb->posts, $post_type_query),
-                        $batch_size,
+					$get_results = $wpdb->get_results($wpdb->prepare(
+						"SELECT `ID`, `post_name`, `post_title` FROM `{$wpdb->posts}` WHERE FIND_IN_SET(`post_type`, %s) AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash' ORDER BY `ID` DESC LIMIT %d OFFSET %d",
+						$post_type,
+						$batch_size,
                         $offset
                     ));
 
@@ -106,9 +106,10 @@ if (class_exists('WP_CLI_Command')):
                                     update_post_meta($match->ID, '_wp_lat_slug', $inst->cyr_to_lat_sanitize($match->post_name));
                                 }
 
-                                ++$updated;
-                                WP_CLI::success(sprintf(
-                                    __('Updated page ID %1$d, (%2$s) at URL: %3$s', 'serbian-transliteration'),
+								++$updated;
+								WP_CLI::success(sprintf(
+									/* translators: 1: Post ID. 2: Post title. 3: Post permalink. */
+									__('Updated page ID %1$d, (%2$s) at URL: %3$s', 'serbian-transliteration'),
                                     $match->ID,
                                     $match->post_title,
                                     get_the_permalink($match->ID)
@@ -122,8 +123,9 @@ if (class_exists('WP_CLI_Command')):
                 WP_CLI::log(PHP_EOL . PHP_EOL);
             }
 
-            if ($updated > 0) {
-                WP_CLI::success(sprintf(_n('%d permalink was successfully transliterated.', '%d permalinks were successfully transliterated.', $updated, 'serbian-transliteration'), $updated));
+			if ($updated > 0) {
+				/* translators: %d: Number of permalinks updated. */
+				WP_CLI::success(sprintf(_n('%d permalink was successfully transliterated.', '%d permalinks were successfully transliterated.', $updated, 'serbian-transliteration'), $updated));
             } else {
                 WP_CLI::error(__('No changes to the permalink have been made.', 'serbian-transliteration'), false);
             }

@@ -43,11 +43,33 @@ class Transliteration_Utilities
 	
 	public static function translate_label(string $text): string
 	{
-		if (function_exists('did_action') && did_action('init')) {
-			return __($text, 'serbian-transliteration');
+		if (!function_exists('did_action') || !did_action('init')) {
+			return $text;
 		}
 
-		return $text;
+		$labels = [
+			'Serbian'      => __('Serbian', 'serbian-transliteration'),
+			'Bosnian'      => __('Bosnian', 'serbian-transliteration'),
+			'Montenegrin'  => __('Montenegrin', 'serbian-transliteration'),
+			'Croatian'     => __('Croatian', 'serbian-transliteration'),
+			'Russian'      => __('Russian', 'serbian-transliteration'),
+			'Belarusian'   => __('Belarusian', 'serbian-transliteration'),
+			'Bulgarian'    => __('Bulgarian', 'serbian-transliteration'),
+			'Macedonian'   => __('Macedonian', 'serbian-transliteration'),
+			'Ukrainian'    => __('Ukrainian', 'serbian-transliteration'),
+			'Kazakh'       => __('Kazakh', 'serbian-transliteration'),
+			'Tajik'        => __('Tajik', 'serbian-transliteration'),
+			'Kyrgyz'       => __('Kyrgyz', 'serbian-transliteration'),
+			'Mongolian'    => __('Mongolian', 'serbian-transliteration'),
+			'Bashkir'      => __('Bashkir', 'serbian-transliteration'),
+			'Uzbek'        => __('Uzbek', 'serbian-transliteration'),
+			'Georgian'     => __('Georgian', 'serbian-transliteration'),
+			'Greek'        => __('Greek', 'serbian-transliteration'),
+			'Armenian'     => __('Armenian', 'serbian-transliteration'),
+			'Arabic'       => __('Arabic', 'serbian-transliteration'),
+		];
+
+		return $labels[$text] ?? $text;
 	}
 
     public static function plugin_default_options()
@@ -427,15 +449,25 @@ class Transliteration_Utilities
     */
     private static function read_file_chunks($path)
     {
-        if ($handle = fopen($path, 'r')) {
-            while (!feof($handle)) {
-                yield fgets($handle);
-            }
+		global $wp_filesystem;
 
-            fclose($handle);
-        } else {
-            return false;
-        }
+		if (!$wp_filesystem) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+			WP_Filesystem();
+		}
+
+		if (!$wp_filesystem) {
+			return false;
+		}
+
+		$contents = $wp_filesystem->get_contents($path);
+		if ($contents === false) {
+			return false;
+		}
+
+		foreach (preg_split('/(?<=\n)/', $contents, -1, PREG_SPLIT_NO_EMPTY) as $line) {
+			yield $line;
+		}
     }
 
     /*
@@ -648,8 +680,8 @@ class Transliteration_Utilities
         }
 
         if ($wpdb) {
-            $RSTR_NAME = RSTR_NAME;
-            $wpdb->query(sprintf("DELETE FROM `%s` WHERE `%s`.`option_name` REGEXP '^_transient_(.*)?%s(.*|\$)'", $wpdb->options, $wpdb->options, $RSTR_NAME));
+			$transient_pattern = $wpdb->esc_like('_transient_') . '%' . $wpdb->esc_like(RSTR_NAME) . '%';
+			$wpdb->query($wpdb->prepare("DELETE FROM `{$wpdb->options}` WHERE `option_name` LIKE %s", $transient_pattern));
         }
 
         if (class_exists('Transliteration_Plugins')) {
@@ -916,7 +948,7 @@ class Transliteration_Utilities
             return false;
         }
 
-        $string = strip_tags($string, '');
+        $string = wp_strip_all_tags($string);
 
         if (strlen($string) > 10) {
             $string = substr($string, 0, 10);
@@ -1230,8 +1262,11 @@ class Transliteration_Utilities
             }
 
             foreach ($files as $file) {
-                if (is_string($file) && is_file($file) && is_writable($file) && @unlink($file)) {
-                    $deleted++;
+				if (is_string($file) && is_file($file)) {
+					wp_delete_file($file);
+					if (!file_exists($file)) {
+						$deleted++;
+					}
                 }
             }
         }
@@ -1802,11 +1837,11 @@ class Transliteration_Utilities
 	private static function __debug_translate_values($val = '') {
 		switch ($val) {
 			case 'yes':
-				return __('Yes');
+				return __('Yes', 'serbian-transliteration');
 				break;
 
 			case 'no':
-				return __('No');
+				return __('No', 'serbian-transliteration');
 				break;
 
 			case 'auto':

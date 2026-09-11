@@ -1,7 +1,7 @@
 <?php if (!defined('WPINC')) {
     die();
 } $nonce = esc_attr(wp_create_nonce('rstr-transliteration-letters')); ?>
-<?php printf('<p>%s</p>', __('Copy the desired text into one field and press the desired key to convert the text.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('Copy the desired text into one field and press the desired key to convert the text.', 'serbian-transliteration')); ?>
 <form class="rstr-row">
 	<div class="rstr-col">
 		<textarea name="rstr-transliteration-letters" id="rstr-transliteration-letters" class="form-control" rows="10"></textarea>

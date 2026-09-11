@@ -251,14 +251,16 @@ function rstr_render_network_settings() {
 
                         // get_blog_details can return false on rare cases; guard it.
                         $details = get_blog_details($blog_id);
-                        $blogname = $details && !empty($details->blogname) ? $details->blogname : sprintf(__('Site #%d', 'serbian-transliteration'), $blog_id);
+						/* translators: %d: Multisite blog ID. */
+						$blogname = $details && !empty($details->blogname) ? $details->blogname : sprintf(__('Site #%d', 'serbian-transliteration'), $blog_id);
                         $domain   = $details && !empty($details->domain) ? $details->domain : '';
                         $path     = $details && !empty($details->path) ? $details->path : '';
                         ?>
                         <tr>
                             <td>
-                                <label class="screen-reader-text" for="rstr_site_<?php echo esc_attr($blog_id); ?>">
-                                    <?php echo esc_html(sprintf(__('Enable Transliterator on site ID %d', 'serbian-transliteration'), $blog_id)); ?>
+							<label class="screen-reader-text" for="rstr_site_<?php echo esc_attr($blog_id); ?>">
+								<?php /* translators: %d: Multisite blog ID. */ ?>
+								<?php echo esc_html(sprintf(__('Enable Transliterator on site ID %d', 'serbian-transliteration'), $blog_id)); ?>
                                 </label>
                                 <input
                                     id="rstr_site_<?php echo esc_attr($blog_id); ?>"

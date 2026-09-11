@@ -61,7 +61,8 @@ foreach ($transients as $transient) {
 
 // SQL upiti za brisanje opcija i tabele
 if ($wpdb) {
-    $wpdb->query("DELETE FROM `{$wpdb->options}` WHERE `{$wpdb->options}`.`option_name` REGEXP '^_transient_(.*)?{$RSTR_NAME}(.*|$)'");
+	$transient_pattern = $wpdb->esc_like('_transient_') . '%' . $wpdb->esc_like($RSTR_NAME) . '%';
+	$wpdb->query($wpdb->prepare("DELETE FROM `{$wpdb->options}` WHERE `option_name` LIKE %s", $transient_pattern));
     $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}rstr_cache");
 }
 
@@ -76,7 +77,7 @@ foreach ($patterns as $pattern) {
     if ($files) {
         foreach ($files as $file) {
             if (file_exists($file)) {
-                unlink($file);
+				wp_delete_file($file);
             }
         }
     }

@@ -61,7 +61,7 @@ final class Transliteration_Settings extends Transliteration
         if ($pagenow == 'options-general.php') {
             printf(
                 '<div class="notice notice-success is-dismissible">%s</div>',
-                sprintf('<p>%s</p>', __('Settings saved.', 'serbian-transliteration'))
+                sprintf('<p>%s</p>', esc_html__('Settings saved.', 'serbian-transliteration'))
             );
             Transliteration_Cache_DB::delete(RSTR_BASENAME . '_nonce_save');
         }
@@ -74,7 +74,7 @@ final class Transliteration_Settings extends Transliteration
     {
 
         return array_merge([
-            '<a href="' . esc_url(admin_url('/options-general.php?page=transliteration-settings')) . '">' . __('Settings', 'serbian-transliteration') . '</a>',
+            '<a href="' . esc_url(admin_url('/options-general.php?page=transliteration-settings')) . '">' . esc_html__('Settings', 'serbian-transliteration') . '</a>',
         ], $links);
 
     }
@@ -83,9 +83,9 @@ final class Transliteration_Settings extends Transliteration
     {
         if (RSTR_BASENAME == $file) {
             return array_merge($links, [
-                'rstr-shortcodes' => '<a href="' . esc_url(admin_url('/options-general.php?page=transliteration-settings&tab=documentation&action=shortcodes')) . '">' . __('Shortcodes', 'serbian-transliteration') . '</a>',
-                'rstr-functions'  => '<a href="' . esc_url(admin_url('/options-general.php?page=transliteration-settings&tab=documentation&action=functions')) . '">' . __('PHP Functions', 'serbian-transliteration') . '</a>',
-                'rstr-review'     => '<a href="https://wordpress.org/support/plugin/serbian-transliteration/reviews/#new-post" target="_blank">' . __('Rate us', 'serbian-transliteration') . '</a>',
+                'rstr-shortcodes' => '<a href="' . esc_url(admin_url('/options-general.php?page=transliteration-settings&tab=documentation&action=shortcodes')) . '">' . esc_html__('Shortcodes', 'serbian-transliteration') . '</a>',
+                'rstr-functions'  => '<a href="' . esc_url(admin_url('/options-general.php?page=transliteration-settings&tab=documentation&action=functions')) . '">' . esc_html__('PHP Functions', 'serbian-transliteration') . '</a>',
+                'rstr-review'     => '<a href="https://wordpress.org/support/plugin/serbian-transliteration/reviews/#new-post" target="_blank">' . esc_html__('Rate us', 'serbian-transliteration') . '</a>',
             ]);
         }
         return $links;
@@ -217,8 +217,8 @@ final class Transliteration_Settings extends Transliteration
         if ($pagenow == 'options-general.php') {
             printf(
                 '<div class="notice notice-warning is-dismissible">%s%s</div>',
-                sprintf('<h3>%s</h3>', __('PLEASE UPDATE PLUGIN SETTINGS', 'serbian-transliteration')),
-                sprintf('<p>%s</p>', __('Carefully review the transliteration plugin settings and adjust how it fits your WordPress installation. It is important that every time you change the settings, you test the parts of the site that are affected by this plugin.', 'serbian-transliteration'))
+                sprintf('<h3>%s</h3>', esc_html__('PLEASE UPDATE PLUGIN SETTINGS', 'serbian-transliteration')),
+                sprintf('<p>%s</p>', esc_html__('Carefully review the transliteration plugin settings and adjust how it fits your WordPress installation. It is important that every time you change the settings, you test the parts of the site that are affected by this plugin.', 'serbian-transliteration'))
             );
         }
     }
@@ -336,7 +336,7 @@ final class Transliteration_Settings extends Transliteration
 						settings_fields('transliteration-group');
 						do_settings_sections('serbian-transliteration');
 						submit_button(
-							__('Save Changes'),
+							__('Save Changes', 'serbian-transliteration'),
 							'primary',
 							'trasnliteration_settings_save_changes_1',
 							false,
@@ -345,7 +345,7 @@ final class Transliteration_Settings extends Transliteration
 					?>
 					<div id="trasnliteration_settings_submit_button_float">
 						<?php submit_button(
-						    __('Save Changes'),
+						    __('Save Changes', 'serbian-transliteration'),
 						    'primary',
 						    'trasnliteration_settings_save_changes_2',
 						    false,
@@ -679,12 +679,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     public function transliterator_dashboard_widget_display(): void
     {
-        $settings_url      = esc_url(admin_url('options-general.php?page=transliteration-settings'));
-        $documentation_url = esc_url($settings_url . '&tab=documentation');
-        $tools_url         = esc_url($settings_url . '&tab=tools');
-        $debug_url         = esc_url($settings_url . '&tab=debug');
-        $credits_url       = esc_url($settings_url . '&tab=credits');
-        $rate_url          = esc_url('https://wordpress.org/support/plugin/serbian-transliteration/reviews/#new-post');
+		$settings_url      = admin_url('options-general.php?page=transliteration-settings');
+		$documentation_url = $settings_url . '&tab=documentation';
+		$tools_url         = $settings_url . '&tab=tools';
+		$debug_url         = $settings_url . '&tab=debug';
+		$credits_url       = $settings_url . '&tab=credits';
+		$rate_url          = 'https://wordpress.org/support/plugin/serbian-transliteration/reviews/#new-post';
 
         $options = get_rstr_option();
 
@@ -711,12 +711,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ?>
 <h3><b><?php echo esc_html__('Quick Access:', 'serbian-transliteration'); ?></b></h3>
 <ul>
-	<li><a href="<?php echo $settings_url; ?>"><?php echo esc_html__('Settings', 'serbian-transliteration'); ?></a></li>
-	<li><a href="<?php echo $documentation_url; ?>"><?php echo esc_html__('Documentation', 'serbian-transliteration'); ?></a></li>
-	<li><a href="<?php echo $tools_url; ?>"><?php echo esc_html__('Tools', 'serbian-transliteration'); ?></a></li>
-	<li><a href="<?php echo $debug_url; ?>"><?php echo esc_html__('Debug', 'serbian-transliteration'); ?></a></li>
-	<li><a href="<?php echo $credits_url; ?>"><?php echo esc_html__('Credits', 'serbian-transliteration'); ?></a></li>
-	<li><a href="<?php echo $rate_url; ?>" target="_blank"><?php echo esc_html__('Rate us', 'serbian-transliteration'); ?></a></li>
+	<li><a href="<?php echo esc_url($settings_url); ?>"><?php echo esc_html__('Settings', 'serbian-transliteration'); ?></a></li>
+	<li><a href="<?php echo esc_url($documentation_url); ?>"><?php echo esc_html__('Documentation', 'serbian-transliteration'); ?></a></li>
+	<li><a href="<?php echo esc_url($tools_url); ?>"><?php echo esc_html__('Tools', 'serbian-transliteration'); ?></a></li>
+	<li><a href="<?php echo esc_url($debug_url); ?>"><?php echo esc_html__('Debug', 'serbian-transliteration'); ?></a></li>
+	<li><a href="<?php echo esc_url($credits_url); ?>"><?php echo esc_html__('Credits', 'serbian-transliteration'); ?></a></li>
+	<li><a href="<?php echo esc_url($rate_url); ?>" target="_blank"><?php echo esc_html__('Rate us', 'serbian-transliteration'); ?></a></li>
 </ul>
 
 <?php if ($options): ?>

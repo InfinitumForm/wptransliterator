@@ -78,35 +78,68 @@ class Transliteration_Search extends Transliteration
     {
         $like    = $n . $wpdb->esc_like($term) . $n;
         $tr_like = $n . $wpdb->esc_like($term_transliterated) . $n;
+		$prefix  = $searchand === ' AND ' ? ' AND ' : '';
+		$exclude = $like_op === 'NOT LIKE' && $andor_op === 'AND';
 
         if ($term === $term_transliterated) {
             // Ako su term i term_transliterated isti, nema potrebe za dupliranjem uslova
-            return $wpdb->prepare("{$searchand}(
-				{$wpdb->posts}.post_title {$like_op} %s
-				{$andor_op}
-				{$wpdb->posts}.post_excerpt {$like_op} %s
-				{$andor_op}
-				{$wpdb->posts}.post_content {$like_op} %s
+			if ($exclude) {
+				return $prefix . $wpdb->prepare("(
+					{$wpdb->posts}.post_title NOT LIKE %s
+					AND
+					{$wpdb->posts}.post_excerpt NOT LIKE %s
+					AND
+					{$wpdb->posts}.post_content NOT LIKE %s
+				)", $like, $like, $like);
+			}
+
+			return $prefix . $wpdb->prepare("(
+				{$wpdb->posts}.post_title LIKE %s
+				OR
+				{$wpdb->posts}.post_excerpt LIKE %s
+				OR
+				{$wpdb->posts}.post_content LIKE %s
 			)", $like, $like, $like);
         }
+
         // Ako su term i term_transliterated različiti, generišemo uslov za oba
-        return $wpdb->prepare("{$searchand}(
+		if ($exclude) {
+			return $prefix . $wpdb->prepare("(
 				(
-					{$wpdb->posts}.post_title {$like_op} %s
-					{$andor_op}
-					{$wpdb->posts}.post_excerpt {$like_op} %s
-					{$andor_op}
-					{$wpdb->posts}.post_content {$like_op} %s
+					{$wpdb->posts}.post_title NOT LIKE %s
+					AND
+					{$wpdb->posts}.post_excerpt NOT LIKE %s
+					AND
+					{$wpdb->posts}.post_content NOT LIKE %s
 				)
 				OR
 				(
-					{$wpdb->posts}.post_title {$like_op} %s
-					{$andor_op}
-					{$wpdb->posts}.post_excerpt {$like_op} %s
-					{$andor_op}
-					{$wpdb->posts}.post_content {$like_op} %s
+					{$wpdb->posts}.post_title NOT LIKE %s
+					AND
+					{$wpdb->posts}.post_excerpt NOT LIKE %s
+					AND
+					{$wpdb->posts}.post_content NOT LIKE %s
 				)
 			)", $like, $like, $like, $tr_like, $tr_like, $tr_like);
+		}
+
+		return $prefix . $wpdb->prepare("(
+			(
+				{$wpdb->posts}.post_title LIKE %s
+				OR
+				{$wpdb->posts}.post_excerpt LIKE %s
+				OR
+				{$wpdb->posts}.post_content LIKE %s
+			)
+			OR
+			(
+				{$wpdb->posts}.post_title LIKE %s
+				OR
+				{$wpdb->posts}.post_excerpt LIKE %s
+				OR
+				{$wpdb->posts}.post_content LIKE %s
+			)
+		)", $like, $like, $like, $tr_like, $tr_like, $tr_like);
     }
 
     private function finalize_search_query($wpdb, $search_queries): string

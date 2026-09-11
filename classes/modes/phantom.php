@@ -359,7 +359,7 @@ class Transliteration_Mode_Phantom extends Transliteration
 			return false;
 		}
 
-		$path = parse_url($request_uri, PHP_URL_PATH);
+		$path = wp_parse_url($request_uri, PHP_URL_PATH);
 		$path = is_string($path) ? rawurldecode($path) : $request_uri;
 
 		if (
@@ -371,7 +371,7 @@ class Transliteration_Mode_Phantom extends Transliteration
 			return true;
 		}
 
-		$query = parse_url($request_uri, PHP_URL_QUERY);
+		$query = wp_parse_url($request_uri, PHP_URL_QUERY);
 
 		return is_string($query) && preg_match('~(?:^|&)feed(?:=[^&]*)?(?:&|$)~i', $query) === 1;
 	}

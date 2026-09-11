@@ -18,7 +18,7 @@
 <p><code class="lang-php">function is_latin_text(string $content) : bool</code></p>
 <br>
 <h2 style="margin:0;">is_already_cyrillic</h2>
-<?php printf('<p>%s</p>', __('Determines whether the site is already in Cyrillic.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('Determines whether the site is already in Cyrillic.', 'serbian-transliteration')); ?>
 <p><code class="lang-php">function is_already_cyrillic() : bool</code></p>
 <br>
 <h2 style="margin:0;">is_cyrillic</h2>
@@ -100,40 +100,41 @@
 <br>
 
 <h2 style="margin:0;">transliteration_excluded</h2>
-<?php printf('<p>%s</p>', __('This function provides information on whether the currently active language is excluded from transliteration.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('This function provides information on whether the currently active language is excluded from transliteration.', 'serbian-transliteration')); ?>
 <p><code class="lang-php">function transliteration_excluded() : bool</code></p>
 <br>
 <h2 style="margin:0;">transliterate</h2>
-<?php printf('<p>%s</p>', __('Transliteration of some text or content into the desired script.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('Transliteration of some text or content into the desired script.', 'serbian-transliteration')); ?>
 <p><code class="lang-php">function transliterate(string $content, string $type='cyr_to_lat', bool $fix_html = true) : string</code></p>
-<?php printf('<p>%s</p>', __('The <b><i>$type</i></b> parameter has two values: <code>cyr_to_lat</code> (Cyrillic to Latin) and <code>lat_to_cyr</code> (Latin to Cyrillic)', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', wp_kses_post(__('The <b><i>$type</i></b> parameter has two values: <code>cyr_to_lat</code> (Cyrillic to Latin) and <code>lat_to_cyr</code> (Latin to Cyrillic)', 'serbian-transliteration'))); ?>
 <br>
 <h2 style="margin:0;">cyr_to_lat</h2>
-<?php printf('<p>%s</p>', __('Transliteration from Cyrillic to Latin.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('Transliteration from Cyrillic to Latin.', 'serbian-transliteration')); ?>
 <p><code class="lang-php">function cyr_to_lat(string $content, bool $sanitize_html = true) : string</code></p>
 <br>
 <h2 style="margin:0;">lat_to_cyr</h2>
-<?php printf('<p>%s</p>', __('Transliteration from Latin to Cyrillic.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('Transliteration from Latin to Cyrillic.', 'serbian-transliteration')); ?>
 <p><code class="lang-php">function lat_to_cyr(string $content, bool $sanitize_html = true, bool $fix_diacritics = false) : string</code></p>
 <br>
 <h2 style="margin:0;">cyr_to_ascii_lat</h2>
-<?php printf('<p>%s</p>', __('Transliterates Cyrillic characters to Latin, converting them to their basic ASCII equivalents by removing diacritics.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('Transliterates Cyrillic characters to Latin, converting them to their basic ASCII equivalents by removing diacritics.', 'serbian-transliteration')); ?>
 <p><code class="lang-php">function cyr_to_ascii_lat(string $content) : string</code></p>
 <br>
 <h2 style="margin:0;"><?php echo(function_exists('get_script') ? 'get_script' : 'rstr_get_script'); ?></h2>
-<?php printf('<p>%s</p>', __('Get active script.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('Get active script.', 'serbian-transliteration')); ?>
 <p><code class="lang-php">function <?php echo(function_exists('get_script') ? 'get_script' : 'rstr_get_script'); ?>() : string</code></p>
 <br>
 <h2 style="margin:0;">script_selector</h2>
-<?php printf('<p>%s</p>', __('This function displays a selector for the transliteration script.', 'serbian-transliteration')); ?>
+<?php printf('<p>%s</p>', esc_html__('This function displays a selector for the transliteration script.', 'serbian-transliteration')); ?>
 <p><code class="lang-php">function script_selector(array $args) : string|echo|array|object</code></p>
 <h3><?php esc_html_e('Parameters', 'serbian-transliteration'); ?></h3>
-<?php printf('<p><b><code>$args</code></b> (array) - %1$s</p>', __('This attribute contains an associative set of parameters for this function:', 'serbian-transliteration')); ?>
+<?php printf('<p><b><code>$args</code></b> (array) - %1$s</p>', esc_html__('This attribute contains an associative set of parameters for this function:', 'serbian-transliteration')); ?>
 <ul>
 	<?php printf(
 	    '<li><code>%1$s</code> - %2$s</li>',
 	    'display_type',
-	    sprintf(
+	    wp_kses_post(sprintf(
+	        /* translators: 1: inline. 2: select. 3: list. 4: list_items. 5: array. 6: object. */
 	        __('(string) The type of selector that will be displayed on the site. It can be: %1$s, %2$s, %3$s, %4$s, %5$s or %6$s. Default: %1$s', 'serbian-transliteration'),
 	        '<code>inline</code>',
 	        '<code>select</code>',
@@ -141,26 +142,43 @@
 	        '<code>list_items</code>',
 	        '<code>array</code>',
 	        '<code>object</code>'
-	    )
+	    ))
 	); ?>
 	<?php printf(
 	    '<li><code>%1$s</code> - %2$s</li>',
 	    'echo',
-	    sprintf(__('(bool) determines whether it will be displayed through an echo or as a string. Default: %s', 'serbian-transliteration'), '<code>false</code>')
+	    wp_kses_post(sprintf(
+	        /* translators: %s: Default boolean value shown as inline code. */
+	        __('(bool) determines whether it will be displayed through an echo or as a string. Default: %s', 'serbian-transliteration'),
+	        '<code>false</code>'
+	    ))
 	); ?>
 	<?php printf(
 	    '<li><code>%1$s</code> - %2$s</li>',
 	    'separator',
-	    sprintf(__('(string) Separator to be used when the selector type is %s. Default: %s', 'serbian-transliteration'), '<code>inline</code>', '<code> | </code>')
+	    wp_kses_post(sprintf(
+	        /* translators: 1: Selector type shown as inline code. 2: Default separator shown as inline code. */
+	        __('(string) Separator to be used when the selector type is %1$s. Default: %2$s', 'serbian-transliteration'),
+	        '<code>inline</code>',
+	        '<code> | </code>'
+	    ))
 	); ?>
 	<?php printf(
 	    '<li><code>%1$s</code> - %2$s</li>',
 	    'cyr_caption',
-	    sprintf(__('(string) Text for Cyrillic link. Default: %s', 'serbian-transliteration'), '<code>' . __('Cyrillic', 'serbian-transliteration') . '</code>')
+	    wp_kses_post(sprintf(
+	        /* translators: %s: Default Cyrillic link label shown as inline code. */
+	        __('(string) Text for Cyrillic link. Default: %s', 'serbian-transliteration'),
+	        '<code>' . esc_html__('Cyrillic', 'serbian-transliteration') . '</code>'
+	    ))
 	); ?>
 	<?php printf(
 	    '<li><code>%1$s</code> - %2$s</li>',
 	    'lat_caption',
-	    sprintf(__('(string) Text for Latin link. Default: %s', 'serbian-transliteration'), '<code>' . __('Latin', 'serbian-transliteration') . '</code>')
+	    wp_kses_post(sprintf(
+	        /* translators: %s: Default Latin link label shown as inline code. */
+	        __('(string) Text for Latin link. Default: %s', 'serbian-transliteration'),
+	        '<code>' . esc_html__('Latin', 'serbian-transliteration') . '</code>'
+	    ))
 	); ?>
 </ul>

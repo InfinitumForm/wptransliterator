@@ -115,9 +115,13 @@ final class Transliteration_Menus extends Transliteration
         if ($item->url == '#transliteration-latcyr#') {
             printf(
                 '<p style="padding:10px; background:cornsilk; float:left; margin-right: 10px; font-size:1.1em;"><strong>%s<br><br>%s<br><br>%s</strong></p>',
-                sprintf(__('The name of this navigation is written by always putting the Latin name first, then the Cyrillic one second, separated by the sign %s', 'serbian-transliteration'), '<code>|</code>'),
-                __('Example: Latinica | Ћирилица', 'serbian-transliteration'),
-                __('Note that the white space around them will be cleared.', 'serbian-transliteration')
+                wp_kses_post(sprintf(
+                    /* translators: %s is the vertical-bar separator shown as inline code. */
+                    __('The name of this navigation is written by always putting the Latin name first, then the Cyrillic one second, separated by the sign %s', 'serbian-transliteration'),
+                    '<code>|</code>'
+                )),
+                esc_html__('Example: Latinica | Ћирилица', 'serbian-transliteration'),
+                esc_html__('Note that the white space around them will be cleared.', 'serbian-transliteration')
             );
         }
 

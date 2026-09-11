@@ -51,6 +51,7 @@ final class Transliteration_Requirements
 			__('Suggested text:', 'serbian-transliteration')
 		);
 		$content .= sprintf('<p>%s</p>', sprintf(
+			/* translators: %1$s: Plugin name. */
 			__('This website uses the %1$s plugin to transliterate content.', 'serbian-transliteration'),
 			$this->title
 		));
@@ -59,6 +60,7 @@ final class Transliteration_Requirements
 			__('This is a simple and easy add-on with which this website translates content from Cyrillic to Latin and vice versa. This transliteration plugin also supports special shortcodes and functions that use cookies to specify the language script.', 'serbian-transliteration')
 		);
 		$content .= sprintf('<p>%s</p>', sprintf(
+			/* translators: 1: Latin-script cookie value. 2: Cyrillic-script cookie value. */
 			__('These cookies do not affect your privacy because they are not intended for tracking and analytics. These cookies can have only two values: "%1$s" or "%2$s".', 'serbian-transliteration'),
 			'lat',
 			'cyr'
@@ -171,35 +173,45 @@ echo wp_kses(str_replace(
 	public function php_version_notice(): void
 	{
 		echo '<div class="notice notice-error">';
-		echo '<p>' . sprintf(__('The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your host and ask them to upgrade.', 'serbian-transliteration'), esc_html($this->title), $this->php) . '</p>';
+		printf(
+			'<p>%s</p>',
+			sprintf(
+				/* translators: 1: Plugin name. 2: Minimum required PHP version. */
+				esc_html__('The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your host and ask them to upgrade.', 'serbian-transliteration'),
+				esc_html($this->title),
+				esc_html($this->php)
+			)
+		);
 		echo '</div>';
 	}
 
 	public function woocommerce_disabled_notice(): void
 	{
 		echo '<div class="notice notice-error">';
-		echo '<p>' . sprintf(
-			'<strong>%1$s</strong> %2$s',
-			__('Transliteration plugin requires attention:', 'serbian-transliteration'),
-			sprintf(
+		printf(
+			'<p><strong>%1$s</strong> %2$s</p>',
+			esc_html__('Transliteration plugin requires attention:', 'serbian-transliteration'),
+			wp_kses_post(sprintf(
+				/* translators: %s: Link to the plugin settings page. */
 				__('Your plugin works under Only WooCoomerce mode and you need to %s because WooCommerce is no longer active.', 'serbian-transliteration'),
-				'<a href="' . admin_url('/options-general.php?page=serbian-transliteration&tab=settings') . '">' . __('update your settings', 'serbian-transliteration') . '</a>'
-			)
-		) . '</p>';
+				'<a href="' . esc_url(admin_url('/options-general.php?page=serbian-transliteration&tab=settings')) . '">' . esc_html__('update your settings', 'serbian-transliteration') . '</a>'
+			))
+		);
 		echo '</div>';
 	}
 
 	public function mb_extension_notice(): void
 	{
 		echo '<div class="notice notice-error">';
-		echo '<p>' . sprintf(
-			'<strong>%1$s</strong> %2$s',
-			__('Transliteration plugin requires a Multibyte String PHP extension (mbstring).', 'serbian-transliteration'),
-			sprintf(
+		printf(
+			'<p><strong>%1$s</strong> %2$s</p>',
+			esc_html__('Transliteration plugin requires a Multibyte String PHP extension (mbstring).', 'serbian-transliteration'),
+			wp_kses_post(sprintf(
+				/* translators: %s: Link to the PHP mbstring installation documentation. */
 				__('Without %s you will not be able to use this plugin.', 'serbian-transliteration'),
-				'<a href="https://www.php.net/manual/en/mbstring.installation.php" target="_blank" title="' . __('Multibyte String Installation', 'serbian-transliteration') . '">' . __('this PHP extension', 'serbian-transliteration') . '</a>'
-			)
-		) . '</p>';
+				'<a href="https://www.php.net/manual/en/mbstring.installation.php" target="_blank" title="' . esc_attr__('Multibyte String Installation', 'serbian-transliteration') . '">' . esc_html__('this PHP extension', 'serbian-transliteration') . '</a>'
+			))
+		);
 		echo '</div>';
 	}
 
@@ -220,7 +232,15 @@ echo wp_kses(str_replace(
 	public function wp_version_notice(): void
 	{
 		echo '<div class="notice notice-error">';
-		echo '<p>' . sprintf(__('The %1$s cannot run on WordPress versions older than %2$s. Please update your WordPress installation.', 'serbian-transliteration'), esc_html($this->title), $this->wp) . '</p>';
+		printf(
+			'<p>%s</p>',
+			sprintf(
+				/* translators: 1: Plugin name. 2: Minimum required WordPress version. */
+				esc_html__('The %1$s cannot run on WordPress versions older than %2$s. Please update your WordPress installation.', 'serbian-transliteration'),
+				esc_html($this->title),
+				esc_html($this->wp)
+			)
+		);
 		echo '</div>';
 	}
 }
