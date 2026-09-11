@@ -30,23 +30,34 @@ jobs:
 
           mkdir -p "${BUILD_DIR}"
 
-          rsync -a ./ "${BUILD_DIR}/" \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='.gitignore' \
+          git archive --format=tar HEAD | tar \
+            --extract \
+            --directory="${BUILD_DIR}" \
+            --exclude='.git' \
+            --exclude='.github' \
             --exclude='.gitattributes' \
+            --exclude='.gitignore' \
+            --exclude='.distignore' \
+            --exclude='.editorconfig' \
             --exclude='CODE_OF_CONDUCT.md' \
             --exclude='CONTRIBUTING.md' \
             --exclude='ISSUE_TEMPLATE.md' \
             --exclude='PULL_REQUEST_TEMPLATE.md' \
+            --exclude='README.md' \
+            --exclude='composer.json' \
+            --exclude='composer.lock' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
             --exclude='phpcs.xml' \
             --exclude='phpcs.xml.dist' \
             --exclude='phpunit.xml' \
             --exclude='phpunit.xml.dist' \
-            --exclude='composer.lock'
+            --exclude='tests'
+
+          test -f "${BUILD_DIR}/serbian-transliteration.php"
 
           echo "Plugin build:"
-          find "${BUILD_DIR}" -maxdepth 2 -type f | sort
+          find "${BUILD_DIR}" -type f | sort
 
       - name: Run WordPress Plugin Check
         uses: wordpress/plugin-check-action@v1

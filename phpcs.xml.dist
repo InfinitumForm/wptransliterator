@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<ruleset name="Serbian Transliteration">
-	<description>PHP_CodeSniffer rules for Serbian Transliteration.</description>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Serbian Transliteration" xsi:noNamespaceSchemaLocation="https://schema.phpcodesniffer.com/phpcs.xsd">
+	<description>Meaningful WordPress Coding Standards checks for new code in the legacy Serbian Transliteration plugin.</description>
 
 	<arg name="basepath" value="."/>
 	<arg name="colors"/>
-	<arg value="p"/>
+	<arg name="extensions" value="php"/>
+	<config name="minimum_wp_version" value="6.0"/>
 
 	<file>.</file>
 
@@ -13,16 +14,61 @@
 	<exclude-pattern>*/.git/*</exclude-pattern>
 	<exclude-pattern>*/.github/*</exclude-pattern>
 
-	<rule ref="WordPress">
-		<!-- Keep the existing plugin file naming convention. -->
+	<!-- WordPress-Extra includes WordPress-Core and the WPCS security/best-practice checks. -->
+	<rule ref="WordPress-Extra">
+		<!-- Preserve the legacy file, symbol and array conventions. -->
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
-
-		<!-- Do not require documentation blocks in legacy code. -->
-		<exclude name="Squiz.Commenting.FileComment.Missing"/>
-		<exclude name="Squiz.Commenting.ClassComment.Missing"/>
-		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
-
-		<!-- Short array syntax is intentionally used by this project. -->
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+		<exclude name="WordPress.NamingConventions.ValidFunctionName"/>
+		<exclude name="WordPress.NamingConventions.ValidHookName"/>
+		<exclude name="WordPress.NamingConventions.ValidVariableName"/>
+		<exclude name="PEAR.NamingConventions.ValidClassName"/>
 		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+
+		<!-- Exclude layout-only rules; the plugin intentionally retains its historical formatting. -->
+		<exclude name="Generic.Classes.OpeningBraceSameLine"/>
+		<exclude name="Generic.Files.LineEndings"/>
+		<exclude name="Generic.Formatting.DisallowMultipleStatements"/>
+		<exclude name="Generic.Formatting.MultipleStatementAlignment"/>
+		<exclude name="Generic.Formatting.SpaceAfterCast"/>
+		<exclude name="Generic.Functions.FunctionCallArgumentSpacing"/>
+		<exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
+		<exclude name="Generic.WhiteSpace.ArbitraryParenthesesSpacing"/>
+		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+		<exclude name="Generic.WhiteSpace.IncrementDecrementSpacing"/>
+		<exclude name="Generic.WhiteSpace.LanguageConstructSpacing"/>
+		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
+		<exclude name="NormalizedArrays.Arrays.ArrayBraceSpacing"/>
+		<exclude name="NormalizedArrays.Arrays.CommaAfterLast"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature"/>
+		<exclude name="PSR2.Classes.ClassDeclaration"/>
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration"/>
+		<exclude name="PSR2.Files.EndFileNewline"/>
+		<exclude name="PSR2.Methods.FunctionClosingBrace"/>
+		<exclude name="Squiz.ControlStructures.ControlSignature"/>
+		<exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
+		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp"/>
+		<exclude name="Squiz.Strings.ConcatenationSpacing"/>
+		<exclude name="Squiz.Strings.DoubleQuoteUsage"/>
+		<exclude name="Squiz.WhiteSpace.CastSpacing"/>
+		<exclude name="Squiz.WhiteSpace.SemicolonSpacing"/>
+		<exclude name="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+		<exclude name="Universal.WhiteSpace"/>
+		<exclude name="WordPress.Arrays"/>
+		<exclude name="WordPress.PHP.YodaConditions"/>
+		<exclude name="WordPress.WhiteSpace"/>
+	</rule>
+
+	<!-- Keep the security and database checks that are not all part of WordPress-Extra. -->
+	<rule ref="WordPress.Security"/>
+	<rule ref="WordPress.DB"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="serbian-transliteration"/>
+			</property>
+		</properties>
 	</rule>
 </ruleset>

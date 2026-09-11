@@ -56,73 +56,97 @@ jobs:
         run: |
           set -euo pipefail
 
+          HEAD_SHA="$(git rev-parse HEAD)"
+          EMPTY_TREE="$(git hash-object -t tree /dev/null)"
+
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             BASE_SHA="${{ github.event.pull_request.base.sha }}"
-            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
           elif [[ "${{ github.event_name }}" == "push" ]]; then
             BASE_SHA="${{ github.event.before }}"
-            HEAD_SHA="${{ github.sha }}"
-
-            if [[ "${BASE_SHA}" == "0000000000000000000000000000000000000000" ]]; then
-              BASE_SHA="$(git rev-list --max-parents=0 "${HEAD_SHA}")"
-            fi
           else
-            BASE_SHA="$(git rev-parse HEAD^)"
-            HEAD_SHA="$(git rev-parse HEAD)"
+            BASE_SHA=""
+          fi
+
+          if [[ -z "${BASE_SHA}" ]] ||
+             [[ "${BASE_SHA}" =~ ^0+$ ]] ||
+             ! git cat-file -e "${BASE_SHA}^{commit}" 2>/dev/null; then
+            if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] &&
+               git rev-parse --verify "${HEAD_SHA}^" >/dev/null 2>&1; then
+              BASE_SHA="$(git rev-parse "${HEAD_SHA}^")"
+            else
+              BASE_SHA="${EMPTY_TREE}"
+            fi
           fi
 
           echo "Base: ${BASE_SHA}"
           echo "Head: ${HEAD_SHA}"
 
-          mapfile -t PHP_FILES < <(
+          PHP_FILES=()
+
+          while IFS= read -r -d '' file; do
+            if [[ -f "${file}" ]]; then
+              PHP_FILES+=("${file}")
+            fi
+          done < <(
             git diff \
               --diff-filter=ACMR \
               --name-only \
+              -z \
               "${BASE_SHA}" \
               "${HEAD_SHA}" \
               -- '*.php'
           )
 
-          EXISTING_FILES=()
-
-          for file in "${PHP_FILES[@]}"; do
-            if [[ -f "${file}" ]]; then
-              EXISTING_FILES+=("${file}")
-            fi
-          done
-
-          if [[ ${#EXISTING_FILES[@]} -eq 0 ]]; then
+          if [[ ${#PHP_FILES[@]} -eq 0 ]]; then
             echo "No changed PHP files found."
             echo "has_files=false" >> "${GITHUB_OUTPUT}"
             exit 0
           fi
 
-          printf '%s\n' "${EXISTING_FILES[@]}"
+          printf '%s\n' "${PHP_FILES[@]}"
+          printf '%s\0' "${PHP_FILES[@]}" > "${RUNNER_TEMP}/phpcs-files"
 
-          {
-            echo "has_files=true"
-            echo "files<<EOF"
-            printf '%s\n' "${EXISTING_FILES[@]}"
-            echo "EOF"
-          } >> "${GITHUB_OUTPUT}"
+          git -c core.quotePath=false diff \
+            --diff-filter=ACMR \
+            --no-color \
+            --no-ext-diff \
+            --unified=0 \
+            "${BASE_SHA}" \
+            "${HEAD_SHA}" \
+            -- '*.php' > "${RUNNER_TEMP}/phpcs.diff"
+
+          echo "has_files=true" >> "${GITHUB_OUTPUT}"
 
       - name: Run WordPress Coding Standards
         if: steps.changed-files.outputs.has_files == 'true'
         shell: bash
-        env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.files }}
         run: |
           set -euo pipefail
 
-          mapfile -t FILES <<< "${CHANGED_FILES}"
+          mapfile -d '' -t FILES < "${RUNNER_TEMP}/phpcs-files"
+          PHPCS_REPORT="${RUNNER_TEMP}/phpcs-report.json"
+          PHPCS_EXIT=0
 
           "${RUNNER_TEMP}/phpcs/vendor/bin/phpcs" \
             --standard=phpcs.xml.dist \
             --extensions=php \
-            --warning-severity=0 \
-            --report=full \
+            --runtime-set ignore_warnings_on_exit 1 \
+            --report=json \
+            --report-file="${PHPCS_REPORT}" \
             -p \
-            "${FILES[@]}"
+            "${FILES[@]}" || PHPCS_EXIT=$?
+
+          if [[ ! -s "${PHPCS_REPORT}" ]]; then
+            echo "PHPCS did not produce a JSON report (exit ${PHPCS_EXIT})." >&2
+            if [[ ${PHPCS_EXIT} -eq 0 ]]; then
+              PHPCS_EXIT=1
+            fi
+            exit "${PHPCS_EXIT}"
+          fi
+
+          php .github/scripts/phpcs-diff.php \
+            "${PHPCS_REPORT}" \
+            "${RUNNER_TEMP}/phpcs.diff"
 
       - name: No PHP changes
         if: steps.changed-files.outputs.has_files != 'true'
