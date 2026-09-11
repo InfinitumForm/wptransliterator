@@ -1899,6 +1899,30 @@ msgstr ""
 msgid "Contributors"
 msgstr ""
 
+#: classes/settings-fields.php:448
+msgid "More useful plugins"
+msgstr ""
+
+#: classes/settings-sidebars.php:101
+msgid "Discover a few other free WordPress plugins you may find useful."
+msgstr ""
+
+#: classes/settings-sidebars.php:123
+msgid "Rating"
+msgstr ""
+
+#: classes/settings-sidebars.php:129
+msgid "Active installs"
+msgstr ""
+
+#: classes/settings-sidebars.php:137
+msgid "View plugin"
+msgstr ""
+
+#: classes/settings-sidebars.php:140
+msgid "Activate this plugin"
+msgstr ""
+
 #: classes/settings/page-debug.php:30
 msgid "Current rstr_script cookie"
 msgstr ""

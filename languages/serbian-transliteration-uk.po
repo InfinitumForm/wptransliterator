@@ -2130,6 +2130,30 @@ msgstr "Розробники"
 msgid "Contributors"
 msgstr "Учасники"
 
+#: classes/settings-fields.php:448
+msgid "More useful plugins"
+msgstr "Інші корисні плагіни"
+
+#: classes/settings-sidebars.php:101
+msgid "Discover a few other free WordPress plugins you may find useful."
+msgstr "Відкрийте для себе ще кілька безкоштовних плагінів WordPress, які можуть вам стати у пригоді."
+
+#: classes/settings-sidebars.php:123
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: classes/settings-sidebars.php:129
+msgid "Active installs"
+msgstr "Активні встановлення"
+
+#: classes/settings-sidebars.php:137
+msgid "View plugin"
+msgstr "Переглянути плагін"
+
+#: classes/settings-sidebars.php:140
+msgid "Activate this plugin"
+msgstr "Активувати цей плагін"
+
 #: classes/settings/page-debug.php:30
 msgid "Current rstr_script cookie"
 msgstr "Поточний файл cookie rstr_script"

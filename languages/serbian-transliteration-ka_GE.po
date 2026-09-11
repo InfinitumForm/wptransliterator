@@ -2137,6 +2137,30 @@ msgstr "დეველოპერები"
 msgid "Contributors"
 msgstr "წვლილის შემტანები"
 
+#: classes/settings-fields.php:448
+msgid "More useful plugins"
+msgstr "სხვა სასარგებლო მოდულები"
+
+#: classes/settings-sidebars.php:101
+msgid "Discover a few other free WordPress plugins you may find useful."
+msgstr "აღმოაჩინეთ კიდევ რამდენიმე უფასო WordPress მოდული, რომლებიც შესაძლოა თქვენთვის სასარგებლო იყოს."
+
+#: classes/settings-sidebars.php:123
+msgid "Rating"
+msgstr "შეფასება"
+
+#: classes/settings-sidebars.php:129
+msgid "Active installs"
+msgstr "აქტიური ინსტალაციები"
+
+#: classes/settings-sidebars.php:137
+msgid "View plugin"
+msgstr "მოდულის ნახვა"
+
+#: classes/settings-sidebars.php:140
+msgid "Activate this plugin"
+msgstr "ამ მოდულის გააქტიურება"
+
 #: classes/settings/page-debug.php:30
 msgid "Current rstr_script cookie"
 msgstr "მიმდინარე rstr_script cookie"

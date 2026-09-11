@@ -2451,6 +2451,30 @@ msgstr "Programeri"
 msgid "Contributors"
 msgstr "Suradnici"
 
+#: classes/settings-fields.php:448
+msgid "More useful plugins"
+msgstr "Još korisnih dodataka"
+
+#: classes/settings-sidebars.php:101
+msgid "Discover a few other free WordPress plugins you may find useful."
+msgstr "Otkrijte još nekoliko besplatnih WordPress dodataka koji bi vam mogli biti korisni."
+
+#: classes/settings-sidebars.php:123
+msgid "Rating"
+msgstr "Ocjena"
+
+#: classes/settings-sidebars.php:129
+msgid "Active installs"
+msgstr "Aktivne instalacije"
+
+#: classes/settings-sidebars.php:137
+msgid "View plugin"
+msgstr "Pogledaj dodatak"
+
+#: classes/settings-sidebars.php:140
+msgid "Activate this plugin"
+msgstr "Aktiviraj ovaj dodatak"
+
 #: classes/settings/page-debug.php:30
 msgid "Current rstr_script cookie"
 msgstr "Trenutačni kolačić rstr_script"
