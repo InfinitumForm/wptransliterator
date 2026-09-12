@@ -2193,3 +2193,247 @@ msgstr "Бягучы REST-запыт"
 #: classes/settings/page-debug.php:58
 msgid "Current AJAX request"
 msgstr "Бягучы AJAX-запыт"
+
+#: classes/permalink-job.php:41
+msgid "Permission denied or expired nonce. Refresh the page and try again."
+msgstr "У дазволе адмоўлена або тэрмін яго дзеяння скончыўся. Абнавіце старонку і паўтарыце спробу."
+
+#: classes/permalink-job.php:49
+msgid "The selection contains an unavailable post type or taxonomy."
+msgstr "Выбар змяшчае недаступны тып паведамлення або таксаномію."
+
+#: classes/permalink-job.php:76
+msgid "A writable private system temporary directory is required."
+msgstr "Патрабуецца прыватны сістэмны часовы каталог з магчымасцю запісу."
+
+#: classes/permalink-job.php:81
+msgid "The system temporary directory must be outside the public web directory."
+msgstr "Сістэмны часовы каталог павінен знаходзіцца па-за агульнадаступным вэб-каталогам."
+
+#: classes/permalink-job.php:92
+msgid "The operation has expired or its journal is unavailable."
+msgstr "Тэрмін дзеяння аперацыі скончыўся або яе журнал недаступны."
+
+#: classes/permalink-job.php:103 classes/permalink-job.php:109
+msgid "Cannot save the operation journal. Check temporary disk space and retry."
+msgstr "Немагчыма захаваць журнал аперацый. Праверце месца на часовым дыску і паўтарыце спробу."
+
+#: classes/permalink-job.php:148 classes/permalink-job.php:187
+msgid "Cannot create the private operation directory."
+msgstr "Немагчыма стварыць прыватны каталог аперацый."
+
+#: classes/permalink-job.php:158
+msgid "Another permalink request is running. Retry in a moment."
+msgstr "Выконваецца яшчэ адзін запыт пастаяннай спасылкі. Паўтарыце праз імгненне."
+
+#: classes/permalink-job.php:166
+msgid "Invalid operation identifier."
+msgstr "Няправільны ідэнтыфікатар аперацыі."
+
+#: classes/permalink-job.php:174
+msgid "Select at least one post type or taxonomy and confirm URL changes before applying."
+msgstr "Выберыце хаця б адзін тып паведамлення або таксанамію і пацвердзіце змены URL перад падачай заяўкі."
+
+#: classes/permalink-job.php:194
+msgid "The operation has expired. Download reports within 24 hours and start a new operation if needed."
+msgstr "Тэрмін аперацыі скончыўся. Спампуйце справаздачы на ​​працягу 24 гадзін і пры неабходнасці пачніце новую аперацыю."
+
+#: classes/permalink-job.php:198
+msgid "A selected post type or taxonomy is no longer available."
+msgstr "Выбраны тып паведамлення або таксанамія больш не даступныя."
+
+#: classes/permalink-job.php:209
+msgid "Permalink operations require a POST request."
+msgstr "Аперацыі з пастаяннай спасылкай патрабуюць запыту POST."
+
+#: classes/permalink-job.php:216
+msgid "Invalid batch sequence."
+msgstr "Няправільная паслядоўнасць пакета."
+
+#: classes/permalink-job.php:227
+msgid "Another migration is active. Resume it or wait for its 24-hour expiry."
+msgstr "Чарговая міграцыя актыўная. Узнавіце або пачакайце, пакуль скончыцца 24 гадзіны."
+
+#: classes/permalink-job.php:232
+msgid "Invalid batch sequence. Resume the last acknowledged batch."
+msgstr "Няправільная паслядоўнасць пакета. Аднавіць апошнюю пацверджаную партыю."
+
+#: classes/permalink-job.php:520
+msgid "Dry run complete. No database changes were made."
+msgstr "Сухі прагон завершаны. Ніякіх змяненняў у базе дадзеных не было."
+
+#: classes/permalink-job.php:520
+msgid "Dry run: inspecting existing slugs. No database changes."
+msgstr "Сухі запуск: праверка існуючых смоўжняў. Няма змяненняў у базе дадзеных."
+
+#: classes/permalink-job.php:521
+msgid "Migration complete. Review the results and download the redirect CSV."
+msgstr "Перанос завершаны. Праглядзіце вынікі і спампуйце файл CSV для перанакіравання."
+
+#: classes/permalink-job.php:521
+msgid "Recording original URLs before making changes."
+msgstr "Запіс зыходных URL перад унясеннем змяненняў."
+
+#: classes/permalink-job.php:521
+msgid "Applying slug changes."
+msgstr "Прымяненне змяненняў смоўжа."
+
+#: classes/permalink-job.php:521
+msgid "Resolving final URLs after all slug changes."
+msgstr "Вызначэнне канчатковых URL-адрасоў пасля ўсіх змяненняў смоўжа."
+
+#: classes/permalink-job.php:544
+msgid "Finish the operation before downloading its report. Redirect CSV is available only for changed URLs."
+msgstr "Скончыце аперацыю перад загрузкай справаздачы. Перанакіраванне CSV даступна толькі для змененых URL."
+
+#: classes/permalink-job.php:557
+msgid "Cannot open the CSV download stream."
+msgstr "Немагчыма адкрыць паток спампоўкі CSV."
+
+#: classes/settings/page-permalinks.php:11
+msgid "Applying slug changes alters existing URLs and may cause 404 errors without redirects. Dry Run does not apply changes."
+msgstr "Прымяненне змяненняў смоўжа змяняе існуючыя URL-адрасы і можа выклікаць памылку 404 без перанакіравання. Dry Run не прымяняе змены."
+
+#: classes/settings/page-permalinks.php:15
+msgid "WordPress does not automatically redirect old taxonomy term URLs. Download the redirect CSV after conversion and import it into your redirect system. This tool does not install redirects."
+msgstr "WordPress не перанакіроўвае аўтаматычна URL-адрасы старых таксанамічных тэрмінаў. Спампуйце файл CSV для перанакіравання пасля пераўтварэння і імпартуйце яго ў сваю сістэму перанакіравання. Гэты інструмент не ўсталёўвае перанакіраванні."
+
+#: classes/settings/page-permalinks.php:16
+msgid "Changing a parent slug can also change descendant and related post URLs. The redirect CSV includes selected objects whose own slug and URL changed; URLs affected only by a parent or category change require a separate redirect review."
+msgstr "Змена бацькоўскага смоўжа таксама можа змяніць нашчадкі і звязаныя URL-адрасы паведамленняў. CSV перанакіравання ўключае ў сябе выбраныя аб'екты, уласны смоўж і URL якіх зменены; URL-адрасы, якія закранаюцца толькі зменай бацькоўскай або катэгорыі, патрабуюць асобнай праверкі перанакіравання."
+
+#: classes/settings/page-permalinks.php:17
+msgid "Dry run does not change the database. Proposed URLs are estimates using the current database; parent changes, competing slugs and third-party save or permalink filters can affect the final result. Uncertain collisions are marked explicitly. Reports are private and available for 24 hours on this site only."
+msgstr "Прагон не змяняе базу дадзеных. Прапанаваныя URL - гэта ацэнкі з выкарыстаннем бягучай базы дадзеных; бацькоўскія змены, канкуруючыя смоўжы і староннія фільтры захавання або пастаянных спасылак могуць паўплываць на канчатковы вынік. Нявызначаныя калізіі пазначаны яўна. Справаздачы прыватныя і даступныя толькі на гэтым сайце 24 гадзіны."
+
+#: classes/settings/page-permalinks.php:19
+msgid "For advanced users, post permalink conversion is also available via WP-CLI using the command"
+msgstr "Для прасунутых карыстальнікаў пераўтварэнне пост пастаяннай спасылкі таксама даступна праз WP-CLI з дапамогай каманды"
+
+#: classes/settings/page-permalinks.php:25
+msgid "Important: Make sure to %s before applying changes."
+msgstr "Важна: пераканайцеся, што %s перад ужываннем змяненняў."
+
+#: classes/settings/page-permalinks.php:33
+msgid "Post Types"
+msgstr "Тыпы паведамленняў"
+
+#: classes/settings/page-permalinks.php:64
+msgid "Taxonomies"
+msgstr "Таксанаміі"
+
+#: classes/settings/page-permalinks.php:84
+msgid "Dry Run"
+msgstr "Пробны запуск (без змен)"
+
+#: classes/settings/page-permalinks.php:85
+msgid "Convert / Apply permalinks"
+msgstr "Пераўтварыць / Ужыць пастаянныя спасылкі"
+
+#: classes/settings/page-permalinks.php:88
+msgid "I have a backup and understand that applying changes can change existing URLs."
+msgstr "У мяне ёсць рэзервовая копія, і я разумею, што прымяненне змяненняў можа змяніць існуючыя URL-адрасы."
+
+#: classes/settings/page-permalinks.php:98
+msgid "Resume / Retry last operation"
+msgstr "Працягнуць / паўтарыць апошнюю аперацыю"
+
+#: classes/settings/page-permalinks.php:99
+msgid "Clear saved operation progress"
+msgstr "Ачысціць захаваны прагрэс аперацыі"
+
+#: classes/settings/page-permalinks.php:101
+msgid "This clears only the operation progress saved in this browser. It does not undo any slug changes that were already applied."
+msgstr "Гэта ачышчае толькі прагрэс аперацыі, захаваны ў гэтым браўзеры. Гэта не адмяняе змены слагаў, якія ўжо былі прыменены."
+
+#: classes/settings/page-permalinks.php:104
+msgid "Download redirect CSV"
+msgstr "Спампаваць перанакіраванне CSV"
+
+#: classes/settings/page-permalinks.php:105
+msgid "Download full operation report"
+msgstr "Спампаваць поўны справаздачу аб аперацыі"
+
+#: classes/settings/page-permalinks.php:108
+msgid "Most recent batch (up to 50 objects). The full operation report contains every candidate. Status codes: unchanged, will_change, collision_adjusted, potential_collision, changed, skipped, invalid, failed, conflict, url_only_change. Estimated URLs are not guaranteed redirects."
+msgstr "Апошняя партыя (да 50 аб'ектаў). Поўная справаздача аб аперацыі змяшчае кожнага кандыдата. Коды стану: unchanged, will_change, collision_adjusted, potential_collision, changed, skipped, invalid, failed, conflict, url_only_change. Прыблізныя URL-адрасы не з'яўляюцца гарантаванымі перанакіраваннямі."
+
+#: classes/settings/page-permalinks.php:112
+msgid "Object type"
+msgstr "Тып аб'екта"
+
+#: classes/settings/page-permalinks.php:112
+msgid "ID"
+msgstr "ID"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Post type / Taxonomy"
+msgstr "Тып пасады / Таксанамія"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Title / Name"
+msgstr "Назва / Імя"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Old slug"
+msgstr "Стары слаг"
+
+#: classes/settings/page-permalinks.php:112
+msgid "New slug"
+msgstr "Новы слаг"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Old URL"
+msgstr "Стары URL"
+
+#: classes/settings/page-permalinks.php:112
+msgid "New URL (estimated in dry run)"
+msgstr "Новы URL-адрас (ацэнены ў сухім рэжыме)"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Status"
+msgstr "Статус"
+
+#: classes/settings/page-permalinks.php:112
+msgid "URL certainty"
+msgstr "Пэўнасць URL"
+
+#: classes/settings.php:180
+msgid "The request failed. Use Resume / Retry to continue the same operation safely."
+msgstr "Запыт не выкананы. Каб бяспечна працягнуць тую ж самую аперацыю, выкарыстоўвайце \"Працягнуць / Паўтарыць\"."
+
+#: classes/settings.php:181
+msgid "Select at least one post type or taxonomy."
+msgstr "Выберыце хаця б адзін тып паведамлення або таксанамію."
+
+#: classes/settings.php:183
+msgid "Objects: %1$s. Slugs changed: %2$s. Redirects: %3$s. Issues requiring review: %4$s."
+msgstr "Аб’екты: %1$s. Зменена слагаў: %2$s. Перанакіраванні: %3$s. Праблемы для праверкі: %4$s."
+
+#: classes/settings.php:184
+msgid "No qualifying URL changes; no redirect CSV was generated."
+msgstr "Няма кваліфікацыйных змяненняў URL; CSV для перанакіравання не быў створаны."
+
+#: classes/wp-cli.php
+msgid "Cannot write the CSV report to %s."
+msgstr "Не ўдалося запісаць CSV-справаздачу ў %s."
+
+#: classes/wp-cli.php
+msgid "The shared permalink migration supports Cyrillic-to-Latin slugs only."
+msgstr "Агульная міграцыя пастаянных спасылак падтрымлівае толькі транслітарацыю слагаў з кірыліцы на лацінку."
+
+#: classes/wp-cli.php
+msgid "This will change existing URLs. Confirm that you have a backup and want to continue."
+msgstr "Гэта зменіць існуючыя URL-адрасы. Пацвердзіце, што ў вас ёсць рэзервовая копія і вы хочаце працягнуць."
+
+#: classes/wp-cli.php
+msgid "Operation ID: %s"
+msgstr "ID аперацыі: %s"
+
+#: classes/wp-cli.php
+msgid "Full report: %s"
+msgstr "Поўная справаздача: %s"
+
+#: classes/wp-cli.php
+msgid "Redirect report: %s"
+msgstr "Справаздача аб перанакіраваннях: %s"

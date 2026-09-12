@@ -240,109 +240,150 @@
 	/*
 	 * TOOLS: Transliterate permalinks
 	 */
-	(function(checkbox, button, progress, disclaimer){
-		// Get objects
-		checkbox = document.getElementById(checkbox),
-		button = document.getElementById(button);
-		progress = document.getElementById(progress);
-		disclaimer = document.getElementById(disclaimer);
-		
-		if(checkbox && button)
-		{
-			var progress_bar = (number)=>{
-				number = Math.round(number);
-				
-				var progress_value = progress.children,
-					pr = progress_value[0],
-					bar = progress_value[1],
-					span = bar.children[0];
-					
-				pr.style.width = number + '%';
-				pr.dataset.value = number;
-				
-				bar.value=number;
-				
-				span.style.width = number + '%';
-				span.innerHTML = number + '%';
-				
-				if(number>=100)
-				{
-					progress_value[2].innerHTML = RSTR.label.done;
-				}
-				else
-				{
-					progress_value[2].innerHTML = RSTR.label.progress_loading;
-				}
-			};
-			
-			// Confirm checkbox
-			checkbox.onchange = () => {
-				button.disabled = !checkbox.checked;
-				disclaimer.style.display = 'block';
-			};
-			// Click on the button
-			button.addEventListener("click", e => {
-				e.preventDefault();
-				
-				var do_ajax = (dataset) => {
-					
-					if(dataset)
-					{
-						ajax('POST', RSTR.ajax, dataset, {
-							'Accept' : 'application/json'
-						});
-					}
-					else
-					{
-						ajax('POST', RSTR.ajax, {
-							'action' : 'rstr_run_permalink_transliteration',
-							'nonce'  : e.target.dataset.nonce,
-							'post_type' : Array.from(document.querySelectorAll("input.tools-transliterate-permalinks-post-types:checked")).map(e => e.value),
-							'rstr_skip' : true
-						}, {
-							'Accept' : 'application/json'
-						});
-					}
-					
-					ajax_done(function(data){
-						if(!data.error)
-						{
-							progress_bar(data.percentage);
-							
-							if(data.done)
-							{
-								button.disabled = false;
-								checkbox.disabled = false;
-								Array.from(document.querySelectorAll("input.tools-transliterate-permalinks-post-types:checked")).map(e => {e.disabled = false});
-							}
-							else
-							{
-								do_ajax(data);
-							}
-						}
-						else
-						{
-							progress_bar(0);
-						}
-						
-					}, true);
-				};
-				
-				
-				button.disabled = true;
-				checkbox.disabled = true;
-				
-				progress.style.display = "block";
-				
-				progress_bar(1);
-				
-				do_ajax();
-				Array.from(document.querySelectorAll("input.tools-transliterate-permalinks-post-types:checked")).map(e => {e.disabled = true});
-				
-			});
+	(function () {
+		const apply = document.getElementById('serbian-transliteration-tools-transliterate-permalinks');
+		if (!apply) return;
+		const dry = document.getElementById('rstr-permalink-dry-run');
+		const confirm = document.getElementById('serbian-transliteration-tools-check');
+		const progress = document.getElementById('rstr-progress-bar');
+		const result = document.getElementById('rstr-permalink-result');
+		const preview = document.getElementById('rstr-permalink-preview');
+		const resume = document.getElementById('rstr-permalink-resume');
+		const reset = document.getElementById('rstr-permalink-reset');
+		const csv = document.getElementById('rstr-permalink-csv');
+		const report = document.getElementById('rstr-permalink-report');
+		const selectors = Array.from(document.querySelectorAll('.tools-transliterate-permalinks-post-types, .tools-transliterate-permalinks-taxonomies'));
+		const storageKey = 'rstr-permalinks:' + RSTR.permalink_storage;
+		let pending = null;
+		let busy = false;
+		try { pending = JSON.parse(localStorage.getItem(storageKey)); } catch (error) { /* Storage can be disabled. */ }
+		if (pending && (!pending.job || typeof pending.step !== 'number' || !pending.mode)) {
+			pending = null;
+			try { localStorage.removeItem(storageKey); } catch (error) { /* Storage can be disabled. */ }
 		}
-	}('serbian-transliteration-tools-check', 'serbian-transliteration-tools-transliterate-permalinks', 'rstr-progress-bar', 'rstr-disclaimer'));
-	
+		resume.hidden = !pending;
+		reset.hidden = !pending;
+		function save() {
+			try { localStorage.setItem(storageKey, JSON.stringify(pending)); } catch (error) { /* Retry still works in this page. */ }
+		}
+		function notice(message, error) {
+			result.hidden = false;
+			result.className = 'notice inline ' + (error ? 'notice-error' : 'notice-info');
+			result.querySelector('p').textContent = message;
+		}
+		function controls(running) {
+			busy = running;
+			if (!running && pending && pending.expires && pending.expires * 1000 <= Date.now()) {
+				pending = null;
+				save();
+				resume.hidden = true;
+				reset.hidden = true;
+			}
+			const unfinished = pending && !pending.done;
+			dry.disabled = running || unfinished;
+			apply.disabled = running || unfinished || !confirm.checked;
+			confirm.disabled = running;
+			selectors.forEach(input => { input.disabled = running; });
+			resume.disabled = running;
+			reset.disabled = running;
+		}
+		confirm.addEventListener('change', () => {
+			apply.disabled = busy || (pending && !pending.done) || !confirm.checked;
+			document.getElementById('rstr-disclaimer').style.display = 'block';
+		});
+		function render(data) {
+			const percent = Math.round(data.percentage);
+			progress.style.display = 'block';
+			progress.querySelector('.progress-value').style.width = percent + '%';
+			progress.querySelector('.progress-value').dataset.value = percent;
+			progress.querySelector('progress').value = percent;
+			progress.querySelector('.progress-bar span').style.width = percent + '%';
+			progress.querySelector('.progress-bar span').textContent = percent + '%';
+			progress.querySelector('.progress-message').textContent = data.message;
+			let summary = RSTR.label.permalink_summary;
+			[data.total, data.updated, data.redirects, data.issues].forEach((value, index) => {
+				summary = summary.replace('%' + (index + 1) + '$s', String(value));
+			});
+			notice(data.message + ' ' + summary + (data.done && data.mode === 'apply' && !data.csv ? ' ' + RSTR.label.permalink_no_csv : ''), false);
+			if (data.rows && data.rows.length) {
+				preview.hidden = false;
+				const body = preview.querySelector('tbody');
+				body.textContent = '';
+				data.rows.slice(-50).forEach(row => {
+					const tr = document.createElement('tr');
+					['object_type', 'object_id', 'post_type_or_taxonomy', 'name', 'old_slug', 'new_slug', 'old_url', 'new_url', 'status', 'url_status'].forEach(key => {
+						const td = document.createElement('td');
+						td.textContent = row[key] == null ? '' : String(row[key]);
+						tr.appendChild(td);
+					});
+					body.appendChild(tr);
+				});
+			}
+			csv.hidden = !data.csv;
+			report.hidden = !data.report;
+			if (data.csv) csv.href = data.csv;
+			if (data.report) report.href = data.report;
+		}
+		async function run() {
+			if (busy || !pending) return;
+			controls(true);
+			resume.hidden = false;
+			reset.hidden = false;
+			try {
+				while (pending) {
+					const controller = new AbortController();
+					const timer = setTimeout(() => controller.abort(), 90000);
+					let data;
+					try {
+						const response = await fetch(RSTR.ajax, {
+							method: 'POST', credentials: 'same-origin', signal: controller.signal,
+							headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+							body: new URLSearchParams(Object.assign({}, pending, { action: 'rstr_run_permalink_transliteration', nonce: apply.dataset.nonce, rstr_skip: '1' })).toString()
+						});
+						if (!response.ok) throw new Error(RSTR.label.permalink_error);
+						data = await response.json();
+					} finally { clearTimeout(timer); }
+					if (!data || data.error || typeof data.step !== 'number') {
+						if (data && data.resume) { pending = data.resume; save(); }
+						throw new Error(data && data.message ? data.message : RSTR.label.permalink_error);
+					}
+					pending.step = data.step;
+					pending.done = data.done;
+					pending.expires = data.expires;
+					save();
+					render(data);
+					if (data.done) { resume.hidden = true; reset.hidden = false; break; }
+				}
+			} catch (error) {
+				notice((error.message || RSTR.label.permalink_error) + ' ' + RSTR.label.permalink_error, true);
+			} finally { controls(false); }
+		}
+		function start(mode) {
+			if (busy || (mode === 'apply' && !confirm.checked)) return;
+			const postTypes = selectors.filter(input => input.checked && input.classList.contains('tools-transliterate-permalinks-post-types')).map(input => input.value);
+			const taxonomies = selectors.filter(input => input.checked && input.classList.contains('tools-transliterate-permalinks-taxonomies')).map(input => input.value);
+			if (!postTypes.length && !taxonomies.length) { notice(RSTR.label.permalink_empty, true); return; }
+			const bytes = new Uint8Array(16);
+			crypto.getRandomValues(bytes);
+			pending = { job: Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join(''), step: 0, expires: Math.floor(Date.now() / 1000) + 86400, mode: mode, confirmed: mode === 'apply' ? '1' : '0', post_type: postTypes.join(','), taxonomy: taxonomies.join(',') };
+			save();
+			csv.hidden = true;
+			report.hidden = true;
+			preview.hidden = true;
+			run();
+		}
+		dry.addEventListener('click', () => start('dry_run'));
+		apply.addEventListener('click', () => start('apply'));
+		resume.addEventListener('click', run);
+		reset.addEventListener('click', () => {
+			pending = null;
+			try { localStorage.removeItem(storageKey); } catch (error) { /* Storage can be disabled. */ }
+			resume.hidden = true;
+			reset.hidden = true;
+			controls(false);
+		});
+		controls(false);
+	}());
 	/* Accordion */
 	(function(c){
 		var acc = document.getElementsByClassName(c), i;

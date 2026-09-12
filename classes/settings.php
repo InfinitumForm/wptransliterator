@@ -145,7 +145,10 @@ final class Transliteration_Settings extends Transliteration
 
         // Register the CSS and JS files
         wp_register_style('transliteration-admin', RSTR_ASSETS . '/css/admin' . $min . '.css', [], (string)RSTR_VERSION);
-        wp_register_script('transliteration-admin', RSTR_ASSETS . '/js/admin' . $min . '.js', ['jquery'], (string)RSTR_VERSION, true);
+        $admin_script_path    = RSTR_ROOT . '/assets/js/admin' . $min . '.js';
+        $admin_script_version = is_file($admin_script_path) ? (string) filemtime($admin_script_path) : (string) RSTR_VERSION;
+
+        wp_register_script('transliteration-admin', RSTR_ASSETS . '/js/admin' . $min . '.js', ['jquery'], $admin_script_version, true);
 
         wp_register_style('transliteration-highlight', RSTR_ASSETS . '/css/highlight.min.css', ['transliteration-admin'], (string)RSTR_VERSION);
         wp_register_script('transliteration-highlight', RSTR_ASSETS . '/js/highlight.min.js', ['jquery'], (string)RSTR_VERSION, true);
@@ -169,10 +172,16 @@ final class Transliteration_Settings extends Transliteration
                 'home'    => get_bloginfo('wpurl'),
                 'ajax'    => admin_url('/admin-ajax.php'),
                 'prefix'  => RSTR_PREFIX,
+                'permalink_storage' => wp_hash('permalinks:' . get_current_blog_id() . ':' . get_current_user_id()),
                 'label'   => [
                     'progress_loading' => __('Please wait! Do not close the window or leave the page until this operation is completed!', 'serbian-transliteration'),
                     'done'             => __('DONE!!!', 'serbian-transliteration'),
                     'loading'          => __('Loading...', 'serbian-transliteration'),
+                    'permalink_error'  => __('The request failed. Use Resume / Retry to continue the same operation safely.', 'serbian-transliteration'),
+                    'permalink_empty'  => __('Select at least one post type or taxonomy.', 'serbian-transliteration'),
+                    /* translators: 1: Objects inspected. 2: Slugs changed. 3: Redirect rows. 4: Issues requiring review. */
+                    'permalink_summary' => __('Objects: %1$s. Slugs changed: %2$s. Redirects: %3$s. Issues requiring review: %4$s.', 'serbian-transliteration'),
+                    'permalink_no_csv' => __('No qualifying URL changes; no redirect CSV was generated.', 'serbian-transliteration'),
                 ],
             ]
         );

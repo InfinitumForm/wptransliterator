@@ -2192,3 +2192,247 @@ msgstr "მიმდინარე REST მოთხოვნა"
 #: classes/settings/page-debug.php:58
 msgid "Current AJAX request"
 msgstr "მიმდინარე AJAX მოთხოვნა"
+
+#: classes/permalink-job.php:41
+msgid "Permission denied or expired nonce. Refresh the page and try again."
+msgstr "ნებართვა უარყოფილია ან ვადა გაუვიდა არაერთხელ. განაახლეთ გვერდი და სცადეთ ხელახლა."
+
+#: classes/permalink-job.php:49
+msgid "The selection contains an unavailable post type or taxonomy."
+msgstr "შერჩევა შეიცავს მიუწვდომელ პოსტის ტიპს ან ტაქსონომიას."
+
+#: classes/permalink-job.php:76
+msgid "A writable private system temporary directory is required."
+msgstr "საჭიროა ჩასაწერი პირადი სისტემის დროებითი დირექტორია."
+
+#: classes/permalink-job.php:81
+msgid "The system temporary directory must be outside the public web directory."
+msgstr "სისტემის დროებითი დირექტორია უნდა იყოს საჯარო ვებ კატალოგის მიღმა."
+
+#: classes/permalink-job.php:92
+msgid "The operation has expired or its journal is unavailable."
+msgstr "ოპერაციას ვადა გაუვიდა ან მისი ჟურნალი მიუწვდომელია."
+
+#: classes/permalink-job.php:103 classes/permalink-job.php:109
+msgid "Cannot save the operation journal. Check temporary disk space and retry."
+msgstr "ოპერაციის ჟურნალის შენახვა შეუძლებელია. შეამოწმეთ დროებითი ადგილი დისკზე და ხელახლა სცადეთ."
+
+#: classes/permalink-job.php:148 classes/permalink-job.php:187
+msgid "Cannot create the private operation directory."
+msgstr "პირადი ოპერაციების დირექტორიას შექმნა შეუძლებელია."
+
+#: classes/permalink-job.php:158
+msgid "Another permalink request is running. Retry in a moment."
+msgstr "პერმალინკის კიდევ ერთი მოთხოვნა გაშვებულია. ხელახლა სცადეთ ერთ წუთში."
+
+#: classes/permalink-job.php:166
+msgid "Invalid operation identifier."
+msgstr "ოპერაციის არასწორი იდენტიფიკატორი."
+
+#: classes/permalink-job.php:174
+msgid "Select at least one post type or taxonomy and confirm URL changes before applying."
+msgstr "აირჩიეთ პოსტის ერთი ტიპი ან ტაქსონომია და დაადასტურეთ URL ცვლილებები განაცხადის დაწყებამდე."
+
+#: classes/permalink-job.php:194
+msgid "The operation has expired. Download reports within 24 hours and start a new operation if needed."
+msgstr "ოპერაციას ვადა გაუვიდა. ჩამოტვირთეთ ანგარიშები 24 საათის განმავლობაში და საჭიროების შემთხვევაში დაიწყეთ ახალი ოპერაცია."
+
+#: classes/permalink-job.php:198
+msgid "A selected post type or taxonomy is no longer available."
+msgstr "შერჩეული პოსტის ტიპი ან ტაქსონომია აღარ არის ხელმისაწვდომი."
+
+#: classes/permalink-job.php:209
+msgid "Permalink operations require a POST request."
+msgstr "პერმალინკის ოპერაციები მოითხოვს POST მოთხოვნას."
+
+#: classes/permalink-job.php:216
+msgid "Invalid batch sequence."
+msgstr "არასწორი სერიის თანმიმდევრობა."
+
+#: classes/permalink-job.php:227
+msgid "Another migration is active. Resume it or wait for its 24-hour expiry."
+msgstr "კიდევ ერთი მიგრაცია აქტიურია. განაახლეთ ან დაელოდეთ 24-საათიან ვადის გასვლას."
+
+#: classes/permalink-job.php:232
+msgid "Invalid batch sequence. Resume the last acknowledged batch."
+msgstr "არასწორი სერიის თანმიმდევრობა. განაახლეთ ბოლო აღიარებული პარტია."
+
+#: classes/permalink-job.php:520
+msgid "Dry run complete. No database changes were made."
+msgstr "მშრალი გაშვება დასრულდა. მონაცემთა ბაზაში ცვლილებები არ განხორციელებულა."
+
+#: classes/permalink-job.php:520
+msgid "Dry run: inspecting existing slugs. No database changes."
+msgstr "მშრალი გაშვება: არსებული შლაკების შემოწმება. მონაცემთა ბაზაში ცვლილებები არ არის."
+
+#: classes/permalink-job.php:521
+msgid "Migration complete. Review the results and download the redirect CSV."
+msgstr "მიგრაცია დასრულებულია. გადახედეთ შედეგებს და ჩამოტვირთეთ გადამისამართების CSV."
+
+#: classes/permalink-job.php:521
+msgid "Recording original URLs before making changes."
+msgstr "ორიგინალური URL-ების ჩაწერა ცვლილებების შეტანამდე."
+
+#: classes/permalink-job.php:521
+msgid "Applying slug changes."
+msgstr "შლაგის ცვლილებების გამოყენება."
+
+#: classes/permalink-job.php:521
+msgid "Resolving final URLs after all slug changes."
+msgstr "საბოლოო URL-ების გადაჭრა ყველა slug ცვლილების შემდეგ."
+
+#: classes/permalink-job.php:544
+msgid "Finish the operation before downloading its report. Redirect CSV is available only for changed URLs."
+msgstr "დაასრულეთ ოპერაცია მისი ანგარიშის ჩამოტვირთვამდე. გადამისამართების CSV ხელმისაწვდომია მხოლოდ შეცვლილი URL-ებისთვის."
+
+#: classes/permalink-job.php:557
+msgid "Cannot open the CSV download stream."
+msgstr "CSV ჩამოტვირთვის ნაკადის გახსნა შეუძლებელია."
+
+#: classes/settings/page-permalinks.php:11
+msgid "Applying slug changes alters existing URLs and may cause 404 errors without redirects. Dry Run does not apply changes."
+msgstr "slug ცვლილებების გამოყენება ცვლის არსებულ URL-ებს და შეიძლება გამოიწვიოს 404 შეცდომა გადამისამართების გარეშე. მშრალი გაშვება არ ვრცელდება ცვლილებებს."
+
+#: classes/settings/page-permalinks.php:15
+msgid "WordPress does not automatically redirect old taxonomy term URLs. Download the redirect CSV after conversion and import it into your redirect system. This tool does not install redirects."
+msgstr "WordPress ავტომატურად არ გადამისამართებს ძველი ტაქსონომიის ტერმინების URL-ებს. ჩამოტვირთეთ გადამისამართების CSV კონვერტაციის შემდეგ და შემოიტანეთ იგი თქვენს გადამისამართების სისტემაში. ეს ინსტრუმენტი არ აყენებს გადამისამართებებს."
+
+#: classes/settings/page-permalinks.php:16
+msgid "Changing a parent slug can also change descendant and related post URLs. The redirect CSV includes selected objects whose own slug and URL changed; URLs affected only by a parent or category change require a separate redirect review."
+msgstr "მშობლის შლაგის შეცვლამ ასევე შეიძლება შეცვალოს შთამომავალი და დაკავშირებული პოსტის URL-ები. გადამისამართების CSV მოიცავს შერჩეულ ობიექტებს, რომელთა საკუთარი slug და URL შეიცვალა; URL-ები, რომლებიც გავლენას ახდენს მხოლოდ მშობლის ან კატეგორიის ცვლილებით, საჭიროებს ცალკე გადამისამართების განხილვას."
+
+#: classes/settings/page-permalinks.php:17
+msgid "Dry run does not change the database. Proposed URLs are estimates using the current database; parent changes, competing slugs and third-party save or permalink filters can affect the final result. Uncertain collisions are marked explicitly. Reports are private and available for 24 hours on this site only."
+msgstr "მშრალი გაშვება არ ცვლის მონაცემთა ბაზას. შემოთავაზებული URL არის შეფასებები არსებული მონაცემთა ბაზის გამოყენებით; მშობლის ცვლილებები, კონკურენტი შლაკები და მესამე მხარის შენახვა ან პერმალინკის ფილტრები შეიძლება გავლენა იქონიოს საბოლოო შედეგზე. გაურკვეველი შეჯახებები მონიშნულია აშკარად. მოხსენებები პირადია და ხელმისაწვდომია მხოლოდ ამ საიტზე 24 საათის განმავლობაში."
+
+#: classes/settings/page-permalinks.php:19
+msgid "For advanced users, post permalink conversion is also available via WP-CLI using the command"
+msgstr "მოწინავე მომხმარებლებისთვის, პოსტის პერმალინკის კონვერტაცია ასევე ხელმისაწვდომია WP-CLI-ის საშუალებით ბრძანების გამოყენებით"
+
+#: classes/settings/page-permalinks.php:25
+msgid "Important: Make sure to %s before applying changes."
+msgstr "მნიშვნელოვანია: ცვლილებების გამოყენებამდე დარწმუნდით, რომ %s."
+
+#: classes/settings/page-permalinks.php:33
+msgid "Post Types"
+msgstr "პოსტის ტიპები"
+
+#: classes/settings/page-permalinks.php:64
+msgid "Taxonomies"
+msgstr "ტაქსონომიები"
+
+#: classes/settings/page-permalinks.php:84
+msgid "Dry Run"
+msgstr "საცდელი გაშვება (ცვლილებების გარეშე)"
+
+#: classes/settings/page-permalinks.php:85
+msgid "Convert / Apply permalinks"
+msgstr "პერმალინკების კონვერტაცია / გამოყენება"
+
+#: classes/settings/page-permalinks.php:88
+msgid "I have a backup and understand that applying changes can change existing URLs."
+msgstr "მე მაქვს სარეზერვო ასლი და მესმის, რომ ცვლილებების გამოყენებით შესაძლებელია არსებული URL-ების შეცვლა."
+
+#: classes/settings/page-permalinks.php:98
+msgid "Resume / Retry last operation"
+msgstr "განაახლეთ / სცადეთ ბოლო ოპერაცია"
+
+#: classes/settings/page-permalinks.php:99
+msgid "Clear saved operation progress"
+msgstr "შენახული ოპერაციის პროგრესის გასუფთავება"
+
+#: classes/settings/page-permalinks.php:101
+msgid "This clears only the operation progress saved in this browser. It does not undo any slug changes that were already applied."
+msgstr "ეს გაასუფთავებს მხოლოდ ამ ბრაუზერში შენახულ ოპერაციის პროგრესს. უკვე გამოყენებული სლაგების ცვლილებები არ გაუქმდება."
+
+#: classes/settings/page-permalinks.php:104
+msgid "Download redirect CSV"
+msgstr "ჩამოტვირთეთ გადამისამართების CSV"
+
+#: classes/settings/page-permalinks.php:105
+msgid "Download full operation report"
+msgstr "ჩამოტვირთეთ ოპერაციის სრული ანგარიში"
+
+#: classes/settings/page-permalinks.php:108
+msgid "Most recent batch (up to 50 objects). The full operation report contains every candidate. Status codes: unchanged, will_change, collision_adjusted, potential_collision, changed, skipped, invalid, failed, conflict, url_only_change. Estimated URLs are not guaranteed redirects."
+msgstr "უახლესი პარტია (50-მდე ობიექტი). ოპერაციის სრული ანგარიში შეიცავს ყველა კანდიდატს. სტატუსის კოდები: unchanged, will_change, collision_adjusted, potential_collision, changed, skipped, invalid, failed, conflict, url_only_change. სავარაუდო URL-ები გარანტირებული გადამისამართებები არ არის."
+
+#: classes/settings/page-permalinks.php:112
+msgid "Object type"
+msgstr "ობიექტის ტიპი"
+
+#: classes/settings/page-permalinks.php:112
+msgid "ID"
+msgstr "ID"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Post type / Taxonomy"
+msgstr "პოსტის ტიპი / ტაქსონომია"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Title / Name"
+msgstr "სათაური / სახელი"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Old slug"
+msgstr "ძველი სლაგი"
+
+#: classes/settings/page-permalinks.php:112
+msgid "New slug"
+msgstr "ახალი სლაგი"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Old URL"
+msgstr "ძველი URL"
+
+#: classes/settings/page-permalinks.php:112
+msgid "New URL (estimated in dry run)"
+msgstr "ახალი URL (სავარაუდოდ მშრალი გაშვებით)"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Status"
+msgstr "სტატუსი"
+
+#: classes/settings/page-permalinks.php:112
+msgid "URL certainty"
+msgstr "URL-ის სანდოობა"
+
+#: classes/settings.php:180
+msgid "The request failed. Use Resume / Retry to continue the same operation safely."
+msgstr "მოთხოვნა ვერ მოხერხდა. გამოიყენეთ Resume / Retry იგივე ოპერაციის უსაფრთხოდ გასაგრძელებლად."
+
+#: classes/settings.php:181
+msgid "Select at least one post type or taxonomy."
+msgstr "აირჩიეთ პოსტის ერთი ტიპი ან ტაქსონომია."
+
+#: classes/settings.php:183
+msgid "Objects: %1$s. Slugs changed: %2$s. Redirects: %3$s. Issues requiring review: %4$s."
+msgstr "ობიექტები: %1$s. შეცვლილი სლაგები: %2$s. გადამისამართებები: %3$s. შესამოწმებელი საკითხები: %4$s."
+
+#: classes/settings.php:184
+msgid "No qualifying URL changes; no redirect CSV was generated."
+msgstr "არ არის შესარჩევი URL ცვლილებები; გადამისამართების CSV არ შეიქმნა."
+
+#: classes/wp-cli.php
+msgid "Cannot write the CSV report to %s."
+msgstr "CSV ანგარიშის %s-ში ჩაწერა ვერ მოხერხდა."
+
+#: classes/wp-cli.php
+msgid "The shared permalink migration supports Cyrillic-to-Latin slugs only."
+msgstr "მუდმივი ბმულების საერთო მიგრაცია მხოლოდ კირილიციდან ლათინურად სლაგების ტრანსლიტერაციას მხარს უჭერს."
+
+#: classes/wp-cli.php
+msgid "This will change existing URLs. Confirm that you have a backup and want to continue."
+msgstr "ეს შეცვლის არსებულ URL მისამართებს. დაადასტურეთ, რომ გაქვთ სარეზერვო ასლი და გსურთ გაგრძელება."
+
+#: classes/wp-cli.php
+msgid "Operation ID: %s"
+msgstr "ოპერაციის ID: %s"
+
+#: classes/wp-cli.php
+msgid "Full report: %s"
+msgstr "სრული ანგარიში: %s"
+
+#: classes/wp-cli.php
+msgid "Redirect report: %s"
+msgstr "გადამისამართების ანგარიში: %s"

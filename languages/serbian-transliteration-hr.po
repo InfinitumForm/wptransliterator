@@ -2506,3 +2506,247 @@ msgstr "Trenutačni REST zahtjev"
 #: classes/settings/page-debug.php:58
 msgid "Current AJAX request"
 msgstr "Trenutačni AJAX zahtjev"
+
+#: classes/permalink-job.php:41
+msgid "Permission denied or expired nonce. Refresh the page and try again."
+msgstr "Dopuštenje je odbijeno ili isteklo jednom. Osvježite stranicu i pokušajte ponovno."
+
+#: classes/permalink-job.php:49
+msgid "The selection contains an unavailable post type or taxonomy."
+msgstr "Odabir sadrži nedostupnu vrstu posta ili taksonomiju."
+
+#: classes/permalink-job.php:76
+msgid "A writable private system temporary directory is required."
+msgstr "Potreban je privremeni imenik privatnog sustava u koji se može pisati."
+
+#: classes/permalink-job.php:81
+msgid "The system temporary directory must be outside the public web directory."
+msgstr "Privremeni imenik sustava mora biti izvan javnog web imenika."
+
+#: classes/permalink-job.php:92
+msgid "The operation has expired or its journal is unavailable."
+msgstr "Operacija je istekla ili njezin dnevnik nije dostupan."
+
+#: classes/permalink-job.php:103 classes/permalink-job.php:109
+msgid "Cannot save the operation journal. Check temporary disk space and retry."
+msgstr "Nije moguće spremiti operativni dnevnik. Provjerite privremeni prostor na disku i pokušajte ponovno."
+
+#: classes/permalink-job.php:148 classes/permalink-job.php:187
+msgid "Cannot create the private operation directory."
+msgstr "Nije moguće stvoriti direktorij privatnih operacija."
+
+#: classes/permalink-job.php:158
+msgid "Another permalink request is running. Retry in a moment."
+msgstr "U tijeku je još jedan zahtjev za trajnu vezu. Pokušajte ponovno za trenutak."
+
+#: classes/permalink-job.php:166
+msgid "Invalid operation identifier."
+msgstr "Nevažeći identifikator operacije."
+
+#: classes/permalink-job.php:174
+msgid "Select at least one post type or taxonomy and confirm URL changes before applying."
+msgstr "Odaberite barem jednu vrstu posta ili taksonomiju i potvrdite promjene URL-a prije prijave."
+
+#: classes/permalink-job.php:194
+msgid "The operation has expired. Download reports within 24 hours and start a new operation if needed."
+msgstr "Operacija je istekla. Preuzmite izvješća u roku od 24 sata i po potrebi pokrenite novu operaciju."
+
+#: classes/permalink-job.php:198
+msgid "A selected post type or taxonomy is no longer available."
+msgstr "Odabrana vrsta objave ili taksonomija više nije dostupna."
+
+#: classes/permalink-job.php:209
+msgid "Permalink operations require a POST request."
+msgstr "Operacije stalne veze zahtijevaju POST zahtjev."
+
+#: classes/permalink-job.php:216
+msgid "Invalid batch sequence."
+msgstr "Nevažeći skupni niz."
+
+#: classes/permalink-job.php:227
+msgid "Another migration is active. Resume it or wait for its 24-hour expiry."
+msgstr "Još jedna migracija je aktivna. Nastavite ili pričekajte da istekne 24 sata."
+
+#: classes/permalink-job.php:232
+msgid "Invalid batch sequence. Resume the last acknowledged batch."
+msgstr "Nevažeći skupni niz. Nastavak zadnje potvrđene serije."
+
+#: classes/permalink-job.php:520
+msgid "Dry run complete. No database changes were made."
+msgstr "Suhi rad završen. Nisu napravljene izmjene baze podataka."
+
+#: classes/permalink-job.php:520
+msgid "Dry run: inspecting existing slugs. No database changes."
+msgstr "Suhi rad: pregled postojećih puževa. Nema promjena baze podataka."
+
+#: classes/permalink-job.php:521
+msgid "Migration complete. Review the results and download the redirect CSV."
+msgstr "Migracija dovršena. Pregledajte rezultate i preuzmite CSV za preusmjeravanje."
+
+#: classes/permalink-job.php:521
+msgid "Recording original URLs before making changes."
+msgstr "Snimanje izvornih URL-ova prije izmjena."
+
+#: classes/permalink-job.php:521
+msgid "Applying slug changes."
+msgstr "Primjena slag promjena."
+
+#: classes/permalink-job.php:521
+msgid "Resolving final URLs after all slug changes."
+msgstr "Razrješavanje završnih URL-ova nakon svih izmjena slogova."
+
+#: classes/permalink-job.php:544
+msgid "Finish the operation before downloading its report. Redirect CSV is available only for changed URLs."
+msgstr "Završite operaciju prije preuzimanja izvješća. CSV za preusmjeravanje dostupan je samo za promijenjene URL-ove."
+
+#: classes/permalink-job.php:557
+msgid "Cannot open the CSV download stream."
+msgstr "Nije moguće otvoriti tok preuzimanja CSV-a."
+
+#: classes/settings/page-permalinks.php:11
+msgid "Applying slug changes alters existing URLs and may cause 404 errors without redirects. Dry Run does not apply changes."
+msgstr "Primjena slag promjena mijenja postojeće URL-ove i može uzrokovati pogreške 404 bez preusmjeravanja. Dry Run ne primjenjuje promjene."
+
+#: classes/settings/page-permalinks.php:15
+msgid "WordPress does not automatically redirect old taxonomy term URLs. Download the redirect CSV after conversion and import it into your redirect system. This tool does not install redirects."
+msgstr "WordPress ne preusmjerava automatski URL-ove pojmova stare taksonomije. Preuzmite CSV za preusmjeravanje nakon konverzije i uvezite ga u svoj sustav za preusmjeravanje. Ovaj alat ne instalira preusmjeravanja."
+
+#: classes/settings/page-permalinks.php:16
+msgid "Changing a parent slug can also change descendant and related post URLs. The redirect CSV includes selected objects whose own slug and URL changed; URLs affected only by a parent or category change require a separate redirect review."
+msgstr "Promjena nadređenog puža također može promijeniti URL-ove potomka i povezanih postova. CSV za preusmjeravanje uključuje odabrane objekte čiji su vlastiti slug i URL promijenjeni; URL-ovi na koje utječe samo roditelj ili promjena kategorije zahtijevaju poseban pregled preusmjeravanja."
+
+#: classes/settings/page-permalinks.php:17
+msgid "Dry run does not change the database. Proposed URLs are estimates using the current database; parent changes, competing slugs and third-party save or permalink filters can affect the final result. Uncertain collisions are marked explicitly. Reports are private and available for 24 hours on this site only."
+msgstr "Dry run ne mijenja bazu podataka. Predloženi URL-ovi su procjene korištenjem trenutne baze podataka; nadređene promjene, konkurentski puževi i filtri za spremanje ili stalne veze trećih strana mogu utjecati na konačni rezultat. Nesigurni sudari su eksplicitno označeni. Izvješća su privatna i dostupna 24 sata samo na ovoj stranici."
+
+#: classes/settings/page-permalinks.php:19
+msgid "For advanced users, post permalink conversion is also available via WP-CLI using the command"
+msgstr "Za napredne korisnike, post permalink konverzija također je dostupna putem WP-CLI-ja pomoću naredbe"
+
+#: classes/settings/page-permalinks.php:25
+msgid "Important: Make sure to %s before applying changes."
+msgstr "Važno: provjerite %s prije primjene promjena."
+
+#: classes/settings/page-permalinks.php:33
+msgid "Post Types"
+msgstr "Vrste postova"
+
+#: classes/settings/page-permalinks.php:64
+msgid "Taxonomies"
+msgstr "Taksonomije"
+
+#: classes/settings/page-permalinks.php:84
+msgid "Dry Run"
+msgstr "Probno pokretanje (bez izmjena)"
+
+#: classes/settings/page-permalinks.php:85
+msgid "Convert / Apply permalinks"
+msgstr "Pretvori / primijeni stalne veze"
+
+#: classes/settings/page-permalinks.php:88
+msgid "I have a backup and understand that applying changes can change existing URLs."
+msgstr "Imam sigurnosnu kopiju i razumijem da se primjenom promjena mogu promijeniti postojeći URL-ovi."
+
+#: classes/settings/page-permalinks.php:98
+msgid "Resume / Retry last operation"
+msgstr "Nastavi/ponovo pokušaj posljednju operaciju"
+
+#: classes/settings/page-permalinks.php:99
+msgid "Clear saved operation progress"
+msgstr "Izbriši spremljeni napredak operacije"
+
+#: classes/settings/page-permalinks.php:101
+msgid "This clears only the operation progress saved in this browser. It does not undo any slug changes that were already applied."
+msgstr "Time se briše samo napredak operacije spremljen u ovom pregledniku. Već primijenjene promjene slugova neće se poništiti."
+
+#: classes/settings/page-permalinks.php:104
+msgid "Download redirect CSV"
+msgstr "Preuzmite CSV za preusmjeravanje"
+
+#: classes/settings/page-permalinks.php:105
+msgid "Download full operation report"
+msgstr "Preuzmite cijelo izvješće o radu"
+
+#: classes/settings/page-permalinks.php:108
+msgid "Most recent batch (up to 50 objects). The full operation report contains every candidate. Status codes: unchanged, will_change, collision_adjusted, potential_collision, changed, skipped, invalid, failed, conflict, url_only_change. Estimated URLs are not guaranteed redirects."
+msgstr "Najnovija serija (do 50 objekata). Cjelovito izvješće o radu sadrži svakog kandidata. Statusni kodovi: unchanged, will_change, collision_adjusted, potential_collision, changed, skipped, invalid, failed, conflict, url_only_change. Procijenjeni URL-ovi nisu zajamčena preusmjeravanja."
+
+#: classes/settings/page-permalinks.php:112
+msgid "Object type"
+msgstr "Vrsta objekta"
+
+#: classes/settings/page-permalinks.php:112
+msgid "ID"
+msgstr "ID"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Post type / Taxonomy"
+msgstr "Vrsta posta / Taksonomija"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Title / Name"
+msgstr "Naslov / ime"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Old slug"
+msgstr "Stari slug"
+
+#: classes/settings/page-permalinks.php:112
+msgid "New slug"
+msgstr "Novi slug"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Old URL"
+msgstr "Stari URL"
+
+#: classes/settings/page-permalinks.php:112
+msgid "New URL (estimated in dry run)"
+msgstr "Novi URL (procijenjeno u suhom radu)"
+
+#: classes/settings/page-permalinks.php:112
+msgid "Status"
+msgstr "Status"
+
+#: classes/settings/page-permalinks.php:112
+msgid "URL certainty"
+msgstr "URL sigurnost"
+
+#: classes/settings.php:180
+msgid "The request failed. Use Resume / Retry to continue the same operation safely."
+msgstr "Zahtjev nije uspio. Upotrijebite Nastavi / Pokušaj ponovo za siguran nastavak iste operacije."
+
+#: classes/settings.php:181
+msgid "Select at least one post type or taxonomy."
+msgstr "Odaberite barem jednu vrstu posta ili taksonomiju."
+
+#: classes/settings.php:183
+msgid "Objects: %1$s. Slugs changed: %2$s. Redirects: %3$s. Issues requiring review: %4$s."
+msgstr "Objekti: %1$s. Promijenjeni slugovi: %2$s. Preusmjeravanja: %3$s. Stavke za provjeru: %4$s."
+
+#: classes/settings.php:184
+msgid "No qualifying URL changes; no redirect CSV was generated."
+msgstr "Nema kvalificirajućih promjena URL-a; CSV za preusmjeravanje nije generiran."
+
+#: classes/wp-cli.php
+msgid "Cannot write the CSV report to %s."
+msgstr "Nije moguće zapisati CSV izvješće u %s."
+
+#: classes/wp-cli.php
+msgid "The shared permalink migration supports Cyrillic-to-Latin slugs only."
+msgstr "Zajednička migracija stalnih poveznica podržava samo transliteraciju slugova iz ćirilice u latinicu."
+
+#: classes/wp-cli.php
+msgid "This will change existing URLs. Confirm that you have a backup and want to continue."
+msgstr "Ovo će promijeniti postojeće URL adrese. Potvrdite da imate sigurnosnu kopiju i da želite nastaviti."
+
+#: classes/wp-cli.php
+msgid "Operation ID: %s"
+msgstr "ID operacije: %s"
+
+#: classes/wp-cli.php
+msgid "Full report: %s"
+msgstr "Cjelovito izvješće: %s"
+
+#: classes/wp-cli.php
+msgid "Redirect report: %s"
+msgstr "Izvješće preusmjeravanja: %s"

@@ -15,120 +15,96 @@ if (class_exists('WP_CLI_Command')):
     class Transliteration_Wp_Cli extends WP_CLI_Command
     {
         /**
-         * This tool can rename all existing Cyrillic permalinks to Latin inside database
+         * Preview or transliterate existing post and taxonomy slugs to Latin.
          *
          * ## OPTIONS
          *
-         *     --script=<lat|cyr>    (optional) Change transliteration type (Latin or Cyrillic)
-         *                                      If it is set to "cyr", then it will translate permalinks
-         *                                      from Latin to Cyrillic
-         *     --batch_size=500      (optional) Number of records to process in each batch.
-         *                                              This helps in managing memory usage and server load.
+         * [--dry-run]
+         * : Inspect every selected object without changing the database.
+         *
+         * [--post-types=<post-types>]
+         * : Comma-separated public post types. Defaults to all public post types.
+         *
+         * [--taxonomies=<taxonomies>]
+         * : Comma-separated viewable taxonomies. Defaults to all supported taxonomies.
+         *
+         * [--batch-size=<number>]
+         * : Objects per batch. Defaults to 500 and is limited to 1-1000.
+         *
+         * [--report=<path>]
+         * : Write the complete CSV report to this path.
+         *
+         * [--redirects=<path>]
+         * : Write changed old/new URLs to this CSV path after applying changes.
+         *
+         * [--resume=<operation-id>]
+         * : Resume an interrupted operation using its printed operation ID.
+         *
+         * [--yes]
+         * : Apply changes without an interactive confirmation.
          *
          * ## EXAMPLES
          *
-         *     wp transliterate permalinks                  Translate permalinks from Cyrillic to Latin
-         *     wp transliterate permalinks --script=cyr     Translate permalinks from Latin to Cyrillic
+         *     wp transliterate permalinks --dry-run --report=permalink-report.csv
+         *     wp transliterate permalinks --post-types=post,page --taxonomies=category --yes
+         *     wp transliterate permalinks --resume=<operation-id> --yes
          *
          * @when after_wp_load
          */
         public function permalinks($args, $assoc_args): void
         {
-            global $wpdb;
-
-            $batch_size = apply_filters('transliteration_cli_permalink_transliteration_batch_size', 500);
-
-            $updated    = 0;
-            $batch_size = absint($assoc_args['batch_size'] ?? $batch_size);
-
-            $type = $assoc_args['script'] ?? 'lat';
-            $type = 'cyr' === $type ? 'lat_to_cyr' : 'cyr_to_lat';
-
-            $get_post_types = get_post_types([
-                'public' => true,
-            ], 'names', 'and');
-
-			$post_type = implode(', ', $get_post_types);
-
-
-			$total = $wpdb->get_var($wpdb->prepare("SELECT COUNT(`ID`) FROM `{$wpdb->posts}` WHERE FIND_IN_SET(`post_type`, %s) AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash'", $post_type));
-
-            if ($total > 0) {
-                $inst = Transliteration_Controller::get();
-                WP_CLI::log(PHP_EOL . PHP_EOL);
-                WP_CLI::log(__('Please wait! Do not close the terminal or terminate the script until this operation is completed!', 'serbian-transliteration'));
-
-                $progress = \WP_CLI\Utils\make_progress_bar(__('Progress:', 'serbian-transliteration'), $total);
-
-                for ($offset = 0; $offset < $total; $offset += $batch_size) {
-					$get_results = $wpdb->get_results($wpdb->prepare(
-						"SELECT `ID`, `post_name`, `post_title` FROM `{$wpdb->posts}` WHERE FIND_IN_SET(`post_type`, %s) AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash' ORDER BY `ID` DESC LIMIT %d OFFSET %d",
-						$post_type,
-						$batch_size,
-                        $offset
-                    ));
-
-                    if ($get_results) {
-                        $get_results = array_map(function ($match) use (&$wpdb, &$inst, &$updated, &$type, &$progress): void {
-                            $progress->tick();
-
-                            $old_post_name = $match->post_name;
-
-                            $match->post_name = Transliteration_Utilities::decode($match->post_name);
-                            if ('lat_to_cyr' === $type) {
-                                $match->post_name = $inst->lat_to_cyr($match->post_name, false, true);
-                            } else {
-                                $match->post_name = $inst->cyr_to_lat_sanitize($match->post_name);
-                            }
-
-                            if ($wpdb->update(
-                                $wpdb->posts,
-                                [
-                                    'post_name' => $match->post_name,
-                                ],
-                                [
-                                    'ID' => $match->ID,
-                                ],
-                                [
-                                    '%s',
-                                ],
-                                [
-                                    '%d',
-                                ]
-                            )) {
-                                delete_post_meta($match->ID, '_wp_old_slug');
-
-                                if ('lat_to_cyr' === $type) {
-                                    update_post_meta($match->ID, '_wp_cyr_slug', $inst->lat_to_cyr($match->post_name));
-                                    update_post_meta($match->ID, '_wp_lat_slug', $inst->cyr_to_lat_sanitize($old_post_name));
-                                } else {
-                                    update_post_meta($match->ID, '_wp_cyr_slug', $inst->lat_to_cyr($old_post_name));
-                                    update_post_meta($match->ID, '_wp_lat_slug', $inst->cyr_to_lat_sanitize($match->post_name));
-                                }
-
-								++$updated;
-								WP_CLI::success(sprintf(
-									/* translators: 1: Post ID. 2: Post title. 3: Post permalink. */
-									__('Updated page ID %1$d, (%2$s) at URL: %3$s', 'serbian-transliteration'),
-                                    $match->ID,
-                                    $match->post_title,
-                                    get_the_permalink($match->ID)
-                                ));
-                            }
-                        }, $get_results);
-                    }
+            if (isset($assoc_args['script']) && 'lat' !== $assoc_args['script']) {
+                WP_CLI::error(__('The shared permalink migration supports Cyrillic-to-Latin slugs only.', 'serbian-transliteration'));
+            }
+            $resume = isset($assoc_args['resume']) ? sanitize_text_field((string) $assoc_args['resume']) : '';
+            $mode = isset($assoc_args['dry-run']) ? 'dry_run' : 'apply';
+            if ('apply' === $mode) {
+                WP_CLI::confirm(__('This will change existing URLs. Confirm that you have a backup and want to continue.', 'serbian-transliteration'), $assoc_args);
+            }
+            $split = static function ($value): array {
+                return array_values(array_filter(array_map('sanitize_key', explode(',', (string) $value)), 'strlen'));
+            };
+            $batch_size = absint($assoc_args['batch-size'] ?? ($assoc_args['batch_size'] ?? apply_filters('transliteration_cli_permalink_transliteration_batch_size', 500)));
+            $options = [
+                'mode' => $mode,
+                'posts' => isset($assoc_args['post-types']) ? $split($assoc_args['post-types']) : array_keys(get_post_types(['public' => true], 'objects')),
+                'taxonomies' => isset($assoc_args['taxonomies']) ? $split($assoc_args['taxonomies']) : array_keys(Transliteration_Permalink_Job::taxonomies()),
+                'size' => max(1, min(1000, $batch_size)),
+            ];
+            foreach (['report', 'redirects'] as $output) {
+                if (!empty($assoc_args[$output])) {
+                    $options[$output] = (string) $assoc_args[$output];
                 }
-
-                $progress->finish();
-                WP_CLI::log(PHP_EOL . PHP_EOL);
             }
-
-			if ($updated > 0) {
-				/* translators: %d: Number of permalinks updated. */
-				WP_CLI::success(sprintf(_n('%d permalink was successfully transliterated.', '%d permalinks were successfully transliterated.', $updated, 'serbian-transliteration'), $updated));
-            } else {
-                WP_CLI::error(__('No changes to the permalink have been made.', 'serbian-transliteration'), false);
+            if ('' !== $resume) {
+                $options['token'] = $resume;
             }
+            $last_percentage = -1;
+            $operation_id = '';
+            try {
+                $result = Transliteration_Permalink_Job::run_cli($options, static function (array $state) use (&$last_percentage, &$operation_id): void {
+                    if ('' === $operation_id) {
+                        $operation_id = $state['token'];
+                        WP_CLI::log(sprintf(__('Operation ID: %s', 'serbian-transliteration'), $operation_id));
+                    }
+                    $percentage = (int) floor($state['percentage'] / 10) * 10;
+                    if ($percentage !== $last_percentage) {
+                        $last_percentage = $percentage;
+                        WP_CLI::log(sprintf('%d%% — %s', min(100, $percentage), $state['message']));
+                    }
+                });
+            } catch (Throwable $error) {
+                WP_CLI::error($error->getMessage());
+                return;
+            }
+            WP_CLI::log(sprintf(__('Objects: %1$s. Slugs changed: %2$s. Redirects: %3$s. Issues requiring review: %4$s.', 'serbian-transliteration'), $result['total'], $result['updated'], $result['redirects'], $result['issues']));
+            if (!empty($options['report'])) {
+                WP_CLI::log(sprintf(__('Full report: %s', 'serbian-transliteration'), $options['report']));
+            }
+            if (!empty($options['redirects']) && $result['redirects'] > 0) {
+                WP_CLI::log(sprintf(__('Redirect report: %s', 'serbian-transliteration'), $options['redirects']));
+            }
+            WP_CLI::success($result['message']);
         }
     }
 endif;
