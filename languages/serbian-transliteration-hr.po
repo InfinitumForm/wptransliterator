@@ -453,7 +453,7 @@ msgstr "JavaScript dinamička transliteracija"
 
 #: classes/settings-fields.php:231
 msgid "WP Admin"
-msgstr "WP Admin"
+msgstr "Administracija WordPressa"
 
 #: classes/settings-fields.php:238
 msgid "WP-Admin transliteration"
@@ -2605,7 +2605,7 @@ msgstr "Nije moguće otvoriti tok preuzimanja CSV-a."
 
 #: classes/settings/page-permalinks.php:11
 msgid "Applying slug changes alters existing URLs and may cause 404 errors without redirects. Dry Run does not apply changes."
-msgstr "Primjena slag promjena mijenja postojeće URL-ove i može uzrokovati pogreške 404 bez preusmjeravanja. Dry Run ne primjenjuje promjene."
+msgstr "Primjena promjena slugova mijenja postojeće URL-ove i može uzrokovati pogreške 404 bez preusmjeravanja. Probna provjera ne primjenjuje promjene."
 
 #: classes/settings/page-permalinks.php:15
 msgid "WordPress does not automatically redirect old taxonomy term URLs. Download the redirect CSV after conversion and import it into your redirect system. This tool does not install redirects."
@@ -2750,3 +2750,179 @@ msgstr "Cjelovito izvješće: %s"
 #: classes/wp-cli.php
 msgid "Redirect report: %s"
 msgstr "Izvješće preusmjeravanja: %s"
+
+#: classes/settings/page-functions.php:161 classes/settings/page-shortcodes.php:71
+msgid "(string) Separator to be used when the selector type is %1$s. Default: %2$s"
+msgstr "(string) Razdjelnik koji se koristi kada je vrsta birača %1$s. Zadano: %2$s"
+
+#: classes/blocks.php:43
+msgid "Choose your display type:"
+msgstr "Odaberite vrstu prikaza:"
+
+#: classes/blocks.php:54
+msgid "Cyrillic caption:"
+msgstr "Natpis za ćirilicu:"
+
+#: classes/blocks.php:47
+msgid "Inline"
+msgstr "U retku"
+
+#: classes/blocks.php:55
+msgid "Latin Caption:"
+msgstr "Natpis za latinicu:"
+
+#: classes/blocks.php:49
+msgid "List"
+msgstr "Popis"
+
+#: classes/blocks.php:50
+msgid "List items"
+msgstr "Stavke popisa"
+
+#: classes/utilities.php:58
+msgid "Macedonian"
+msgstr "Makedonski"
+
+#: classes/blocks.php:45
+msgid "Script Selector"
+msgstr "Birač pisma"
+
+#: classes/blocks.php:48
+msgid "Select"
+msgstr "Odabir"
+
+#: classes/blocks.php:53
+msgid "Separator:"
+msgstr "Razdjelnik:"
+
+#: classes/settings-sidebars.php:41
+msgid "Support via Ko-fi"
+msgstr "Podržite putem Ko-fi"
+
+#: classes/notifications.php:277
+msgid "Visit %1$s to connect with skilled professionals across the region. Whether you need a project completed or are looking for work, our platform is your gateway to successful collaboration."
+msgstr "Posjetite %1$s i povežite se s iskusnim stručnjacima iz cijele regije. Trebate li dovršiti projekt ili tražite posao, naša platforma otvara put uspješnoj suradnji."
+
+#: classes/utilities.php:64
+msgid "Bashkir"
+msgstr "Baškirski"
+
+#: classes/utilities.php:56
+msgid "Belarusian"
+msgstr "Bjeloruski"
+
+#: classes/utilities.php:52
+msgid "Bosnian"
+msgstr "Bosanski"
+
+#: classes/utilities.php:57
+msgid "Bulgarian"
+msgstr "Bugarski"
+
+#: classes/utilities.php:54
+msgid "Croatian"
+msgstr "Hrvatski"
+
+#: classes/utilities.php:66
+msgid "Georgian"
+msgstr "Gruzijski"
+
+#: classes/utilities.php:67
+msgid "Greek"
+msgstr "Grčki"
+
+#: classes/utilities.php:60
+msgid "Kazakh"
+msgstr "Kazaški"
+
+#: classes/utilities.php:62
+msgid "Kyrgyz"
+msgstr "Kirgiski"
+
+#: classes/utilities.php:63
+msgid "Mongolian"
+msgstr "Mongolski"
+
+#: classes/utilities.php:53
+msgid "Montenegrin"
+msgstr "Crnogorski"
+
+#: classes/utilities.php:55
+msgid "Russian"
+msgstr "Ruski"
+
+#: classes/utilities.php:51
+msgid "Serbian"
+msgstr "Srpski"
+
+#: classes/utilities.php:61
+msgid "Tajik"
+msgstr "Tadžički"
+
+#: classes/utilities.php:59
+msgid "Ukrainian"
+msgstr "Ukrajinski"
+
+#: classes/utilities.php:65
+msgid "Uzbek"
+msgstr "Uzbečki"
+
+#: functions.php:98
+msgid "This function is deprecated and will be removed. Replace it with the `get_script()` function"
+msgstr "Ova je funkcija zastarjela i bit će uklonjena. Zamijenite je funkcijom `get_script()`"
+
+#: classes/settings-sidebars.php:423
+msgid "AIDisclara – AI Image Disclosure"
+msgstr "AIDisclara – označavanje AI slika"
+
+#: classes/settings-sidebars.php:425
+msgid "Declare AI-generated Media Library images and display configurable disclosure labels."
+msgstr "Označite slike iz medijske zbirke izrađene umjetnom inteligencijom i prikažite podesive oznake obavijesti."
+
+#: classes/settings-sidebars.php:427
+msgid "MarkuClean – Remove AI Artifacts, Unicode & Copy-Paste Characters"
+msgstr "MarkuClean – uklanjanje AI artefakata, Unicode i copy-paste znakova"
+
+#: classes/settings-sidebars.php:429
+msgid "Clean AI-generated text, broken characters, Unicode issues, invisible characters and messy copy-paste markup."
+msgstr "Očistite tekst izrađen umjetnom inteligencijom, oštećene znakove, Unicode probleme, nevidljive znakove i neuredan copy-paste markup."
+
+#: classes/settings-sidebars.php:431
+msgid "Easy Auto Reload – Auto Refresh"
+msgstr "Easy Auto Reload – automatsko osvježavanje"
+
+#: classes/settings-sidebars.php:433
+msgid "Auto-refresh your WordPress pages after user inactivity. Keep sessions alive and dashboards fresh."
+msgstr "Automatski osvježavajte WordPress stranice nakon neaktivnosti korisnika. Održite sesije aktivnima i nadzorne ploče ažurnima."
+
+#: classes/settings-sidebars.php:435
+msgid "Geo Controller"
+msgstr "Geo Controller"
+
+#: classes/settings-sidebars.php:437
+msgid "Enhance your WordPress site with geolocation controls, maps, currencies and location-aware content."
+msgstr "Unaprijedite WordPress web-stranicu geolokacijskim kontrolama, kartama, valutama i sadržajem prilagođenim lokaciji."
+
+#: classes/settings-sidebars.php:439
+msgid "Admin Category Filter"
+msgstr "Administratorski filtar kategorija"
+
+#: classes/settings-sidebars.php:441
+msgid "Filter posts and custom post types by category directly in the WordPress admin list."
+msgstr "Filtrirajte objave i prilagođene vrste objava po kategoriji izravno u WordPress administratorskom popisu."
+
+#: classes/settings-sidebars.php:443
+msgid "Cyr-To-Lat"
+msgstr "Cyr-To-Lat"
+
+#: classes/settings-sidebars.php:445
+msgid "Convert Cyrillic characters in posts, pages, terms and filenames into Latin characters."
+msgstr "Pretvorite ćirilične znakove u objavama, stranicama, pojmovima i nazivima datoteka u latinicu."
+
+#: classes/settings-sidebars.php:447
+msgid "Onionify"
+msgstr "Onionify"
+
+#: classes/settings-sidebars.php:449
+msgid "Show Onion-Location headers and Tor access information for sites available through an onion service."
+msgstr "Prikažite Onion-Location zaglavlja i Tor informacije za pristup web-stranicama dostupnima putem onion usluge."

@@ -2198,3 +2198,179 @@ msgstr ""
 #: classes/wp-cli.php
 msgid "Redirect report: %s"
 msgstr ""
+
+#: classes/settings/page-functions.php:161 classes/settings/page-shortcodes.php:71
+msgid "(string) Separator to be used when the selector type is %1$s. Default: %2$s"
+msgstr ""
+
+#: classes/utilities.php:64
+msgid "Bashkir"
+msgstr ""
+
+#: classes/utilities.php:56
+msgid "Belarusian"
+msgstr ""
+
+#: classes/utilities.php:52
+msgid "Bosnian"
+msgstr ""
+
+#: classes/utilities.php:57
+msgid "Bulgarian"
+msgstr ""
+
+#: classes/blocks.php:43
+msgid "Choose your display type:"
+msgstr ""
+
+#: classes/utilities.php:54
+msgid "Croatian"
+msgstr ""
+
+#: classes/blocks.php:54
+msgid "Cyrillic caption:"
+msgstr ""
+
+#: classes/utilities.php:66
+msgid "Georgian"
+msgstr ""
+
+#: classes/utilities.php:67
+msgid "Greek"
+msgstr ""
+
+#: classes/blocks.php:47
+msgid "Inline"
+msgstr ""
+
+#: classes/utilities.php:60
+msgid "Kazakh"
+msgstr ""
+
+#: classes/utilities.php:62
+msgid "Kyrgyz"
+msgstr ""
+
+#: classes/blocks.php:55
+msgid "Latin Caption:"
+msgstr ""
+
+#: classes/blocks.php:49
+msgid "List"
+msgstr ""
+
+#: classes/blocks.php:50
+msgid "List items"
+msgstr ""
+
+#: classes/utilities.php:58
+msgid "Macedonian"
+msgstr ""
+
+#: classes/utilities.php:63
+msgid "Mongolian"
+msgstr ""
+
+#: classes/utilities.php:53
+msgid "Montenegrin"
+msgstr ""
+
+#: classes/utilities.php:55
+msgid "Russian"
+msgstr ""
+
+#: classes/blocks.php:45
+msgid "Script Selector"
+msgstr ""
+
+#: classes/blocks.php:48
+msgid "Select"
+msgstr ""
+
+#: classes/blocks.php:53
+msgid "Separator:"
+msgstr ""
+
+#: classes/utilities.php:51
+msgid "Serbian"
+msgstr ""
+
+#: classes/settings-sidebars.php:41
+msgid "Support via Ko-fi"
+msgstr ""
+
+#: classes/utilities.php:61
+msgid "Tajik"
+msgstr ""
+
+#: functions.php:98
+msgid "This function is deprecated and will be removed. Replace it with the `get_script()` function"
+msgstr ""
+
+#: classes/utilities.php:59
+msgid "Ukrainian"
+msgstr ""
+
+#: classes/utilities.php:65
+msgid "Uzbek"
+msgstr ""
+
+#: classes/notifications.php:277
+msgid "Visit %1$s to connect with skilled professionals across the region. Whether you need a project completed or are looking for work, our platform is your gateway to successful collaboration."
+msgstr ""
+
+#: classes/settings-sidebars.php:423
+msgid "AIDisclara – AI Image Disclosure"
+msgstr ""
+
+#: classes/settings-sidebars.php:425
+msgid "Declare AI-generated Media Library images and display configurable disclosure labels."
+msgstr ""
+
+#: classes/settings-sidebars.php:427
+msgid "MarkuClean – Remove AI Artifacts, Unicode & Copy-Paste Characters"
+msgstr ""
+
+#: classes/settings-sidebars.php:429
+msgid "Clean AI-generated text, broken characters, Unicode issues, invisible characters and messy copy-paste markup."
+msgstr ""
+
+#: classes/settings-sidebars.php:431
+msgid "Easy Auto Reload – Auto Refresh"
+msgstr ""
+
+#: classes/settings-sidebars.php:433
+msgid "Auto-refresh your WordPress pages after user inactivity. Keep sessions alive and dashboards fresh."
+msgstr ""
+
+#: classes/settings-sidebars.php:435
+msgid "Geo Controller"
+msgstr ""
+
+#: classes/settings-sidebars.php:437
+msgid "Enhance your WordPress site with geolocation controls, maps, currencies and location-aware content."
+msgstr ""
+
+#: classes/settings-sidebars.php:439
+msgid "Admin Category Filter"
+msgstr ""
+
+#: classes/settings-sidebars.php:441
+msgid "Filter posts and custom post types by category directly in the WordPress admin list."
+msgstr ""
+
+#: classes/settings-sidebars.php:443
+msgid "Cyr-To-Lat"
+msgstr ""
+
+#: classes/settings-sidebars.php:445
+msgid "Convert Cyrillic characters in posts, pages, terms and filenames into Latin characters."
+msgstr ""
+
+#: classes/settings-sidebars.php:447
+msgid "Onionify"
+msgstr ""
+
+#: classes/settings-sidebars.php:449
+msgid "Show Onion-Location headers and Tor access information for sites available through an onion service."
+msgstr ""

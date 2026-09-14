@@ -2599,7 +2599,7 @@ msgstr "Није могуће отворити ЦСВ стрим за преуз
 
 #: classes/settings/page-permalinks.php:11
 msgid "Applying slug changes alters existing URLs and may cause 404 errors without redirects. Dry Run does not apply changes."
-msgstr "Примена измена заглавља мења постојеће УРЛ адресе и може изазвати грешке 404 без преусмеравања. Дри Рун не примењује промене."
+msgstr "Примена измена слагова мења постојеће URL адресе и може изазвати 404 грешке без преусмеравања. Пробна провера не примењује измене."
 
 #: classes/settings/page-permalinks.php:15
 msgid "WordPress does not automatically redirect old taxonomy term URLs. Download the redirect CSV after conversion and import it into your redirect system. This tool does not install redirects."
@@ -2744,3 +2744,179 @@ msgstr "Потпуни извештај: %s"
 #: classes/wp-cli.php
 msgid "Redirect report: %s"
 msgstr "Извештај преусмерења: %s"
+
+#: classes/settings/page-functions.php:161 classes/settings/page-shortcodes.php:71
+msgid "(string) Separator to be used when the selector type is %1$s. Default: %2$s"
+msgstr "(низ) Раздвајач који се користи када је тип бирача %1$s. Подразумевано: %2$s"
+
+#: classes/blocks.php:43
+msgid "Choose your display type:"
+msgstr "Изаберите начин приказа:"
+
+#: classes/blocks.php:54
+msgid "Cyrillic caption:"
+msgstr "Натпис за ћирилицу:"
+
+#: classes/blocks.php:47
+msgid "Inline"
+msgstr "У истом реду"
+
+#: classes/blocks.php:55
+msgid "Latin Caption:"
+msgstr "Натпис за латиницу:"
+
+#: classes/blocks.php:49
+msgid "List"
+msgstr "Листа"
+
+#: classes/blocks.php:50
+msgid "List items"
+msgstr "Ставке листе"
+
+#: classes/utilities.php:58
+msgid "Macedonian"
+msgstr "Македонски"
+
+#: classes/blocks.php:45
+msgid "Script Selector"
+msgstr "Бирач писма"
+
+#: classes/blocks.php:48
+msgid "Select"
+msgstr "Избор"
+
+#: classes/blocks.php:53
+msgid "Separator:"
+msgstr "Раздвајач:"
+
+#: classes/settings-sidebars.php:41
+msgid "Support via Ko-fi"
+msgstr "Подржите путем Ko-fi"
+
+#: classes/notifications.php:277
+msgid "Visit %1$s to connect with skilled professionals across the region. Whether you need a project completed or are looking for work, our platform is your gateway to successful collaboration."
+msgstr "Посетите %1$s да се повежете са искусним стручњацима из целог региона. Било да вам је потребно да завршите пројекат или тражите посао, наша платформа вам отвара пут ка успешној сарадњи."
+
+#: classes/utilities.php:64
+msgid "Bashkir"
+msgstr "Башкирски"
+
+#: classes/utilities.php:56
+msgid "Belarusian"
+msgstr "Белоруски"
+
+#: classes/utilities.php:52
+msgid "Bosnian"
+msgstr "Босански"
+
+#: classes/utilities.php:57
+msgid "Bulgarian"
+msgstr "Бугарски"
+
+#: classes/utilities.php:54
+msgid "Croatian"
+msgstr "Хрватски"
+
+#: classes/utilities.php:66
+msgid "Georgian"
+msgstr "Грузијски"
+
+#: classes/utilities.php:67
+msgid "Greek"
+msgstr "Грчки"
+
+#: classes/utilities.php:60
+msgid "Kazakh"
+msgstr "Казашки"
+
+#: classes/utilities.php:62
+msgid "Kyrgyz"
+msgstr "Киргиски"
+
+#: classes/utilities.php:63
+msgid "Mongolian"
+msgstr "Монголски"
+
+#: classes/utilities.php:53
+msgid "Montenegrin"
+msgstr "Црногорски"
+
+#: classes/utilities.php:55
+msgid "Russian"
+msgstr "Руски"
+
+#: classes/utilities.php:51
+msgid "Serbian"
+msgstr "Српски"
+
+#: classes/utilities.php:61
+msgid "Tajik"
+msgstr "Таџички"
+
+#: classes/utilities.php:59
+msgid "Ukrainian"
+msgstr "Украјински"
+
+#: classes/utilities.php:65
+msgid "Uzbek"
+msgstr "Узбечки"
+
+#: functions.php:98
+msgid "This function is deprecated and will be removed. Replace it with the `get_script()` function"
+msgstr "Ова функција је застарела и биће уклоњена. Замените је функцијом `get_script()`"
+
+#: classes/settings-sidebars.php:423
+msgid "AIDisclara – AI Image Disclosure"
+msgstr "AIDisclara – означавање АИ слика"
+
+#: classes/settings-sidebars.php:425
+msgid "Declare AI-generated Media Library images and display configurable disclosure labels."
+msgstr "Означите слике из библиотеке медија направљене вештачком интелигенцијом и прикажите подесиве ознаке обавештења."
+
+#: classes/settings-sidebars.php:427
+msgid "MarkuClean – Remove AI Artifacts, Unicode & Copy-Paste Characters"
+msgstr "MarkuClean – уклањање АИ артефаката, Unicode и copy-paste карактера"
+
+#: classes/settings-sidebars.php:429
+msgid "Clean AI-generated text, broken characters, Unicode issues, invisible characters and messy copy-paste markup."
+msgstr "Очистите текст направљен вештачком интелигенцијом, оштећене карактере, Unicode проблеме, невидљиве знакове и неуредан copy-paste markup."
+
+#: classes/settings-sidebars.php:431
+msgid "Easy Auto Reload – Auto Refresh"
+msgstr "Easy Auto Reload – аутоматско освежавање"
+
+#: classes/settings-sidebars.php:433
+msgid "Auto-refresh your WordPress pages after user inactivity. Keep sessions alive and dashboards fresh."
+msgstr "Аутоматски освежавајте WordPress странице након неактивности корисника. Одржите сесије активним и контролне табле ажурним."
+
+#: classes/settings-sidebars.php:435
+msgid "Geo Controller"
+msgstr "Geo Controller"
+
+#: classes/settings-sidebars.php:437
+msgid "Enhance your WordPress site with geolocation controls, maps, currencies and location-aware content."
+msgstr "Унапредите WordPress сајт геолокацијским контролама, мапама, валутама и садржајем прилагођеним локацији."
+
+#: classes/settings-sidebars.php:439
+msgid "Admin Category Filter"
+msgstr "Админ филтер категорија"
+
+#: classes/settings-sidebars.php:441
+msgid "Filter posts and custom post types by category directly in the WordPress admin list."
+msgstr "Филтрирајте чланке и прилагођене типове објава по категорији директно у WordPress админ листи."
+
+#: classes/settings-sidebars.php:443
+msgid "Cyr-To-Lat"
+msgstr "Cyr-To-Lat"
+
+#: classes/settings-sidebars.php:445
+msgid "Convert Cyrillic characters in posts, pages, terms and filenames into Latin characters."
+msgstr "Претворите ћириличне карактере у чланцима, страницама, терминима и називима датотека у латиницу."
+
+#: classes/settings-sidebars.php:447
+msgid "Onionify"
+msgstr "Onionify"
+
+#: classes/settings-sidebars.php:449
+msgid "Show Onion-Location headers and Tor access information for sites available through an onion service."
+msgstr "Прикажите Onion-Location заглавља и Tor информације за приступ сајтовима доступним преко onion сервиса."

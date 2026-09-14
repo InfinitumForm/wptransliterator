@@ -33,6 +33,12 @@ register_taxonomy('rstr_tree', 'post', ['public' => true, 'hierarchical' => true
 register_taxonomy('rstr_flat', 'post', ['public' => true, 'rewrite' => ['slug' => 'flat']]);
 register_taxonomy('rstr_internal', 'post', ['public' => false, 'rewrite' => false]);
 require dirname(__DIR__, 2) . '/serbian-transliteration.php';
+unload_textdomain('serbian-transliteration');
+check(load_textdomain('serbian-transliteration', RSTR_ROOT . '/languages/serbian-transliteration-sr_RS.mo'), 'compiled plugin translation loads at runtime');
+check('Подржите пројекат' === __('Support the Project', 'serbian-transliteration'), 'support sidebar title is translated');
+check('Још корисних додатака' === __('More useful plugins', 'serbian-transliteration'), 'useful plugins sidebar title is translated');
+check('Пробна провера (без измена)' === __('Dry Run', 'serbian-transliteration'), 'permalink tool labels are translated');
+unload_textdomain('serbian-transliteration');
 new Transliteration_Tools();
 $settings = new Transliteration_Settings();
 $settings->enqueue_admin_scripts('settings_page_transliteration-settings');

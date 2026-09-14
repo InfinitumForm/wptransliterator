@@ -18,6 +18,12 @@ final class Transliteration_Init extends Transliteration
 	
     public function hook_init(): void
     {
+        if (function_exists('rstr_load_textdomain')) {
+            rstr_load_textdomain();
+        } else {
+            load_plugin_textdomain('serbian-transliteration', false, dirname(RSTR_BASENAME) . '/languages');
+        }
+
         // ----------------------------
         // Main classes
         // ----------------------------

@@ -452,7 +452,7 @@ msgstr "Динамическая транслитерация JavaScript"
 
 #: classes/settings-fields.php:231
 msgid "WP Admin"
-msgstr "WP Admin"
+msgstr "Администрирование WordPress"
 
 #: classes/settings-fields.php:238
 msgid "WP-Admin transliteration"
@@ -1371,7 +1371,7 @@ msgstr "Выкл."
 
 #: classes/settings/page-debug.php:45
 msgid "WordPress multisite"
-msgstr "WordPress multisite"
+msgstr "Мультисайт WordPress"
 
 #: classes/settings/page-debug.php:50
 msgid "WooCommerce active"
@@ -2297,7 +2297,7 @@ msgstr "Невозможно открыть поток загрузки CSV."
 
 #: classes/settings/page-permalinks.php:11
 msgid "Applying slug changes alters existing URLs and may cause 404 errors without redirects. Dry Run does not apply changes."
-msgstr "Применение изменений фрагментов изменяет существующие URL-адреса и может вызвать ошибки 404 без перенаправлений. Пробный прогон не применяет изменения."
+msgstr "Применение изменений слагов меняет существующие URL-адреса и может вызвать ошибки 404 без перенаправлений. Пробная проверка не применяет изменения."
 
 #: classes/settings/page-permalinks.php:15
 msgid "WordPress does not automatically redirect old taxonomy term URLs. Download the redirect CSV after conversion and import it into your redirect system. This tool does not install redirects."
@@ -2442,3 +2442,179 @@ msgstr "Полный отчёт: %s"
 #: classes/wp-cli.php
 msgid "Redirect report: %s"
 msgstr "Отчёт о перенаправлениях: %s"
+
+#: classes/settings/page-functions.php:161 classes/settings/page-shortcodes.php:71
+msgid "(string) Separator to be used when the selector type is %1$s. Default: %2$s"
+msgstr "(строка) Разделитель, используемый, когда тип селектора — %1$s. По умолчанию: %2$s"
+
+#: classes/utilities.php:64
+msgid "Bashkir"
+msgstr "Башкирский"
+
+#: classes/utilities.php:56
+msgid "Belarusian"
+msgstr "Белорусский"
+
+#: classes/utilities.php:52
+msgid "Bosnian"
+msgstr "Боснийский"
+
+#: classes/utilities.php:57
+msgid "Bulgarian"
+msgstr "Болгарский"
+
+#: classes/blocks.php:43
+msgid "Choose your display type:"
+msgstr "Выберите тип отображения:"
+
+#: classes/utilities.php:54
+msgid "Croatian"
+msgstr "Хорватский"
+
+#: classes/blocks.php:54
+msgid "Cyrillic caption:"
+msgstr "Подпись для кириллицы:"
+
+#: classes/utilities.php:66
+msgid "Georgian"
+msgstr "Грузинский"
+
+#: classes/utilities.php:67
+msgid "Greek"
+msgstr "Греческий"
+
+#: classes/blocks.php:47
+msgid "Inline"
+msgstr "В строке"
+
+#: classes/utilities.php:60
+msgid "Kazakh"
+msgstr "Казахский"
+
+#: classes/utilities.php:62
+msgid "Kyrgyz"
+msgstr "Киргизский"
+
+#: classes/blocks.php:55
+msgid "Latin Caption:"
+msgstr "Подпись для латиницы:"
+
+#: classes/blocks.php:49
+msgid "List"
+msgstr "Список"
+
+#: classes/blocks.php:50
+msgid "List items"
+msgstr "Элементы списка"
+
+#: classes/utilities.php:58
+msgid "Macedonian"
+msgstr "Македонский"
+
+#: classes/utilities.php:63
+msgid "Mongolian"
+msgstr "Монгольский"
+
+#: classes/utilities.php:53
+msgid "Montenegrin"
+msgstr "Черногорский"
+
+#: classes/utilities.php:55
+msgid "Russian"
+msgstr "Русский"
+
+#: classes/blocks.php:45
+msgid "Script Selector"
+msgstr "Селектор письма"
+
+#: classes/blocks.php:48
+msgid "Select"
+msgstr "Выбор"
+
+#: classes/blocks.php:53
+msgid "Separator:"
+msgstr "Разделитель:"
+
+#: classes/utilities.php:51
+msgid "Serbian"
+msgstr "Сербский"
+
+#: classes/settings-sidebars.php:41
+msgid "Support via Ko-fi"
+msgstr "Поддержать через Ko-fi"
+
+#: classes/utilities.php:61
+msgid "Tajik"
+msgstr "Таджикский"
+
+#: functions.php:98
+msgid "This function is deprecated and will be removed. Replace it with the `get_script()` function"
+msgstr "Эта функция устарела и будет удалена. Замените её функцией `get_script()`"
+
+#: classes/utilities.php:59
+msgid "Ukrainian"
+msgstr "Украинский"
+
+#: classes/utilities.php:65
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: classes/notifications.php:277
+msgid "Visit %1$s to connect with skilled professionals across the region. Whether you need a project completed or are looking for work, our platform is your gateway to successful collaboration."
+msgstr "Посетите %1$s, чтобы связаться с опытными специалистами со всего региона. Если вам нужно завершить проект или вы ищете работу, наша платформа откроет путь к успешному сотрудничеству."
+
+#: classes/settings-sidebars.php:423
+msgid "AIDisclara – AI Image Disclosure"
+msgstr "AIDisclara – маркировка AI-изображений"
+
+#: classes/settings-sidebars.php:425
+msgid "Declare AI-generated Media Library images and display configurable disclosure labels."
+msgstr "Помечайте изображения медиабиблиотеки, созданные ИИ, и показывайте настраиваемые метки раскрытия."
+
+#: classes/settings-sidebars.php:427
+msgid "MarkuClean – Remove AI Artifacts, Unicode & Copy-Paste Characters"
+msgstr "MarkuClean – удаление AI-артефактов, Unicode и символов копирования"
+
+#: classes/settings-sidebars.php:429
+msgid "Clean AI-generated text, broken characters, Unicode issues, invisible characters and messy copy-paste markup."
+msgstr "Очищайте текст, созданный ИИ, поврежденные символы, проблемы Unicode, невидимые знаки и грязную разметку после копирования."
+
+#: classes/settings-sidebars.php:431
+msgid "Easy Auto Reload – Auto Refresh"
+msgstr "Easy Auto Reload – автообновление"
+
+#: classes/settings-sidebars.php:433
+msgid "Auto-refresh your WordPress pages after user inactivity. Keep sessions alive and dashboards fresh."
+msgstr "Автоматически обновляйте страницы WordPress после бездействия пользователя. Поддерживайте сессии активными, а панели управления актуальными."
+
+#: classes/settings-sidebars.php:435
+msgid "Geo Controller"
+msgstr "Geo Controller"
+
+#: classes/settings-sidebars.php:437
+msgid "Enhance your WordPress site with geolocation controls, maps, currencies and location-aware content."
+msgstr "Расширьте сайт WordPress геолокационными правилами, картами, валютами и контентом с учетом местоположения."
+
+#: classes/settings-sidebars.php:439
+msgid "Admin Category Filter"
+msgstr "Фильтр категорий в админке"
+
+#: classes/settings-sidebars.php:441
+msgid "Filter posts and custom post types by category directly in the WordPress admin list."
+msgstr "Фильтруйте записи и пользовательские типы записей по категориям прямо в списке админки WordPress."
+
+#: classes/settings-sidebars.php:443
+msgid "Cyr-To-Lat"
+msgstr "Cyr-To-Lat"
+
+#: classes/settings-sidebars.php:445
+msgid "Convert Cyrillic characters in posts, pages, terms and filenames into Latin characters."
+msgstr "Преобразуйте кириллические символы в записях, страницах, терминах и именах файлов в латиницу."
+
+#: classes/settings-sidebars.php:447
+msgid "Onionify"
+msgstr "Onionify"
+
+#: classes/settings-sidebars.php:449
+msgid "Show Onion-Location headers and Tor access information for sites available through an onion service."
+msgstr "Показывайте заголовки Onion-Location и информацию доступа Tor для сайтов, доступных через onion-сервис."

@@ -452,7 +452,7 @@ msgstr "JavaScript-ის დინამიკური ტრანსლი�
 
 #: classes/settings-fields.php:231
 msgid "WP Admin"
-msgstr "WP Admin"
+msgstr "WordPress-ის ადმინისტრირება"
 
 #: classes/settings-fields.php:238
 msgid "WP-Admin transliteration"
@@ -1370,7 +1370,7 @@ msgstr "გამორთულია"
 
 #: classes/settings/page-debug.php:45
 msgid "WordPress multisite"
-msgstr "WordPress multisite"
+msgstr "WordPress მულტისაიტი"
 
 #: classes/settings/page-debug.php:50
 msgid "WooCommerce active"
@@ -2291,7 +2291,7 @@ msgstr "CSV ჩამოტვირთვის ნაკადის გახ
 
 #: classes/settings/page-permalinks.php:11
 msgid "Applying slug changes alters existing URLs and may cause 404 errors without redirects. Dry Run does not apply changes."
-msgstr "slug ცვლილებების გამოყენება ცვლის არსებულ URL-ებს და შეიძლება გამოიწვიოს 404 შეცდომა გადამისამართების გარეშე. მშრალი გაშვება არ ვრცელდება ცვლილებებს."
+msgstr "სლაგების ცვლილებების გამოყენება ცვლის არსებულ URL-ებს და გადამისამართებების გარეშე შეიძლება გამოიწვიოს 404 შეცდომები. სატესტო გაშვება ცვლილებებს არ იყენებს."
 
 #: classes/settings/page-permalinks.php:15
 msgid "WordPress does not automatically redirect old taxonomy term URLs. Download the redirect CSV after conversion and import it into your redirect system. This tool does not install redirects."
@@ -2436,3 +2436,179 @@ msgstr "სრული ანგარიში: %s"
 #: classes/wp-cli.php
 msgid "Redirect report: %s"
 msgstr "გადამისამართების ანგარიში: %s"
+
+#: classes/settings/page-functions.php:161 classes/settings/page-shortcodes.php:71
+msgid "(string) Separator to be used when the selector type is %1$s. Default: %2$s"
+msgstr "(სტრიქონი) გამყოფი, რომელიც გამოიყენება, როდესაც სელექტორის ტიპია %1$s. ნაგულისხმევი: %2$s"
+
+#: classes/utilities.php:64
+msgid "Bashkir"
+msgstr "ბაშკირული"
+
+#: classes/utilities.php:56
+msgid "Belarusian"
+msgstr "ბელარუსული"
+
+#: classes/utilities.php:52
+msgid "Bosnian"
+msgstr "ბოსნიური"
+
+#: classes/utilities.php:57
+msgid "Bulgarian"
+msgstr "ბულგარული"
+
+#: classes/blocks.php:43
+msgid "Choose your display type:"
+msgstr "აირჩიეთ გამოსახვის ტიპი:"
+
+#: classes/utilities.php:54
+msgid "Croatian"
+msgstr "ხორვატული"
+
+#: classes/blocks.php:54
+msgid "Cyrillic caption:"
+msgstr "კირილიცის წარწერა:"
+
+#: classes/utilities.php:66
+msgid "Georgian"
+msgstr "ქართული"
+
+#: classes/utilities.php:67
+msgid "Greek"
+msgstr "ბერძნული"
+
+#: classes/blocks.php:47
+msgid "Inline"
+msgstr "სტრიქონში"
+
+#: classes/utilities.php:60
+msgid "Kazakh"
+msgstr "ყაზახური"
+
+#: classes/utilities.php:62
+msgid "Kyrgyz"
+msgstr "ყირგიზული"
+
+#: classes/blocks.php:55
+msgid "Latin Caption:"
+msgstr "ლათინურის წარწერა:"
+
+#: classes/blocks.php:49
+msgid "List"
+msgstr "სია"
+
+#: classes/blocks.php:50
+msgid "List items"
+msgstr "სიის ელემენტები"
+
+#: classes/utilities.php:58
+msgid "Macedonian"
+msgstr "მაკედონიური"
+
+#: classes/utilities.php:63
+msgid "Mongolian"
+msgstr "მონღოლური"
+
+#: classes/utilities.php:53
+msgid "Montenegrin"
+msgstr "ჩერნოგორიული"
+
+#: classes/utilities.php:55
+msgid "Russian"
+msgstr "რუსული"
+
+#: classes/blocks.php:45
+msgid "Script Selector"
+msgstr "დამწერლობის სელექტორი"
+
+#: classes/blocks.php:48
+msgid "Select"
+msgstr "არჩევა"
+
+#: classes/blocks.php:53
+msgid "Separator:"
+msgstr "გამყოფი:"
+
+#: classes/utilities.php:51
+msgid "Serbian"
+msgstr "სერბული"
+
+#: classes/settings-sidebars.php:41
+msgid "Support via Ko-fi"
+msgstr "Ko-fi-ის მეშვეობით მხარდაჭერა"
+
+#: classes/utilities.php:61
+msgid "Tajik"
+msgstr "ტაჯიკური"
+
+#: functions.php:98
+msgid "This function is deprecated and will be removed. Replace it with the `get_script()` function"
+msgstr "ეს ფუნქცია მოძველებულია და წაიშლება. ჩაანაცვლეთ იგი `get_script()` ფუნქციით"
+
+#: classes/utilities.php:59
+msgid "Ukrainian"
+msgstr "უკრაინული"
+
+#: classes/utilities.php:65
+msgid "Uzbek"
+msgstr "უზბეკური"
+
+#: classes/notifications.php:277
+msgid "Visit %1$s to connect with skilled professionals across the region. Whether you need a project completed or are looking for work, our platform is your gateway to successful collaboration."
+msgstr "ეწვიეთ %1$s-ს, რათა დაუკავშირდეთ მთელი რეგიონის გამოცდილ სპეციალისტებს. თუ პროექტის დასრულება გსურთ ან სამუშაოს ეძებთ, ჩვენი პლატფორმა წარმატებული თანამშრომლობის შესაძლებლობას გაძლევთ."
+
+#: classes/settings-sidebars.php:423
+msgid "AIDisclara – AI Image Disclosure"
+msgstr "AIDisclara – AI სურათების მონიშვნა"
+
+#: classes/settings-sidebars.php:425
+msgid "Declare AI-generated Media Library images and display configurable disclosure labels."
+msgstr "მონიშნეთ AI-ით შექმნილი მედია ბიბლიოთეკის სურათები და აჩვენეთ კონფიგურირებადი შეტყობინების ნიშნულები."
+
+#: classes/settings-sidebars.php:427
+msgid "MarkuClean – Remove AI Artifacts, Unicode & Copy-Paste Characters"
+msgstr "MarkuClean – AI არტეფაქტების, Unicode-ისა და copy-paste სიმბოლოების მოცილება"
+
+#: classes/settings-sidebars.php:429
+msgid "Clean AI-generated text, broken characters, Unicode issues, invisible characters and messy copy-paste markup."
+msgstr "გაწმინდეთ AI-ით შექმნილი ტექსტი, დაზიანებული სიმბოლოები, Unicode პრობლემები, უხილავი ნიშნები და მოუწესრიგებელი copy-paste მონიშვნა."
+
+#: classes/settings-sidebars.php:431
+msgid "Easy Auto Reload – Auto Refresh"
+msgstr "Easy Auto Reload – ავტომატური განახლება"
+
+#: classes/settings-sidebars.php:433
+msgid "Auto-refresh your WordPress pages after user inactivity. Keep sessions alive and dashboards fresh."
+msgstr "ავტომატურად განაახლეთ WordPress გვერდები მომხმარებლის უმოქმედობის შემდეგ. შეინარჩუნეთ სესიები აქტიური და დაფები განახლებული."
+
+#: classes/settings-sidebars.php:435
+msgid "Geo Controller"
+msgstr "Geo Controller"
+
+#: classes/settings-sidebars.php:437
+msgid "Enhance your WordPress site with geolocation controls, maps, currencies and location-aware content."
+msgstr "გააუმჯობესეთ WordPress საიტი გეოლოკაციის კონტროლებით, რუკებით, ვალუტებით და მდებარეობაზე მორგებული კონტენტით."
+
+#: classes/settings-sidebars.php:439
+msgid "Admin Category Filter"
+msgstr "ადმინის კატეგორიის ფილტრი"
+
+#: classes/settings-sidebars.php:441
+msgid "Filter posts and custom post types by category directly in the WordPress admin list."
+msgstr "გაფილტრეთ პოსტები და მორგებული პოსტის ტიპები კატეგორიით პირდაპირ WordPress-ის ადმინისტრაციის სიაში."
+
+#: classes/settings-sidebars.php:443
+msgid "Cyr-To-Lat"
+msgstr "Cyr-To-Lat"
+
+#: classes/settings-sidebars.php:445
+msgid "Convert Cyrillic characters in posts, pages, terms and filenames into Latin characters."
+msgstr "გადაიყვანეთ კირილიცის სიმბოლოები პოსტებში, გვერდებში, ტერმინებსა და ფაილის სახელებში ლათინურ სიმბოლოებად."
+
+#: classes/settings-sidebars.php:447
+msgid "Onionify"
+msgstr "Onionify"
+
+#: classes/settings-sidebars.php:449
+msgid "Show Onion-Location headers and Tor access information for sites available through an onion service."
+msgstr "აჩვენეთ Onion-Location სათაურები და Tor წვდომის ინფორმაცია onion სერვისით ხელმისაწვდომი საიტებისთვის."

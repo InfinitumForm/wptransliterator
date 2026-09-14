@@ -106,6 +106,8 @@ class Transliteration_Settings_Sidebars
         if ($plugins === []) {
             return;
         }
+
+        $plugins = array_map([$this, 'translate_useful_plugin'], $plugins);
         ?>
         <p><?php esc_html_e('Discover a few other free WordPress plugins you may find useful.', 'serbian-transliteration'); ?></p>
         <div class="rstr-useful-plugins">
@@ -377,11 +379,11 @@ class Transliteration_Settings_Sidebars
     private function fallback_useful_plugins(): array
     {
         $plugins = [];
-        foreach (self::USEFUL_PLUGIN_SLUGS as $slug) {
+        foreach ($this->translated_useful_plugin_data() as $slug => $data) {
             $plugins[] = [
                 'slug'              => $slug,
-                'name'              => ucwords(str_replace('-', ' ', $slug)),
-                'short_description' => '',
+                'name'              => $data['name'],
+                'short_description' => $data['short_description'],
                 'plugin_url'        => $this->useful_plugin_url($slug),
                 'rating'            => 0,
                 'active_installs'   => 0,
@@ -389,6 +391,63 @@ class Transliteration_Settings_Sidebars
         }
 
         return $plugins;
+    }
+
+    /**
+     * Translate fixed recommendation labels after API/cache normalization.
+     *
+     * @param array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int} $plugin
+     * @return array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}
+     */
+    private function translate_useful_plugin(array $plugin): array
+    {
+        $translated = $this->translated_useful_plugin_data();
+
+        if (isset($translated[$plugin['slug']])) {
+            $plugin['name']              = $translated[$plugin['slug']]['name'];
+            $plugin['short_description'] = $translated[$plugin['slug']]['short_description'];
+        }
+
+        return $plugin;
+    }
+
+    /**
+     * Return local translations for fixed WordPress.org recommendations.
+     *
+     * @return array<string, array{name:string, short_description:string}>
+     */
+    private function translated_useful_plugin_data(): array
+    {
+        return [
+            'aiviso-ai-image-disclosure' => [
+                'name'              => __('AIDisclara – AI Image Disclosure', 'serbian-transliteration'),
+                'short_description' => __('Declare AI-generated Media Library images and display configurable disclosure labels.', 'serbian-transliteration'),
+            ],
+            'markuclean-markup-cleaner' => [
+                'name'              => __('MarkuClean – Remove AI Artifacts, Unicode & Copy-Paste Characters', 'serbian-transliteration'),
+                'short_description' => __('Clean AI-generated text, broken characters, Unicode issues, invisible characters and messy copy-paste markup.', 'serbian-transliteration'),
+            ],
+            'easy-auto-reload' => [
+                'name'              => __('Easy Auto Reload – Auto Refresh', 'serbian-transliteration'),
+                'short_description' => __('Auto-refresh your WordPress pages after user inactivity. Keep sessions alive and dashboards fresh.', 'serbian-transliteration'),
+            ],
+            'cf-geoplugin' => [
+                'name'              => __('Geo Controller', 'serbian-transliteration'),
+                'short_description' => __('Enhance your WordPress site with geolocation controls, maps, currencies and location-aware content.', 'serbian-transliteration'),
+            ],
+            'admin-category-filter' => [
+                'name'              => __('Admin Category Filter', 'serbian-transliteration'),
+                'short_description' => __('Filter posts and custom post types by category directly in the WordPress admin list.', 'serbian-transliteration'),
+            ],
+            'cyr3lat' => [
+                'name'              => __('Cyr-To-Lat', 'serbian-transliteration'),
+                'short_description' => __('Convert Cyrillic characters in posts, pages, terms and filenames into Latin characters.', 'serbian-transliteration'),
+            ],
+            'onionify' => [
+                'name'              => __('Onionify', 'serbian-transliteration'),
+                'short_description' => __('Show Onion-Location headers and Tor access information for sites available through an onion service.', 'serbian-transliteration'),
+            ],
+        ];
     }
 
     /**

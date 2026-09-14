@@ -328,6 +328,18 @@ endif;
 // WordPress 6.5+ supports PHP translation files; keep this domain on MO files.
 add_filter('translation_file_format', 'rstr_translation_file_format', PHP_INT_MAX, 2);
 
+/**
+ * Load the plugin translations before admin screens and sidebars are rendered.
+ */
+if (!function_exists('rstr_load_textdomain')) :
+function rstr_load_textdomain(): void
+{
+    load_plugin_textdomain(RSTR_NAME, false, dirname(RSTR_BASENAME) . '/languages');
+}
+endif;
+
+add_action('plugins_loaded', 'rstr_load_textdomain', 0);
+
 // Set database tables
 global $wpdb, $rstr_is_admin;
 $wpdb->rstr_cache = $wpdb->get_blog_prefix() . 'rstr_cache';
