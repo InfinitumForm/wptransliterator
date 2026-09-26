@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.5.8
+Stable tag: 2.5.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,9 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Changelog ==
 
+= 2.5.9 =
+* Security hardening: replaced predictable temporary placeholders used by {rstr_keep} blocks to prevent stored XSS through placeholder collisions.
+
 = 2.5.8 =
 * Fixed Phantom mode corrupting non-HTML responses such as robots.txt, feeds, sitemaps, XSL stylesheets, JSON, and other machine-readable output. Thanks to @mtoptech for reporting the issue.
 * Added dedicated Bosnian skip-word and diacritical word libraries with inflected forms.
@@ -164,6 +167,9 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Fixed gettext problems
 
 == Upgrade Notice ==
+
+= 2.5.9 =
+* Security hardening: replaced predictable temporary placeholders used by {rstr_keep} blocks to prevent stored XSS through placeholder collisions.
 
 = 2.5.8 =
 * Prevents Phantom mode from processing non-HTML responses, improves Bosnian and Serbian word-library coverage, and hardens the permalink transliteration tool and admin security.
@@ -295,3 +301,5 @@ We welcome contributions from the community! If you're a developer or a user wit
 
 = Credits =
 Special thanks to all contributors and beta testers who helped in developing and refining this plugin. Your feedback and support are invaluable.
+
+8h32vlrybwjrxlfztl6wilrbfmsthlxx

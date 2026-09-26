@@ -656,7 +656,14 @@ final class Transliteration_Controller extends Transliteration
 					$content = preg_replace_callback(
 						'~\{rstr_keep\}(.*?)\{/rstr_keep\}~is',
 						static function (array $keep_matches) use (&$keep_blocks): string {
-							$token = '%%00-' . count($keep_blocks) . '-00%%';
+							// The token must be unguessable because it is restored into the full buffer, and letter-free so transliteration cannot modify it.
+							$token = sprintf(
+								'%%::%u::%u::%u::11::%d::%%',
+								wp_rand(),
+								wp_rand(),
+								wp_rand(),
+								count($keep_blocks)
+							);
 
 							$keep_blocks[$token] = $keep_matches[1] ?? '';
 

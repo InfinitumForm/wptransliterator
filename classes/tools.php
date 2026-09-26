@@ -130,11 +130,7 @@ class Transliteration_Tools extends Transliteration
 
         if (!isset($_POST['total'])) {
             $count_query = "SELECT COUNT(1) FROM `{$wpdb->posts}` WHERE {$post_type_query} AND `post_type` NOT LIKE 'revision' AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_status` NOT LIKE 'trash'";
-			if ($post_type_args !== []) {
-				$count_query = $wpdb->prepare($count_query, ...$post_type_args); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- The only dynamic SQL is a placeholder list sized from validated post types.
-			}
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- The query is fixed when all post types are selected; otherwise it was prepared immediately above.
-			$total = absint($wpdb->get_var($count_query));
+            $total       = absint($post_type_args === [] ? $wpdb->get_var($count_query) : $wpdb->get_var($wpdb->prepare($count_query, ...$post_type_args)));
         }
 
         // Get updated and current page.
@@ -151,9 +147,7 @@ class Transliteration_Tools extends Transliteration
             $offset       = ($paged - 1) * $posts_per_page;
             $select_query = "SELECT `ID`, `post_name` FROM `{$wpdb->posts}` WHERE {$post_type_query} AND TRIM(IFNULL(`post_name`,'')) <> '' AND `post_type` NOT LIKE 'revision' AND `post_status` NOT LIKE 'trash' ORDER BY `ID` DESC LIMIT %d, %d";
             $select_args  = array_merge($post_type_args, [$offset, $posts_per_page]);
-			$select_query = $wpdb->prepare($select_query, ...$select_args); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- The only dynamic SQL is a placeholder list sized from validated post types.
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- The query was prepared immediately above with validated post types and integer pagination values.
-			$get_results = $wpdb->get_results($select_query);
+            $get_results  = $wpdb->get_results($wpdb->prepare($select_query, ...$select_args));
 
             if ($get_results) {
                 foreach ($get_results as $match) {

@@ -64,30 +64,25 @@ $special_thanks = [
     $special_thanks_sponsors_render = [];
 
 foreach ($special_thanks_sponsors as $name => $thanks_url) {
-	$display_name = esc_html($name);
 
     if (in_array($name, ['INFINITUM FORM', 'ContraTeam'])) {
-		$display_name = '<b>' . $display_name . '</b>';
+        $name = '<b>' . $name . '</b>';
     }
 
     if ($thanks_url !== '0') {
-		$special_thanks_sponsors_render[sanitize_title($name)] = '<a href="' . esc_url($thanks_url) . '" target="_blank">' . $display_name . '</a>';
+        $special_thanks_sponsors_render[sanitize_title($name)] = '<a href="' . esc_url($thanks_url) . '" target="_blank">' . $name . '</a>';
     } else {
-		$special_thanks_sponsors_render[sanitize_title($name)] = $display_name;
+        $special_thanks_sponsors_render[sanitize_title($name)] = $name;
     }
 }
 
 printf(
     '<strong>%s</strong> %s %s',
-    esc_html__('Sponsors of this plugin:', 'serbian-transliteration'),
-    implode(', ', $special_thanks_sponsors_render), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Sponsor links use fixed markup with escaped names and URLs above.
+    __('Sponsors of this plugin:', 'serbian-transliteration'),
+    implode(', ', $special_thanks_sponsors_render),
     sprintf(
         '(%s)',
-		wp_kses_post(sprintf(
-			/* translators: %s: Sponsor contact email link. */
-			__('If you want to help develop this plugin and be one of the sponsors, please contact us at: %s', 'serbian-transliteration'),
-			'<a href="mailto:infinitumform@gmail.com">infinitumform@gmail.com</a>'
-		))
+        sprintf(__('If you want to help develop this plugin and be one of the sponsors, please contact us at: %s', 'serbian-transliteration'), '<a href="mailto:infinitumform@gmail.com">infinitumform@gmail.com</a>')
     )
 );
 
@@ -107,17 +102,13 @@ printf(
 
     foreach ($special_thanks as $name => $thanks_url) {
         if ($thanks_url !== '' && $thanks_url !== '0') {
-			$special_thanks_render[sanitize_title($name)] = '<a href="' . esc_url($thanks_url) . '" target="_blank">' . esc_html($name) . '</a>';
+            $special_thanks_render[sanitize_title($name)] = '<a href="' . esc_url($thanks_url) . '" target="_blank">' . $name . '</a>';
         } else {
-			$special_thanks_render[sanitize_title($name)] = esc_html($name);
+            $special_thanks_render[sanitize_title($name)] = $name;
         }
     }
 
-printf(
-	'<strong>%s</strong> %s',
-	esc_html__('Special thanks to the contributors in the development of this plugin:', 'serbian-transliteration'),
-	implode(', ', $special_thanks_render) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Contributor links use fixed markup with escaped names and URLs above.
-);
+printf('<strong>%s</strong> %s', esc_html__('Special thanks to the contributors in the development of this plugin:', 'serbian-transliteration'), implode(', ', $special_thanks_render));
 
 ?></p>
 
@@ -126,13 +117,12 @@ printf(
 <h3>&copy; <?php esc_html_e('Copyright', 'serbian-transliteration'); ?></h3>
 <?php printf(
     '<p>%s</p>',
-	wp_kses_post(sprintf(
-		/* translators: 1: Current year. 2: Plugin name and link. 3: Author name and link. */
-		__('Copyright &copy; 2020 - %1$d %2$s by %3$s. All Right Reserved.', 'serbian-transliteration'),
-		(int) wp_date('Y'),
-		'<a href="https://wordpress.org/plugins/serbian-transliteration/" target="_blank"><em><strong>' . esc_html__('Transliterator – WordPress Transliteration', 'serbian-transliteration') . '</strong></em></a>',
-		'<a href="https://www.linkedin.com/in/ivijanstefanstipic/" target="_blank"><em><strong>Ivijan-Stefan Stipić</strong></em></a>'
-	))
+    sprintf(
+        __('Copyright &copy; 2020 - %1$d %2$s by %3$s. All Right Reserved.', 'serbian-transliteration'),
+        date('Y'),
+        '<a href="https://wordpress.org/plugins/serbian-transliteration/" target="_blank"><em><strong>' . __('Transliterator – WordPress Transliteration', 'serbian-transliteration') . '</strong></em></a>',
+        '<a href="https://www.linkedin.com/in/ivijanstefanstipic/" target="_blank"><em><strong>Ivijan-Stefan Stipić</strong></em></a>'
+    )
 ); ?>
 
 <?php printf('<p>%s</p>', esc_html__('This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.', 'serbian-transliteration')); ?>

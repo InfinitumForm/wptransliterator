@@ -1,3 +1,6 @@
+= 2.5.9 =
+* Security hardening: replaced predictable temporary placeholders used by {rstr_keep} blocks to prevent stored XSS through placeholder collisions.
+
 = 2.5.8 =
 * Fixed Phantom mode corrupting non-HTML responses such as robots.txt, feeds, sitemaps, XSL stylesheets, JSON, and other machine-readable output. Thanks to @mtoptech for reporting the issue.
 * Added dedicated Bosnian skip-word and diacritical word libraries with inflected forms.

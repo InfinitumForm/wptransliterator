@@ -17,19 +17,18 @@ class Transliteration_Settings_Sidebars
     private const USEFUL_PLUGINS_CACHE_KEY = 'rstr_useful_plugins';
     private const USEFUL_PLUGINS_CACHE_TTL = 43200;
 
-    /** @var array<string, array{active:bool,installed:bool,plugin_file:string}> */
-    private $useful_plugin_statuses = [];
-
     public function donations(): void
     {
         ?>
-		<?php printf('<p>%s</p>', esc_html__('Transliterator is free to use and actively maintained. Ongoing updates, performance improvements, and new features require continuous time and resources.', 'serbian-transliteration')); ?>
-		<?php printf('<p>%s</p>', esc_html__('If the plugin adds value to your work, you are welcome to support its further development with a voluntary contribution.', 'serbian-transliteration')); ?>
+		<?php printf('<p>%s</p>', __('Transliterator is free to use and actively maintained. Ongoing updates, performance improvements, and new features require continuous time and resources.', 'serbian-transliteration')); ?>
+		<?php printf('<p>%s</p>', __('If the plugin adds value to your work, you are welcome to support its further development with a voluntary contribution.', 'serbian-transliteration')); /*?>
+		<p><a href="https://www.buymeacoffee.com/ivijanstefan" target="_blank"><img src="https://img.buymeacoffee.com/button-api/?text=<?php esc_attr_e('Buy me a coffee', 'serbian-transliteration'); ?>&emoji=&slug=ivijanstefan&button_colour=FFDD00&font_colour=000000&font_family=Bree&outline_colour=000000&coffee_colour=ffffff" /></a></p>
+		*/ ?>
 		<hr>
 		<ul>
 			<?php printf(
 				'<li>%s: <br><b>%s</b><br>IBAN: <b>%s</b><br>Swift: <b>%s</b></li>',
-				esc_html__('Banca Intesa a.d. Beograd', 'serbian-transliteration'),
+				__('Banca Intesa a.d. Beograd', 'serbian-transliteration'),
 				'160-6000002167503-32',
 				'RS35160600000216750332',
 				'DBDBRSBG'
@@ -37,7 +36,7 @@ class Transliteration_Settings_Sidebars
 			<?php /* printf('<li><b>%s</b>: %s</li>', esc_html__('PayPal', 'serbian-transliteration'), 'creativform@gmail.com');*/ ?>
 		</ul>
 		<hr>
-		<?php printf('<p>%s</p>', esc_html__('Thank you for your support.', 'serbian-transliteration')); ?>
+		<?php printf('<p>%s</p>', __('Thank you for your support.', 'serbian-transliteration')); ?>
 		<p><a class="button button-primary" href="<?php echo esc_url('https://ko-fi.com/ivijanstefanstipic'); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Support via Ko-fi', 'serbian-transliteration'); ?></a></p>
         <?php
     }
@@ -81,14 +80,7 @@ class Transliteration_Settings_Sidebars
 		</div>
 		<?php endif; ?>
 		<div class="rstr-inside-metabox">
-			<?php printf(
-				'<p>%s</p>',
-				wp_kses_post(sprintf(
-					/* translators: %s: Link to the plugin's GitHub repository. */
-					__('If you want to support our work and effort, if you have new ideas or want to improve the existing code, %s.', 'serbian-transliteration'),
-					'<a href="https://github.com/CreativForm/serbian-transliteration" target="_blank">' . esc_html__('join our team', 'serbian-transliteration') . '</a>'
-				))
-			); ?>
+			<?php printf('<p>%s</p>', sprintf(__('If you want to support our work and effort, if you have new ideas or want to improve the existing code, %s.', 'serbian-transliteration'), '<a href="https://github.com/CreativForm/serbian-transliteration" target="_blank">' . __('join our team', 'serbian-transliteration') . '</a>')); ?>
 			<?php /* printf('<p>%s</p>', sprintf(__('If you want to help further plugin development, you can also %s.', 'serbian-transliteration'), '<a href="' . esc_url($plugin_info->donate_link) . '" target="_blank">' . __('donate something for effort', 'serbian-transliteration') . '</a>')); */ ?>
 		</div>
 		<?php endif;
@@ -99,27 +91,24 @@ class Transliteration_Settings_Sidebars
      */
     public function more_useful_plugins(): void
     {
-        $plugins = array_filter($this->get_useful_plugins(), function (array $plugin): bool {
-            return !$this->useful_plugin_status($plugin['slug'])['active'];
-        });
-
-        if ($plugins === []) {
-            return;
-        }
+        $plugins = $this->get_useful_plugins();
         ?>
         <p><?php esc_html_e('Discover a few other free WordPress plugins you may find useful.', 'serbian-transliteration'); ?></p>
         <div class="rstr-useful-plugins">
             <?php foreach ($plugins as $plugin) : ?>
-                <?php $status = $this->useful_plugin_status($plugin['slug']); ?>
                 <div class="rstr-useful-plugin">
                     <div class="rstr-useful-plugin__icon-wrap">
-                        <img
-                            class="rstr-useful-plugin__icon"
-                            src="<?php echo esc_url($this->useful_plugin_icon_url($plugin['slug'])); ?>"
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                        >
+                        <?php if ($plugin['icon_url'] !== '') : ?>
+                            <img
+                                class="rstr-useful-plugin__icon"
+                                src="<?php echo esc_url($plugin['icon_url']); ?>"
+                                alt=""
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        <?php else : ?>
+                            <span class="dashicons dashicons-admin-plugins rstr-useful-plugin__placeholder" aria-hidden="true"></span>
+                        <?php endif; ?>
                     </div>
                     <div class="rstr-useful-plugin__content">
                         <h3><?php echo esc_html($plugin['name']); ?></h3>
@@ -143,15 +132,9 @@ class Transliteration_Settings_Sidebars
                             </p>
                         <?php endif; ?>
                         <p class="rstr-useful-plugin__action">
-                            <?php if ($status['installed'] && $status['plugin_file'] !== '' && current_user_can('activate_plugin', $status['plugin_file'])) : ?>
-                                <a href="<?php echo esc_url($this->useful_plugin_activation_url($status['plugin_file'])); ?>">
-                                    <?php esc_html_e('Activate this plugin', 'serbian-transliteration'); ?>
-                                </a>
-                            <?php else : ?>
-                                <a href="<?php echo esc_url($plugin['plugin_url']); ?>" target="_blank" rel="noopener noreferrer">
-                                    <?php esc_html_e('View plugin', 'serbian-transliteration'); ?>
-                                </a>
-                            <?php endif; ?>
+                            <a href="<?php echo esc_url($plugin['plugin_url']); ?>" target="_blank" rel="noopener noreferrer">
+                                <?php esc_html_e('View plugin', 'serbian-transliteration'); ?>
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -161,28 +144,13 @@ class Transliteration_Settings_Sidebars
     }
 
     /**
-     * Return whether at least one fixed recommendation is not active.
-     */
-    public function has_useful_plugins(): bool
-    {
-        foreach (self::USEFUL_PLUGIN_SLUGS as $slug) {
-            if (!$this->useful_plugin_status($slug)['active']) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Retrieve, validate, and cache the fixed WordPress.org recommendations.
      *
-     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}>
+     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,icon_url:string,rating:int,active_installs:int}>
      */
     private function get_useful_plugins(): array
     {
-        $cache_key = $this->useful_plugins_cache_key();
-        $cached    = get_transient($cache_key);
+        $cached = get_transient(self::USEFUL_PLUGINS_CACHE_KEY);
         if (is_array($cached)) {
             $plugins = $this->normalize_useful_plugins($cached);
             if (count($plugins) === count(self::USEFUL_PLUGIN_SLUGS)) {
@@ -193,7 +161,7 @@ class Transliteration_Settings_Sidebars
         $plugins = $this->fetch_useful_plugins();
         $plugins = $this->complete_useful_plugins($plugins);
 
-        set_transient($cache_key, $plugins, self::USEFUL_PLUGINS_CACHE_TTL);
+        set_transient(self::USEFUL_PLUGINS_CACHE_KEY, $plugins, self::USEFUL_PLUGINS_CACHE_TTL);
 
         return $plugins;
     }
@@ -201,7 +169,7 @@ class Transliteration_Settings_Sidebars
     /**
      * Fetch the requested plugin details from the WordPress.org API.
      *
-     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}>
+     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,icon_url:string,rating:int,active_installs:int}>
      */
     private function fetch_useful_plugins(): array
     {
@@ -225,6 +193,7 @@ class Transliteration_Settings_Sidebars
                 'fields' => [
                     'short_description' => true,
                     'rating'            => true,
+                    'icons'             => true,
                     'active_installs'   => true,
                     'sections'          => false,
                     'description'       => false,
@@ -251,7 +220,7 @@ class Transliteration_Settings_Sidebars
      * Validate an API response record before it reaches the admin screen.
      *
      * @param array<string, mixed> $data API response data.
-     * @return array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}|null
+     * @return array{slug:string,name:string,short_description:string,plugin_url:string,icon_url:string,rating:int,active_installs:int}|null
      */
     private function normalize_useful_plugin(string $slug, array $data): ?array
     {
@@ -271,11 +240,16 @@ class Transliteration_Settings_Sidebars
         $description = isset($data['short_description']) && is_scalar($data['short_description'])
             ? sanitize_text_field(wp_strip_all_tags((string) $data['short_description']))
             : '';
+        $icons = isset($data['icons']) && (is_array($data['icons']) || is_object($data['icons']))
+            ? (array) $data['icons']
+            : [];
+
         return [
             'slug'              => $slug,
             'name'              => wp_html_excerpt($name, 80, '…'),
             'short_description' => wp_html_excerpt($description, 160, '…'),
             'plugin_url'        => $this->useful_plugin_url($slug),
+            'icon_url'          => $this->useful_plugin_icon($icons),
             'rating'            => isset($data['rating']) && is_numeric($data['rating']) ? max(0, min(100, (int) $data['rating'])) : 0,
             'active_installs'   => isset($data['active_installs']) && is_numeric($data['active_installs']) ? max(0, (int) $data['active_installs']) : 0,
         ];
@@ -285,7 +259,7 @@ class Transliteration_Settings_Sidebars
      * Normalize cached records and restore their required order.
      *
      * @param array<int, mixed> $cached Cached plugin records.
-     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}>
+     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,icon_url:string,rating:int,active_installs:int}>
      */
     private function normalize_useful_plugins(array $cached): array
     {
@@ -317,10 +291,10 @@ class Transliteration_Settings_Sidebars
     }
 
     /**
-     * Validate one cached recommendation record.
+     * Validate one cached record without discarding its previously trusted icon.
      *
      * @param array<string, mixed> $data Cached plugin data.
-     * @return array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}|null
+     * @return array{slug:string,name:string,short_description:string,plugin_url:string,icon_url:string,rating:int,active_installs:int}|null
      */
     private function normalize_cached_useful_plugin(string $slug, array $data): ?array
     {
@@ -336,11 +310,16 @@ class Transliteration_Settings_Sidebars
         $description = isset($data['short_description']) && is_scalar($data['short_description'])
             ? sanitize_text_field(wp_strip_all_tags((string) $data['short_description']))
             : '';
+        $icon_url = isset($data['icon_url']) && is_scalar($data['icon_url'])
+            ? $this->trusted_useful_plugin_icon_url((string) $data['icon_url'])
+            : '';
+
         return [
             'slug'              => $slug,
             'name'              => wp_html_excerpt($name, 80, '…'),
             'short_description' => wp_html_excerpt($description, 160, '…'),
             'plugin_url'        => $this->useful_plugin_url($slug),
+            'icon_url'          => $icon_url,
             'rating'            => isset($data['rating']) && is_numeric($data['rating']) ? max(0, min(100, (int) $data['rating'])) : 0,
             'active_installs'   => isset($data['active_installs']) && is_numeric($data['active_installs']) ? max(0, (int) $data['active_installs']) : 0,
         ];
@@ -349,8 +328,8 @@ class Transliteration_Settings_Sidebars
     /**
      * Fill any failed API lookups with safe minimal records in the required order.
      *
-     * @param array<int, array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}> $plugins
-     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}>
+     * @param array<int, array{slug:string,name:string,short_description:string,plugin_url:string,icon_url:string,rating:int,active_installs:int}> $plugins
+     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,icon_url:string,rating:int,active_installs:int}>
      */
     private function complete_useful_plugins(array $plugins): array
     {
@@ -372,7 +351,7 @@ class Transliteration_Settings_Sidebars
     /**
      * Create safe minimal records if the remote API is unavailable.
      *
-     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,rating:int,active_installs:int}>
+     * @return array<int, array{slug:string,name:string,short_description:string,plugin_url:string,icon_url:string,rating:int,active_installs:int}>
      */
     private function fallback_useful_plugins(): array
     {
@@ -383,6 +362,7 @@ class Transliteration_Settings_Sidebars
                 'name'              => ucwords(str_replace('-', ' ', $slug)),
                 'short_description' => '',
                 'plugin_url'        => $this->useful_plugin_url($slug),
+                'icon_url'          => '',
                 'rating'            => 0,
                 'active_installs'   => 0,
             ];
@@ -400,74 +380,46 @@ class Transliteration_Settings_Sidebars
     }
 
     /**
-     * Find the installed plugin file and its activation state for a fixed slug.
+     * Return the best available trusted plugin icon URL.
      *
-     * @return array{active:bool,installed:bool,plugin_file:string}
+     * @param array<string, mixed> $icons Icon URLs from WordPress.org.
      */
-    private function useful_plugin_status(string $slug): array
+    private function useful_plugin_icon(array $icons): string
     {
-        if (isset($this->useful_plugin_statuses[$slug])) {
-            return $this->useful_plugin_statuses[$slug];
-        }
-
-        if (!function_exists('get_plugins') || !function_exists('is_plugin_active')) {
-            require_once ABSPATH . 'wp-admin/includes/plugin.php';
-        }
-
-        $status = [
-            'active'      => false,
-            'installed'   => false,
-            'plugin_file' => '',
-        ];
-
-        foreach (get_plugins($slug) as $file => $plugin_data) {
-            $plugin_file = $slug . '/' . $file;
-            $active      = is_plugin_active($plugin_file) || (is_multisite() && is_plugin_active_for_network($plugin_file));
-
-            if ($status['plugin_file'] === '' || $active) {
-                $status['plugin_file'] = $plugin_file;
+        foreach (['svg', '2x', '1x', 'default'] as $size) {
+            if (!isset($icons[$size]) || !is_scalar($icons[$size])) {
+                continue;
             }
 
-            $status['installed'] = true;
-            $status['active']    = $status['active'] || $active;
+            $icon_url = $this->trusted_useful_plugin_icon_url((string) $icons[$size]);
+            if ($icon_url !== '') {
+                return $icon_url;
+            }
         }
 
-        $this->useful_plugin_statuses[$slug] = $status;
-
-        return $status;
+        return '';
     }
 
     /**
-     * Build the nonce-protected plugin activation URL.
+     * Permit only HTTPS WordPress.org-hosted icon URLs.
      */
-    private function useful_plugin_activation_url(string $plugin_file): string
+    private function trusted_useful_plugin_icon_url(string $url): string
     {
-        return wp_nonce_url(
-            self_admin_url('plugins.php?action=activate&plugin=' . rawurlencode($plugin_file)),
-            'activate-plugin_' . $plugin_file
-        );
-    }
-
-    /**
-     * Return the bundled icon for a fixed recommendation.
-     */
-    private function useful_plugin_icon_url(string $slug): string
-    {
-        if (!in_array($slug, self::USEFUL_PLUGIN_SLUGS, true)) {
+        $parts = wp_parse_url(trim($url));
+        if (!is_array($parts) || ($parts['scheme'] ?? '') !== 'https' || empty($parts['host'])) {
             return '';
         }
 
-        return RSTR_ASSETS . '/img/recommended-plugins/' . rawurlencode($slug) . '.png';
+        if (isset($parts['user']) || isset($parts['pass']) || (isset($parts['port']) && (int) $parts['port'] !== 443)) {
+            return '';
+        }
+
+        $host = strtolower((string) $parts['host']);
+        $wordpress_org_subdomain = substr($host, -14) === '.wordpress.org';
+        if ($host !== 'ps.w.org' && $host !== 'wordpress.org' && !$wordpress_org_subdomain) {
+            return '';
+        }
+
+        return esc_url_raw($url, ['https']);
     }
-
-    /**
-     * Keep recommendation metadata separate for each WordPress user locale.
-     */
-    private function useful_plugins_cache_key(): string
-    {
-        $locale = function_exists('get_user_locale') ? get_user_locale() : get_locale();
-
-        return self::USEFUL_PLUGINS_CACHE_KEY . '_' . sanitize_key($locale);
-    }
-
 }

@@ -86,7 +86,6 @@ class Transliteration
             }
         }
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages are diagnostic values, not an HTML output sink.
         throw new Exception('No such method: ' . get_class($this) . '->' . $function . '()');
     }
 
@@ -104,7 +103,6 @@ class Transliteration
             return $this->$property;
         }
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages are diagnostic values, not an HTML output sink.
         throw new Exception('No such property: ' . get_class($this) . '->' . $property);
     }
 
@@ -124,7 +122,6 @@ class Transliteration
             return $this;
         }
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages are diagnostic values, not an HTML output sink.
         throw new Exception('No such property: ' . get_class($this) . '->' . $property);
     }
 
@@ -215,7 +212,7 @@ class Transliteration
             if (filter_var($object, FILTER_VALIDATE_URL)) {
                 return esc_url($object);
             }
-            if ($object !== wp_strip_all_tags($object)) {
+            if ($object !== strip_tags($object)) {
                 return wp_kses_post(sanitize_textarea_field($object));
             } else {
                 return sanitize_text_field($object);
