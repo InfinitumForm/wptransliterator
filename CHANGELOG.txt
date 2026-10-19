@@ -1,3 +1,7 @@
+= 2.5.10 =
+* Fixed forced Cyrillic-to-Latin output corrupting URL-bearing attributes; href, src, srcset, external scripts, stylesheets, and inline JavaScript URL assignments are now preserved correctly.
+* Added focused regression coverage for URL placeholders and visible body-text transliteration.
+
 = 2.5.9 =
 * Security hardening: replaced predictable temporary placeholders used by {rstr_keep} blocks to prevent stored XSS through placeholder collisions.
 

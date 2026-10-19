@@ -285,11 +285,6 @@ final class Transliteration_Controller extends Transliteration
 		$exclude_placeholders = [];
 		$content = $this->protect_cyr_excluded_words((string) $content, $exclude_placeholders);
 
-		$url_attribute_placeholders = [];
-		if ($sanitize_html) {
-			$content = $this->protect_url_attributes($content, $url_attribute_placeholders);
-		}
-
 		$head_placeholders = [];
 		$content = preg_replace_callback('/<head\b[^>]*>.*?<\/head>/is', function ($matches) use (&$head_placeholders): string {
 			$placeholder = self::make_placeholder(3, count($head_placeholders));
@@ -313,6 +308,11 @@ final class Transliteration_Controller extends Transliteration
 
 			return $placeholder;
 		}, $content);
+
+		$url_attribute_placeholders = [];
+		if ($sanitize_html) {
+			$content = $this->protect_url_attributes($content, $url_attribute_placeholders);
+		}
 
 		$format_specifiers = [];
 		$content = preg_replace_callback('/(\b\d+(?:\.\d+)?&#37;)/', function ($matches) use (&$format_specifiers): string {
