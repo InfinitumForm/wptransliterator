@@ -94,6 +94,10 @@ final class Transliteration_Mode extends Transliteration
      */
     private function load_mode(): void
     {
+		if (Transliteration_Utilities::is_elementor_editor()) {
+			return;
+		}
+
         if (empty($this->mode) && ($mode_class = $this->mode())) {
             $this->mode = $mode_class::get();
 			

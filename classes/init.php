@@ -46,6 +46,10 @@ final class Transliteration_Init extends Transliteration
 
     public function hook_init(): void
     {
+		if (Transliteration_Utilities::is_elementor_editor()) {
+			return;
+		}
+
         // ----------------------------
         // Main classes
         // ----------------------------
@@ -62,6 +66,7 @@ final class Transliteration_Init extends Transliteration
             'Transliteration_Tools',
             'Transliteration_Shortcodes',
             'Transliteration_Blocks',
+			'Transliteration_Site_Health'
         ]);
 
         if (!is_array($main_classes)) {
@@ -161,6 +166,10 @@ final class Transliteration_Init extends Transliteration
         if (function_exists('wp_doing_ajax') && wp_doing_ajax()) {
             return;
         }
+		
+		if (Transliteration_Utilities::is_elementor_editor()) {
+			return;
+		}
 
         $url_selector = (string) get_rstr_option('url-selector', 'rstr');
 
@@ -199,6 +208,22 @@ final class Transliteration_Init extends Transliteration
 
             if (!headers_sent() && wp_safe_redirect(remove_query_arg('_rstr_nocache'), 302)) {
                 exit;
+            }
+        }
+
+        $allowed_scripts = apply_filters('rstr/allowed_script', ['cyr', 'lat']);
+        $current_script  = sanitize_text_field($_COOKIE['rstr_script'] ?? '');
+        $can_initialize_script = (
+            !Transliteration_Utilities::is_sitemap()
+            && Transliteration_Utilities::is_transliteration_language()
+            && !Transliteration_Utilities::is_known_crawler()
+        );
+
+        if ($can_initialize_script && !in_array($current_script, $allowed_scripts, true)) {
+            $current_script = Transliteration_Utilities::get_current_script();
+
+            if (in_array($current_script, $allowed_scripts, true)) {
+                Transliteration_Utilities::setcookie($current_script);
             }
         }
     }

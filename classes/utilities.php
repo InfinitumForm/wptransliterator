@@ -675,7 +675,12 @@ class Transliteration_Utilities
         }
 
         // Set the cookie
-        setcookie('rstr_script', $val, ['expires' => $expire, 'path' => COOKIEPATH, 'domain' => COOKIE_DOMAIN]);
+        if (!setcookie('rstr_script', $val, ['expires' => $expire, 'path' => COOKIEPATH, 'domain' => COOKIE_DOMAIN])) {
+            return false;
+        }
+
+        // Keep the active script available during the current request.
+        $_COOKIE['rstr_script'] = (string) $val;
 
         // Send no-cache headers if available
         if (function_exists('nocache_headers')) {
@@ -1000,53 +1005,93 @@ class Transliteration_Utilities
      * Check is in the Elementor editor mode
      * @version   1.0.0
      */
-    public static function is_elementor_editor()
-    {
-        return self::cached_static('is_elementor_editor', function (): bool {
-            if (
-                (
-                    self::is_plugin_active('elementor/elementor.php')
-                    && ($_REQUEST['action'] ?? null) === 'elementor'
-                    && is_numeric($_REQUEST['post'] ?? null)
-                )
-                || preg_match('/^(elementor_(.*?))$/i', ($_REQUEST['action'] ?? ''))
-            ) {
-                return true;
+    public static function is_elementor_editor(): bool
+	{
+		if (self::is_elementor_preview()) {
+			return true;
+		}
 
-                // Deprecated
-                //	return \Elementor\Plugin::$instance->editor->is_edit_mode();
-            }
+		$action = self::request_value('action');
 
-            return false;
-        });
-    }
+		if (
+			(is_admin() || self::is_ajax_request())
+			&& ($action === 'elementor' || strpos($action, 'elementor_') === 0)
+		) {
+			return true;
+		}
+
+		if (
+			is_user_logged_in()
+			&& did_action('wp') > 0
+			&& class_exists('\Elementor\Plugin', false)
+			&& isset(\Elementor\Plugin::$instance)
+		) {
+			$elementor = \Elementor\Plugin::$instance;
+
+			if (
+				isset($elementor->editor)
+				&& method_exists($elementor->editor, 'is_edit_mode')
+				&& $elementor->editor->is_edit_mode()
+			) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
     /*
      * Check is in the Elementor preview mode
      * @version   1.0.0
      */
-    public static function is_elementor_preview()
-    {
-        return self::cached_static('is_elementor_preview', function (): bool {
-            if (
-                !is_admin()
-                && (
-                    self::is_plugin_active('elementor/elementor.php')
-                    && ($_REQUEST['preview'] ?? null) == 'true'
-                    && is_numeric($_REQUEST['page_id'] ?? null)
-                    && is_numeric($_REQUEST['preview_id'] ?? null)
-                    && !empty($_REQUEST['preview_nonce'] ?? null)
-                ) || preg_match('/^(elementor_(.*?))$/i', ($_REQUEST['action'] ?? ''))
-            ) {
-                return true;
+    public static function is_elementor_preview(): bool
+	{
+		if (is_admin()) {
+			return false;
+		}
 
-                // Deprecated
-                //	return \Elementor\Plugin::$instance->preview->is_preview_mode();
-            }
+		$elementor_preview = self::request_value('elementor-preview');
 
-            return false;
-        });
-    }
+		if (
+			ctype_digit($elementor_preview)
+			&& (int) $elementor_preview > 0
+			&& current_user_can('edit_post', (int) $elementor_preview)
+		) {
+			return true;
+		}
+
+		$preview_id = self::request_value('preview_id');
+
+		if (
+			self::request_is_truthy(self::request_value('preview'))
+			&& ctype_digit($preview_id)
+			&& (int) $preview_id > 0
+			&& self::request_value('preview_nonce') !== ''
+			&& get_post_type((int) $preview_id) === 'elementor_library'
+			&& current_user_can('edit_post', (int) $preview_id)
+		) {
+			return true;
+		}
+
+		if (
+			is_user_logged_in()
+			&& did_action('wp') > 0
+			&& class_exists('\Elementor\Plugin', false)
+			&& isset(\Elementor\Plugin::$instance)
+		) {
+			$elementor = \Elementor\Plugin::$instance;
+
+			if (
+				isset($elementor->preview)
+				&& method_exists($elementor->preview, 'is_preview_mode')
+				&& $elementor->preview->is_preview_mode()
+			) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
     /*
      * Check is in the Oxygen editor mode

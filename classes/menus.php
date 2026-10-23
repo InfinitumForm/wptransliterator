@@ -176,7 +176,7 @@ final class Transliteration_Menus extends Transliteration
 				$item->classes[] = 'menu-item-transliteration';
 			}
 
-			$get_script = (isset($_COOKIE['rstr_script']) && in_array($_COOKIE['rstr_script'], apply_filters('rstr/allowed_script', ['cyr', 'lat']), true) ? $_COOKIE['rstr_script'] : 'none');
+			$get_script = Transliteration_Utilities::get_current_script();
 
 			$options = (object) [
 				'active' => $get_script,

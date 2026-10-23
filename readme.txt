@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.5.10
+Stable tag: 2.5.12
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,13 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Changelog ==
 
+= 2.5.12 =
+* Fixed Elementor editor and preview conflicts.
+* Added site health info
+
+= 2.5.11 =
+* Fixed first-visit script initialization and navigation labels so the correct alternate script is offered immediately without requiring a refresh.
+
 = 2.5.10 =
 * Fixed forced Cyrillic-to-Latin output corrupting URL-bearing attributes; href, src, srcset, external scripts, stylesheets, and inline JavaScript URL assignments are now preserved correctly.
 * Added focused regression coverage for URL placeholders and visible body-text transliteration.
@@ -172,34 +179,9 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 
 == Upgrade Notice ==
 
-= 2.5.10 =
-* Preserves URL-bearing attributes, external resources, and inline JavaScript URL assignments during forced Cyrillic-to-Latin transliteration.
-
-= 2.5.9 =
-* Security hardening: replaced predictable temporary placeholders used by {rstr_keep} blocks to prevent stored XSS through placeholder collisions.
-
-= 2.5.8 =
-* Prevents Phantom mode from processing non-HTML responses, improves Bosnian and Serbian word-library coverage, and hardens the permalink transliteration tool and admin security.
-
-= 2.5.7 =
-* Fixed transliteration of URL-bearing HTML attributes that could break links and media URLs.
-* Fixed compatibility with Avada Live Builder and Serbian Latin/Cyrillic switching in Polylang environments.
-* Improved frontend transliteration runtime diagnostics in the Debugging tab.
-
-= 2.5.6 =
-* Improve WP Rocket compatibility.
-* Improve cached content synchronization.
-* WP Rocket compatibility improvements contributed by Boris Košpić (@Boka003).
-
-= 2.5.5 =
-* Fix PHP 8 compatibility
-* Improved email handling and engine stability
-
-= 2.5.4 =
-* Added new rstr_keep shortcode for exact content preservation
-* Improved skip transliteration behavior for mixed-script content
-* Fixed Roman numeral handling inside protected transliteration blocks
-* Improved nested shortcode processing for transliteration tags
+= 2.5.12 =
+* Fixed Elementor editor and preview conflicts.
+* Added site health info
 
 == Frequently Asked Questions ==
 

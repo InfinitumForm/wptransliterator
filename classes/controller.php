@@ -34,6 +34,11 @@ final class Transliteration_Controller extends Transliteration
 	 */
 	public function init_output_buffer(): void
 	{
+	
+		if (Transliteration_Utilities::is_elementor_editor()) {
+			return;
+		}
+
 		if ($this->controller_buffer_level !== null) {
 			return;
 		}
@@ -218,6 +223,10 @@ final class Transliteration_Controller extends Transliteration
      */
     public function transliterate($content, $mode = 'auto', $sanitize_html = true)
 	{
+		if (Transliteration_Utilities::is_elementor_editor()) {
+			return $content;
+		}
+
 		if ($this->disable_transliteration() && !Transliteration_Utilities::is_admin()) {
 			return $content;
 		}
