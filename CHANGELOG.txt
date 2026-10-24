@@ -1,3 +1,11 @@
+= 2.5.13 =
+* Prevent infinite recursion during REST/OAuth authentication
+* Add guarded transliteration for approved user metadata fields
+* Preserve original user metadata and exclude sensitive fields
+* Update Standard and Advanced modes to use dedicated metadata handler
+* Improve Elementor editor detection and authentication safety
+* Maintain backward compatibility with existing transliteration behavior
+
 = 2.5.12 =
 * Fixed Elementor editor and preview conflicts.
 * Added site health info

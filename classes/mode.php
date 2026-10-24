@@ -158,7 +158,7 @@ final class Transliteration_Mode extends Transliteration
                         continue;
                     }
 
-                    $args = $key === 'gettext' ? 3 : 1;
+                    $args = $key === 'gettext' ? 3 : ($key === 'get_user_metadata' ? 5 : 1);
 
                     if (is_array($method)) {
                         add_filter($key, $method, (PHP_INT_MAX - 100), $args);
@@ -259,6 +259,100 @@ final class Transliteration_Mode extends Transliteration
 
         return $data;
     }
+	
+	/**
+	 * Transliterate display-safe user metadata without changing stored values.
+	 *
+	 * The get_user_metadata hook runs before WordPress reads the actual value.
+	 * Fetch raw data via a guarded nested read and only process approved text keys.
+	 *
+	 * @param mixed  $value     Value supplied by preceding metadata filters.
+	 * @param int    $user_id   User whose metadata is requested.
+	 * @param string $meta_key  Requested metadata key.
+	 * @param bool   $single    Whether a single value was requested.
+	 * @param string $meta_type Metadata type.
+	 * @return mixed Original value or transliterated text metadata.
+	 */
+	public function transliterate_user_metadata($value, $user_id, $meta_key, $single, $meta_type = 'user')
+	{
+		static $in_progress = false;
+
+		if (
+			null !== $value
+			|| $in_progress
+			|| 'user' !== $meta_type
+			|| (int) $user_id <= 0
+			|| !is_string($meta_key)
+			|| '' === $meta_key
+		) {
+			return $value;
+		}
+
+		// Never trigger user-dependent transliteration during authentication.
+		if (
+			!did_action('set_current_user')
+			|| doing_filter('determine_current_user')
+			|| !isset($GLOBALS['current_user'])
+			|| !($GLOBALS['current_user'] instanceof WP_User)
+			|| (defined('REST_REQUEST') && REST_REQUEST)
+		) {
+			return $value;
+		}
+
+		$allowed_keys = (array) apply_filters(
+			'rstr/transliteration/user_metadata/keys',
+			[
+				'first_name',
+				'last_name',
+				'nickname',
+				'description',
+				'billing_first_name',
+				'billing_last_name',
+				'billing_company',
+				'shipping_first_name',
+				'shipping_last_name',
+				'shipping_company',
+			],
+			(int) $user_id
+		);
+
+		if (!in_array($meta_key, $allowed_keys, true)) {
+			return $value;
+		}
+
+		$in_progress = true;
+
+		try {
+			// The nested call re-enters this callback, where the guard
+			// returns null and allows WordPress to read the original data.
+			$raw_value = get_metadata_raw(
+				'user',
+				(int) $user_id,
+				$meta_key,
+				(bool) $single
+			);
+
+			if ($single) {
+				return is_string($raw_value)
+					? $this->no_html_content($raw_value)
+					: $value;
+			}
+
+			if (!is_array($raw_value)) {
+				return $value;
+			}
+
+			foreach ($raw_value as $index => $item) {
+				if (is_string($item)) {
+					$raw_value[$index] = $this->no_html_content($item);
+				}
+			}
+
+			return $raw_value;
+		} finally {
+			$in_progress = false;
+		}
+	}
 
     /**
      * Transliterate WP Terms

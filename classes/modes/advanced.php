@@ -56,7 +56,7 @@ class Transliteration_Mode_Advanced
             'default_post_metadata'              => 'content',
             'get_comment_metadata'               => 'content',
             'get_term_metadata'                  => 'content',
-            'get_user_metadata'                  => 'content',
+            'get_user_metadata'                  => 'transliterate_user_metadata',
             'get_post_metadata'                  => 'content',
             'get_page_metadata'                  => 'content',
             'gettext'                            => 'gettext_content',

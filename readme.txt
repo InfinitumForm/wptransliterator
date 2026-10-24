@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.5.12
+Stable tag: 2.5.13
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,14 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 9. Automated test
 
 == Changelog ==
+
+= 2.5.13 =
+* Prevent infinite recursion during REST/OAuth authentication
+* Add guarded transliteration for approved user metadata fields
+* Preserve original user metadata and exclude sensitive fields
+* Update Standard and Advanced modes to use dedicated metadata handler
+* Improve Elementor editor detection and authentication safety
+* Maintain backward compatibility with existing transliteration behavior
 
 = 2.5.12 =
 * Fixed Elementor editor and preview conflicts.
@@ -178,6 +186,14 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Fixed gettext problems
 
 == Upgrade Notice ==
+
+= 2.5.13 =
+* Prevent infinite recursion during REST/OAuth authentication
+* Add guarded transliteration for approved user metadata fields
+* Preserve original user metadata and exclude sensitive fields
+* Update Standard and Advanced modes to use dedicated metadata handler
+* Improve Elementor editor detection and authentication safety
+* Maintain backward compatibility with existing transliteration behavior
 
 = 2.5.12 =
 * Fixed Elementor editor and preview conflicts.

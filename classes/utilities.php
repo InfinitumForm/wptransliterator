@@ -1021,8 +1021,9 @@ class Transliteration_Utilities
 		}
 
 		if (
-			is_user_logged_in()
-			&& did_action('wp') > 0
+			did_action('wp') > 0
+			&& function_exists('is_user_logged_in')
+			&& is_user_logged_in()
 			&& class_exists('\Elementor\Plugin', false)
 			&& isset(\Elementor\Plugin::$instance)
 		) {
@@ -1054,7 +1055,9 @@ class Transliteration_Utilities
 
 		if (
 			ctype_digit($elementor_preview)
+			&& !doing_filter('get_user_metadata')
 			&& (int) $elementor_preview > 0
+			&& function_exists('current_user_can') 
 			&& current_user_can('edit_post', (int) $elementor_preview)
 		) {
 			return true;
@@ -1064,18 +1067,21 @@ class Transliteration_Utilities
 
 		if (
 			self::request_is_truthy(self::request_value('preview'))
+			&& !doing_filter('get_user_metadata')
 			&& ctype_digit($preview_id)
 			&& (int) $preview_id > 0
 			&& self::request_value('preview_nonce') !== ''
 			&& get_post_type((int) $preview_id) === 'elementor_library'
+			&& function_exists('current_user_can') 
 			&& current_user_can('edit_post', (int) $preview_id)
 		) {
 			return true;
 		}
 
 		if (
-			is_user_logged_in()
-			&& did_action('wp') > 0
+			did_action('wp') > 0
+			&& function_exists('is_user_logged_in')
+			&& is_user_logged_in()
 			&& class_exists('\Elementor\Plugin', false)
 			&& isset(\Elementor\Plugin::$instance)
 		) {
