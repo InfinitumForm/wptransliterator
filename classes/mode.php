@@ -381,16 +381,33 @@ final class Transliteration_Mode extends Transliteration
     }
 
     /**
-     * Force all permalinks to latin
-     * @contributor    Ivijan-Stefan Stipić
-     * @version        1.0.0
-     */
-    public function force_permalink_to_latin($permalink, $force = false)
-    {
-        $permalink = rawurldecode($permalink);
+	 * Force all permalinks to Latin.
+	 *
+	 * @contributor Ivijan-Stefan Stipic
+	 * @version     1.0.0
+	 */
+	public function force_permalink_to_latin($permalink, $force = false)
+	{
+		$permalink = rawurldecode($permalink);
 
-        return Transliteration_Controller::get()->cyr_to_lat_sanitize($permalink, $force);
-    }
+		$permalink = Transliteration_Controller::get()
+			->cyr_to_lat_sanitize($permalink, $force);
+
+		$hook = current_filter();
+
+		// Protect slugs used in WordPress database queries.
+		if ($hook === 'sanitize_title') {
+			return sanitize_title_with_dashes($permalink);
+		}
+
+		// Prevent unsafe characters from entering generated post slugs.
+		if ($hook === 'wp_unique_post_slug') {
+			return sanitize_title_with_dashes($permalink, '', 'save');
+		}
+
+		// Preserve the existing behavior for complete permalink URLs.
+		return $permalink;
+}
 
     /**
      * Transliterate Image attributes

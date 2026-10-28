@@ -133,16 +133,31 @@ class Transliteration_Wordpress extends Transliteration
         return Transliteration_Mode::get()->force_permalink_to_latin($permalink, true);
     }
 
-    public function force_permalink_to_latin_on_save($data, $postarr)
-    {
-        if (isset($data['post_name'])) {
-            $data['post_name'] = $this->force_permalink_to_latin($data['post_name']);
-        } elseif (isset($data['post_title'])) {
-            $data['post_name'] = sanitize_title($this->force_permalink_to_latin($data['post_title']));
-        }
+        /**
+		 * Sanitize transliterated post slugs before database persistence.
+		 *
+		 * @param array $data    Processed post data.
+		 * @param array $postarr Original post data.
+		 * @return array
+		 */
+		public function force_permalink_to_latin_on_save($data, $postarr)
+		{
+			if (isset($data['post_name'])) {
+				$data['post_name'] = sanitize_title_with_dashes(
+					$this->force_permalink_to_latin($data['post_name']),
+					'',
+					'save'
+				);
+			} elseif (isset($data['post_title'])) {
+				$data['post_name'] = sanitize_title_with_dashes(
+					sanitize_title($this->force_permalink_to_latin($data['post_title'])),
+					'',
+					'save'
+				);
+			}
 
-        return $data;
-    }
+			return $data;
+		}
 
     public function after_insert_post_force_permalink_to_latin_on_save($post_id, $post, $update, $post_before): void
     {
