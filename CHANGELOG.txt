@@ -1,3 +1,6 @@
+= 2.5.15 =
+* Fixed Astra theme compatibility issues across all transliteration modes.
+
 = 2.5.14 =
 * Security: Fixed potential SQL injection in permalink sanitization.
 * Security: Improved post slug sanitization and validation.

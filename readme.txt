@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.5.14
+Stable tag: 2.5.15
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,7 +39,7 @@ Instead of relying on multiple separate tools, this all-in-one plugin brings tog
 
 Every feature in this plugin can be selectively enabled or disabled based on your needs. Additionally, developers can make use of available filters and hooks to further customize behavior. We've designed this plugin with flexibility and compatibility in mind.
 
-🧩 Fully compatible with popular plugins and page builders, including:
+🧩 Fully compatible with popular themes, plugins and page builders, including:
 
 * [WooCommerce](https://wordpress.org/plugins/woocommerce/)
 * [Polylang](https://wordpress.org/plugins/polylang/)
@@ -49,6 +49,7 @@ Every feature in this plugin can be selectively enabled or disabled based on you
 * [Data Tables Generator by Supsystic](https://wordpress.org/plugins/data-tables-generator-by-supsystic/)
 * [Slider Revolution](https://www.sliderrevolution.com/)
 * [Avada theme](https://avada.theme-fusion.com/)
+* [Astra theme](https://wordpress.org/themes/astra/)
 * [Themify](https://themify.me/)
 * [Divi](https://www.elegantthemes.com/gallery/divi/)
 
@@ -88,6 +89,9 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 9. Automated test
 
 == Changelog ==
+
+= 2.5.15 =
+* Fixed Astra theme compatibility issues across all transliteration modes.
 
 = 2.5.14 =
 * Security: Fixed potential SQL injection in permalink sanitization.
@@ -190,6 +194,9 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Fixed gettext problems
 
 == Upgrade Notice ==
+
+= 2.5.15 =
+* Fixed Astra theme compatibility issues across all transliteration modes.
 
 = 2.5.14 =
 * Security: Fixed potential SQL injection in permalink sanitization.
