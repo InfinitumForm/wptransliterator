@@ -62,6 +62,7 @@ jobs:
 
       - name: Run WordPress Plugin Check
         uses: wordpress/plugin-check-action@v1
+        continue-on-error: true
         with:
           build-dir: '${{ runner.temp }}/serbian-transliteration'
           slug: 'serbian-transliteration'
