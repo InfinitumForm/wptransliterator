@@ -4,7 +4,7 @@ Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.5.15
+Stable tag: 2.5.16
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,10 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 9. Automated test
 
 == Changelog ==
+
+= 2.5.16 =
+- Security: Fixed a stored cross-site scripting vulnerability (CVE-2026-136937).
+- Security: Improved HTML attribute integrity and inline transliteration marker handling.
 
 = 2.5.15 =
 * Fixed Astra theme compatibility issues across all transliteration modes.
@@ -194,6 +198,10 @@ Make your multilingual content readable, searchable, and SEO-friendly - **Transl
 * Fixed gettext problems
 
 == Upgrade Notice ==
+
+= 2.5.16 =
+- Security: Fixed a stored cross-site scripting vulnerability (CVE-2026-136937).
+- Security: Improved HTML attribute integrity and inline transliteration marker handling.
 
 = 2.5.15 =
 * Fixed Astra theme compatibility issues across all transliteration modes.

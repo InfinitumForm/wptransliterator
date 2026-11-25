@@ -14,6 +14,13 @@ final class Transliteration_Controller extends Transliteration
 	 * @var int|null
 	 */
 	private ?int $controller_buffer_level = null;
+	private bool $restoring_keep_blocks = false;
+
+    private const HTML_ATTRIBUTE = '([ \t\n\f\r]++[a-z_:][a-z0-9_.:-]*+)(?:([ \t\n\f\r]*+=[ \t\n\f\r]*+)("[^"]*+"|\'[^\']*+\'|[^ \t\n\f\r"\'=<>\x60]+))?';
+    private const HTML_UNQUOTED_ESCAPE = [
+        ' ' => '&#32;', "\t" => '&#9;', "\n" => '&#10;', "\f" => '&#12;', "\r" => '&#13;',
+        '"' => '&quot;', "'" => '&#39;', '<' => '&lt;', '>' => '&gt;', '=' => '&#61;', "\x60" => '&#96;',
+    ];
 
     /*
      * The main constructor
@@ -35,7 +42,7 @@ final class Transliteration_Controller extends Transliteration
 	public function init_output_buffer(): void
 	{
 	
-		if (Transliteration_Utilities::is_elementor_editor()) {
+		if (is_admin() || Transliteration_Utilities::is_elementor_editor()) {
 			return;
 		}
 
@@ -44,6 +51,11 @@ final class Transliteration_Controller extends Transliteration
 		}
 
 		add_action('shutdown', [$this, 'end_output_buffer'], PHP_INT_MAX);
+		$neutralize_comment = function ($content) {
+			return is_string($content) ? $this->neutralize_comment_markers($content) : $content;
+		};
+		add_filter('get_comment_text', $neutralize_comment, PHP_INT_MAX);
+		add_filter('comment_text', $neutralize_comment, PHP_INT_MAX);
 
 		$this->ob_start([$this, 'controller_output_buffer']);
 
@@ -58,7 +70,29 @@ final class Transliteration_Controller extends Transliteration
 	 */
 	public function controller_output_buffer($buffer)
 	{
-		return $this->transliteration_tags_callback($buffer);
+		return is_admin() ? $buffer : $this->transliteration_tags_callback($buffer);
+	}
+
+	private function neutralize_comment_markers(string $content): string
+	{
+		// Phantom can decode references before the global marker pass. Match their
+		// rendered spelling and insert a word joiner that survives serialization.
+		$opening = '(?:\{|&#0*123(?:;|(?![0-9]))|&#x0*7b(?:;|(?![0-9a-f]))|&(?:lbrace|lcub);)';
+		$characters = '(?:[a-z_/]|&#(?:x[0-9a-f]++|[0-9]++);?|&[a-z]+;)';
+		$closing = '(?:\}|&#0*125(?:;|(?![0-9]))|&#x0*7d(?:;|(?![0-9a-f]))|&(?:rbrace|rcub);)';
+
+		return preg_replace_callback(
+			'~(' . $opening . ')(' . $characters . '{1,11})' . $closing . '~i',
+			static function (array $matches): string {
+				$name = preg_replace('/&#(x[0-9a-f]++|[0-9]++);?/i', '&#$1;', $matches[2]);
+				$name = strtolower(html_entity_decode($name, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+				if (in_array(ltrim($name, '/'), ['cyr_to_lat', 'lat_to_cyr', 'rstr_skip', 'rstr_keep'], true)) {
+					return $matches[1] . "\u{2060}" . substr($matches[0], strlen($matches[1]));
+				}
+				return $matches[0];
+			},
+			$content
+		) ?? $content;
 	}
 
 	/**
@@ -290,9 +324,21 @@ final class Transliteration_Controller extends Transliteration
 				return $content;
 			}
 		}
+
+		$content = (string) $content;
+		$html_placeholders = [];
+		$url_attributes = [];
+		if ($sanitize_html && $class_map && class_exists($class_map)) {
+			$url_attributes = $this->protected_url_attribute_names();
+			$protected = $this->protect_html_markup($content, $html_placeholders, $class_map, $url_attributes);
+			if ($protected === null) {
+				return $content;
+			}
+			$content = $protected;
+		}
 		
 		$exclude_placeholders = [];
-		$content = $this->protect_cyr_excluded_words((string) $content, $exclude_placeholders);
+		$content = $this->protect_cyr_excluded_words($content, $exclude_placeholders);
 
 		$head_placeholders = [];
 		$content = preg_replace_callback('/<head\b[^>]*>.*?<\/head>/is', function ($matches) use (&$head_placeholders): string {
@@ -320,7 +366,7 @@ final class Transliteration_Controller extends Transliteration
 
 		$url_attribute_placeholders = [];
 		if ($sanitize_html) {
-			$content = $this->protect_url_attributes($content, $url_attribute_placeholders);
+			$content = $this->protect_url_attributes($content, $url_attribute_placeholders, $url_attributes);
 		}
 
 		$format_specifiers = [];
@@ -338,19 +384,6 @@ final class Transliteration_Controller extends Transliteration
 
 		if ($format_specifiers !== []) {
 			$content = strtr($content, $format_specifiers);
-		}
-
-		if ($sanitize_html) {
-			$html_attributes_match = $this->private__html_atributes('cyr_to_lat');
-
-			if ($html_attributes_match) {
-				$content = preg_replace_callback('/\b(' . $html_attributes_match . ')=("|\')(.*?)\2/i', function ($matches) use ($class_map, $sanitize_html): string {
-					$transliterated_value = $class_map::transliterate($matches[3], 'cyr_to_lat');
-					$transliterated_value = Transliteration_Sanitization::get()->lat($transliterated_value, $sanitize_html);
-
-					return $matches[1] . '=' . $matches[2] . esc_attr($transliterated_value) . $matches[2];
-				}, $content);
-			}
 		}
 
 		if ($exclude_placeholders !== []) {
@@ -374,8 +407,11 @@ final class Transliteration_Controller extends Transliteration
 		}
 		
 		$content = $this->cleanup_placeholders($content);
+		$content = strtr($content, $html_placeholders);
 
-		return $content;
+		return $sanitize_html && $class_map && class_exists($class_map)
+			? $this->transliterate_html_attributes($content, 'cyr_to_lat', $class_map, $url_attributes, $exclude_placeholders, $html_placeholders)
+			: $content;
 	}
 
     /*
@@ -438,6 +474,17 @@ final class Transliteration_Controller extends Transliteration
         // If the content should not be transliterated or the user is an editor, return the original content
         if (!$class_map || Transliteration_Utilities::can_transliterate($content) || Transliteration_Utilities::is_editor()) {
             return $content;
+        }
+
+        $html_placeholders = [];
+        $url_attributes = [];
+        if ($sanitize_html) {
+            $url_attributes = $this->protected_url_attribute_names();
+            $protected = $this->protect_html_markup($content, $html_placeholders);
+            if ($protected === null) {
+                return $content;
+            }
+            $content = $protected;
         }
 
         /*// Don't transliterate if we already have transliteration
@@ -512,16 +559,12 @@ final class Transliteration_Controller extends Transliteration
 
         $url_attribute_placeholders = [];
         if ($sanitize_html) {
-            $content = $this->protect_url_attributes($content, $url_attribute_placeholders);
+            $content = $this->protect_url_attributes($content, $url_attribute_placeholders, $url_attributes);
         }
 
         // Handle various format specifiers and other patterns by replacing them with placeholders
         $formatSpecifiers = [];
-        $regex            = (
-            $sanitize_html
-            ? '/(\b\d+(?:\.\d+)?&#37;|%\d*\$?[ds]|<[^>]+>|&[^;]+;|https?:\/\/[^\s]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|rstr_skip|cyr_to_lat|lat_to_cyr)/'
-            : '/(\b\d+(?:\.\d+)?&#37;|%\d*\$?[ds]|&[^;]+;|https?:\/\/[^\s]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|rstr_skip|cyr_to_lat|lat_to_cyr)/'
-        );
+        $regex            = '/(\b\d+(?:\.\d+)?&#37;|%\d*\$?[ds]|&[^;]+;|https?:\/\/[^\s]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|rstr_skip|cyr_to_lat|lat_to_cyr)/';
         $content = preg_replace_callback($regex, function ($matches) use (&$formatSpecifiers): string {
             $placeholder                    = self::make_placeholder(8, count($formatSpecifiers));
             $formatSpecifiers[$placeholder] = $matches[0];
@@ -561,26 +604,9 @@ final class Transliteration_Controller extends Transliteration
             unset($shortcode_placeholders);
         }
 
-        // Sanitize HTML attributes and transliterate their values
-        if ($sanitize_html) {
-            $html_attributes_match = $this->private__html_atributes('lat_to_cyr');
-            if ($html_attributes_match) {
-                $content = preg_replace_callback('/\b(' . $html_attributes_match . ')=("|\')(.*?)\2/i', function ($matches) use ($class_map, $sanitize_html, $fix_diacritics): string {
-                    $transliteratedValue = $class_map::transliterate($matches[3], 'lat_to_cyr');
-                    $transliteratedValue = Transliteration_Sanitization::get()->cyr($transliteratedValue, $sanitize_html);
-                    if ($fix_diacritics) {
-                        $transliteratedValue = self::fix_diacritics($transliteratedValue);
-                    }
-
-                    return $matches[1] . '=' . $matches[2] . esc_attr($transliteratedValue) . $matches[2];
-                }, $content);
-            }
-        }
-
         // Restore excluded words back to their original form
         if ($exclude_placeholders !== []) {
             $content = strtr($content, $exclude_placeholders);
-            unset($exclude_placeholders);
         }
 
         if ($url_attribute_placeholders !== []) {
@@ -607,8 +633,11 @@ final class Transliteration_Controller extends Transliteration
         }
 		
 		$content = $this->cleanup_placeholders($content);
+		$content = strtr($content, $html_placeholders);
 
-        return $content;
+        return $sanitize_html
+            ? $this->transliterate_html_attributes($content, 'lat_to_cyr', $class_map, $url_attributes, $exclude_placeholders, $html_placeholders, $fix_diacritics)
+            : $content;
     }
 
     /*
@@ -681,14 +710,20 @@ final class Transliteration_Controller extends Transliteration
 						$content
 					);
 
-					switch (get_rstr_option('transliteration-mode', 'cyr_to_lat')) {
-						case 'cyr_to_lat':
-							$content = $this->lat_to_cyr($content, true);
-							break;
+					$restoring_keep_blocks = $this->restoring_keep_blocks;
+					$this->restoring_keep_blocks = $restoring_keep_blocks || $keep_blocks !== [];
+					try {
+						switch (get_rstr_option('transliteration-mode', 'cyr_to_lat')) {
+							case 'cyr_to_lat':
+								$content = $this->lat_to_cyr($content, true);
+								break;
 
-						case 'lat_to_cyr':
-							$content = $this->cyr_to_lat($content, true, true);
-							break;
+							case 'lat_to_cyr':
+								$content = $this->cyr_to_lat($content, true, true);
+								break;
+						}
+					} finally {
+						$this->restoring_keep_blocks = $restoring_keep_blocks;
 					}
 
 					if ($keep_blocks !== []) {
@@ -910,6 +945,245 @@ final class Transliteration_Controller extends Transliteration
 		return $output;
 	}
 
+    /**
+     * Keep HTML syntax out of the primary language-map pass. Unsupported or
+     * incomplete tag syntax is left alone through the end of the fragment.
+     */
+    private function protect_html_markup(
+        string $content,
+        array &$placeholders,
+        ?string $class_map = null,
+        array $url_attributes = []
+    ): ?string {
+        if (strpos($content, '<') === false) {
+            return $content;
+        }
+
+        $space = '[ \t\n\f\r]';
+        $attribute = self::HTML_ATTRIBUTE;
+        $end = '(?:' . $attribute . ')*+' . $space . '*+/?>';
+        $tag_name = '[a-z][a-z0-9_.:-]*+';
+        $closer = $space . '*+>';
+        $pattern = '~<!--(?:>|->|[\s\S]*?(?:--!?>|\z))'
+            . '|<!\[CDATA\[[\s\S]*?(?:\]\]>|\z)|<[!?][^>]*+(?:>|\z)'
+            . '|<(?<raw>script|style|xmp|iframe|noembed|noframes|noscript)' . $end . '[\s\S]*?(?:</\k<raw>' . $closer . '|\z)'
+            . '|<plaintext' . $end . '[\s\S]*\z'
+            . '|(?<start><' . $tag_name . ')(?<tail>' . $end . ')'
+            . '|(?<head_end></head' . $closer . ')'
+            . '|</' . $tag_name . $closer
+            . '|</?[a-z][\s\S]*\z|</[^>]*+(?:>|\z)'
+            . '|(?<text>[^<]++|<)~i';
+        $prefix = '%::' . wp_rand() . '::' . wp_rand() . '::12::';
+        $in_head = false;
+
+        return preg_replace_callback($pattern, function (array $matches) use (
+            &$placeholders,
+            &$in_head,
+            $attribute,
+            $class_map,
+            $content,
+            $prefix,
+            $url_attributes
+        ): string {
+            $markup = $matches[0];
+            $start = strtolower($matches['start'] ?? '');
+            if ($start === '<head') {
+                $in_head = true;
+            } elseif ($start === '<body' || !empty($matches['head_end'])) {
+                $in_head = false;
+            }
+
+            if (!$in_head && !empty($matches['text'])) {
+                // A text "<" must not become a tag opener after transliteration.
+                return $markup === '<' ? '&lt;' : $markup;
+            }
+
+            if (!$in_head && $class_map !== null && $start !== '') {
+                $tail = preg_replace_callback('~' . $attribute . '~i', function (array $parts) use ($class_map, $url_attributes): string {
+                    if (!isset($parts[3]) || in_array(strtolower(ltrim($parts[1])), $url_attributes, true)) {
+                        return $parts[0];
+                    }
+
+                    $value = $parts[3];
+                    $quote = $value[0] === '"' || $value[0] === "'" ? $value[0] : '';
+                    $value = $quote === '' ? $value : substr($value, 1, -1);
+                    $excluded = [];
+                    $converted = $this->protect_cyr_excluded_words($value, $excluded);
+                    $converted = $class_map::transliterate($converted, 'cyr_to_lat');
+                    $converted = Transliteration_Sanitization::get()->lat($converted, true);
+                    $converted = strtr($converted, $excluded);
+
+                    if ($quote !== '') {
+                        $converted = str_replace($quote, $quote === '"' ? '&quot;' : '&#39;', $converted);
+                    } elseif ($converted !== $value) {
+                        $converted = strtr($converted, self::HTML_UNQUOTED_ESCAPE);
+                        if ($converted === '') {
+                            $quote = '"';
+                        }
+                    }
+
+                    return $parts[1] . $parts[2] . $quote . $converted . $quote;
+                }, $matches['tail']);
+                $markup = $tail === null ? $markup : $matches['start'] . $tail;
+            }
+
+            $index = count($placeholders);
+            do {
+                $placeholder = $prefix . $index++ . '::%';
+            } while (strpos($content, $placeholder) !== false || isset($placeholders[$placeholder]));
+            $placeholders[$placeholder] = $markup;
+            return $placeholder;
+        }, $content);
+    }
+
+    private function transliterate_html_attributes(
+        string $content,
+        string $direction,
+        string $class_map,
+        array $url_attributes,
+        array $exclude_placeholders,
+        array $html_placeholders,
+        bool $fix_diacritics = false
+    ): string {
+        // Run only after raw placeholders have been restored. A keep block can span HTML syntax.
+        if ($this->restoring_keep_blocks || !class_exists('WP_HTML_Tag_Processor') || strpos($content, '<') === false) {
+            return $content;
+        }
+
+        $attributes = array_diff(
+            array_unique(array_map('strtolower', $this->private__html_atributes($direction, true))),
+            $url_attributes
+        );
+        if ($attributes === []) {
+            return $content;
+        }
+
+        $processor = new WP_HTML_Tag_Processor($content);
+        $skip_tag = null;
+        while (true) {
+            try {
+                if (!$processor->next_tag(['tag_closers' => 'visit'])) {
+                    break;
+                }
+            } catch (ValueError $error) {
+                // WordPress 6.2 can read past EOF on an unterminated attribute.
+                return $content;
+            }
+            $tag = $processor->get_tag();
+            if ($skip_tag !== null) {
+                if ($processor->is_tag_closer() && $tag === $skip_tag) {
+                    $skip_tag = null;
+                }
+                continue;
+            }
+            if ($processor->is_tag_closer()) {
+                continue;
+            }
+            if ($tag === 'PLAINTEXT') {
+                break;
+            }
+            // Early versions of the HTML API do not tokenize all raw-text elements.
+            if (in_array($tag, ['HEAD', 'SCRIPT', 'STYLE', 'XMP', 'IFRAME', 'NOEMBED', 'NOFRAMES', 'NOSCRIPT'], true)) {
+                $skip_tag = $tag;
+                continue;
+            }
+
+            foreach ($attributes as $attribute) {
+                $value = $processor->get_attribute($attribute);
+                if (!is_string($value)) {
+                    continue;
+                }
+
+                $protected_words = $exclude_placeholders;
+                $converted = $value;
+                if ($direction === 'cyr_to_lat') {
+                    $protected_words = [];
+                    $converted = $this->protect_cyr_excluded_words($value, $protected_words);
+                } elseif ($protected_words !== []) {
+                    $converted = strtr($value, array_flip($protected_words));
+                }
+
+                $converted = $class_map::transliterate($converted, $direction);
+                if ($direction === 'cyr_to_lat') {
+                    $converted = Transliteration_Sanitization::get()->lat($converted, true);
+                } else {
+                    $converted = Transliteration_Sanitization::get()->cyr($converted, true);
+                    if ($fix_diacritics) {
+                        $converted = self::fix_diacritics($converted);
+                    }
+                }
+                $converted = strtr($converted, $protected_words);
+
+                if ($converted !== $value) {
+                    $processor->set_attribute($attribute, $converted);
+                }
+            }
+        }
+
+        $updated = $processor->get_updated_html();
+        return $updated === $content ? $content : $this->preserve_attribute_syntax($updated, $html_placeholders);
+    }
+
+    /**
+     * Keep original delimiters and attribute spelling when WordPress rewrites a
+     * value. Only carry encoded values between matching, complete start tags.
+     */
+    private function preserve_attribute_syntax(string $updated, array $original_markup): string
+    {
+        $updated_markup = [];
+        $masked = $this->protect_html_markup($updated, $updated_markup);
+        if ($masked === null || count($original_markup) !== count($updated_markup)) {
+            return $updated;
+        }
+
+        $original_markup = array_values($original_markup);
+        $tag = '~\A(?<open><[a-z][a-z0-9_.:-]*+)(?<attributes>(?:' . self::HTML_ATTRIBUTE . ')*+)(?<end>[ \t\n\f\r]*+/?>)\z~i';
+        $attribute = '~' . self::HTML_ATTRIBUTE . '~i';
+        $index = 0;
+
+        foreach ($updated_markup as &$markup) {
+            $original = $original_markup[$index++];
+            if ($original === $markup
+                || !preg_match($tag, $original, $before)
+                || !preg_match($tag, $markup, $after)
+                || $before['open'] !== $after['open']
+                || preg_match_all($attribute, $before['attributes'], $old, PREG_SET_ORDER)
+                    !== preg_match_all($attribute, $after['attributes'], $new, PREG_SET_ORDER)
+            ) {
+                continue;
+            }
+
+            $result = $before['open'];
+            foreach ($old as $position => $source) {
+                $target = $new[$position];
+                if (strcasecmp(ltrim($source[1]), ltrim($target[1])) !== 0) {
+                    continue 2;
+                }
+                if ($source[0] === $target[0]) {
+                    $result .= $source[0];
+                    continue;
+                }
+                if (!isset($source[3], $target[3]) || $target[3][0] !== '"') {
+                    continue 2;
+                }
+
+                $quote = $source[3][0];
+                $encoded = substr($target[3], 1, -1);
+                if ($quote === "'") {
+                    $result .= $source[1] . $source[2] . "'" . str_replace("'", '&#39;', $encoded) . "'";
+                } elseif ($quote === '"') {
+                    $result .= $source[1] . $source[2] . '"' . $encoded . '"';
+                } else {
+                    $result .= $source[1] . $source[2] . ($encoded === '' ? '""' : strtr($encoded, self::HTML_UNQUOTED_ESCAPE));
+                }
+            }
+            $markup = $result . $before['end'];
+        }
+        unset($markup);
+
+        return strtr($masked, $updated_markup);
+    }
+
     /*
      * PRIVATE: Allowed HTML attributes for transliteration
      */
@@ -996,20 +1270,9 @@ final class Transliteration_Controller extends Transliteration
 		return is_string($cleaned) ? $cleaned : $content;
 	}
 
-	/**
-	 * Protect URL-bearing HTML attributes before transliterating an HTML string.
-	 *
-	 * Attribute values are restored byte-for-byte after the main transliteration
-	 * pass, so URLs, encoded values, and srcset candidates are never modified.
-	 *
-	 * @param string               $content Input HTML.
-	 * @param array<string, string> $placeholders Placeholder storage.
-	 *
-	 * @return string
-	 */
-	private function protect_url_attributes(string $content, array &$placeholders): string
+	private function protected_url_attribute_names(): array
 	{
-		$attributes = apply_filters('rstr/protected_url_attributes', [
+		$filtered_attributes = apply_filters('rstr/protected_url_attributes', [
 			'href',
 			'src',
 			'srcset',
@@ -1019,14 +1282,20 @@ final class Transliteration_Controller extends Transliteration
 			'cite',
 		]);
 
-		if (!is_array($attributes)) {
-			return $content;
+		if (!is_array($filtered_attributes)) {
+			return [];
 		}
 
-		$attributes = array_values(array_unique(array_filter(array_map(static function ($attribute): string {
+		return array_values(array_unique(array_filter(array_map(static function ($attribute): string {
 			return is_string($attribute) ? sanitize_key($attribute) : '';
-		}, $attributes))));
+		}, $filtered_attributes))));
+	}
 
+	/**
+	 * Preserve URL values in fragments left outside the protected HTML tokens.
+	 */
+	private function protect_url_attributes(string $content, array &$placeholders, array $attributes): string
+	{
 		if ($attributes === []) {
 			return $content;
 		}
