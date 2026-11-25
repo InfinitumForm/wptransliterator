@@ -1029,7 +1029,7 @@ final class Transliteration_Controller extends Transliteration
 
             $index = count($placeholders);
             do {
-                $placeholder = $prefix . $index++ . '::%';
+                $placeholder = $prefix . ($index++) . '::%';
             } while (strpos($content, $placeholder) !== false || isset($placeholders[$placeholder]));
             $placeholders[$placeholder] = $markup;
             return $placeholder;
