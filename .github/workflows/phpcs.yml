@@ -136,6 +136,12 @@ jobs:
             -p \
             "${FILES[@]}" || PHPCS_EXIT=$?
 
+          # PHPCS uses 1 and 2 for findings; other exit codes indicate execution failure.
+          if [[ ${PHPCS_EXIT} -gt 2 ]]; then
+            echo "PHPCS execution failed (exit ${PHPCS_EXIT})." >&2
+            exit "${PHPCS_EXIT}"
+          fi
+
           if [[ ! -s "${PHPCS_REPORT}" ]]; then
             echo "PHPCS did not produce a JSON report (exit ${PHPCS_EXIT})." >&2
             if [[ ${PHPCS_EXIT} -eq 0 ]]; then

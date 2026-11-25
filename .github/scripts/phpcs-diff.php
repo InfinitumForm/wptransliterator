@@ -108,7 +108,9 @@ foreach ($report['files'] as $file => $file_report) {
 			continue;
 		}
 
-		$is_error = isset($message['type']) && 'ERROR' === strtoupper($message['type']);
+		// Only known presentation-only sniffs are advisory; unknown errors remain blocking.
+		$stylistic = preg_match('/^(Generic\.(WhiteSpace|Formatting)\.|Squiz\.(WhiteSpace|Strings\.(ConcatenationSpacing|DoubleQuoteUsage))\.|WordPress\.WhiteSpace\.|Universal\.WhiteSpace\.)/', $source);
+		$is_error = isset($message['type']) && 'ERROR' === strtoupper($message['type']) && ! $stylistic;
 		$level    = $is_error ? 'error' : 'warning';
 
 		if ($is_error) {
