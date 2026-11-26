@@ -836,9 +836,9 @@ final class Transliteration_Controller extends Transliteration
 
 		$protectPatterns = apply_filters('transliteration_dom_protect_blocks', [
 			// Protect inline transliteration tags before global DOM transliteration.
-			'~\{cyr_to_lat\}.*?\{/cyr_to_lat\}~is',
-			'~\{lat_to_cyr\}.*?\{/lat_to_cyr\}~is',
-			'~\{rstr_skip\}.*?\{/rstr_skip\}~is',
+			'~\{cyr_to_lat\}[^<>"\']*?\{/cyr_to_lat\}~is',
+			'~\{lat_to_cyr\}[^<>"\']*?\{/lat_to_cyr\}~is',
+			'~\{rstr_skip\}[^<>"\']*?\{/rstr_skip\}~is',
 
 			// Protect fragile HTML blocks.
 			'~<script\b[^>]*>.*?</script>~is',

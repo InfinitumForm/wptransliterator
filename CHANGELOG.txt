@@ -1,7 +1,9 @@
-= 2.5.16 =
+= 2.5.17 =
+* Security: Fixed a stored cross-site scripting vulnerability (CVE-2026-136937).
+* Security: Improved HTML attribute integrity and inline transliteration marker handling.
 
-- Security: Fixed a stored cross-site scripting vulnerability (CVE-2026-136937).
-- Security: Improved HTML attribute integrity and inline transliteration marker handling.
+= 2.5.16 =
+* Fixed XSS vulnerability and improved HTML processing security and stability.
 
 = 2.5.15 =
 * Fixed Astra theme compatibility issues across all transliteration modes.
