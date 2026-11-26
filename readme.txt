@@ -2,7 +2,7 @@
 Contributors: ivijanstefan, creativform, tihi, boka003, mtoptech
 Tags: cyrillic, latin, transliteration, latinisation, cyr2lat
 Requires at least: 6.0
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
 Stable tag: 2.5.17
 License: GPLv2 or later
